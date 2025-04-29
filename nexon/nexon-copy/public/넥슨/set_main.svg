@@ -1,0 +1,98 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50" height="750" viewBox="0 0 50 750">
+  <g transform="translate(0 0)">
+    <mask id="mask0">
+      <rect width="50" height="50" fill="#fff"/>
+      <path d="M0 0l1.276.022.214 12.63-1.276-.021z" fill="#000" transform="translate(1 1) rotate(-45 1.29 .517)"/>
+      <path d="M0 0l12.631.214.022 1.276L.022 1.276z" fill="#000" transform="translate(1 1) rotate(-45 10.817 4.464)"/>
+    </mask>
+    <rect width="50" height="50" fill="#fff" mask="url(#mask0)"/>
+  </g>
+
+
+  <g transform="translate(0 50)">
+    <mask id="mask1">
+      <rect width="50" height="50" fill="#fff"/>
+      <g transform="translate(1 1) rotate(90 958.505 -923.495)">
+        <path d="M6 7L0 1.4 1.5 0 6 4.2 10.5 0 12 1.4z" fill="#000" transform="translate(1883 27.009)"/>
+      </g>
+    </mask>
+    <rect width="50" height="50" fill="#fff" mask="url(#mask1)"/>
+  </g>
+  <g transform="translate(0 100)">
+    <mask id="mask2">
+      <rect width="50" height="50" fill="#fff"/>
+      <g transform="translate(1 1) rotate(-90 932.996 961.005)">
+        <path d="M6 7L0 1.4 1.5 0 6 4.2 10.5 0 12 1.4z" fill="#000" transform="translate(1881 29.009)"/>
+      </g>
+    </mask>
+    <rect width="50" height="50" fill="#fff" mask="url(#mask2)"/>
+  </g>
+  <g transform="translate(1 151)">
+    <circle cx="7" cy="7" r="7" fill="#666"/>
+    <g transform="translate(4.5 3)">
+      <path d="M2.981 4.651V5.86H1.635V4c1.25-.279 2.115-.93 2.115-1.674s-.481-1.21-1.35-1.21c-.573-.093-1.15.372-1.438 1.117L0 1.674A2.707 2.707 0 0 1 2.4 0 2.344 2.344 0 0 1 5 2.326a2.6 2.6 0 0 1-2.019 2.325zM1.635 8h1.346V6.7H1.635z" fill="#fff"/>
+    </g>
+  </g>
+  <g transform="translate(1 201)">
+    <path d="M-2313-844a7.008 7.008 0 0 1-7-7 7.008 7.008 0 0 1 7-7 7.008 7.008 0 0 1 7 7 7.008 7.008 0 0 1-7 7zm-4-8v2h8v-2z" fill="#17191d" transform="translate(2320.5 858.5)"/>
+  </g>
+  <g transform="translate(1 251)">
+    <path d="M-2313-844a7.008 7.008 0 0 1-7-7 7.008 7.008 0 0 1 7-7 7.008 7.008 0 0 1 7 7 7.008 7.008 0 0 1-7 7zm-4-8v2h8v-2z" fill="#ffffff" transform="translate(2320.5 858.5)"/>
+  </g>
+  <g transform="translate(0 300)">
+    <mask id="mask3">
+      <rect width="50" height="50" fill="#fff"/>
+      <path d="M7.5 15A7.553 7.553 0 0 1 0 7.5 7.553 7.553 0 0 1 7.5 0 7.553 7.553 0 0 1 15 7.5 7.553 7.553 0 0 1 7.5 15zm0-13.242A5.742 5.742 0 1 0 13.242 7.5 5.752 5.752 0 0 0 7.5 1.758z" fill="#000" transform="translate(2 2)"/>
+      <path d="M0 0h1.911v7.478H0z" fill="#000" transform="translate(-10 -10) rotate(-45 41.536 -15.85)"/>
+    </mask>
+    <rect width="50" height="50" fill="#f8f9fa" mask="url(#mask3)"/>
+  </g>
+  <g transform="translate(1 351)">
+    <mask id="mask4">
+      <rect width="24" height="24" fill="#fff"/>
+      <rect transform="translate(7 7)" width="4" height="4" fill="#000"/>
+      <rect transform="translate(7 13)" width="4" height="4" fill="#000"/>
+      <rect transform="translate(13 7)" width="4" height="4" fill="#000"/>
+      <rect transform="translate(13 13)" width="4" height="4" fill="#000"/>
+    </mask>
+    <rect width="24" height="24" fill="#fff" mask="url(#mask4)"/>
+  </g>
+  <g transform="translate(0 400)">
+    <rect width="26" height="26" fill="#000"/>
+    <rect transform="translate(8 8)" width="4" height="4" fill="#fff"/>
+    <rect transform="translate(8 14)" width="4" height="4" fill="#fff"/>
+    <rect transform="translate(14 8)" width="4" height="4" fill="#fff"/>
+    <rect transform="translate(14 14)" width="4" height="4" fill="#fff"/>
+  </g>
+  <g transform="translate(1 451)">
+    <mask id="mask5">
+      <rect width="24" height="24" fill="#fff"/>
+      <rect transform="translate(7 7)" width="10" height="2" fill="#000"/>
+      <rect transform="translate(7 11)" width="10" height="2" fill="#000"/>
+      <rect transform="translate(7 15)" width="10" height="2" fill="#000"/>
+    </mask>
+    <rect width="24" height="24" fill="#fff" mask="url(#mask5)"/>
+  </g>
+  <g transform="translate(0 500)">
+    <rect width="26" height="26" fill="#000"/>
+    <rect transform="translate(8 8)" width="10" height="2" fill="#fff"/>
+    <rect transform="translate(8 12)" width="10" height="2" fill="#fff"/>
+    <rect transform="translate(8 16)" width="10" height="2" fill="#fff"/>
+  </g>
+  <g transform="translate(0 550)">
+    <path d="M0 0l1.276.022.214 12.63-1.276-.021z" fill="#fff" transform="rotate(-45 1.29 .517)"/>
+    <path d="M0 0l12.631.214.022 1.276L.022 1.276z" fill="#fff" transform="rotate(-45 10.817 4.464)"/>
+  </g>
+  <g transform="translate(0 600)">
+    <path d="M0 0l1.276.022.214 12.63-1.276-.021z" fill="#0477ff" transform="rotate(-45 1.29 .517)"/>
+    <path d="M0 0l12.631.214.022 1.276L.022 1.276z" fill="#0477ff" transform="rotate(-45 10.817 4.464)"/>
+  </g>
+  <g transform="translate(0 650)">
+    <path d="M0 0H1.547V21.653H0z" fill="#17191d" transform="translate(9 10.094) rotate(-45)"/>
+    <path d="M0 0H21.653V1.547H0z" fill="#17191d" transform="translate(9 24.311) rotate(-45)"/>
+  </g>
+  <g transform="translate(0 700)">
+    <path d="M0 0H1.547V21.653H0z" fill="#0477ff" transform="translate(9 10.094) rotate(-45)"/>
+    <path d="M0 0H21.653V1.547H0z" fill="#0477ff" transform="translate(9 24.311) rotate(-45)"/>
+  </g>
+</svg>

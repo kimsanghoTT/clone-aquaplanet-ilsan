@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="600" viewBox="0 0 100 600">
+  <g transform="translate(0 0)">
+    <path d="M14 7.943V6.057c-.963-.342-1.572-.439-1.878-1.178-.307-.741.058-1.245.494-2.162l-1.333-1.333c-.911.433-1.419.8-2.162.494C8.38 1.571 8.283.958 7.943 0H6.057C5.718.954 5.62 1.57 4.88 1.878c-.741.308-1.244-.057-2.162-.494L1.384 2.717c.435.915.8 1.42.494 2.162S.954 5.718 0 6.057v1.886c.952.338 1.57.437 1.878 1.178s-.066 1.264-.494 2.162l1.333 1.333c.911-.433 1.42-.8 2.162-.494.741.307.838.921 1.178 1.878h1.886c.339-.954.438-1.569 1.182-1.879.736-.306 1.237.059 2.157.5l1.333-1.333c-.434-.912-.8-1.419-.495-2.162s.927-.844 1.88-1.183zm-7 1.39A2.333 2.333 0 1 1 9.333 7 2.333 2.333 0 0 1 7 9.333z" fill="#a5a6ac"/>
+  </g>
+  <g transform="translate(50 0)">
+    <path d="M14 7.943V6.057c-.963-.342-1.572-.439-1.878-1.178-.307-.741.058-1.245.494-2.162l-1.333-1.333c-.911.433-1.419.8-2.162.494C8.38 1.571 8.283.958 7.943 0H6.057C5.718.954 5.62 1.57 4.88 1.878c-.741.308-1.244-.057-2.162-.494L1.384 2.717c.435.915.8 1.42.494 2.162S.954 5.718 0 6.057v1.886c.952.338 1.57.437 1.878 1.178s-.066 1.264-.494 2.162l1.333 1.333c.911-.433 1.42-.8 2.162-.494.741.307.838.921 1.178 1.878h1.886c.339-.954.438-1.569 1.182-1.879.736-.306 1.237.059 2.157.5l1.333-1.333c-.434-.912-.8-1.419-.495-2.162s.927-.844 1.88-1.183zm-7 1.39A2.333 2.333 0 1 1 9.333 7 2.333 2.333 0 0 1 7 9.333z" fill="#0077ff"/>
+  </g>
+  <g transform="translate(0 50)">
+    <g transform="translate(-38 -16)">
+      <path d="M0 0h2v28H0z" fill="#17191d" transform="rotate(-45 57.092 -44.234)"/>
+      <path d="M0 0h28v2H0z" fill="#17191d" transform="rotate(-45 79.284 -35.042)"/>
+    </g>
+  </g>
+  <g transform="translate(0 150)">
+    <g transform="translate(-38 -16)">
+      <path d="M0 0h2v28H0z" fill="#0077ff" transform="rotate(-45 57.092 -44.234)"/>
+      <path d="M0 0h28v2H0z" fill="#0077ff" transform="rotate(-45 79.284 -35.042)"/>
+    </g>
+  </g>
+  <g transform="translate(0 250)">
+    <rect width="16" height="16" style="fill:#e5e8eb"/>
+    <rect width="14" height="14" style="fill:#fff" transform="translate(1 1)"/>
+  </g>
+  <g transform="translate(50 250)">
+    <path d="M0 0H16V16H0z" fill="#17191d"/>
+    <path d="M0 0H1.707V5.975H0z" fill="#fff" transform="rotate(-45 10.622 .171)"/>
+    <path d="M0 0H1.707V8.536H0z" fill="#fff" transform="rotate(45 .538 16.809)"/>
+  </g>
+  <g transform="translate(0 300)">
+    <g transform="translate(-1354.608 -42.885)">
+      <path d="M1361.608 56.884a7 7 0 1 1 6.272-10.111l-1.31.651a5.539 5.539 0 1 0 .576 2.461h1.462a7.007 7.007 0 0 1-7 6.999z" fill="#4a4e57"/>
+      <path d="M1368.694 48.021h-5.021v-1.5h3.521V43h1.5z" fill="#4a4e57" transform="translate(-.366)"/>
+    </g>
+  </g>
+  <g transform="translate(50 300)">
+    <g transform="translate(-1354.608 -42.885)">
+      <path d="M1361.608 56.884a7 7 0 1 1 6.272-10.111l-1.31.651a5.539 5.539 0 1 0 .576 2.461h1.462a7.007 7.007 0 0 1-7 6.999z" fill="#0077ff"/>
+      <path d="M1368.694 48.021h-5.021v-1.5h3.521V43h1.5z" fill="#0077ff" transform="translate(-.366)"/>
+    </g>
+  </g>
+  <g transform="translate(0 350)">
+    <g transform="translate(-384 -845)">
+      <path d="M0 0H2V18H0z" fill="#9fa1a7" transform="translate(392 845)"/>
+      <path d="M0 0H2V18H0z" fill="#9fa1a7" transform="rotate(90 -225.5 627.5)"/>
+    </g>
+  </g>
+  <g transform="translate(0 400)">
+    <g transform="translate(1)">
+      <rect width="32" height="17.581" style="fill:none;stroke-miterlimit:10;stroke-width:2px;stroke:#dde1e5" rx="8.791" transform="translate(0 8.894)"/>
+      <path d="M340.216 467.09v-3.463a1.865 1.865 0 0 1 1.865-1.865h7.858a1.865 1.865 0 0 0 1.861-1.862v-2.4" style="fill:none;stroke-miterlimit:10;stroke-width:2px;stroke:#dde1e5" transform="translate(-324.066 -457.5)"/>
+      <path d="M314.27 502.9h-2.93v-2.93a.8.8 0 1 0-1.6 0v2.93h-2.93a.8.8 0 0 0 0 1.6h2.93v2.93a.8.8 0 0 0 1.6 0v-2.93h2.93a.8.8 0 0 0 0-1.6z" style="stroke:#dde1e5;fill:#dde1e5" transform="translate(-300.659 -485.751)"/>
+      <circle cx="1.598" cy="1.598" r="1.598" style="stroke:#dde1e5;fill:#dde1e5" transform="translate(22.631 14.028)"/>
+      <circle cx="1.598" cy="1.598" r="1.598" style="stroke:#dde1e5;fill:#dde1e5" transform="translate(18.516 19.167)"/>
+    </g>
+  </g>
+  <g transform="translate(0 450)">
+    <g transform="translate(1.25)" style="opacity:.5">
+      <rect width="36" height="19.467" style="fill:none;stroke-miterlimit:10;stroke-width:2.5px;stroke:#9fa1a7" rx="9.734" transform="translate(0 10.533)"/>
+      <path d="M340.216 468.118v-3.834a2.065 2.065 0 0 1 2.065-2.065h8.7a2.065 2.065 0 0 0 2.065-2.065V457.5" style="fill:none;stroke-miterlimit:10;stroke-width:2.5px;stroke:#9fa1a7" transform="translate(-321.766 -457.5)"/>
+      <path d="M315.156 503.3h-3.245v-3.244a.885.885 0 1 0-1.77 0v3.244H306.9a.885.885 0 0 0 0 1.77h3.245v3.244a.885.885 0 0 0 1.77 0v-3.244h3.245a.885.885 0 0 0 0-1.77z" style="stroke:#9fa1a7;fill:#9fa1a7" transform="translate(-299.952 -483.626)"/>
+      <circle cx="1.77" cy="1.77" r="1.77" style="stroke:#9fa1a7;fill:#9fa1a7" transform="translate(25.505 15.945)"/>
+      <circle cx="1.77" cy="1.77" r="1.77" style="stroke:#9fa1a7;fill:#9fa1a7" transform="translate(20.867 21.787)"/>
+    </g>
+  </g>
+  <g transform="translate(0 500)">
+    <g transform="translate(1.5)" style="opacity:.5">
+      <rect width="50" height="27.038" style="fill:none;stroke-miterlimit:10;stroke-width:3px;stroke:#9fa1a7" rx="13.519" transform="translate(0 14.962)"/>
+      <path d="M340.216 472.248v-5.325a2.868 2.868 0 0 1 2.868-2.868h12.085a2.868 2.868 0 0 0 2.868-2.868V457.5" style="fill:none;stroke-miterlimit:10;stroke-width:3px;stroke:#9fa1a7" transform="translate(-314.591 -457.5)"/>
+      <path d="M318.712 504.908h-4.506V500.4a1.229 1.229 0 1 0-2.458 0v4.506h-4.506a1.229 1.229 0 0 0 0 2.458h4.506v4.506a1.229 1.229 0 0 0 2.458 0v-4.506h4.506a1.229 1.229 0 0 0 0-2.458z" style="stroke:#9fa1a7;fill:#9fa1a7" transform="translate(-297.595 -477.247)"/>
+      <circle cx="2.458" cy="2.458" r="2.458" style="stroke:#9fa1a7;fill:#9fa1a7" transform="translate(35.423 22.347)"/>
+      <circle cx="2.458" cy="2.458" r="2.458" style="stroke:#9fa1a7;fill:#9fa1a7" transform="translate(28.983 30.534)"/>
+    </g>
+  </g>
+</svg>

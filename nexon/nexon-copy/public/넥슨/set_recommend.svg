@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
+    <g transform="translate(0 0)">
+        <path data-name="사각형 8381" style="opacity:.5;fill:none" d="M0 0h24v24H0z"/>
+        <path data-name="패스 10327" d="m4268.892-16525.783-7 7 7 7" transform="translate(-4253.892 16530.783)" style="stroke:#c7c8cc;stroke-width:1.5px;fill:none"/>
+    </g>
+    <g transform="translate(50 0)">
+    <path data-name="사각형 8381" style="opacity:.5;fill:none" d="M0 0h24v24H0z"/>
+        <path data-name="패스 10327" d="m4268.892-16525.783-7 7 7 7" transform="translate(-4253.892 16530.783)" style="stroke:#4a4e57;stroke-width:1.5px;fill:none"/>
+    </g>
+    <g transform="translate(0 50)">
+        <path data-name="사각형 8381" transform="rotate(180 12 12)" style="opacity:.5;fill:none" d="M0 0h24v24H0z"/>
+        <path data-name="패스 10327" d="m4268.892-16525.783-7 7 7 7" transform="rotate(180 2138.946 -8253.391)" style="stroke:#c7c8cc;stroke-width:1.5px;fill:none"/>
+    </g>
+    <g transform="translate(50 50)">
+        <path data-name="사각형 8381" transform="rotate(180 12 12)" style="opacity:.5;fill:none" d="M0 0h24v24H0z"/>
+        <path data-name="패스 10327" d="m4268.892-16525.783-7 7 7 7" transform="rotate(180 2138.946 -8253.391)" style="stroke:#4a4e57;stroke-width:1.5px;fill:none"/>
+    </g>
+</svg>
