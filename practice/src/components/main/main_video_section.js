@@ -15,6 +15,7 @@ const MainVideoSection = () => {
       <p>국내 유일 바다코끼리 보유</p>
       <p>수도권 최대 규모 아쿠아리움</p>
       <p>아쿠아플라넷 일산</p>
+      <span className="border-highlight"></span>
       </div>
     </div>
   );

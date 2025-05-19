@@ -8,9 +8,12 @@ header {
   transition: background-color 0.3s ease;
 }
 header:hover .ico,
-header:hover .ico2{
+header:hover .ico2,
+header:hover .item-info .ico,
+header:hover .item-info::before{
   filter: brightness(0);
 }
+
 header:hover * {
   color: #767676;
 }
@@ -37,7 +40,6 @@ header:hover .log-in {
   justify-content: space-between;
   border-bottom: 1px solid rgba(224, 224, 224, 0.2);
 }
-
 /** 헤더 상단 좌측 **/
 .upper-nav-left {
   margin-left: 30px;
@@ -134,11 +136,20 @@ header:hover .log-in {
 }
 /** 헤더 상단 우측 **/
 .item-info {
-  background: url(../../public/img/ico_dot_white.png) no-repeat center;
+  position: relative;
   display: flex;
   height: 100%;
   align-items: center;
   width: 320px;
+}
+.item-info::before {
+  content: "";
+  position: absolute;
+  top: 0; 
+  left: 0; 
+  right: 0; 
+  bottom: 0;
+  background: url(../../public/img/ico_dot_white.png) no-repeat center;
 }
 .news-letter {
   height: 100%;
