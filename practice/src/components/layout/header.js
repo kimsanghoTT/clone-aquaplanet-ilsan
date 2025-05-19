@@ -1,13 +1,16 @@
-import React, { useState } from "react";
-import "../css/header.css";
+import React, { useEffect, useRef, useState } from "react";
+import "../../css/header.css";
 import moment from "moment";
 import "moment/locale/ko";
+import gsap from "gsap";
 moment.locale("ko");
 
 const Header = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
-  const [detailMenuOpen, setDetailMenuOpen] = useState(false);
+  const [hover, setHover] = useState(false);
+
+  const navToggleRef = useRef(null);
 
   const today = moment().format("M . DD");
   const weekday = moment().format("dddd");
@@ -26,8 +29,40 @@ const Header = () => {
       setJoinOpen(true);
     }
   };
+
+  useEffect(() => {
+    if(!hover){
+      setCategoryOpen(false);
+      setJoinOpen(false);
+    }
+  },[hover])
+
+  const headerMouseOn = () => {
+    setHover(true);
+    console.log(hover);
+
+    gsap.to("header", {backgroundColor : "#fff", color: "#767676", duration: 0.1});
+    gsap.to(navToggleRef.current, {backgroundColor: "#fff", height: "350px", opacity: 1, ease: "power3.out", duration: 0.5});
+    
+    const subMenuLists = document.querySelectorAll(".sub-menu");
+    subMenuLists.forEach((menu) => {
+    gsap.to(menu, {opacity: 1, duration: 0.5})
+  })
+  }
+  const headerMouseLeave = () => {
+    setHover(false);
+    console.log(hover);
+
+    gsap.to("header", {backgroundColor: "transparent", duration: 0.1})
+    gsap.to(navToggleRef.current, {backgroundColor: "transparent", height: 0, opacity: 0, ease: "power1.in", duration: 0.5});
+    
+    const subMenuLists = document.querySelectorAll(".sub-menu");
+    subMenuLists.forEach((menu) => {
+    gsap.to(menu, {opacity: 0, duration: 0.5})
+  })
+  }
   return (
-    <header>
+    <header onMouseEnter={headerMouseOn} onMouseLeave={headerMouseLeave}>
       <div className="upper-nav">
         <div className="upper-nav-left">
           <div className="item-category">
@@ -95,7 +130,9 @@ const Header = () => {
         <div className="nav-inner">
           <div className="logo">
             <a href="/">
-              <img src="img/logo_ilsan_white.png" />
+            {
+              hover ? <img src="img/logo_ilsan.png"/> : <img src="img/logo_ilsan_white.png" />
+            }
             </a>
           </div>
           <nav className="gnb">
@@ -222,7 +259,8 @@ const Header = () => {
             <div className="log-in">
               <button onClick={joinMenu}>
                 <span className="ico"></span>
-                <span className="ico2"></span>
+                <span className="log-in-text">Log In</span>
+                <span className="ico2" style={joinOpen ? {transform: 'rotate(180deg)'} : {}}></span>
               </button>
               <div className={`join ${joinOpen ? "show" : ""}`}>
                 <a href="/">
@@ -236,25 +274,75 @@ const Header = () => {
             <div className="ticket-box">
               <a href="/">
                 <span className="ico"></span>
+                <span className="ticket-text">티켓구매</span>
               </a>
             </div>
           </div>
         </div>
-        <div className="nav-toggle-box">
+        <div className="nav-toggle-box" ref={navToggleRef}>
           <div className="operating-area">
-            <span style={{fontSize:30, fontFamily:"MyriadPro-Bold", color: "#222222", fontWeight:600}}>{today}</span>
-            <span style={{fontSize:16, fontFamily:"NotoSans-Light", color: "#222222"}}> {weekday}</span>
+            <span
+              style={{
+                fontSize: 30,
+                fontFamily: "MyriadPro-Bold",
+                color: "#222222",
+                fontWeight: 600,
+              }}
+            >
+              {today}
+            </span>
+            <span
+              style={{
+                fontSize: 16,
+                fontFamily: "NotoSans-Light",
+                color: "#222222",
+              }}
+            >
+              {" "}
+              {weekday}
+            </span>
             <span className="ico"></span>
-            <span style={{fontSize:24, fontFamily:"NotoSans-Light", color: "#222222"}}>운영시간</span>
+            <span
+              style={{
+                fontSize: 24,
+                fontFamily: "NotoSans-Light",
+                color: "#222222",
+              }}
+            >
+              운영시간
+            </span>
             <p>
-              <span style={{fontSize:18, fontFamily:"MyriadPro-Bold", color: "#222222", fontWeight:600}}>10 : 00 - 18 : 00</span>
+              <span
+                style={{
+                  fontSize: 18,
+                  fontFamily: "MyriadPro-Bold",
+                  color: "#222222",
+                  fontWeight: 600,
+                }}
+              >
+                10 : 00 - 18 : 00
+              </span>
             </p>
-            <p style={{fontSize:15, fontFamily:"NotoSans-Regular", color: "#222222"}}>
+            <p
+              style={{
+                fontSize: 15,
+                fontFamily: "NotoSans-Regular",
+                color: "#222222",
+              }}
+            >
               ※ 입장 마감 &nbsp;
-              <span style={{fontSize:18, fontFamily:"MyriadPro-Bold", color: "#222222", fontWeight:600}}>17 : 00</span>
+              <span
+                style={{
+                  fontSize: 18,
+                  fontFamily: "MyriadPro-Bold",
+                  color: "#222222",
+                  fontWeight: 600,
+                }}
+              >
+                17 : 00
+              </span>
             </p>
           </div>
-          <div className="v-line"></div>
           <div className="item-banner">
             <div>
               <a href="/">

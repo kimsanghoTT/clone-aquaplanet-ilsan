@@ -1,8 +1,30 @@
 header {
+  z-index: 2;
   width: 100%;
   height: 130px;
   display: block;
-  background-color: gray;
+  background-color: transparent;
+  position: fixed;
+  transition: background-color 0.3s ease;
+}
+header:hover .ico,
+header:hover .ico2{
+  filter: brightness(0);
+}
+header:hover * {
+  color: #767676;
+}
+header:hover .main-menu button {
+  color: #767676;
+}
+header:hover .upper-nav {
+  border-bottom: 1px solid #e0e0e0;
+}
+header:hover .nav-inner {
+  border-bottom: 1px solid #e0e0e0;
+}
+header:hover .log-in {
+  border-right: 1px solid #e0e0e0;
 }
 /* 헤더 상단 */
 .upper-nav {
@@ -18,6 +40,7 @@ header {
 
 /** 헤더 상단 좌측 **/
 .upper-nav-left {
+  margin-left: 30px;
   display: flex;
   gap: 40px;
 }
@@ -69,14 +92,13 @@ header {
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 100;
+  z-index: 3;
 }
 .item-category-family-list.show {
   max-height: 200px;
   opacity: 1;
   transform: translateY(0);
 }
-
 .item-category-family-list li a {
   color: #767676;
   transition: color 0.3s ease;
@@ -144,6 +166,7 @@ header {
   align-items: center;
   margin: 0;
   padding: 0;
+  cursor: pointer;
 }
 .tel {
   display: flex;
@@ -182,10 +205,12 @@ header {
 .main-nav {
   height: 80px;
   width: 100%;
+  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
 }
 .nav-inner {
   display: flex;
   width: 100%;
+  min-width: 0;
   height: 100%;
   align-items: center;
   justify-content: space-between;
@@ -195,7 +220,7 @@ header {
   height: 70px;
   width: 160px;
   flex-shrink: 0;
-  margin-left: 20px;
+  margin-left: 50px;
 }
 .logo a {
   width: 100%;
@@ -208,7 +233,6 @@ header {
   margin: auto;
   height: 100%;
 }
-
 /** 내비게이션 **/
 .gnb {
   display: flex;
@@ -223,6 +247,7 @@ header {
   padding-inline-start: 0;
   display: flex;
   list-style: none;
+  box-sizing: border-box;
 }
 .main-menu > li {
   flex: 1;
@@ -230,43 +255,62 @@ header {
 .main-menu button {
   padding: 0;
   width: 100%;
-  height: 100%;
-  border: transparent;
+  height: 80px;
+  border: 3px solid transparent;
   background-color: transparent;
   font-size: 18px;
   font-family: noto;
   color: #fff;
 }
+.main-menu button:hover {
+  color: #3366ff !important;
+  border-bottom: #3366ff 3px solid;
+}
 .sub-menu {
+  position: relative;
   display: block;
   list-style: none;
   padding-inline-start: 0;
   text-align: center;
   margin-top: 10px;
+  opacity: 0;
+  z-index: 4;
 }
 .sub-menu a {
-  font-size: 15px;
+  font-size: 16px;
+  font-family: NotoSans-Regular;
   color: #767676;
   line-height: 3;
+  font-weight: 500;
+}
+.sub-menu a:hover {
+  color: #3366ff;
 }
 
 /** 로그인 + 티켓 **/
 .aside {
-  width: 160px;
+  width: 100%;
+  max-width: 320px;
+  min-width: 160px;
+  flex-shrink: 1;
   height: 100%;
-  flex-shrink: 0;
   display: flex;
-  margin-left: 40px;
   justify-content: center;
   align-items: center;
 }
 .log-in {
   margin: 0;
-  width: 100px;
+  flex: 1 1 160px;
+  min-width: 100px;
   height: 100%;
   border-right: 1px solid rgba(224, 224, 224, 0.2);
-  text-align: center;
   position: relative;
+}
+.log-in-text {
+  color: #fff;
+  font-family: NotoSans-Regular;
+  font-size: 15px;
+  margin-right: 15px;
 }
 .log-in button {
   border: transparent;
@@ -276,8 +320,10 @@ header {
   margin: 0;
   padding: 0;
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .log-in button .ico {
   display: inline-block;
   background-image: url(../../public/img/sprite_pc.png);
@@ -289,7 +335,6 @@ header {
 }
 .log-in button .ico2 {
   display: inline-block;
-  vertical-align: 7px;
   background-image: url(../../public/img/sprite_pc.png);
   background-position: -1091px -1066px;
   width: 10px;
@@ -299,7 +344,7 @@ header {
 .join {
   position: absolute;
   top: 70%;
-  left: 10px;
+  left: 40px;
   width: 80px;
   height: 80px;
   background-color: #fff;
@@ -312,7 +357,7 @@ header {
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 100;
+  z-index: 3;
 }
 .join.show {
   max-height: 200px;
@@ -335,12 +380,14 @@ header {
 .ticket-box,
 .ticket-box a {
   display: flex;
+  flex: 1 1 160px;
+  min-width: 60px;
+  height: 100%;
   justify-content: center;
   align-items: center;
   line-height: 80px;
-  width: 60px;
   height: 100%;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.3s;
 }
 .ticket-box:hover {
   background-color: #ff6600;
@@ -352,22 +399,47 @@ header {
   width: 32px;
   height: 20px;
   background-size: 1356px 1242px;
+  margin-right: 10px;
+}
+.ticket-text {
+  font-family: NotoSans-Regular;
+  font-size: 15px;
+  color: #fff;
+  transition: color 0.3s;
+}
+.ticket-box:hover .ticket-text,
+.ticket-box:hover .ico {
+  color: #fff !important;
+  filter: brightness(1);
 }
 
-/** 헤더 토글 부툰 **/
+/** 헤더 토글 부분 **/
 .nav-toggle-box {
   position: relative;
+  display: flex;
   width: 100%;
-  height: 350px;
+  justify-content: space-between;
+  align-items: center;
+  box-sizing: border-box;
+  overflow: hidden;
+  transform-origin: top;
+  height: 0;
+  opacity: 0;
+  z-index: 1;
 }
+
 .operating-area {
-    width: 180px;
+  display: inline-block;
+  justify-content: center;
+  position: relative;
+  width: 210px;
   display: inline-block;
   text-align: center;
   padding: 10px;
+  transform: none !important;
 }
 .operating-area .ico {
-    display: block;
+  display: block;
   margin: 23px auto;
   background-image: url(../../public/img/sprite_pc.png);
   background-position: -540px -946px;
@@ -375,10 +447,23 @@ header {
   height: 64px;
   background-size: 1356px 1242px;
 }
-.v-line{
-    display: inline-block;
-    height: 230px;
-    border-right: 1px solid #cecdcd;
+.v-line {
+  display: inline-block;
+  height: 230px;
+  border-right: 1px solid #cecdcd;
+}
+.item-banner {
+  width: 320px;
+  height: 320px;
+  top: 0;
+  right: 0;
+  position: absolute;
+  margin: 0;
+  padding: 10px;
+  transform: none !important;
+}
+.item-banner img {
+  width: 100%;
 }
 
 /* js 코드 실행 css */
