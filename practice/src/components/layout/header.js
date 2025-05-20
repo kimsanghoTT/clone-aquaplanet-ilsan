@@ -9,7 +9,6 @@ const Header = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
   const [hover, setHover] = useState(false);
-
   const navToggleRef = useRef(null);
 
   const today = moment().format("M . DD");
@@ -59,6 +58,28 @@ const Header = () => {
     gsap.to(menu, {opacity: 0, duration: 0.5})
   })
   }
+  useEffect(() => {
+    const scrollEvent = () => {
+      
+      //스크롤이 최상단에 왔는지 체크 -> 최상단 = 0
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+
+      if(scrollTop === 0 ){
+        gsap.to(".upper-nav", {opacity: 1, duration: 0.5, height: "50px"})
+        gsap.to("header", {y: 0, duration: 0.5});
+      }
+      else if(scrollTop !== 0){
+        gsap.to(".upper-nav", {opacity: 0, duration: 0.5, height: 0})
+        gsap.to("header", {y: "-20px", duration: 0.5});
+      }
+    }
+
+    window.addEventListener("scroll", scrollEvent);
+
+    return(() => {
+      window.removeEventListener("scroll", scrollEvent);
+    })
+  },[])
   return (
     <header onMouseEnter={headerMouseOn} onMouseLeave={headerMouseLeave}>
       <div className="upper-nav">
@@ -124,9 +145,7 @@ const Header = () => {
         <div className="nav-inner">
           <div className="logo">
             <a href="/">
-            {
-              hover ? <img src="img/logo_ilsan.png"/> : <img src="img/logo_ilsan_white.png" />
-            }
+            {hover ? <img src="img/logo_ilsan.png"/> : <img src="img/logo_ilsan_white.png" />}
             </a>
           </div>
           <nav className="gnb">
@@ -305,7 +324,6 @@ const Header = () => {
               </a>
             </div>
           </div>
-          <span className="ico-line"></span>
         </div>
       </div>
     </header>

@@ -29,6 +29,9 @@ header:hover .nav-inner {
 header:hover .log-in {
   border-right: 1px solid #e0e0e0;
 }
+header:hover .sub-menu{
+  pointer-events: all;
+}
 /* 헤더 상단 */
 .upper-nav {
   display: flex;
@@ -286,6 +289,7 @@ header:hover .log-in {
   margin-top: 10px;
   opacity: 0;
   z-index: 4;
+  pointer-events: none;
 }
 .sub-menu a {
   font-size: 16px;
@@ -476,5 +480,3 @@ header:hover .log-in {
 .item-banner img {
   width: 100%;
 }
-
-/* js 코드 실행 css */
