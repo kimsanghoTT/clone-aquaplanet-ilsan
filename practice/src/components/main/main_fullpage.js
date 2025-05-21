@@ -32,12 +32,36 @@ const Main = () => {
             }, 900);
         }
 
+        const ArrowMoving = (e) => {
+            //방향키일 때만 동작하도록 설정
+            if(e.key !== "ArrowUp" && e.key !== "ArrowDown"){
+                return;
+            }
+
+            if(scrolling.current){
+                e.preventDefault();
+                return;
+            }
+            scrolling.current = true;
+            
+            const keyboardArrowDirection = e.key === "ArrowUp" ? -1 : 1;
+            scroll.scrollMore(keyboardArrowDirection * 920, {duration: 700, smooth: true});
+
+            setTimeout(() => {
+                scrolling.current = false;
+            }, 900);
+        }
+
         //페이지가 렌더링 될 때 마우스 휠을 이벤트 동작 대상으로 지정
         window.addEventListener("wheel", mouseWheeling, {passive : false});
+
+        //페이지가 렌더링 될 때 방향키 눌림를 이벤트 동작 대상으로 지정
+        window.addEventListener("keydown", ArrowMoving)
 
         //렌더링이 끝날 때 마우스 휠을 이벤트 동작 대상에서 제거해 메모리 누수 방지
         return (() => {
             window.removeEventListener("wheel", mouseWheeling);
+            window.removeEventListener("keydown", ArrowMoving);
         })
         
     },[])
