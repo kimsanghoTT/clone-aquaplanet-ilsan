@@ -48,7 +48,7 @@ const MainEventSection = () => {
     gsap.to(ico, {opacity: 1, y:-50, duration:0.6});
     gsap.to(title, {y: -80, duration:0.6});
     gsap.to(text, {y: -80, duration:0.6});
-    gsap.to(link, {opacity:1, y:20, duration:0});
+    gsap.to(link, {opacity:1, y:-20, duration:0});
   }
 
   const EventTapInactive = (event) => {

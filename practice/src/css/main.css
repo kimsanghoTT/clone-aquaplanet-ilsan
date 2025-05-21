@@ -438,7 +438,7 @@
 }
 .event-item a {
   position: absolute;
-  bottom: 70px;
+  bottom: 30px;
   display: block;
   text-align: center;
   line-height: 50px;
