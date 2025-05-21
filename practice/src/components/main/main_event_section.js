@@ -6,9 +6,7 @@ gsap.registerPlugin(ScrollTrigger);
 const MainEventSection = () => {
   useEffect(() => {
     const sectionTitle = document.querySelectorAll(".section-title02 p");
-    const sectionContent = document.querySelectorAll(
-      ".event-section-content-box"
-    );
+    const sectionContent = document.querySelectorAll(".event-item");
 
     gsap.fromTo(
       sectionTitle,
@@ -61,7 +59,7 @@ const MainEventSection = () => {
     const link = selectedEvent.querySelectorAll(".event-item a");
 
     gsap.to(selectedEvent, {background: "rgba(255, 255, 255, 0.15)", duration:0.6});
-    gsap.to(ico, {opacity:0.5, y:0, duration:0.6})
+    gsap.to(ico, {opacity:0.5, y:0, duration:0.6});
     gsap.to(title, {y: 0, duration:0.6});
     gsap.to(text, {y: 0, duration:0.6});
     gsap.to(link, {opacity:0, y:0, duration:0});
