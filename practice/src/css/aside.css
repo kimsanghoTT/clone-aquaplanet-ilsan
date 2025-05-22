@@ -1,11 +1,321 @@
-aside{
-    position: fixed;
-    top: 0;
-    right: 0;
-    width: 3.125vw;
-    height: 100vh;
-    border-left: 1px solid rgba(255, 255, 255, 0.2);
-    z-index: 20;
-    background: rgba(255, 255, 255, 0.2);
-    box-sizing: border-box;
+aside {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 3.125vw;
+  height: 100vh;
+  border-left: 1px solid rgba(255, 255, 255, 0.2);
+  z-index: 6;
+  background: rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  transition: background-color 0.6s ease, border-left 0.6s ease;
+}
+aside:hover {
+  background-color: #fff;
+  border-left: 1px solid #e0e0e0;
+}
+aside:hover .event-btn-text-box {
+  filter: brightness(0.5);
+}
+aside:hover .social-icons li {
+  border-bottom: 1px solid #e0e0e0;
+}
+aside:hover .social-icons li:first-of-type ~ li span {
+  filter: brightness(0.5);
+}
+aside.active {
+  background-color: #fff;
+  border-left: 1px solid #e0e0e0;
+}
+aside.active .social-icons li {
+  border-bottom: 1px solid #e0e0e0;
+}
+aside.active .social-icons li:first-of-type ~ li span {
+  filter: brightness(0.5);
+}
+aside.active .event-btn-text-box {
+  filter: brightness(0.5);
+}
+.event-btn {
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+}
+.event-btn button {
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  border: none;
+  margin: 0;
+  display: block;
+  cursor: pointer;
+}
+.event-btn-text-box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: filter 0.6s ease;
+  box-sizing: border-box;
+}
+.event-btn-text-box span:first-child {
+  display: inline-block;
+  background: url(../../public/img/sprite_pc.png) center;
+  background-position: -928px -990px;
+  width: 20px;
+  height: 20px;
+  background-size: 1356px 1242px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+.event-btn-text-box span:last-child {
+  display: inline-block;
+  width: 50px;
+  height: 20px;
+  font-family: NotoSans-Medium;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 500;
+  transform: rotate(90deg);
+  transition: color 0.4s ease;
+}
+.social-icons {
+  width: 100%;
+  height: 50%;
+  padding: 0;
+  margin: 0;
+}
+.social-icons li {
+  display: block;
+  width: 100%;
+  height: 3.125vw;
+  text-align: center;
+  line-height: 3.125vw;
+  padding-top: 5px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-sizing: border-box;
+  transition: border-bottom 0.6s ease;
+}
+.social-icons li a {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.location {
+  background-image: url(../../public/img/social_bg01.jpg);
+  border: none !important;
+}
+.location .ico {
+  display: inline-block;
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -602px -878px;
+  width: 28px;
+  height: 24px;
+  background-size: 1356px 1242px;
+}
+.youtube .ico {
+  display: inline-block;
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -1295px -946px;
+  width: 25px;
+  height: 18px;
+  background-size: 1356px 1242px;
+}
+.youtube:hover {
+  background: url(../../public/img/social_bg02.jpg) no-repeat 0 0;
+  background-size: cover;
+  border: none;
+}
+.youtube:hover .ico {
+  filter: none !important;
+}
+.program .ico {
+  display: inline-block;
+  background-image: url(../../public/img/ico_program_white.png);
+  background-size: cover;
+  width: 26px;
+  height: 22px;
+}
+.program:hover {
+  background: rgb(51, 102, 255);
+}
+.program:hover .ico {
+  filter: none !important;
+}
+.instagram .ico {
+  display: inline-block;
+  background-image: url(../../public/img/insta_logo.png);
+  background-position: 0 -20px;
+  width: 20px;
+  height: 20px;
+  background-size: 20px 40px;
+}
+.instagram:hover {
+  background-image: url(../../public/img/social_bg03.jpg);
+}
+.instagram:hover .ico {
+  filter: none !important;
+}
+
+/*토글 박스*/
+.event-list-box {
+  position: fixed;
+  z-index: 6;
+  top: 0;
+  right: 3.125vw;
+  width: 534px;
+  height: 100%;
+  background-color: #fff;
+  overflow: hidden;
+  box-sizing: border-box;
+  border-right: 2px solid #e0e0e0;
+  transform: translateX(100%);
+  pointer-events: none;
+  opacity: 0;
+  border-left: 1px solid #e0e0e0;
+  transition: transform 0.6s, opacity 0.3s ease;
+}
+.event-list-box.active {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: all;
+}
+.event-box-title {
+  position: relative;
+  width: 100%;
+  height: 60px;
+  border-top: 1px solid #e0e0e0;
+  border-bottom: 1px solid #e0e0e0;
+  box-sizing: border-box;
+}
+.event-box-title .ico {
+  position: absolute;
+  top: 15px;
+  left: 10%;
+  display: inline-block;
+  margin-right: 4px;
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -952px -946px;
+  width: 24px;
+  height: 24px;
+  background-size: 1356px 1242px;
+}
+.event-box-title span:last-child {
+  position: absolute;
+  top: 10px;
+  left: 17%;
+  display: inline-block;
+  font-family: NotoSans-Medium;
+  font-size: 22px;
+  color: #222;
+  font-weight: 500;
+}
+.event-item-box {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.event-list {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: scroll;
+  padding: 30px 0;
+}
+.event-list .item {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.event-img-area {
+  position: relative;
+  display: inline-block;
+  width: 423px;
+  height: 217px;
+  border-radius: 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+.event-img-area .overlay-film02 {
+  position: relative;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 423px;
+  height: 217px;
+  border-radius: 8px;
+  background: transparent;
+}
+.event-img-area img {
+  width: 100%;
+  height: 100%;
+  border-radius: 8px;
+  border: none;
+  transition: scale 0.3s ease;
+}
+.event-img-area:hover img {
+  scale: 1.05;
+}
+.event-img-area .more {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 50%);
+  width: 120px;
+  height: 50px;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  box-sizing: border-box;
+  line-height: 50px;
+  background-color: transparent;
+  font-size: 15;
+  font-family: NotoSans-Medium;
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.4s ease;
+  opacity: 0;
+}
+.event-img-area .more:hover {
+  background-color: #36f;
+  border: #36f 1px solid;
+}
+.event-img-area:hover .overlay-film02 {
+  position: absolute;
+  background: rgba(0, 0, 0, 0.6);
+}
+.event-img-area:hover .more {
+  opacity: 1;
+}
+.event-text-area {
+  display: block;
+}
+.event-text-area > span {
+  position: relative;
+}
+.event-title {
+  display: inline-block;
+  font-size: 15px;
+  font-weight: 500;
+  font-family: NotoSans-Medium;
+  color: #222222;
+  margin-bottom: 15px;
+}
+.event-list .highlight-line {
+  background: #f60;
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  overflow: hidden;
+  bottom: -2px;
+  left: 0;
+}
+.event-intro {
+  display: block;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: NotoSans-Medium;
+  color: #222222;
 }

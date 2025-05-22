@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/header.css";
 import moment from "moment";
 import "moment/locale/ko";
@@ -9,24 +9,15 @@ const Header = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
   const [hover, setHover] = useState(false);
-  const navToggleRef = useRef(null);
 
   const today = moment().format("M . DD");
   const weekday = moment().format("dddd");
 
   const categoryMenu = () => {
-    if (categoryOpen) {
-      setCategoryOpen(false);
-    } else {
-      setCategoryOpen(true);
-    }
+    setCategoryOpen(!categoryOpen);
   };
   const joinMenu = () => {
-    if (joinOpen) {
-      setJoinOpen(false);
-    } else {
-      setJoinOpen(true);
-    }
+    setJoinOpen(!joinOpen);
   };
 
   useEffect(() => {
@@ -64,7 +55,7 @@ const Header = () => {
     setHover(true);
 
     gsap.to("header", {backgroundColor : "#fff", color: "#767676", duration: 0.1});
-    gsap.to(navToggleRef.current, {backgroundColor: "#fff", height: "350px", opacity: 1, ease: "power3.out", duration: 0.5});
+    gsap.to(".nav-toggle-box", {backgroundColor: "#fff", height: "350px", opacity: 1, ease: "power3.out", borderBottom:"1px solid #e0e0e0", duration: 0.5});
     
     const subMenuLists = document.querySelectorAll(".sub-menu");
     subMenuLists.forEach((menu) => {
@@ -75,7 +66,7 @@ const Header = () => {
     setHover(false);
 
     gsap.to("header", {backgroundColor: "transparent", duration: 0.1})
-    gsap.to(navToggleRef.current, {backgroundColor: "transparent", height: 0, opacity: 0, ease: "power1.in", duration: 0.5});
+    gsap.to(".nav-toggle-box", {backgroundColor: "transparent", height: 0, opacity: 0, ease: "power1.in", duration: 0.5});
     
     const subMenuLists = document.querySelectorAll(".sub-menu");
     subMenuLists.forEach((menu) => {
@@ -295,7 +286,7 @@ const Header = () => {
             </div>
           </div>
         </div>
-        <div className="nav-toggle-box" ref={navToggleRef}>
+        <div className="nav-toggle-box">
           <div className="operating-area">
             <span style={{fontSize: 30, fontFamily: "MyriadPro-Bold", color: "#222222", fontWeight: 600}}>
               {today}

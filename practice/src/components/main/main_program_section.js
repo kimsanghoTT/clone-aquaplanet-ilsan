@@ -14,8 +14,7 @@ const MainProgramSection = () => {
         stagger: 0.2,
         scrollTrigger: {
           trigger: ".section02",
-          start: "top 30%",
-          markers: true
+          start: "top 30%"
         },
       }
     );

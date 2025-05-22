@@ -5,7 +5,7 @@ import "../css/index.css";
 import { Routes, Route, useLocation } from "react-router-dom";
 import AsideBar from "./layout/aside";
 
-function AppWrapper() {
+const AppWrapper = () => {
   const location = useLocation();
 
   useEffect(() => {
