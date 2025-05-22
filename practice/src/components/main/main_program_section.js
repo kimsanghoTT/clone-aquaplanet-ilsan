@@ -8,26 +8,14 @@ const MainProgramSection = () => {
     const sectionTitle = document.querySelectorAll(".section-title01 p");
     const sectionContent = document.querySelectorAll(".program-section-content-box li");
 
-    gsap.fromTo(sectionTitle, { opacity: 0, y: 50 }, {
-        opacity: 1,
-        y: 0,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: ".section02",
-          start: "top 30%"
-        },
-      }
+    gsap.fromTo(sectionTitle, 
+      { opacity: 0, y: 50 }, 
+      {opacity: 1, y: 0, stagger: 0.2, scrollTrigger: {trigger: ".section02", start: "top 30%"}}
     );
 
-    gsap.fromTo(sectionContent, { opacity: 0, y: 100 }, {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: ".section02",
-          start: "top 30%",
-        },
-      }
+    gsap.fromTo(sectionContent, 
+      { opacity: 0, y: 100 }, 
+      {opacity: 1, y: 0, stagger: 0.1, scrollTrigger: { trigger: ".section02", start: "top 30%"}}
     );
 
   }, []);

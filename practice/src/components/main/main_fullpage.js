@@ -13,7 +13,9 @@ const Main = () => {
 
     useEffect(() => {
         const mouseWheeling = (e) => {
-
+            if (e.target.closest(".event-item-box")) {
+                    return; // 사이드바의 자체 스크롤을 허용하고, 메인페이지 스크롤은 막음
+            }
             // 스크롤이 동작 중(애니메이션 중) 이면 중복 실행 방지
             if(scrolling.current){
                 e.preventDefault();

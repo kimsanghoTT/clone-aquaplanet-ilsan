@@ -8,31 +8,13 @@ const MainInfoSection = () => {
     const sectionTitle = document.querySelectorAll(".section-title-reverse01 p");
     const sectionContent = document.querySelectorAll(".info-item");
 
-    gsap.fromTo(
-      sectionTitle,
+    gsap.fromTo(sectionTitle,
       { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.2,
-        scrollTrigger: {
-          trigger: ".section03",
-          start: "top 30%",
-        },
-      }
+      {opacity: 1, y: 0, stagger: 0.2, scrollTrigger: {trigger: ".section03", start: "top 30%",}}
     );
-    gsap.fromTo(
-      sectionContent,
+    gsap.fromTo(sectionContent,
       { opacity: 0, y: 100 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-        scrollTrigger: {
-          trigger: ".section03",
-          start: "top 30%",
-        },
-      }
+      {opacity: 1, y: 0, stagger: 0.1, scrollTrigger: {trigger: ".section03", start: "top 30%"}}
     );
   }, []);
   return (
