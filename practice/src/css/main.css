@@ -1,3 +1,4 @@
+@charset "utf-8";
 /*메인 페이지 틀*/
 .main-wrapper {
   padding: 0;
@@ -389,10 +390,8 @@
 }
 .event-item {
   position: relative;
-  display: inline-block;
   width: 33.33%;
   height: 384px;
-  vertical-align: top;
   background: rgba(255, 255, 255, 0.15);
   color: #fff;
   display: flex;
@@ -433,7 +432,7 @@
 .event-item span:nth-child(3) {
   font-size: 16px;
   font-family: NotoSans-Regular;
-  margin-top: 30px;
+  margin-top: 25px;
 }
 .event-item a {
   position: absolute;
@@ -456,12 +455,157 @@
   color: #3366ff;
 }
 
-/*단체예약 섹션*/
+/*단체 섹션*/
 .section05 {
   background: url(../../public/img/ilsan_main_section_bg05.jpg);
+  position: relative;
+}
+.group-section-content-box {
+  display: flex;
+  position: absolute;
+  top: 40.64815vh;
+  left: 50%;
+  width: 59.94792vw;
+  height: 384px;
+  margin-left: -29.988vw;
+}
+.group-sub-bg {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  display: block;
+  width: 40.05208vw;
+  height: 92.59259vh;
+  background-color: #1f828b;
+  background-size: cover;
+}
+.group-item {
+  position: relative;
+  width: 33.33%;
+  height: 384px;
+  background: rgba(255, 255, 255, 0.15);
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding-bottom: 10px;
+  box-sizing: border-box;
+}
+.group-item .ico {
+  display: block;
+  margin-bottom: 50px;
+  width: 64px;
+  height: 64px;
+  opacity: 0.5;
+  background-size: 1356px 1242px;
+}
+.group-item:first-of-type .ico {
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -1107px -760px;
+}
+.group-item:nth-of-type(2) .ico {
+  top: 111px;
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -1191px -760px;
+}
+.group-item:last-of-type .ico {
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -1275px -760px;
+}
+.group-item span:nth-child(2) ~ span {
+  display: inline-block;
+  text-align: center;
+}
+.group-item span:nth-child(2) {
+  font-size: 28px;
+  font-family: NotoSans-Regular;
+  margin-bottom: 20px;
+}
+.group-item span:nth-child(3) {
+  font-size: 16px;
+  font-family: NotoSans-Regular;
+}
+.group-item a {
+  position: absolute;
+  bottom: 30px;
+  display: block;
+  text-align: center;
+  line-height: 50px;
+  width: 150px;
+  height: 50px;
+  font-size: 15px;
+  font-family: NotoSans-Regular;
+  color: #fff;
+  border: 1px solid #fff;
+  border-radius: 30px;
+  transition: all 0.6s ease;
+  opacity: 0;
+}
+.group-item a:hover {
+  background-color: #fff;
+  color: #3366ff;
 }
 
-/*공지사항 섹션*/
+/*소통 섹션*/
 .section06 {
   background: url(../../public/img/ilsan_main_section_bg06.jpg);
+}
+.community-section-content-box {
+  position: absolute;
+  top: 47.03704vh;
+  left: 50%;
+  width: 1356px;
+  margin-left: -678px;
+}
+.community-section-content-box ul {
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+  padding: 0;
+}
+.notice-item {
+  position: relative;
+  width: 312px;
+  height: 312px;
+  box-sizing: border-box;
+  background: rgba(255, 255, 255, 0.15);
+}
+.notice-item a {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  transition: all 0.6s ease;
+}
+.notice-item a:hover {
+  background-color: #36f;
+  border: 1px solid #36f;
+  box-shadow: 0 0 30px 0 rgba(0, 0, 0, 0.5);
+}
+.notice-item a > div{
+  display: inline-block;
+  margin: 30px;
+}
+.notice-type {
+  display: block;
+  font-family: NotoSans-Medium;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 20px;
+}
+.notice-title {
+  display: block;
+  font-family: NotoSans-Light;
+  font-size: 24px;
+  width: 250px;
+}
+.notice-date {
+  display: block;
+  font-family: MyriadPro-Semibold;
+  font-size: 18px;
+  font-weight: 600;
+  position: absolute;
+  bottom: 40px;
 }

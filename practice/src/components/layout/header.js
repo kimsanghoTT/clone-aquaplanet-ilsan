@@ -25,13 +25,13 @@ const Header = () => {
     const scrollEvent = () => {
       
       //스크롤이 최상단에 왔는지 체크 -> 최상단 = 0
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
 
-      if(scrollTop === 0 ){
+      if(scrollOnTop === 0 ){
         gsap.to(".upper-nav", {opacity: 1, duration: 0.5, height: "50px"});
         gsap.to("header", {y: 0, duration: 0.5});
       }
-      else if(scrollTop !== 0){
+      else if(scrollOnTop !== 0){
         gsap.to(".upper-nav", {opacity: 0, duration: 0.5, height: 0});
         gsap.to("header", {y: "-20px", duration: 0.5});
       }
@@ -79,7 +79,7 @@ const Header = () => {
       <div className="upper-nav">
         <div className="upper-nav-left">
           <div className="item-category">
-            <button className="item-category-family-btn" onClick={categoryMenu}>
+            <button className="item-category-family-btn" type="button" onClick={categoryMenu}>
               <span className="ico"></span>
               <span>
                 <strong>아쿠아플라넷 일산</strong>
@@ -145,7 +145,7 @@ const Header = () => {
           <nav className="gnb">
             <ul className="main-menu">
               <li>
-                <button>이용안내</button>
+                <button type="button">이용안내</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">이용시간·요금안내</a>
@@ -159,7 +159,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <button>프로그램</button>
+                <button type="button">프로그램</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">프로그램 일정</a>
@@ -170,7 +170,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <button>혜택안내</button>
+                <button type="button">혜택안내</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">이벤트</a>
@@ -181,7 +181,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <button>제휴/단체 안내</button>
+                <button type="button">제휴/단체 안내</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">학습·일반단체</a>
@@ -204,7 +204,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <button>아쿠아플라넷</button>
+                <button type="button">아쿠아플라넷</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">아쿠아플라넷 일산</a>
@@ -224,7 +224,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <button>해양생물연구소</button>
+                <button type="button">해양생물연구소</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">연구센터소개</a>
@@ -244,7 +244,7 @@ const Header = () => {
                 </ul>
               </li>
               <li>
-                <button>고객의 소리</button>
+                <button type="button">고객의 소리</button>
                 <ul className="sub-menu">
                   <li>
                     <a href="/">공지사항</a>
@@ -264,7 +264,7 @@ const Header = () => {
           </nav>
           <div className="aside">
             <div className="log-in">
-              <button onClick={joinMenu}>
+              <button onClick={joinMenu} type="button">
                 <span className="ico"></span>
                 <span className="log-in-text">Log In</span>
                 <span className="ico2" style={joinOpen ? {transform: 'rotate(180deg)'} : {}}></span>

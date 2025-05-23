@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import MainVideoSection from "./main_video_section";
-import MainProgramSection from "./main_program_section";
 import { animateScroll as scroll } from "react-scroll";
-import MainInfoSection from "./main_information_section";
-import MainEventSection from "./main_event_section";
-import MainGroupSection from "./main_group_section";
-import MainCommunitySection from "./main_community_section";
+import MainVideoSection from "./main_section01_video";
+import MainProgramSection from "./main_section02_program";
+import MainInfoSection from "./main_section03_information";
+import MainEventSection from "./main_section04_event";
+import MainGroupSection from "./main_section05_group";
+import MainCommunitySection from "./main_section06_community";
 
 const Main = () => {
 
@@ -13,8 +13,10 @@ const Main = () => {
 
     useEffect(() => {
         const mouseWheeling = (e) => {
+
+            // 사이드바(이벤트 리스트)에서 스크롤 시 본 페이지에서의 스크롤을 막음
             if (e.target.closest(".event-item-box")) {
-                    return; // 사이드바의 자체 스크롤을 허용하고, 메인페이지 스크롤은 막음
+                    return; 
             }
             // 스크롤이 동작 중(애니메이션 중) 이면 중복 실행 방지
             if(scrolling.current){
@@ -54,13 +56,13 @@ const Main = () => {
             }, 900);
         }
 
-        //페이지가 렌더링 될 때 마우스 휠을 이벤트 동작 대상으로 지정
+        //페이지가 로드 될 때 마우스 휠을 이벤트 동작 대상으로 지정
         window.addEventListener("wheel", mouseWheeling, {passive : false});
 
-        //페이지가 렌더링 될 때 방향키 눌림를 이벤트 동작 대상으로 지정
+        //페이지가 로드 될 때 방향키 눌림를 이벤트 동작 대상으로 지정
         window.addEventListener("keydown", ArrowMoving)
 
-        //렌더링이 끝날 때 마우스 휠을 이벤트 동작 대상에서 제거해 메모리 누수 방지
+        //페이지 로딩이 끝날 때 마우스 휠을 이벤트 동작 대상에서 제거해 메모리 누수 방지
         return (() => {
             window.removeEventListener("wheel", mouseWheeling);
             window.removeEventListener("keydown", ArrowMoving);

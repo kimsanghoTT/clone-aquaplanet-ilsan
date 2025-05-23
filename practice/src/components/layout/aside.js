@@ -1,19 +1,63 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../../css/aside.css";
+import gsap from "gsap";
 
 const AsideBar = () => {
   const [eventList, setEventList] = useState(false);
 
-  const EventList = () => {
+  const backToTop = () => {
+    window.scroll({
+      top: 0,
+      behavior: "smooth",
+    });
+  };
+
+  const eventListOpen = () => {
     setEventList(!eventList);
   };
+
+  const closeTooltipBox = () => {
+    gsap.to(".aside-tooltip", {
+      opacity: 0,
+      pointerEvents: "none",
+      duration: 0.2,
+    });
+  };
+
+  useEffect(() => {
+    setTimeout(() => {
+      gsap.to(".aside-tooltip", {
+        opacity: 1,
+        pointerEvents: "all",
+        duration: 0.2,
+      });
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    const topBtnScrollEvent = () => {
+      const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
+      console.log(scrollOnTop);
+      
+      if (scrollOnTop === 0) {
+        gsap.to(".top-btn", { opacity: 0, duration: 0.6 });
+      } else if (scrollOnTop !== 0) {
+        gsap.to(".top-btn", { opacity: 1, duration: 0.6 });
+      }
+    };
+    window.addEventListener("scroll", topBtnScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", topBtnScrollEvent);
+    };
+  }, []);
 
   return (
     <>
       <div className={`overlay-film01 ${eventList ? "filter" : ""}`}></div>
       <aside className={`${eventList ? "active" : ""}`}>
         <div className="event-btn">
-          <button onClick={EventList}>
+          <button onClick={eventListOpen} type="button">
             <span className="event-btn-text-box">
               <span
                 className="ico"
@@ -85,7 +129,9 @@ const AsideBar = () => {
                     <span className="event-title">제휴할인</span>
                     <span className="highlight-line"></span>
                   </span>
-                  <span className="event-intro">쿠팡와우회원 특별 프로모션</span>
+                  <span className="event-intro">
+                    쿠팡와우회원 특별 프로모션
+                  </span>
                 </span>
               </li>
               <li className="item">
@@ -118,25 +164,36 @@ const AsideBar = () => {
         <ul className="social-icons">
           <li className="location">
             <a href="/">
-              <span className="ico"></span>
+              <span className="ico" title="가이드맵"></span>
             </a>
           </li>
           <li className="youtube">
+            <a href="/" title="유튜브">
+              <span className="ico"></span>
+            </a>
+          </li>
+          <li className="program" title="프로그램">
             <a href="/">
               <span className="ico"></span>
             </a>
           </li>
-          <li className="program">
-            <a href="/">
-              <span className="ico"></span>
-            </a>
-          </li>
-          <li className="instagram">
+          <li className="instagram" title="인스타그램">
             <a href="/">
               <span className="ico"></span>
             </a>
           </li>
         </ul>
+        <div className="top-btn">
+          <button type="button" onClick={backToTop}>
+            <span className="ico"></span>
+          </button>
+        </div>
+        <div className="aside-tooltip" onMouseEnter={closeTooltipBox}>
+          <span className="ico"></span>
+          <span className="tooltip-text">
+            SeeSeaTV 유튜브 채널을 만나보세요!
+          </span>
+        </div>
       </aside>
     </>
   );

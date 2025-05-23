@@ -1,0 +1,14 @@
+@charset "utf-8";
+footer {
+  height: 476px !important;
+  background: #1a1a1a;
+}
+.footer-inner{
+    position: relative;
+    width: 1366px;
+    height: 100%;
+    padding: 0 5px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    display: table-cell;
+}
