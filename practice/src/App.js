@@ -1,12 +1,11 @@
-import React from "react";
-import { BrowserRouter as Router } from "react-router-dom";
-import AppWrapper from "./components/AppWrapper";
+import React from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
+import AppWrapper from './components/AppWrapper';
 
 function App() {
-
   return (
     <Router>
-      <AppWrapper/>
+      <AppWrapper />
     </Router>
   );
 }

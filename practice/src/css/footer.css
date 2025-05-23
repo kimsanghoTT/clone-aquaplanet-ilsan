@@ -1,14 +1,171 @@
-@charset "utf-8";
 footer {
   height: 476px !important;
   background: #1a1a1a;
 }
-.footer-inner{
-    position: relative;
-    width: 1366px;
-    height: 100%;
-    padding: 0 5px;
-    margin: 0 auto;
-    box-sizing: border-box;
-    display: table-cell;
+.footer-inner {
+  position: relative;
+  width: 1366px;
+  height: 100%;
+  padding: 0 5px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+.footer-menu-list {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.footer-menu-item {
+  display: inline-block;
+  vertical-align: top;
+  margin: 60px 0 30px;
+}
+.footer-menu-item dt {
+  font-family: NotoSans-Regular;
+  font-size: 18px;
+  color: #fff;
+  margin-bottom: 10px;
+}
+.footer-menu-item dd {
+  margin-inline-start: 0;
+  line-height: 2;
+}
+.footer-menu-item dd a {
+  max-width: 145px;
+  font-family: NotoSans-Light;
+  font-size: 16px;
+  color: #999;
+}
+.address-info {
+  position: relative;
+  left: 0;
+  border-top: 2px solid #262626;
+}
+.policies {
+  margin-top: 30px;
+}
+.policies a {
+  display: inline-block;
+  font-family: NotoSans-Light;
+  font-size: 13px;
+  color: #fff;
+}
+.policies a:first-of-type ~ a::before {
+  content: "";
+  display: inline-block;
+  width: 2px;
+  height: 2px;
+  background: #fff;
+  margin: 0 15px;
+  vertical-align: 3px;
+}
+.policies a:nth-of-type(2) {
+  color: #ff6600;
+}
+.company-info {
+  display: block;
+  font-family: NotoSans-Light;
+  font-size: 13px;
+  color: #999;
+  margin-top: 18px;
+}
+.company-info dt,
+.company-info dd {
+  display: inline-block;
+}
+.company-info dt {
+  margin-right: 3px;
+}
+.company-info dd {
+  margin-inline-start: 0;
+  margin-right: 30px;
+}
+.company-address {
+  display: block;
+  font-family: NotoSans-Light;
+  font-size: 13px;
+  color: #999;
+  margin-top: 15px;
+}
+.copyright {
+  display: block;
+  font-family: NotoSans-Light;
+  font-size: 13px;
+  color: #999;
+  margin-top: 15px;
+}
+.family-site-btn {
+  position: absolute;
+  bottom: 50px;
+  right: 50px;
+}
+.family-site-btn button {
+  width: 200px;
+  padding-left: 20px;
+  height: 50px;
+  text-align: left;
+  border: 1px solid #262626;
+  background: #1a1a1a;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.family-site-btn button > span {
+  font-family: NotoSans-Regular;
+  font-size: 14px;
+  color: #999;
+}
+.family-site-btn .ico {
+  position: absolute;
+  top: 20px;
+  right: 18px;
+  display: inline-block;
+  background-image: url(../../public/img/sprite_pc.png);
+  background-position: -1121px -1066px;
+  width: 12px;
+  height: 10px;
+  background-size: 1356px 1242px;
+}
+.family-list {
+  padding-inline-start: 0;
+  position: absolute;
+  right: 0;
+  bottom: 37px;
+  width: 200px;
+  box-sizing: border-box;
+  border: 1px solid #262626;
+  background: #1a1a1a;
+  cursor: pointer;
+}
+.family-item span{
+  display: block;
+  width: 100%;
+  color: #999;
+  font-size: 14px;
+  font-family: NotoSans-Regular;
+  padding: 8% 0 8px 20px;
+}
+.family-item.on span{
+  color: #ff6600;
+}
+.family-navigate-btn {
+  position: absolute;
+  right: -50px;
+  bottom: 0;
+  background: #1a1a1a;
+}
+.family-navigate-btn a {
+  display: inline-block;
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+  padding: 0;
+  text-align: center;
+  box-sizing: border-box;
+  border: 1px solid #262626;
+  background: transparent;
+}
+.family-navigate-btn a span{
+  font-family: NotoSans-Regular;
+  font-size: 14px;
+  color: #fff;
 }

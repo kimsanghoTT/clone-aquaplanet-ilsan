@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
+import "../css/index.css";
 import Header from "./layout/header";
 import Main from "./main/main_fullpage";
-import "../css/index.css";
-import { Routes, Route, useLocation } from "react-router-dom";
 import AsideBar from "./layout/aside";
 import Footer from "./layout/footer";
 
@@ -10,13 +10,12 @@ const AppWrapper = () => {
   const location = useLocation();
 
   useEffect(() => {
-    if(location.pathname === "/"){
-        document.body.style.overflow = "hidden";
+    if (location.pathname === "/") {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
     }
-    else{
-        document.body.style.overflow = "auto";
-    }
-  },[location])
+  }, [location]);
   return (
     <>
       <Header />
@@ -24,9 +23,9 @@ const AppWrapper = () => {
       <Routes>
         <Route path="/" element={<Main />} />
       </Routes>
-      <Footer/>
+      <Footer />
     </>
   );
-}
+};
 
 export default AppWrapper;
