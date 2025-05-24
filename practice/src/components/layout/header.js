@@ -9,6 +9,13 @@ const Header = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
   const [hover, setHover] = useState(false);
+  const aquaplanet = [
+    {text : "아쿠아플라넷", link: "https://www.aquaplanet.co.kr/index.do"},
+    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/jeju/index.do"},
+    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/yeosu/index.do"},
+    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/ilsan/index.do"},
+    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/gwanggyo/index.do"},
+  ]
 
   const today = moment().format("M . DD");
   const weekday = moment().format("dddd");
@@ -35,6 +42,7 @@ const Header = () => {
         gsap.to(".upper-nav", {opacity: 0, duration: 0.5, height: 0});
         gsap.to("header", {y: "-20px", duration: 0.5});
       }
+
     }
   
     window.addEventListener("scroll", scrollEvent);
@@ -86,21 +94,9 @@ const Header = () => {
               </span>
             </button>
             <ul className={`item-category-family-list ${categoryOpen ? "show" : ""}`}>
-              <li>
-                <a href="/">아쿠아플라넷</a>
-              </li>
-              <li>
-                <a href="/">아쿠아플라넷 제주</a>
-              </li>
-              <li>
-                <a href="/">아쿠아플라넷 여수</a>
-              </li>
-              <li>
-                <a href="/">아쿠아플라넷 일산</a>
-              </li>
-              <li>
-                <a href="/">아쿠아플라넷 광교</a>
-              </li>
+              {aquaplanet.map((text, index) => (
+                <li key={index}><a href={text.link}>{text.text}</a></li>
+              ))}
             </ul>
           </div>
           <div className="item-operating">

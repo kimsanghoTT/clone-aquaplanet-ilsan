@@ -37,7 +37,6 @@ const AsideBar = () => {
   useEffect(() => {
     const topBtnScrollEvent = () => {
       const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
-      console.log(scrollOnTop);
       
       if (scrollOnTop === 0) {
         gsap.to(".top-btn", { opacity: 0, duration: 0.6 });

@@ -4,6 +4,7 @@ import "../../css/footer.css";
 const Footer = () => {
   const [selected, setSelected] = useState(null);
   const [targetLink, setTargetLink] = useState(null);
+  const [listOpen, setListOpen] = useState(false);
   const familyLinks = [
     {text: "아쿠아플라넷", link: "https://www.aquaplanet.co.kr/index.do"},
     {text: "아쿠아플라넷 티켓몰", link: "https://mall.aquaplanet.co.kr/index.do"},
@@ -15,6 +16,10 @@ const Footer = () => {
     {text: "63레스토랑", link: "https://www.63restaurant.co.kr/main.r63"},
     {text: "플라자호텔", link: "https://www.hoteltheplaza.com/kr/"},
   ];
+
+  const linkListOpen = () => {
+    setListOpen(!listOpen);
+  }
 
   const selectedLink = (index) => {
     setSelected(index);
@@ -218,18 +223,18 @@ const Footer = () => {
           </div>
         </div>
         <div className="family-site-btn">
-          <button type="button">
+          <button type="button" onClick={linkListOpen}>
             <span className="navigate-target">패밀리 사이트</span>
-            <span className="ico"></span>
+            <span className="ico" style={listOpen ? {transform: "rotate(180deg)"} : {}}></span>
           </button>
-          <ul className="family-list">
-            {familyLinks.map((link, index) => (
+          <ul className={`family-list ${listOpen ? "active" : ""}`}>
+            {familyLinks.map((text, index) => (
               <li
                 key={index}
                 className={`family-item ${selected === index ? "on" : "off"}`}
                 onClick={() => selectedLink(index)}
               >
-                <span>{link.text}</span>
+                <span>{text.text}</span>
               </li>
             ))}
           </ul>

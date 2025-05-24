@@ -56,18 +56,61 @@ const Main = () => {
             }, 900);
         }
 
+        const headerToBottom = () => {
+            const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
+
+            if(scrollOnBottom <= 0){
+                document.querySelector("header").style.display = "none";
+            }
+            else if(scrollOnBottom > 0){
+                document.querySelector("header").style.display = "block";
+            }
+        }
+
+        const footerScrollMoving = (e) => {
+            const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
+            const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
+
+            if(scrollOnBottom <= 0){
+
+                if (e.target.closest(".event-item-box")) {
+                        return; 
+                }
+                if(scrolling.current){
+                    e.preventDefault();
+                    return;
+                }
+
+                e.preventDefault();
+                scrolling.current = true;
+
+                const wheelingDirection = e.deltaY > 0 ? 1 : -1
+                scroll.scrollMore(wheelingDirection * 476, {duration: 700, smooth: true});
+
+                setTimeout(() => {
+                    scrolling.current = false;
+                }, 900);
+            }
+        }
+        
         //페이지가 로드 될 때 마우스 휠을 이벤트 동작 대상으로 지정
         window.addEventListener("wheel", mouseWheeling, {passive : false});
+        window.addEventListener("wheel", footerScrollMoving, {passive: false});
 
         //페이지가 로드 될 때 방향키 눌림를 이벤트 동작 대상으로 지정
         window.addEventListener("keydown", ArrowMoving)
+
+        //메인페이지에서 스크롤이 최하단에 닿으면 헤더 안보이게 설정
+        window.addEventListener("scroll", headerToBottom);
 
         //페이지 로딩이 끝날 때 마우스 휠을 이벤트 동작 대상에서 제거해 메모리 누수 방지
         return (() => {
             window.removeEventListener("wheel", mouseWheeling);
             window.removeEventListener("keydown", ArrowMoving);
+            window.removeEventListener("scroll", headerToBottom);
         })
-        
+
     },[])
     return(
         <div className="main-wrapper">

@@ -126,6 +126,7 @@ footer {
   background-size: 1356px 1242px;
 }
 .family-list {
+  opacity: 0;
   padding-inline-start: 0;
   position: absolute;
   right: 0;
@@ -135,6 +136,11 @@ footer {
   border: 1px solid #262626;
   background: #1a1a1a;
   cursor: pointer;
+  pointer-events: none;
+}
+.family-list.active{
+  opacity: 1;
+  pointer-events: all;
 }
 .family-item span{
   display: block;
