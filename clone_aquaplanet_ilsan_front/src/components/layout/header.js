@@ -135,7 +135,7 @@ const Header = () => {
         <div className="nav-inner">
           <div className="logo">
             <a href="/">
-            {hover ? <img src="img/logo_ilsan.png" alt="logo"/> : <img src="img/logo_ilsan_white.png" alt="white_logo"/>}
+            {hover ? <img src="/img/logo_ilsan.png" alt="logo"/> : <img src="/img/logo_ilsan_white.png" alt="white_logo"/>}
             </a>
           </div>
           <nav className="gnb">
@@ -269,7 +269,7 @@ const Header = () => {
                 <a href="/">
                   <span className="text-join">Log In</span>
                 </a>
-                <a href="/">
+                <a href="/aquaplanet/signup">
                   <span className="text-join">회원가입</span>
                 </a>
               </div>
