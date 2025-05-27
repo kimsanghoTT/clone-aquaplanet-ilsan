@@ -1,4 +1,4 @@
-header {
+.ilsan-header {
   z-index: 2;
   width: calc(100% - 3.125vw);
   height: 130px;
@@ -7,29 +7,29 @@ header {
   position: fixed;
   transition: background-color 0.3s ease;
 }
-header:hover .ico,
-header:hover .ico2,
-header:hover .item-info .ico,
-header:hover .item-info::before{
+.ilsan-header:hover .ico,
+.ilsan-header:hover .ico2,
+.ilsan-header:hover .item-info .ico,
+.ilsan-header:hover .item-info::before{
   filter: brightness(0);
 }
 
-header:hover * {
+.ilsan-header:hover * {
   color: #767676;
 }
-header:hover .main-menu button {
+.ilsan-header:hover .main-menu button {
   color: #767676;
 }
-header:hover .upper-nav {
+.ilsan-header:hover .upper-nav {
   border-bottom: 1px solid #e0e0e0;
 }
-header:hover .nav-inner {
+.ilsan-header:hover .nav-inner {
   border-bottom: 1px solid #e0e0e0;
 }
-header:hover .log-in {
+.ilsan-header:hover .log-in {
   border-right: 1px solid #e0e0e0;
 }
-header:hover .sub-menu{
+.ilsan-header:hover .sub-menu{
   pointer-events: all;
 }
 /* 헤더 상단 */
@@ -59,7 +59,7 @@ header:hover .sub-menu{
 .item-category-family-btn .ico {
   display: inline-block;
   margin: 3px 10px 0 0;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -567px -1066px;
   width: 14px;
   height: 14px;
@@ -97,7 +97,7 @@ header:hover .sub-menu{
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 3;
+  z-index: 5;
 }
 .item-category-family-list.show {
   max-height: 200px;
@@ -121,7 +121,7 @@ header:hover .sub-menu{
 .item-operating .ico {
   display: inline-block;
   margin-right: 6px;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -848px -990px;
   width: 20px;
   height: 20px;
@@ -152,7 +152,7 @@ header:hover .sub-menu{
   left: 0; 
   right: 0; 
   bottom: 0;
-  background: url(../../public/img/ico_dot_white.png) no-repeat center;
+  background: url(../../../public/img/ilsan/ico_dot_white.png) no-repeat center;
 }
 .news-letter {
   height: 100%;
@@ -163,7 +163,7 @@ header:hover .sub-menu{
 .news-letter .ico {
   display: inline-block;
   margin: 2px 5px 0 0;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1306px -990px;
   width: 18px;
   height: 14px;
@@ -196,7 +196,7 @@ header:hover .sub-menu{
 .tel .ico {
   display: inline-block;
   margin-right: 4px;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -58px -1156px;
   width: 16px;
   height: 18px;
@@ -341,7 +341,7 @@ header:hover .sub-menu{
 }
 .log-in button .ico {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -76px -1066px;
   margin-right: 10px;
   width: 20px;
@@ -350,7 +350,7 @@ header:hover .sub-menu{
 }
 .log-in button .ico2 {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1091px -1066px;
   width: 10px;
   height: 8px;
@@ -372,7 +372,7 @@ header:hover .sub-menu{
   opacity: 0;
   transform: translateY(-10px);
   transition: all 0.3s ease;
-  z-index: 3;
+  z-index: 5;
 }
 .join.show {
   max-height: 200px;
@@ -409,7 +409,7 @@ header:hover .sub-menu{
 }
 .ticket-box .ico {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -754px -878px;
   width: 32px;
   height: 20px;
@@ -454,7 +454,7 @@ header:hover .sub-menu{
 .operating-area .ico {
   display: block;
   margin: 23px auto;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -540px -946px;
   width: 64px;
   height: 64px;

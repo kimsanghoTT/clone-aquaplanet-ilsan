@@ -85,7 +85,7 @@ const MainProgramSection = () => {
               <div
                 className="item-inner"
                 style={{
-                  backgroundImage: "url(/img/2025479122336619802442_7.png)",
+                  backgroundImage: "url(/img/ilsan/2025479122336619802442_7.png)",
                 }}
                 onMouseEnter={itemOpen}
                 onMouseLeave={itemClose}
@@ -105,7 +105,7 @@ const MainProgramSection = () => {
               <div
                 className="item-inner"
                 style={{
-                  backgroundImage: "url(/img/202511010235112511337987_12.png)",
+                  backgroundImage: "url(/img/ilsan/202511010235112511337987_12.png)",
                 }}
                 onMouseEnter={itemOpen}
                 onMouseLeave={itemClose}
@@ -125,7 +125,7 @@ const MainProgramSection = () => {
               <div
                 className="item-inner"
                 style={{
-                  backgroundImage: "url(/img/20202284422323312240548_11.jpg)",
+                  backgroundImage: "url(/img/ilsan/20202284422323312240548_11.jpg)",
                 }}
                 onMouseEnter={itemOpen}
                 onMouseLeave={itemClose}

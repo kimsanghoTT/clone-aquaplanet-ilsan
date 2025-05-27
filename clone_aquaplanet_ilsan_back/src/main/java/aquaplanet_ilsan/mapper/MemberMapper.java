@@ -9,4 +9,6 @@ public interface MemberMapper {
 
 	//회원가입
 	void signup(Member member);
+	
+	int duplicateCheck(String email);
 }

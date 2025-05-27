@@ -13,8 +13,12 @@ public class MemberServiceImpl implements MemberService{
 	MemberMapper memberMapper;
 
 	@Override
-	public void signup(Member member) {
-			
+	public void signup(Member member) {	
 		memberMapper.signup(member);
+	}
+	
+	@Override
+	public int duplicateCheck(String email) {
+		return memberMapper.duplicateCheck(email);
 	}
 }

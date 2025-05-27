@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-import "../../css/main.css";
 import gsap from "gsap";
 
 const MainVideoSection = () => {
@@ -14,7 +13,7 @@ const MainVideoSection = () => {
   return (
     <section className="main-section section01">
       <div className="video-section-container">
-        <video src="/img/ilsan_main_video.mp4" autoPlay muted loop type="video/mp4"/>
+        <video src="/img/ilsan/ilsan_main_video.mp4" autoPlay muted loop type="video/mp4"/>
         <div className="main-video-overlay-text">
           <p>국내 유일 바다코끼리 보유</p>
           <p>수도권 최대 규모 아쿠아리움</p>

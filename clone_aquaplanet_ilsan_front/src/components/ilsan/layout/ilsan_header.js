@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import "../../css/header.css";
+import "../../../css/ilsan/ilsan_header.css";
 import moment from "moment";
 import "moment/locale/ko";
 import gsap from "gsap";
 moment.locale("ko");
 
-const Header = () => {
+const IlsanHeader = () => {
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
   const [hover, setHover] = useState(false);
   const aquaplanet = [
     {text : "아쿠아플라넷", link: "https://www.aquaplanet.co.kr/index.do"},
     {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/jeju/index.do"},
-    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/yeosu/index.do"},
-    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/ilsan/index.do"},
-    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/gwanggyo/index.do"},
+    {text: "아쿠아플라넷 여수", link: "https://www.aquaplanet.co.kr/yeosu/index.do"},
+    {text: "아쿠아플라넷 일산", link: "https://www.aquaplanet.co.kr/ilsan/index.do"},
+    {text: "아쿠아플라넷 광교", link: "https://www.aquaplanet.co.kr/gwanggyo/index.do"},
   ]
 
   const today = moment().format("M . DD");
@@ -28,7 +28,7 @@ const Header = () => {
   };
 
   useEffect(() => {
-    gsap.fromTo("header", {opacity:0, y: -130}, {opacity:1, y:0, duration:0.5, ease: "power1.out"});
+    gsap.fromTo(".ilsan-header", {opacity:0, y: -130}, {opacity:1, y:0, duration:0.5, ease: "power1.out"});
     const scrollEvent = () => {
       
       //스크롤이 최상단에 왔는지 체크 -> 최상단 = 0
@@ -36,11 +36,11 @@ const Header = () => {
 
       if(scrollOnTop === 0 ){
         gsap.to(".upper-nav", {opacity: 1, duration: 0.5, height: "50px"});
-        gsap.to("header", {y: 0, duration: 0.5});
+        gsap.to(".ilsan-header", {y: 0, duration: 0.5});
       }
       else if(scrollOnTop !== 0){
         gsap.to(".upper-nav", {opacity: 0, duration: 0.5, height: 0});
-        gsap.to("header", {y: "-20px", duration: 0.5});
+        gsap.to(".ilsan-header", {y: "-20px", duration: 0.5});
       }
 
     }
@@ -62,7 +62,7 @@ const Header = () => {
   const headerMouseOn = () => {
     setHover(true);
 
-    gsap.to("header", {backgroundColor : "#fff", color: "#767676", duration: 0.1});
+    gsap.to(".ilsan-header", {backgroundColor : "#fff", color: "#767676", duration: 0.1});
     gsap.to(".nav-toggle-box", {backgroundColor: "#fff", height: "350px", opacity: 1, ease: "power3.out", borderBottom:"1px solid #e0e0e0", duration: 0.5});
     
     const subMenuLists = document.querySelectorAll(".sub-menu");
@@ -73,7 +73,7 @@ const Header = () => {
   const headerMouseLeave = () => {
     setHover(false);
 
-    gsap.to("header", {backgroundColor: "transparent", duration: 0.1})
+    gsap.to(".ilsan-header", {backgroundColor: "transparent", duration: 0.1})
     gsap.to(".nav-toggle-box", {backgroundColor: "transparent", height: 0, opacity: 0, ease: "power1.in", duration: 0.5});
     
     const subMenuLists = document.querySelectorAll(".sub-menu");
@@ -83,7 +83,7 @@ const Header = () => {
   }
 
   return (
-    <header onMouseEnter={headerMouseOn} onMouseLeave={headerMouseLeave}>
+    <header className="ilsan-header" onMouseEnter={headerMouseOn} onMouseLeave={headerMouseLeave}>
       <div className="upper-nav">
         <div className="upper-nav-left">
           <div className="item-category">
@@ -133,9 +133,9 @@ const Header = () => {
       </div>
       <div className="main-nav">
         <div className="nav-inner">
-          <div className="logo">
+          <div className="ilsan-logo">
             <a href="/">
-            {hover ? <img src="/img/logo_ilsan.png" alt="logo"/> : <img src="/img/logo_ilsan_white.png" alt="white_logo"/>}
+            {hover ? <img src="/img/ilsan/logo_ilsan.png" alt="logo"/> : <img src="/img/ilsan/logo_ilsan_white.png" alt="white_logo"/>}
             </a>
           </div>
           <nav className="gnb">
@@ -269,7 +269,7 @@ const Header = () => {
                 <a href="/">
                   <span className="text-join">Log In</span>
                 </a>
-                <a href="/aquaplanet/signup">
+                <a href="/aquaplanet/member/signup">
                   <span className="text-join">회원가입</span>
                 </a>
               </div>
@@ -310,7 +310,7 @@ const Header = () => {
           <div className="item-banner">
             <div>
               <a href="/">
-                <img src="/img/202131054071614396438_6.png" alt="banner"/>
+                <img src="/img/ilsan/202131054071614396438_6.png" alt="banner"/>
               </a>
             </div>
           </div>
@@ -319,4 +319,4 @@ const Header = () => {
     </header>
   );
 };
-export default Header;
+export default IlsanHeader;

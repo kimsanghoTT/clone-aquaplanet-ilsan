@@ -110,12 +110,12 @@
 
 /*프로그램 섹션*/
 .section02 {
-  background: url(../../public/img/ilsan_main_section_bg02.jpg) no-repeat center;
+  background: url(../../../public/img/ilsan/ilsan_main_section_bg02.jpg) no-repeat center;
   position: relative;
 }
 .program-sub-bg {
   position: absolute;
-  background: url(../../public/img/ilsan_main_section_subbg.jpg);
+  background: url(../../../public/img/ilsan/ilsan_main_section_subbg.jpg);
   width: 40vw;
   height: 92vh;
   bottom: 0;
@@ -226,7 +226,7 @@
 
 /*정보 섹션*/
 .section03 {
-  background: url(../../public/img/ilsan_main_section_bg03.jpg);
+  background: url(../../../public/img/ilsan/ilsan_main_section_bg03.jpg);
   position: relative;
 }
 .info-section-content-box {
@@ -376,7 +376,7 @@
 
 /*이벤트 섹션*/
 .section04 {
-  background: url(../../public/img/ilsan_main_section_bg04.jpg);
+  background: url(../../../public/img/ilsan/ilsan_main_section_bg04.jpg);
 }
 .event-section-content-box {
   display: flex;
@@ -407,16 +407,16 @@
   background-size: 1356px 1242px;
 }
 .event-item:first-of-type .ico {
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1023px -760px;
 }
 .event-item:nth-of-type(2) .ico {
   top: 111px;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -240px -864px;
 }
 .event-item:last-of-type .ico {
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -615px -946px;
 }
 .event-item span:nth-child(2) ~ span {
@@ -456,7 +456,7 @@
 
 /*단체 섹션*/
 .section05 {
-  background: url(../../public/img/ilsan_main_section_bg05.jpg);
+  background: url(../../../public/img/ilsan/ilsan_main_section_bg05.jpg);
   position: relative;
 }
 .group-section-content-box {
@@ -500,16 +500,16 @@
   background-size: 1356px 1242px;
 }
 .group-item:first-of-type .ico {
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1107px -760px;
 }
 .group-item:nth-of-type(2) .ico {
   top: 111px;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1191px -760px;
 }
 .group-item:last-of-type .ico {
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1275px -760px;
 }
 .group-item span:nth-child(2) ~ span {
@@ -548,7 +548,7 @@
 
 /*소통 섹션*/
 .section06 {
-  background: url(../../public/img/ilsan_main_section_bg06.jpg);
+  background: url(../../../public/img/ilsan/ilsan_main_section_bg06.jpg);
 }
 .community-section-content-box {
   position: absolute;

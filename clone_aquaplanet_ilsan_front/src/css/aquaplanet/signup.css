@@ -1,0 +1,23 @@
+section{
+    width: 100%;
+    height: 1000px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.signup-form{
+}
+.signup-form label{
+    display: block;
+}
+.signup-form input{
+    display: block;
+}
+.email-err-msg, .pw-err-msg{
+    display: none;
+    color: red;
+    font-size: 14px;
+}
+.err-on{
+    display: block;
+}

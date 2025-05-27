@@ -60,7 +60,7 @@ aside.active .top-btn {
 }
 .event-btn-text-box span:first-child {
   display: inline-block;
-  background: url(../../public/img/sprite_pc.png) center;
+  background: url(../../../public/img/ilsan/sprite_pc.png) center;
   background-position: -928px -990px;
   width: 20px;
   height: 20px;
@@ -102,12 +102,12 @@ aside.active .top-btn {
   height: 100%;
 }
 .location {
-  background-image: url(../../public/img/social_bg01.jpg);
+  background-image: url(../../../public/img/ilsan/social_bg01.jpg);
   border: none !important;
 }
 .location .ico {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -602px -878px;
   width: 28px;
   height: 24px;
@@ -115,14 +115,14 @@ aside.active .top-btn {
 }
 .youtube .ico {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -1295px -946px;
   width: 25px;
   height: 18px;
   background-size: 1356px 1242px;
 }
 .youtube:hover {
-  background: url(../../public/img/social_bg02.jpg) no-repeat 0 0;
+  background: url(../../../public/img/ilsan/social_bg02.jpg) no-repeat 0 0;
   background-size: cover;
   border: none;
 }
@@ -131,7 +131,7 @@ aside.active .top-btn {
 }
 .program .ico {
   display: inline-block;
-  background-image: url(../../public/img/ico_program_white.png);
+  background-image: url(../../../public/img/ilsan/ico_program_white.png);
   background-size: cover;
   width: 26px;
   height: 22px;
@@ -144,14 +144,14 @@ aside.active .top-btn {
 }
 .instagram .ico {
   display: inline-block;
-  background-image: url(../../public/img/insta_logo.png);
+  background-image: url(../../../public/img/ilsan/insta_logo.png);
   background-position: 0 -20px;
   width: 20px;
   height: 20px;
   background-size: 20px 40px;
 }
 .instagram:hover {
-  background-image: url(../../public/img/social_bg03.jpg);
+  background-image: url(../../../public/img/ilsan/social_bg03.jpg);
 }
 .instagram:hover .ico {
   filter: none !important;
@@ -172,7 +172,7 @@ aside.active .top-btn {
 }
 .top-btn .ico {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: 0 -1212px;
   width: 8px;
   height: 30px;
@@ -218,7 +218,7 @@ aside.active .top-btn {
   left: 10%;
   display: inline-block;
   margin-right: 4px;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -952px -946px;
   width: 24px;
   height: 24px;
@@ -354,7 +354,7 @@ aside.active .top-btn {
 .btn-more .ico {
   display: inline-block;
   margin-right: 6px;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -459px -1066px;
   width: 16px;
   height: 16px;
@@ -429,7 +429,7 @@ aside.active .top-btn {
 }
 .aside-tooltip .ico {
   display: inline-block;
-  background-image: url(../../public/img/sprite_pc.png);
+  background-image: url(../../../public/img/ilsan/sprite_pc.png);
   background-position: -156px -1066px;
   width: 16px;
   height: 24px;

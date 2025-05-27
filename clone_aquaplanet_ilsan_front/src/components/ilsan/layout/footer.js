@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../css/footer.css";
+import "../../../css/ilsan/footer.css";
 
 const Footer = () => {
   const [selected, setSelected] = useState(null);
