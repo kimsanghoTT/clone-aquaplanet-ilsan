@@ -1,9 +1,13 @@
 import axios from "axios";
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useRef, useState } from "react";
 import cityData from "./city_district.json";
 import "../../../css/aquaplanet/signup.css";
+import gsap from "gsap";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
+  const navigate = useNavigate();
+
   const [member, setMember] = useState({
     memberEmail: "",
     memberPw: "",
@@ -20,33 +24,97 @@ const Signup = () => {
     EMAIL_REQUIRED: "아이디는 필수 입력사항 입니다",
     PW_REQUIRED: "비밀번호는 필수 입력사항 입니다",
     EMAIL_DUPLE_CHECK_REQUIRED: "아이디 중복체크를 해주세요",
-    PW_FORMAT: "비밀번호는 영문 숫자 포함 10~13자, 특수문자 포함 시 8~13자로 입력해 주세요"
+    PW_FORMAT:
+      "비밀번호는 영문 숫자 포함 10~13자, 특수문자 포함 시 8~13자로 입력해 주세요",
+    PW_CONFIRM: "비밀번호가 일치하지 않습니다",
   };
   const [dupleCheck, setDupleCheck] = useState(false);
   const [idCheck, setIdCheck] = useState(true);
-  const [selectedDistrict, setSelectedDistrict] = useState([]);
   const [pwCheck, setPwCheck] = useState(true);
-  const emailPattern = useMemo(() => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|co|kr|edu|gov|io|me)$/, []) ;
-  const passwordPattern =  useMemo (() => /^(?:(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,13}|(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-])[A-Za-z\d!@#$%^&*()_+{}[\]:;<>,.?~\\/-]{10,13})$/, []);
+  const [subEmailCheck, setSubEmailCheck] = useState(true);
+  const [pwDoubleCheck, setPwDoubleCheck] = useState("");
+  const [copyEmail, setCopyEmail] = useState(false);
+  const [citySelectorOpen, setCitySelectorOpen] = useState(false);
+  const [districtSelectorOpen, setDistrictSelectorOpen] = useState(false);
+  const [selectedCityIndex, setSelectedCityIndex] = useState(null);
+  const [selectedDistrictIndex, setSelectedDistrictIndex] = useState(null);
+  const [cityLabel, setCityLabel] = useState("광역시/도");
+  const [districtLabel, setDistrictLabel] = useState("시/군/구");
+  const [selectedDistrict, setSelectedDistrict] = useState([]);
+  const cityRef = useRef(null);
+  const districtRef = useRef(null);
+  const emailPattern = useMemo(
+    () =>
+      /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|co|kr|edu|gov|io|me)$/,
+    []
+  );
+  const passwordPattern = useMemo(
+    () =>
+      /^(?:(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,13}|(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-])[A-Za-z\d!@#$%^&*()_+{}[\]:;<>,.?~\\/-]{10,13})$/,
+    []
+  );
 
   useEffect(() => {
-    const selectedCity = cityData.find(data => data.city === member.memberRegionCity);
-    if(selectedCity){
+    const selectedCity = cityData.find(
+      (data) => data.city === member.memberRegionCity
+    );
+    if (selectedCity) {
       setSelectedDistrict(selectedCity.district);
-    }
-    else{
+    } else {
       setSelectedDistrict([]);
     }
-    setMember(prevSelection => ({
+    setMember((prevSelection) => ({
       ...prevSelection,
-      memberRegionDistrict: ""
-    }))
-  },[member.memberRegionCity])
+      memberRegionDistrict: "",
+    }));
+  }, [member.memberRegionCity]);
 
   useEffect(() => {
-    setIdCheck(member.memberEmail !== '' && emailPattern.test(member.memberEmail));
-    setPwCheck(member.memberPw !== '' && passwordPattern.test(member.memberPw));
-  },[member.memberEmail, emailPattern, member.memberPw, passwordPattern]);
+    setIdCheck(
+      member.memberEmail !== "" && emailPattern.test(member.memberEmail)
+    );
+    setPwCheck(member.memberPw !== "" && passwordPattern.test(member.memberPw));
+    if (
+      member.memberSubEmail !== "" &&
+      !emailPattern.test(member.memberSubEmail)
+    ) {
+      setSubEmailCheck(false);
+    } else {
+      setSubEmailCheck(true);
+    }
+  }, [
+    member.memberEmail,
+    member.memberSubEmail,
+    emailPattern,
+    member.memberPw,
+    passwordPattern,
+  ]);
+
+  useEffect(() => {
+    if (copyEmail) {
+      gsap.to(".sameEmailBtn span", { color: "#222", duration: 0.2 });
+      document.querySelector(".sameEmailBtn").classList.add("active");
+    } else {
+      gsap.to(".sameEmailBtn span", { color: "#b4b4b4", duration: 0.2 });
+      document.querySelector(".sameEmailBtn").classList.remove("active");
+    }
+  }, [copyEmail]);
+
+  useEffect(() => {
+    const clickOutside = (e) => {
+      if (cityRef.current && !cityRef.current.contains(e.target)) {
+        setCitySelectorOpen(false);
+      }
+      if (districtRef.current && !districtRef.current.contains(e.target)) {
+        setDistrictSelectorOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", clickOutside);
+    return () => {
+      document.removeEventListener("mousedown", clickOutside);
+    };
+  }, []);
 
   const insertData = (e) => {
     const { name, value } = e.target;
@@ -58,117 +126,329 @@ const Signup = () => {
   };
 
   const duplicateCheck = async () => {
-    if(member.memberEmail === '' || !emailPattern.test(member.memberEmail)){
+    if (member.memberEmail === "" || !emailPattern.test(member.memberEmail)) {
       alert(errMsg.EMAIL_FORMAT);
       return;
     }
 
     const response = await axios.get("/aquaplanet/duplicate", {
       params: {
-        memberEmail: member.memberEmail
-      }
-    })
+        memberEmail: member.memberEmail,
+      },
+    });
 
-    if(response.data === 0) {
+    if (response.data === 0) {
       setDupleCheck(true);
       alert("사용 가능한 이메일입니다.");
-    }
-    else{
+    } else {
       setDupleCheck(false);
       alert(errMsg.EMAIL_EXISTS);
-      return 0;
+      return;
     }
+  };
+
+  const usingSameEmail = () => {
+    setCopyEmail((prev) => {
+      const newState = !prev;
+
+      console.log(newState);
+
+      setMember((userData) => ({
+        ...userData,
+        memberSubEmail: newState ? member.memberEmail : "",
+      }));
+
+      return newState;
+    });
+  };
+
+  const openBtn = (number) => {
+    switch (number) {
+      case 1:
+        setCitySelectorOpen(!citySelectorOpen);
+        break;
+      case 2:
+        setDistrictSelectorOpen(!districtSelectorOpen);
+        break;
+      default:
+        break;
+    }
+  };
+
+  const selection = (e) => {
+    const value = e.target.getAttribute("data-value");
+    const field = e.target.getAttribute("datatype");
+
+    setMember((userData) => ({
+      ...userData,
+      [field]: value,
+    }));
+  };
+
+  const updateSelectedLabel = (index, type) => {
+    if (type === "city") {
+      setSelectedCityIndex(index);
+      setCityLabel(cityData[index].city);
+      setCitySelectorOpen(!citySelectorOpen);
+      // 시/군/구 박스 초기화
+      setSelectedDistrictIndex(null);
+      setDistrictLabel("시/군/구");
+    } else if (type === "district") {
+      setSelectedDistrictIndex(index);
+      setDistrictLabel(selectedDistrict[index]);
+      setDistrictSelectorOpen(!districtSelectorOpen);
+    }
+
+    console.log(selectedCityIndex);
+    console.log(selectedDistrict);
   };
 
   const submitSignupData = async (e) => {
     e.preventDefault();
-    
-    if(!idCheck){
-      alert(member.memberEmail === '' ? errMsg.EMAIL_REQUIRED : errMsg.EMAIL_FORMAT);
+
+    if (!idCheck) {
+      alert(
+        member.memberEmail === "" ? errMsg.EMAIL_REQUIRED : errMsg.EMAIL_FORMAT
+      );
       return;
     }
 
-    if(!pwCheck){
-      alert(member.memberPw === '' ? errMsg.PW_REQUIRED : errMsg.PW_FORMAT);
+    if (!pwCheck) {
+      alert(member.memberPw === "" ? errMsg.PW_REQUIRED : errMsg.PW_FORMAT);
       return;
     }
 
-    if(!dupleCheck){
+    if (!subEmailCheck) {
+      alert(errMsg.EMAIL_FORMAT);
+      return;
+    }
+
+    if (!dupleCheck) {
       alert(errMsg.EMAIL_DUPLE_CHECK_REQUIRED);
       return;
     }
 
-    try{
-    await axios.post("/aquaplanet/signup", member);
+    if (member.memberPw !== pwDoubleCheck) {
+      alert(errMsg.PW_CONFIRM);
+      return;
+    }
 
-    }catch{
+    try {
+      await axios.post("/aquaplanet/signup", member);
+      navigate("/");
+    } catch {
       alert("알 수 없는 에러가 발생했습니다. 나중에 다시 시도해주세요");
     }
   };
 
   return (
-    <section className="signup-member">
-      <div className="signup-member-title">
-        <p>회원가입</p>
-        <p>자주 쓰는 메일로 시작해 보세요</p>
+    <section className="member-signup">
+      <div className="member-visual-format">
+        <figure className="member-visual-image"></figure>
       </div>
-      <form className="signup-form" onSubmit={submitSignupData}>
-        <label htmlFor="memberEmail">아이디</label>
-        <button className="duplicateCheckBtn" type="button" onClick={duplicateCheck} value={member.memberEmail}>중복체크</button>
-        <input
-          id="memberEmail"
-          type="text"
-          name="memberEmail"
-          value={member.memberEmail}
-          onChange={insertData}
-          placeholder="아이디로 사용하실 이메일을 입력해주세요"
-        />
-        <span className={`email-err-msg ${idCheck ? "" : "err-on"}`}>{errMsg.EMAIL_FORMAT}</span>
-        <label htmlFor="memberPw">비밀번호</label>
-        <input
-          id="memberPw"
-          type="password"
-          name="memberPw"
-          value={member.memberPw}
-          onChange={insertData}
-          placeholder="비밀번호를 입력해주세요"
-        />
-        <span className={`pw-err-msg ${pwCheck ? "" : "err-on"}`}>
-          <p>{errMsg.PW_FORMAT_DESC_1}</p>
-          <p>{errMsg.PW_FORMAT_DESC_2}</p>
-        </span>
-        <label htmlFor="memberSubEmail">추가 이메일(선택)</label>
-        <input
-          id="memberSubEmail"
-          type="text"
-          name="memberSubEmail"
-          value={member.memberSubEmail}
-          onChange={insertData}
-          placeholder="소식을 받아보실 이메일 주소를 입력해주세요"
-        />
-        <label>거주지역(선택)</label>
-        <select
-          name="memberRegionCity"
-          value={member.memberRegionCity}
-          onChange={insertData}
-        >
-          <option>광역시/도</option>
-          {cityData.map((data, index) => (
-            <option key={index}>{data.city}</option>
-          ))}
-        </select>
-        <select
-          name="memberRegionDistrict"
-          value={member.memberRegionDistrict}
-          onChange={insertData}
-        >
-          <option>시/군/구</option>
-          {selectedDistrict.map((district, index) => (
-            <option key={index}>{district}</option>
-          ))}
-        </select>
-        <button type="submit">회원가입</button>
-      </form>
+      <div className="aquaplanet-member-content">
+        <div className="member-signup-box">
+          <div className="member-signup-title">
+            <p>회원가입</p>
+            <p>자주 쓰는 메일로 시작해 보세요</p>
+          </div>
+          <form className="signup-form" onSubmit={submitSignupData}>
+            <div className="signup-form-content form-content01">
+              <label htmlFor="memberEmail">아이디</label>
+              <button
+                className="duplicateCheckBtn"
+                type="button"
+                onClick={duplicateCheck}
+                value={member.memberEmail}
+              >
+                중복체크
+              </button>
+              <input
+                id="memberEmail"
+                type="text"
+                name="memberEmail"
+                value={member.memberEmail}
+                onChange={insertData}
+                placeholder="아이디로 사용하실 이메일을 입력해주세요"
+              />
+              <span
+                className={`email-err-msg ${!idCheck && member.memberEmail ? "err-on" : ""}`}
+              >
+                {errMsg.EMAIL_FORMAT}
+              </span>
+            </div>
+
+            <div className="signup-form-content form-content02">
+              <label htmlFor="memberPw">비밀번호</label>
+              <input
+                id="memberPw"
+                type="password"
+                name="memberPw"
+                value={member.memberPw}
+                onChange={insertData}
+                placeholder="비밀번호를 입력해주세요"
+              />
+              <span
+                className={`pw-err-msg ${!pwCheck && member.memberPw ? "err-on" : ""}`}
+              >
+                <span>{errMsg.PW_FORMAT_DESC_1}</span>
+                <span>{errMsg.PW_FORMAT_DESC_2}</span>
+              </span>
+            </div>
+
+            <div className="signup-form-content form-content03">
+              <label htmlFor="memberPwConfirm">비밀번호 확인</label>
+              <input
+                id="memberPwConfirm"
+                type="password"
+                name="memberPwConfirm"
+                value={pwDoubleCheck}
+                onChange={(e) => setPwDoubleCheck(e.target.value)}
+                placeholder="비밀번호를 다시 입력해주세요"
+              />
+              <span
+                className={`confirm-pw-err-msg ${pwDoubleCheck !== member.memberPw ? "err-on" : ""}`}
+              >
+                <span>{errMsg.PW_CONFIRM}</span>
+              </span>
+            </div>
+
+            <div className="signup-form-content form-content04">
+              <label htmlFor="memberSubEmail">추가 이메일(선택)</label>
+              <button
+                className="sameEmailBtn"
+                type="button"
+                onClick={usingSameEmail}
+              >
+                <span>아이디와 동일한 이메일</span>
+              </button>
+              <input
+                id="memberSubEmail"
+                type="text"
+                name="memberSubEmail"
+                value={member.memberSubEmail}
+                onChange={insertData}
+                placeholder="소식을 받아보실 이메일 주소를 입력해주세요"
+              />
+              <span
+                className={`subEmail-err-msg ${!subEmailCheck && member.memberSubEmail ? "err-on" : ""}`}
+              >
+                <span>{errMsg.EMAIL_FORMAT}</span>
+              </span>
+            </div>
+
+            <div className="signup-form-content form-content05">
+              <label>거주지역(선택)</label>
+              <div>
+                <select
+                  name="memberRegionCity"
+                  value={member.memberRegionCity}
+                  onChange={insertData}
+                >
+                  <option value="" disabled>
+                    광역시/도
+                  </option>
+                  {cityData.map((data, index) => (
+                    <option key={index} value={data.city}>
+                      {data.city}
+                    </option>
+                  ))}
+                </select>
+                <select
+                  name="memberRegionDistrict"
+                  value={member.memberRegionDistrict}
+                  onChange={insertData}
+                >
+                  <option value="" disabled>
+                    시/군/구
+                  </option>
+                  {selectedDistrict.map((district, index) => (
+                    <option key={index} value={district}>
+                      {district}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              <div className="location-selector">
+                <div ref={cityRef} className="select-city-box">
+                  <span
+                    className="select-city"
+                    ref={cityRef}
+                    onClick={() => openBtn(1)}
+                  >
+                    <span>{cityLabel}</span>
+                    <span
+                      className={`ico ${citySelectorOpen ? "on" : ""}`}
+                    ></span>
+                  </span>
+                  <ul
+                    style={
+                      citySelectorOpen
+                        ? { display: "block" }
+                        : { display: "none" }
+                    }
+                  >
+                    <li className="city-item">광역시/도</li>
+                    {cityData.map((data, index) => (
+                      <li
+                        className={`city-item ${selectedCityIndex === index ? "on" : ""}`}
+                        key={index}
+                        data-value={data.city}
+                        datatype="memberRegionCity"
+                        onClick={(e) => {
+                          selection(e);
+                          updateSelectedLabel(index, "city");
+                        }}
+                      >
+                        {data.city}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div ref={districtRef} className="select-district-box">
+                  <span
+                    className="select-district"
+                    ref={districtRef}
+                    onClick={() => openBtn(2)}
+                  >
+                    <span>{districtLabel}</span>
+                    <span
+                      className={`ico ${districtSelectorOpen ? "on" : ""}`}
+                    ></span>
+                  </span>
+                  <ul
+                    style={
+                      districtSelectorOpen
+                        ? { display: "block" }
+                        : { display: "none" }
+                    }
+                  >
+                    <li className="district-item">시/군/구</li>
+                    {selectedDistrict.map((district, index) => (
+                      <li
+                        className={`district-item ${selectedDistrictIndex === index ? "on" : ""}`}
+                        key={index}
+                        data-value={district}
+                        datatype="memberRegionDistrict"
+                        onClick={(e) => {
+                          selection(e);
+                          updateSelectedLabel(index, "district");
+                        }}
+                      >
+                        {district}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <button className="signup-submit-btn" type="submit">
+              입력완료
+            </button>
+          </form>
+        </div>
+      </div>
     </section>
   );
 };

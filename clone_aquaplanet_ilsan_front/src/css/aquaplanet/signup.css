@@ -1,23 +1,247 @@
-section{
-    width: 100%;
-    height: 1000px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.member-signup {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0;
+  padding: 0;
 }
-.signup-form{
+.member-visual-format {
+  width: 50%;
+  height: 100%;
 }
-.signup-form label{
-    display: block;
+.member-visual-image {
+  margin: 0;
+  padding: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  background: url(../../../public/img/aquaplanet/bg_signin1.png) no-repeat
+    center;
+  background-size: cover;
 }
-.signup-form input{
-    display: block;
+.aquaplanet-member-content {
+  width: 50%;
+  height: 100%;
 }
-.email-err-msg, .pw-err-msg{
-    display: none;
-    color: red;
-    font-size: 14px;
+.member-signup-box {
+  width: 500px;
+  margin: 100px auto;
 }
-.err-on{
-    display: block;
+.member-signup-title p:first-child {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Noto Sans KR;
+  margin: 0;
+  line-height: 1.15;
+}
+.member-signup-title p:last-child {
+  margin: 0;
+  font-size: 20px;
+  line-height: 28px;
+  color: #222222;
+  font-family: Noto Sans KR;
+  font-weight: 500;
+}
+.signup-form {
+  position: relative;
+  margin: 45px 0 0;
+  z-index: 1;
+}
+.signup-form * {
+  font-family: Noto Sans KR;
+}
+.signup-form label {
+  display: inline-block;
+  color: #222222;
+  font-size: 14px;
+  margin: 0 0 10px;
+  font-weight: 500;
+}
+.signup-form input {
+  display: block;
+  width: 100%;
+  color: #222222;
+  font-size: 12px;
+  line-height: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+.signup-form select {
+  display: none;
+}
+.signup-form-content {
+  margin-bottom: 15px;
+}
+.form-content01 {
+  position: relative;
+}
+.duplicateCheckBtn {
+  position: absolute;
+  right: 0;
+  cursor: pointer;
+  color: #767474;
+  font-size: 12px;
+  text-decoration: underline;
+  border: none;
+  background-color: #fff;
+}
+.form-content04 {
+  position: relative;
+}
+.sameEmailBtn {
+  position: absolute;
+  right: 0;
+  border: none;
+  background-color: #fff;
+  cursor: pointer;
+  color: #b4b4b4;
+  font-size: 14px;
+  font-weight: 500;
+}
+.sameEmailBtn span::before {
+  content: "";
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-color: transparent;
+  background-image: url(../../../public/img/aquaplanet/ico_square1.svg);
+  transition: all 0.2s ease;
+}
+.sameEmailBtn.active span::before {
+  background-color: #222;
+  background-size: 60%;
+  border: 0;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../public/img/aquaplanet/ico_square2.svg);
+}
+.location-selector {
+  display: flex;
+  justify-content: space-between;
+}
+.select-city-box,
+.select-district-box {
+  position: relative;
+  display: inline-block;
+  width: 49%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.select-city,
+.select-district {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #666666;
+  font-size: 14px;
+  line-height: 40px;
+}
+.select-city span:first-child,
+.select-district span:first-child {
+  padding-left: 15px;
+}
+.select-city .ico,
+.select-district .ico {
+  position: absolute;
+  right: 20px;
+  display: inline-block;
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg) no-repeat
+    center;
+  margin: 16px 0 0 0;
+  width: 11px;
+  height: 6px;
+  transition: transform 0.4s ease;
+}
+.select-city .ico.on,
+.select-district .ico.on {
+  transform: rotate(180deg);
+}
+.select-city-box ul,
+.select-district-box ul {
+  position: absolute;
+  left: -1px;
+  bottom: 38px;
+  border: 1px solid #dddddd;
+  width: 100%;
+  margin: 0;
+  padding-inline-start: 0;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.city-item,
+.district-item {
+  background-color: white;
+  border: 1px solid transparent;
+  position: relative;
+  font-size: 12px;
+  line-height: 24px;
+  padding: 3px 10px;
+  z-index: 100;
+}
+.city-item:hover,
+.district-item:hover {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.city-item.on,
+.district-item.on {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.email-err-msg,
+.pw-err-msg,
+.confirm-pw-err-msg,
+.subEmail-err-msg {
+  display: none;
+  color: red;
+  font-size: 14px;
+  width: 100%;
+  padding: 15px 20px 0 20px;
+}
+.err-on {
+  display: block;
+}
+.signup-submit-btn {
+  margin-top: 30px;
+  width: 180px;
+  display: inline-block;
+  background-color: #fff;
+  border: 1px solid #2771f1;
+  color: #2771f1;
+  border-radius: 40px;
+  font-size: 18px;
+  line-height: 48px;
+  text-align: center;
+  padding: 0 20px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+}
+.signup-submit-btn:hover{
+    background-color: #2771f1;
+    border: 1px solid #2771f1;
+    color: #fff
 }

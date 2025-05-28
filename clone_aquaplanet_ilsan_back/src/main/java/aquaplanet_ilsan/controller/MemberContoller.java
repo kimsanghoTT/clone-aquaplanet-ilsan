@@ -20,17 +20,12 @@ public class MemberContoller {
 	
 	@PostMapping("/signup")
 	public void signup(@RequestBody Member member) {
-		System.out.println("============================================");
 		System.out.println("member : " + member);
-		System.out.println("============================================");
 		memberService.signup(member);
 	}
 	
 	@GetMapping("/duplicate")
 	public int duplicateCheck(@RequestParam("memberEmail") String email) {
-		System.out.println("============================================");
-		System.out.println(email);
-		System.out.println("============================================");
 		return memberService.duplicateCheck(email);
 	}
 }
