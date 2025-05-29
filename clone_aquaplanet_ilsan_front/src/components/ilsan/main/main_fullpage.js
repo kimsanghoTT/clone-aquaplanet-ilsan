@@ -30,7 +30,7 @@ const Main = () => {
             
             //e.deltaY = 마우스 휠 방향 객체 : 위->양수, 아래->음수 반환
             const wheelingDirection = e.deltaY > 0 ? 1 : -1
-            scroll.scrollMore(wheelingDirection * 920, {duration: 700, smooth: true});
+            scroll.scrollMore(wheelingDirection * window.innerHeight, {duration: 700, smooth: true});
 
             setTimeout(() => {
                 scrolling.current = false;
