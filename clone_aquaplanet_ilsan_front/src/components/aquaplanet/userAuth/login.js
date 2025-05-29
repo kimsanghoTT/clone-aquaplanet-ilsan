@@ -68,7 +68,7 @@ const Login = () => {
                 <a href="/aquaplanet/member/signup">회원가입</a>
               </div>
             </div>
-            <div className="login-form-content form-content04">
+            <div className="social-login">
               <span>SNS계정으로 로그인</span>
               <div className="social-list">
                 <button>
