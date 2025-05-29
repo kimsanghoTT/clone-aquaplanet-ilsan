@@ -116,7 +116,7 @@
   background-color: #ffefe5;
 }
 .item-category-family-list li:hover a {
-  color: #ff6600;
+  color: #ff6600 !important;
 }
 .item-operating .ico {
   display: inline-block;
@@ -211,7 +211,7 @@
 .language a {
   font-size: 14px;
   font-weight: 600;
-  color: #ff6600;
+  color: #ff6600 !important;
   line-height: 0.5;
 }
 

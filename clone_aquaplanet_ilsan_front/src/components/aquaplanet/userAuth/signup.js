@@ -40,9 +40,12 @@ const Signup = () => {
   const [selectedDistrictIndex, setSelectedDistrictIndex] = useState(null);
   const [cityLabel, setCityLabel] = useState("광역시/도");
   const [districtLabel, setDistrictLabel] = useState("시/군/구");
-  const [selectedDistrict, setSelectedDistrict] = useState([]);
+  const [availableDistrict, setAvailableDistrict] = useState([]);
+  const [pwVision, setPwVision] = useState(false);
+
   const cityRef = useRef(null);
   const districtRef = useRef(null);
+
   const emailPattern = useMemo(
     () =>
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.(com|net|org|co|kr|edu|gov|io|me)$/,
@@ -59,9 +62,9 @@ const Signup = () => {
       (data) => data.city === member.memberRegionCity
     );
     if (selectedCity) {
-      setSelectedDistrict(selectedCity.district);
+      setAvailableDistrict(selectedCity.district);
     } else {
-      setSelectedDistrict([]);
+      setAvailableDistrict([]);
     }
     setMember((prevSelection) => ({
       ...prevSelection,
@@ -70,25 +73,16 @@ const Signup = () => {
   }, [member.memberRegionCity]);
 
   useEffect(() => {
-    setIdCheck(
-      member.memberEmail !== "" && emailPattern.test(member.memberEmail)
-    );
+    setIdCheck(member.memberEmail !== "" && emailPattern.test(member.memberEmail));
     setPwCheck(member.memberPw !== "" && passwordPattern.test(member.memberPw));
-    if (
-      member.memberSubEmail !== "" &&
-      !emailPattern.test(member.memberSubEmail)
-    ) {
+    
+    if (member.memberSubEmail !== "" && !emailPattern.test(member.memberSubEmail)) {
       setSubEmailCheck(false);
-    } else {
+    } 
+    else {
       setSubEmailCheck(true);
     }
-  }, [
-    member.memberEmail,
-    member.memberSubEmail,
-    emailPattern,
-    member.memberPw,
-    passwordPattern,
-  ]);
+  }, [member.memberEmail, member.memberSubEmail, emailPattern, member.memberPw, passwordPattern,]);
 
   useEffect(() => {
     if (copyEmail) {
@@ -147,6 +141,10 @@ const Signup = () => {
     }
   };
 
+  const pwVisionOn = () => {
+    setPwVision(!pwVision);
+  }
+
   const usingSameEmail = () => {
     setCopyEmail((prev) => {
       const newState = !prev;
@@ -195,12 +193,12 @@ const Signup = () => {
       setDistrictLabel("시/군/구");
     } else if (type === "district") {
       setSelectedDistrictIndex(index);
-      setDistrictLabel(selectedDistrict[index]);
+      setDistrictLabel(availableDistrict[index]);
       setDistrictSelectorOpen(!districtSelectorOpen);
     }
 
     console.log(selectedCityIndex);
-    console.log(selectedDistrict);
+    console.log(availableDistrict);
   };
 
   const submitSignupData = async (e) => {
@@ -280,13 +278,14 @@ const Signup = () => {
 
             <div className="signup-form-content form-content02">
               <label htmlFor="memberPw">비밀번호</label>
+              <button type="button" className={`pw-vision ${pwVision ? "on" : ""}`} onClick={pwVisionOn}><span className="ico1"></span></button>
               <input
                 id="memberPw"
-                type="password"
+                type={pwVision ? "text" : "password"}
                 name="memberPw"
                 value={member.memberPw}
                 onChange={insertData}
-                placeholder="비밀번호를 입력해주세요"
+                placeholder="비밀번호를 다시 입력해주세요"
               />
               <span
                 className={`pw-err-msg ${!pwCheck && member.memberPw ? "err-on" : ""}`}
@@ -307,7 +306,7 @@ const Signup = () => {
                 placeholder="비밀번호를 다시 입력해주세요"
               />
               <span
-                className={`confirm-pw-err-msg ${pwDoubleCheck !== member.memberPw ? "err-on" : ""}`}
+                className={`confirm-pw-err-msg ${pwDoubleCheck !== '' && pwDoubleCheck !== member.memberPw ? "err-on" : ""}`}
               >
                 <span>{errMsg.PW_CONFIRM}</span>
               </span>
@@ -362,14 +361,14 @@ const Signup = () => {
                   <option value="" disabled>
                     시/군/구
                   </option>
-                  {selectedDistrict.map((district, index) => (
+                  {availableDistrict.map((district, index) => (
                     <option key={index} value={district}>
                       {district}
                     </option>
                   ))}
                 </select>
               </div>
-              <div className="location-selector">
+              <div className="region-selector">
                 <div ref={cityRef} className="select-city-box">
                   <span
                     className="select-city"
@@ -424,7 +423,7 @@ const Signup = () => {
                     }
                   >
                     <li className="district-item">시/군/구</li>
-                    {selectedDistrict.map((district, index) => (
+                    {availableDistrict.map((district, index) => (
                       <li
                         className={`district-item ${selectedDistrictIndex === index ? "on" : ""}`}
                         key={index}

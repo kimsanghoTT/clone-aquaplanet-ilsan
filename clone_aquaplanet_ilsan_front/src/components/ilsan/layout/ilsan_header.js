@@ -266,7 +266,7 @@ const IlsanHeader = () => {
                 <span className="ico2" style={joinOpen ? {transform: 'rotate(180deg)'} : {}}></span>
               </button>
               <div className={`join ${joinOpen ? "show" : ""}`}>
-                <a href="/">
+                <a href="/aquaplanet/member/login">
                   <span className="text-join">Log In</span>
                 </a>
                 <a href="/aquaplanet/member/signup">

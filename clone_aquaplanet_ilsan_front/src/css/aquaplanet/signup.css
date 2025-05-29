@@ -71,6 +71,7 @@
   border-radius: 5px;
   padding: 0 10px;
   box-sizing: border-box;
+  outline: none;
 }
 .signup-form select {
   display: none;
@@ -79,6 +80,9 @@
   margin-bottom: 15px;
 }
 .form-content01 {
+  position: relative;
+}
+.form-content02 {
   position: relative;
 }
 .duplicateCheckBtn {
@@ -90,6 +94,33 @@
   text-decoration: underline;
   border: none;
   background-color: #fff;
+}
+.pw-vision {
+  position: absolute;
+  right: 5px;
+  top: 30px;
+  width: 31px;
+  height: 40px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.pw-vision .ico1,
+.pw-vision .ico2 {
+  display: inline-block;
+  background: url(../../../public/img/aquaplanet/ico_eye1.svg) no-repeat center;
+  width: 100%;
+  height: 100%;
+  background-size: 21px 10px;
+}
+.pw-vision.on .ico1{
+    background: url(../../../public/img/aquaplanet/ico_eye2.svg) no-repeat center;
+      width: 100%;
+  height: 100%;
+  background-size: 21px 10px;
 }
 .form-content04 {
   position: relative;
@@ -131,7 +162,7 @@
   height: 20px;
   background-image: url(../../../public/img/aquaplanet/ico_square2.svg);
 }
-.location-selector {
+.region-selector {
   display: flex;
   justify-content: space-between;
 }
@@ -240,8 +271,8 @@
   cursor: pointer;
   transition: all 0.4s ease;
 }
-.signup-submit-btn:hover{
-    background-color: #2771f1;
-    border: 1px solid #2771f1;
-    color: #fff
+.signup-submit-btn:hover {
+  background-color: #2771f1;
+  border: 1px solid #2771f1;
+  color: #fff;
 }
