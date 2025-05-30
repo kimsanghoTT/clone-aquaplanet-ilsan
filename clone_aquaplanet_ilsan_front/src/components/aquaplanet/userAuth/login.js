@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import "../../../css/aquaplanet/login.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
+  const navigate = useNavigate();
   const [member, setMember] = useState({
     memberEmail:"",
     memberPw:""
@@ -17,10 +19,18 @@ const Login = () => {
     }))
   }
 
-  const memberLogin = async () => {
-    try{
-        await axios.post("/aquaplanet/login", member);
+  const memberLogin = async (e) => {
+    e.preventDefault();
 
+    try{
+        const response = await axios.post("/aquaplanet/login", member);
+        if (response.data && response.data.success) { 
+          alert("로그인 성공");
+          navigate("/");
+        } 
+        else {
+          alert(response.data.message || "아이디 또는 비밀번호가 올바르지 않습니다.");
+        }
     }catch{
         alert("로그인에 오류가 발생했습니다.");
     }
@@ -55,10 +65,11 @@ const Login = () => {
                 name="memberPw"
                 value={member.memberPw}
                 placeholder="비밀번호"
+                onChange={loginData}
               />
             </div>
 
-            <div className="login-form-content form-content03">
+            <div className="login-form-content form-content03" style={{marginTop: "40px"}}>
               <button className="login-btn" type="submit">
                 <span>로그인</span>
               </button>

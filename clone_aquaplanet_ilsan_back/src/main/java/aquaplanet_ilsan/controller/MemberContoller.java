@@ -1,5 +1,7 @@
 package aquaplanet_ilsan.controller;
 
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,12 +22,16 @@ public class MemberContoller {
 	
 	@PostMapping("/signup")
 	public void signup(@RequestBody Member member) {
-		System.out.println("member : " + member);
 		memberService.signup(member);
 	}
 	
 	@GetMapping("/duplicate")
 	public int duplicateCheck(@RequestParam("memberEmail") String email) {
 		return memberService.duplicateCheck(email);
+	}
+	
+	@PostMapping("/login")
+	public Map<String, Object> login(@RequestBody Member member){
+		return memberService.login(member);
 	}
 }

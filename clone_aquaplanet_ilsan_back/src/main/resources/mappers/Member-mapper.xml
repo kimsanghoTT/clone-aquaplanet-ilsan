@@ -8,4 +8,7 @@
 	<select id="duplicateCheck">
 		SELECT COUNT(*) FROM Member WHERE memberEmail = #{memberEmail};
 	</select>
+	<select id="login" resultType="aquaplanet_ilsan.dto.Member">
+		SELECT * FROM Member WHERE memberEmail = #{memberEmail} AND memberPw = #{memberPw};
+	</select>
 </mapper>

@@ -61,9 +61,7 @@
 .login-form-content {
   margin-bottom: 15px;
 }
-.form-content03 {
-  margin-top: 40px;
-}
+
 .login-btn {
   display: inline-block;
   color: #ffffff;
@@ -75,6 +73,7 @@
   font-size: 14px;
   width: 100%;
   border: none;
+  cursor: pointer;
 }
 .additional-service {
   margin-top: 18px;

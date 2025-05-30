@@ -11,4 +11,6 @@ public interface MemberMapper {
 	void signup(Member member);
 	
 	int duplicateCheck(String email);
+	
+	Member login(Member member);
 }

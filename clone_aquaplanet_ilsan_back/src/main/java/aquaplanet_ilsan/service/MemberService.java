@@ -1,5 +1,7 @@
 package aquaplanet_ilsan.service;
 
+import java.util.Map;
+
 import aquaplanet_ilsan.dto.Member;
 
 public interface MemberService {
@@ -7,4 +9,6 @@ public interface MemberService {
 	void signup(Member member);
 	
 	int duplicateCheck(String email);
+	
+	Map<String, Object> login(Member member);
 }
