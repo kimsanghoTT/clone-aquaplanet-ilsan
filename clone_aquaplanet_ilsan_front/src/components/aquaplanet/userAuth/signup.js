@@ -14,6 +14,8 @@ const Signup = () => {
     memberSubEmail: "",
     memberRegionCity: "",
     memberRegionDistrict: "",
+    memberName: "",
+    memberPhone: "",
   });
   const errMsg = {
     EMAIL_FORMAT: "올바른 이메일 형식을 입력해주세요",
@@ -27,6 +29,9 @@ const Signup = () => {
     PW_FORMAT:
       "비밀번호는 영문 숫자 포함 10~13자, 특수문자 포함 시 8~13자로 입력해 주세요",
     PW_CONFIRM: "비밀번호가 일치하지 않습니다",
+    NAME_FORMAT:"올바른 이름을 작성해주세요",
+    PHONE_FORMAT:"올바른 전화번호를 작성해주세요",
+    GENERIC_ERROR: "요청 처리 중 오류가 발생했습니다. 문제가 지속되면 관리자에게 문의해주세요."
   };
   const [dupleCheck, setDupleCheck] = useState(false);
   const [idCheck, setIdCheck] = useState(true);
@@ -56,6 +61,8 @@ const Signup = () => {
       /^(?:(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,13}|(?=.*[A-Za-z])(?=.*\d)(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-])[A-Za-z\d!@#$%^&*()_+{}[\]:;<>,.?~\\/-]{10,13})$/,
     []
   );
+  const namePattern = useMemo(() => /^[가-힣]{2,5}$/, []) ;
+  const phonePattern = useMemo(() => /^010([0-9]{4})([0-9]{4})$/, []);
 
   useEffect(() => {
     const selectedCity = cityData.find(
@@ -73,16 +80,26 @@ const Signup = () => {
   }, [member.memberRegionCity]);
 
   useEffect(() => {
-    setIdCheck(member.memberEmail !== "" && emailPattern.test(member.memberEmail));
+    setIdCheck(
+      member.memberEmail !== "" && emailPattern.test(member.memberEmail)
+    );
     setPwCheck(member.memberPw !== "" && passwordPattern.test(member.memberPw));
-    
-    if (member.memberSubEmail !== "" && !emailPattern.test(member.memberSubEmail)) {
+
+    if (
+      member.memberSubEmail !== "" &&
+      !emailPattern.test(member.memberSubEmail)
+    ) {
       setSubEmailCheck(false);
-    } 
-    else {
+    } else {
       setSubEmailCheck(true);
     }
-  }, [member.memberEmail, member.memberSubEmail, emailPattern, member.memberPw, passwordPattern,]);
+  }, [
+    member.memberEmail,
+    member.memberSubEmail,
+    emailPattern,
+    member.memberPw,
+    passwordPattern,
+  ]);
 
   useEffect(() => {
     if (copyEmail) {
@@ -143,7 +160,7 @@ const Signup = () => {
 
   const pwVisionOn = () => {
     setPwVision(!pwVision);
-  }
+  };
 
   const usingSameEmail = () => {
     setCopyEmail((prev) => {
@@ -231,11 +248,21 @@ const Signup = () => {
       return;
     }
 
+    if(!namePattern.test(member.memberName)){
+      alert(errMsg.NAME_FORMAT);
+      return;
+    }
+    if(!phonePattern.test(member.memberPhone)){
+      alert(errMsg.PHONE_FORMAT);
+      return;
+    }
+
     try {
       await axios.post("/aquaplanet/signup", member);
+      alert("회원가입이 완료되었습니다.");
       navigate("/");
     } catch {
-      alert("알 수 없는 에러가 발생했습니다. 나중에 다시 시도해주세요");
+      alert(errMsg.GENERIC_ERROR);
     }
   };
 
@@ -252,6 +279,30 @@ const Signup = () => {
           </div>
           <form className="signup-form" onSubmit={submitSignupData}>
             <div className="signup-form-content form-content01">
+              <label htmlFor="memberName">이름</label>
+              <input
+                id="memberName"
+                type="text"
+                name="memberName"
+                value={member.memberName}
+                onChange={insertData}
+                placeholder="이름을 입력해주세요"
+              />
+            </div>
+            
+            <div className="signup-form-content form-content02">
+              <label htmlFor="memberPhone">휴대폰 번호</label>
+              <input
+                id="memberPhone"
+                type="text"
+                name="memberPhone"
+                value={member.memberPhone}
+                onChange={insertData}
+                placeholder="휴대폰 번호를 입력해주세요. '-'빼고 입력"
+              />
+            </div>
+
+            <div className="signup-form-content form-content03">
               <label htmlFor="memberEmail">아이디</label>
               <button
                 className="duplicateCheckBtn"
@@ -276,9 +327,15 @@ const Signup = () => {
               </span>
             </div>
 
-            <div className="signup-form-content form-content02">
+            <div className="signup-form-content form-content04">
               <label htmlFor="memberPw">비밀번호</label>
-              <button type="button" className={`pw-vision ${pwVision ? "on" : ""}`} onClick={pwVisionOn}><span className="ico1"></span></button>
+              <button
+                type="button"
+                className={`pw-vision ${pwVision ? "on" : ""}`}
+                onClick={pwVisionOn}
+              >
+                <span className="ico1"></span>
+              </button>
               <input
                 id="memberPw"
                 type={pwVision ? "text" : "password"}
@@ -295,7 +352,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <div className="signup-form-content form-content03">
+            <div className="signup-form-content form-content05">
               <label htmlFor="memberPwConfirm">비밀번호 확인</label>
               <input
                 id="memberPwConfirm"
@@ -306,13 +363,13 @@ const Signup = () => {
                 placeholder="비밀번호를 다시 입력해주세요"
               />
               <span
-                className={`confirm-pw-err-msg ${pwDoubleCheck !== '' && pwDoubleCheck !== member.memberPw ? "err-on" : ""}`}
+                className={`confirm-pw-err-msg ${pwDoubleCheck !== "" && pwDoubleCheck !== member.memberPw ? "err-on" : ""}`}
               >
                 <span>{errMsg.PW_CONFIRM}</span>
               </span>
             </div>
 
-            <div className="signup-form-content form-content04">
+            <div className="signup-form-content form-content06">
               <label htmlFor="memberSubEmail">추가 이메일(선택)</label>
               <button
                 className="sameEmailBtn"
@@ -336,7 +393,7 @@ const Signup = () => {
               </span>
             </div>
 
-            <div className="signup-form-content form-content05">
+            <div className="signup-form-content form-content07">
               <label>거주지역(선택)</label>
               <div>
                 <select

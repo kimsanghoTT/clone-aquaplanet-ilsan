@@ -11,4 +11,6 @@ public interface MemberService {
 	int duplicateCheck(String email);
 	
 	Map<String, Object> login(Member member);
+	
+	String findId(Member member);
 }

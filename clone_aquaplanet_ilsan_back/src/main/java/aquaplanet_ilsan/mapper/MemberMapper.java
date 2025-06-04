@@ -1,6 +1,7 @@
 package aquaplanet_ilsan.mapper;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 
 import aquaplanet_ilsan.dto.Member;
 
@@ -13,4 +14,6 @@ public interface MemberMapper {
 	int duplicateCheck(String email);
 	
 	Member login(Member member);
+	
+	String findId(@Param("memberName") String name, @Param("memberPhone") String phone);
 }

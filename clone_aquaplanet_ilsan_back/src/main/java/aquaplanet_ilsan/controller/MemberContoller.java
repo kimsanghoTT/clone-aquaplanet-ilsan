@@ -3,6 +3,7 @@ package aquaplanet_ilsan.controller;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -33,5 +34,17 @@ public class MemberContoller {
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody Member member){
 		return memberService.login(member);
+	}
+	
+	@PostMapping("login/find/id")
+	public ResponseEntity<String> findId(@RequestBody Member member){
+		String foundEmail = memberService.findId(member);
+		
+		if(foundEmail != null) {
+			return ResponseEntity.ok(foundEmail);
+		}
+		else {
+			return null;
+		}
 	}
 }

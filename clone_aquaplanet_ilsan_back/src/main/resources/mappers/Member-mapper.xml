@@ -2,13 +2,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="aquaplanet_ilsan.mapper.MemberMapper">
 	<insert id="signup" parameterType="aquaplanet_ilsan.dto.Member">
-	    INSERT INTO Member (memberEmail, memberPw, memberSubEmail, memberRegionCity, memberRegionDistrict)
-	    VALUES (#{memberEmail}, #{memberPw}, #{memberSubEmail}, #{memberRegionCity}, #{memberRegionDistrict});
+	    INSERT INTO Member (memberEmail, memberPw, memberSubEmail, memberRegionCity, memberRegionDistrict, memberName, memberPhone)
+	    VALUES (#{memberEmail}, #{memberPw}, #{memberSubEmail}, #{memberRegionCity}, #{memberRegionDistrict}, #{memberName}, #{memberPhone});
 	</insert>
 	<select id="duplicateCheck">
 		SELECT COUNT(*) FROM Member WHERE memberEmail = #{memberEmail};
 	</select>
 	<select id="login" resultType="aquaplanet_ilsan.dto.Member">
 		SELECT * FROM Member WHERE memberEmail = #{memberEmail} AND memberPw = #{memberPw};
+	</select>
+	<select id="findId" parameterType="Member">
+		SELECT * FROM Member WHERE memberName = #{memberName} AND memberPhone = #{memberPhone};
 	</select>
 </mapper>

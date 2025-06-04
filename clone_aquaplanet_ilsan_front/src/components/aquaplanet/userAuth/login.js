@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "../../../css/aquaplanet/login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import FindIdModal from "./find_id";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -29,7 +30,7 @@ const Login = () => {
           navigate("/");
         } 
         else {
-          alert(response.data.message || "아이디 또는 비밀번호가 올바르지 않습니다.");
+          alert("아이디 또는 비밀번호가 올바르지 않습니다.");
         }
     }catch{
         alert("로그인에 오류가 발생했습니다.");
@@ -93,6 +94,7 @@ const Login = () => {
           </form>
         </div>
       </div>
+      <FindIdModal/>
     </section>
   );
 };
