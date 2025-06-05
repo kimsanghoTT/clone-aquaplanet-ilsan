@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import aquaplanet_ilsan.dto.Member;
@@ -14,9 +15,13 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Autowired
 	MemberMapper memberMapper;
+	
+	private PasswordEncoder passwordEncoder;
 
 	@Override
 	public void signup(Member member) {	
+		String encodedPw = passwordEncoder.encode(member.getMemberPw());
+		member.setMemberPw(encodedPw);
 		memberMapper.signup(member);
 	}
 	
@@ -25,6 +30,7 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.duplicateCheck(email);
 	}
 	
+	//로그인
 	@Override
 	public Map<String, Object> login(Member member) {
 		Member loginMember = memberMapper.login(member);
@@ -39,8 +45,15 @@ public class MemberServiceImpl implements MemberService{
         return map;
 	}
 	
+	//아이디 찾기
 	@Override
 	public String findId(Member member) {
 		return memberMapper.findId(member.getMemberName(), member.getMemberPhone());
+	}
+	
+	@Override
+	public boolean updatePw(String email, String newPw) {
+		String encodedPw = passwordEncoder.encode(newPw);
+		return memberMapper.updatePw(email, encodedPw) > 0;
 	}
 }

@@ -342,7 +342,7 @@ const Signup = () => {
                 name="memberPw"
                 value={member.memberPw}
                 onChange={insertData}
-                placeholder="비밀번호를 다시 입력해주세요"
+                placeholder="사용하실 비밀번호를 입력해주세요"
               />
               <span
                 className={`pw-err-msg ${!pwCheck && member.memberPw ? "err-on" : ""}`}

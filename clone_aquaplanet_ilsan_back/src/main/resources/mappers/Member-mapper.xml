@@ -14,4 +14,7 @@
 	<select id="findId" parameterType="Member">
 		SELECT * FROM Member WHERE memberName = #{memberName} AND memberPhone = #{memberPhone};
 	</select>
+	<update id="updatePw" parameterType="Member">
+		UPDATE Member SET memberPw = #{memberPw} WHERE memberEmail = #{memberEmail};
+	</update>
 </mapper>
