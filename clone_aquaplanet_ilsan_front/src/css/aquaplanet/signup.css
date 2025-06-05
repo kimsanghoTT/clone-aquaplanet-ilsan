@@ -24,6 +24,7 @@
 .aquaplanet-member-content {
   width: 50%;
   height: 100%;
+  overflow: scroll;
 }
 .member-signup-box {
   width: 500px;

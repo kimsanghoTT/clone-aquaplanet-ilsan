@@ -20,6 +20,8 @@ public class MailServiceImpl implements MailService{
 	private static final String CHARACTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 	private static final int CODE_LENGTH = 6;
 	
+	private Map<String, String> codeStore = new HashMap<>();
+	
 	@Override
 	public MimeMessage createAuthCodeMail(String mail, String authCode) {
 		MimeMessage message = javaMailSender.createMimeMessage();
@@ -27,7 +29,7 @@ public class MailServiceImpl implements MailService{
 		try {
 			message.setFrom(SENDER_EMAIL);
 			message.setRecipients(MimeMessage.RecipientType.TO, mail);
-			message.setSubject("이메일 인증 코드");
+			message.setSubject("Aquaplanet 이메일 인증 코드");
 			
 			String msg = "";
 	        msg += "<div style='margin:100px; font-family: NotoSans KR;'>";
@@ -67,8 +69,6 @@ public class MailServiceImpl implements MailService{
 		codeStore.put(mail, authCode);
 		return authCode;
 	}
-	
-	private Map<String, String> codeStore = new HashMap<>();
 	
 	@Override
 	public boolean verifyAuthCode(String email, String code) {

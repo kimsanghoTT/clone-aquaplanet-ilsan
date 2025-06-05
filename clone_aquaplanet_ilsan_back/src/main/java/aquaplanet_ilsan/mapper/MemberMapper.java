@@ -18,4 +18,6 @@ public interface MemberMapper {
 	String findId(@Param("memberName") String name, @Param("memberPhone") String phone);
 	
 	int updatePw(@Param("memberEmail")String email, @Param("memberPw") String newPw);
+	
+	Member usedPwCheck(@Param("memberEmail") String email);
 }

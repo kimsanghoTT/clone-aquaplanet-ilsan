@@ -17,4 +17,7 @@
 	<update id="updatePw" parameterType="Member">
 		UPDATE Member SET memberPw = #{memberPw} WHERE memberEmail = #{memberEmail};
 	</update>
+ 	<select id="usedPwCheck">
+ 		SELECT memberPw FROM Member WHERE memberEmail = #{memberEmail};
+	</select>
 </mapper>

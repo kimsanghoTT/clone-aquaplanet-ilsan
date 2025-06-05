@@ -81,6 +81,15 @@
   gap: 20px;
   justify-content: center;
 }
+.additional-service button{
+  border: none;
+    font-size: 13px;
+  color: #666666;
+  background: transparent;
+  padding: 0;
+  border-bottom: 1px solid #666666;
+  cursor: pointer;
+}
 .additional-service a {
   font-size: 13px;
   color: #666666;

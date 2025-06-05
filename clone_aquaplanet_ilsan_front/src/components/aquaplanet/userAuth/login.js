@@ -7,6 +7,10 @@ import FindPwModal from "./find_pw";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [OpenModal, setOpenModal] = useState({
+    findIdModal: false,
+    findPwModal: false
+  })
   const [member, setMember] = useState({
     memberEmail: "",
     memberPw: "",
@@ -26,7 +30,7 @@ const Login = () => {
 
     try {
       const response = await axios.post("/aquaplanet/login", member);
-      if (response.data && response.data.success) {
+      if (response.data && response.data.result) {
         alert("로그인 성공");
         navigate("/");
       } else {
@@ -36,6 +40,21 @@ const Login = () => {
       alert("로그인에 오류가 발생했습니다.");
     }
   };
+
+  const handleModal = (type) => {
+    setOpenModal(modal => ({
+      ...modal,
+      [type]:!modal[type]
+    }))
+
+  }
+
+  const closeModal = (type) => {
+    setOpenModal(modal => ({
+      ...modal,
+      [type]: false 
+    }));
+  }
 
   return (
     <>
@@ -79,8 +98,8 @@ const Login = () => {
                   <span>로그인</span>
                 </button>
                 <div className="additional-service">
-                  <a href="/">아이디 찾기</a>
-                  <a href="/">비밀번호 찾기</a>
+                  <button type="button" onClick={() => handleModal("findIdModal")}>아이디 찾기</button>
+                  <button type="button" onClick={() => handleModal("findPwModal")}>비밀번호 찾기</button>
                   <a href="/aquaplanet/member/signup">회원가입</a>
                 </div>
               </div>
@@ -99,8 +118,12 @@ const Login = () => {
           </div>
         </div>
       </section>
-      <FindIdModal />
-      <FindPwModal />
+      {OpenModal["findIdModal"] && (
+      <FindIdModal onClose={() => closeModal("findIdModal")}/>
+      )}
+      {OpenModal["findPwModal"] && (
+      <FindPwModal onClose={() => closeModal("findPwModal")}/>
+      )}
     </>
   );
 };

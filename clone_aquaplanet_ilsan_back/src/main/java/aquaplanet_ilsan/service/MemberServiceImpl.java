@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import aquaplanet_ilsan.dto.Member;
@@ -16,12 +15,8 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberMapper memberMapper;
 	
-	private PasswordEncoder passwordEncoder;
-
 	@Override
 	public void signup(Member member) {	
-		String encodedPw = passwordEncoder.encode(member.getMemberPw());
-		member.setMemberPw(encodedPw);
 		memberMapper.signup(member);
 	}
 	
@@ -37,9 +32,9 @@ public class MemberServiceImpl implements MemberService{
 		
 		Map<String, Object> map = new HashMap<>();
         if(loginMember != null){
-            map.put("success", true);
+            map.put("result", true);
         } else {
-            map.put("success", false);
+            map.put("result", false);
         }
 
         return map;
@@ -53,7 +48,17 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public boolean updatePw(String email, String newPw) {
-		String encodedPw = passwordEncoder.encode(newPw);
-		return memberMapper.updatePw(email, encodedPw) > 0;
+		return memberMapper.updatePw(email, newPw) > 0;
+	}
+	
+	@Override
+	public boolean usedPwCheck(String email, String newPassword) {
+		Member isExistMember = memberMapper.usedPwCheck(email);
+		
+		if(isExistMember == null) {
+			return false;
+		}
+		
+		return newPassword.equals(isExistMember.getMemberPw());
 	}
 }
