@@ -40,7 +40,7 @@ const FindIdModal = ({onClose}) => {
   return (
     <>
       <div className="modal-overlay-film"></div>
-      <div className="find-modal">
+      <div className="modal-container">
         <button type="button" onClick={onClose}>X</button>
         {step === 1 && (
         <div className="search-form">
