@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "../../../css/aquaplanet/login.css";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FindIdModal from "./find_id";
 import FindPwModal from "./find_pw";
+import LoginContext from "../../LoginContext";
 
 const Login = () => {
+  const {setLoginMember} = useContext(LoginContext);
+
   const navigate = useNavigate();
   const [OpenModal, setOpenModal] = useState({
     findIdModal: false,
-    findPwModal: false
-  })
+    findPwModal: false,
+  });
   const [member, setMember] = useState({
     memberEmail: "",
     memberPw: "",
@@ -30,7 +33,9 @@ const Login = () => {
 
     try {
       const response = await axios.post("/aquaplanet/login", member);
+
       if (response.data && response.data.result) {
+        setLoginMember(response.data.loginMember);
         alert("로그인 성공");
         navigate("/");
       } else {
@@ -42,18 +47,25 @@ const Login = () => {
   };
 
   const handleModal = (type) => {
-    setOpenModal(modal => ({
+    setOpenModal((modal) => ({
       ...modal,
-      [type]:!modal[type]
-    }))
-
-  }
+      [type]: !modal[type],
+    }));
+  };
 
   const closeModal = (type) => {
     setOpenModal(modal => ({
       ...modal,
-      [type]: false 
+      [type]: false,
     }));
+  };
+
+  const switchToPw = () => {
+    closeModal("findIdModal");
+    setOpenModal(modal => ({
+      ...modal,
+      findPwModal:true
+    }))
   }
 
   return (
@@ -78,7 +90,6 @@ const Login = () => {
                   onChange={loginData}
                 />
               </div>
-
               <div className="login-form-content form-content02">
                 <input
                   id="memberPw"
@@ -98,8 +109,18 @@ const Login = () => {
                   <span>로그인</span>
                 </button>
                 <div className="additional-service">
-                  <button type="button" onClick={() => handleModal("findIdModal")}>아이디 찾기</button>
-                  <button type="button" onClick={() => handleModal("findPwModal")}>비밀번호 찾기</button>
+                  <button
+                    type="button"
+                    onClick={() => handleModal("findIdModal")}
+                  >
+                    아이디 찾기
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleModal("findPwModal")}
+                  >
+                    비밀번호 찾기
+                  </button>
                   <a href="/aquaplanet/member/signup">회원가입</a>
                 </div>
               </div>
@@ -119,10 +140,13 @@ const Login = () => {
         </div>
       </section>
       {OpenModal["findIdModal"] && (
-      <FindIdModal onClose={() => closeModal("findIdModal")}/>
+        <FindIdModal
+          onClose={() => closeModal("findIdModal")}
+          switchToPw={switchToPw}
+        />
       )}
       {OpenModal["findPwModal"] && (
-      <FindPwModal onClose={() => closeModal("findPwModal")}/>
+        <FindPwModal onClose={() => closeModal("findPwModal")} />
       )}
     </>
   );

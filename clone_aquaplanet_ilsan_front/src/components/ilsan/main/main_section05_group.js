@@ -63,6 +63,7 @@ const MainGroupSection = () => {
     gsap.to(text, { y: 0, duration: 0.6 });
     gsap.to(link, { opacity: 0, y: 0, duration: 0 });
   };
+  
   return (
     <section className="main-section section05">
       <div className="group-sub-bg"></div>

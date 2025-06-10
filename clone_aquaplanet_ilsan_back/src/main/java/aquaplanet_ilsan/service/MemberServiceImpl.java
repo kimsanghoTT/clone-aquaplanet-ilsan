@@ -29,10 +29,11 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public Map<String, Object> login(Member member) {
 		Member loginMember = memberMapper.login(member);
-		
+
 		Map<String, Object> map = new HashMap<>();
         if(loginMember != null){
             map.put("result", true);
+            map.put("loginMember", loginMember);
         } else {
             map.put("result", false);
         }
@@ -42,15 +43,17 @@ public class MemberServiceImpl implements MemberService{
 	
 	//아이디 찾기
 	@Override
-	public String findId(Member member) {
-		return memberMapper.findId(member.getMemberName(), member.getMemberPhone());
+	public String findId(String name, String phone) {
+		Member isExistmember = memberMapper.findId(name, phone);
+		if(isExistmember == null) {
+			return "";
+		}
+		
+		String memberEmail = isExistmember.getMemberEmail();
+		return memberEmail;
 	}
-	
-	@Override
-	public boolean updatePw(String email, String newPw) {
-		return memberMapper.updatePw(email, newPw) > 0;
-	}
-	
+		
+	//비밀번호 찾기
 	@Override
 	public boolean usedPwCheck(String email, String newPassword) {
 		Member isExistMember = memberMapper.usedPwCheck(email);
@@ -58,7 +61,13 @@ public class MemberServiceImpl implements MemberService{
 		if(isExistMember == null) {
 			return false;
 		}
-		
 		return newPassword.equals(isExistMember.getMemberPw());
 	}
+	
+	@Override
+	public boolean updatePw(String email, String newPw) {
+		return memberMapper.updatePw(email, newPw) > 0;
+	}
+	
+
 }

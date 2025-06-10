@@ -12,7 +12,7 @@ public interface MemberService {
 	
 	Map<String, Object> login(Member member);
 	
-	String findId(Member member);
+	String findId(String name, String phone);
 	
 	boolean updatePw(String email, String newPw);
 	

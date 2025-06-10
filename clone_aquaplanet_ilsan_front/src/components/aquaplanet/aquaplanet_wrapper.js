@@ -1,8 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Signup from "./userAuth/signup";
+import Signup from "./userService/signup";
 import AquaplanetHeader from "./layout/aquaplanet_header";
-import Login from "./userAuth/login";
+import Login from "./userService/login";
+import MyPage from "./userService/mypage";
 
 const AquaplanetWrapper = () => {
 
@@ -12,6 +13,7 @@ const AquaplanetWrapper = () => {
         <Routes>
             <Route path="/member/signup" element={<Signup/>}/>
             <Route path="/member/login" element={<Login/>}/>
+            <Route path="/member/mypage" element={<MyPage/>}/>
         </Routes>
         </>
     )

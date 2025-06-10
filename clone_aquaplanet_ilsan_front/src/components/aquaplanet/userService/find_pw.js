@@ -111,9 +111,11 @@ const FindPwModal = ({ onClose }) => {
         return;
       } else {
         alert(msg.UNKNOWN_ERR);
+        return;
       }
     } catch {
       alert(msg.UNKNOWN_ERR);
+      return;
     }
   };
 
@@ -124,19 +126,28 @@ const FindPwModal = ({ onClose }) => {
   return (
     <>
       <div className="modal-overlay-film"></div>
-      <div className="find-modal">
-        <button type="button" onClick={onClose}>X</button>
+      <div className="modal-container">
+        <button
+          className="modal-close-btn"
+          type="button"
+          onClick={onClose}
+        ></button>
         {step === 1 && (
           <div className="search-form">
             <form onSubmit={requestAuthCode}>
-              <label htmlFor="memberEmail">이메일 인증</label>
-              <input
-                id="memberEmail"
-                name="memberEmail"
-                type="text"
-                value={member.memberEmail}
-                onChange={insertData}
-              />
+              <div className="form-content">
+                <span className="form-title">비밀번호 찾기</span>
+                <div className="form-item">
+                  <label htmlFor="memberEmail">이메일 인증</label>
+                  <input
+                    id="memberEmail"
+                    name="memberEmail"
+                    type="text"
+                    value={member.memberEmail}
+                    onChange={insertData}
+                  />
+                </div>
+              </div>
               <button>인증번호 보내기</button>
             </form>
           </div>
@@ -144,13 +155,18 @@ const FindPwModal = ({ onClose }) => {
         {step === 2 && (
           <div className="search-form">
             <form onSubmit={verifyingAuthCode}>
-              <label htmlFor="authCode">인증번호 입력</label>
-              <input
-                id="authCode"
-                onChange={(e) => setAuthCode(e.target.value)}
-                value={authCode}
-                type="text"
-              />
+              <div className="form-content">
+                <span className="form-title">비밀번호 찾기</span>
+                <div className="form-item">
+                  <label htmlFor="authCode">인증번호 입력</label>
+                  <input
+                    id="authCode"
+                    onChange={(e) => setAuthCode(e.target.value)}
+                    value={authCode}
+                    type="text"
+                  />
+                </div>
+              </div>
               <button>코드 인증하기</button>
             </form>
           </div>
@@ -158,36 +174,49 @@ const FindPwModal = ({ onClose }) => {
         {step === 3 && (
           <div className="search-form">
             <form onSubmit={updatePw}>
-              <label htmlFor="newPw">비밀번호 재설정</label>
-              <button
-                type="button"
-                className={`pw-vision ${pwVision ? "on" : ""}`}
-                onClick={pwVisionOn}
-              >
-                <span className="ico1"></span>
-              </button>
-              <input
-                id="newPw"
-                onChange={(e) => setNewPw(e.target.value)}
-                value={newPw}
-                type="password"
-              />
-              <label htmlFor="newPwDoubleCheck">비밀번호 재설정 확인</label>
-              <input
-                id="newPwDoubleCheck"
-                onChange={(e) => setNewPwDoubleCheck(e.target.value)}
-                value={newPwDoubleCheck}
-                type="password"
-              />
+              <div className="form-content">
+                <span className="form-title">비밀번호 찾기</span>
+                <div className="form-item">
+                  <label htmlFor="newPw">비밀번호 재설정</label>
+                  <button
+                    type="button"
+                    className={`pw-vision ${pwVision ? "on" : ""}`}
+                    onClick={pwVisionOn}
+                  >
+                    <span className="ico1"></span>
+                  </button>
+                  <input
+                    id="newPw"
+                    onChange={(e) => setNewPw(e.target.value)}
+                    value={newPw}
+                    type={pwVision ? "text" : "password"}
+                    required
+                  />
+                </div>
+                <div className="form-item">
+                  <label htmlFor="newPwDoubleCheck">비밀번호 재설정 확인</label>
+                  <input
+                    id="newPwDoubleCheck"
+                    onChange={(e) => setNewPwDoubleCheck(e.target.value)}
+                    value={newPwDoubleCheck}
+                    type="password"
+                    required
+                  />
+                </div>
+              </div>
+
               <button>비밀번호 재설정</button>
             </form>
           </div>
         )}
         {step === 4 && (
           <div className="result-form">
-            <p>비밀번호 재설정이 완료되었습니다.</p>
-            <button type="button" onClick={onClose}>
-              닫기
+            <div className="form-content">
+              <span className="form-title">비밀번호 찾기</span>
+              <p>비밀번호 재설정이 완료되었습니다.</p>
+            </div>
+            <button style={{backgroundColor: "#2771f1", width: "100%", border: "none", color: "#fff"}} type="button" onClick={onClose}>
+              확인
             </button>
           </div>
         )}

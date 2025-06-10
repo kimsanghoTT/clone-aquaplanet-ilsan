@@ -31,6 +31,7 @@ const MainInfoSection = () => {
       }
     );
   }, []);
+  
   return (
     <section className="main-section section03">
       <div className="section-container-inner">

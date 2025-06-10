@@ -5,6 +5,34 @@ import gsap from "gsap";
 const AsideBar = () => {
   const [eventList, setEventList] = useState(false);
 
+  useEffect(() => {
+    setTimeout(() => {
+      gsap.to(".aside-tooltip", {
+        opacity: 1,
+        pointerEvents: "all",
+        duration: 0.2,
+      });
+    }, 2000);
+  }, []);
+
+  useEffect(() => {
+    const topBtnScrollEvent = () => {
+      const scrollOnTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollOnTop === 0) {
+        gsap.to(".top-btn", { opacity: 0, duration: 0.6 });
+      } else if (scrollOnTop !== 0) {
+        gsap.to(".top-btn", { opacity: 1, duration: 0.6 });
+      }
+    };
+    window.addEventListener("scroll", topBtnScrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", topBtnScrollEvent);
+    };
+  }, []);
+
   const backToTop = () => {
     window.scroll({
       top: 0,
@@ -23,33 +51,6 @@ const AsideBar = () => {
       duration: 0.2,
     });
   };
-
-  useEffect(() => {
-    setTimeout(() => {
-      gsap.to(".aside-tooltip", {
-        opacity: 1,
-        pointerEvents: "all",
-        duration: 0.2,
-      });
-    }, 2000);
-  }, []);
-
-  useEffect(() => {
-    const topBtnScrollEvent = () => {
-      const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
-      
-      if (scrollOnTop === 0) {
-        gsap.to(".top-btn", { opacity: 0, duration: 0.6 });
-      } else if (scrollOnTop !== 0) {
-        gsap.to(".top-btn", { opacity: 1, duration: 0.6 });
-      }
-    };
-    window.addEventListener("scroll", topBtnScrollEvent);
-
-    return () => {
-      window.removeEventListener("scroll", topBtnScrollEvent);
-    };
-  }, []);
 
   return (
     <>
@@ -162,9 +163,7 @@ const AsideBar = () => {
                   <span className="event-title">제휴할인</span>
                   <span className="highlight-line"></span>
                 </span>
-                <span className="event-intro">
-                  쿠팡와우회원 특별 프로모션
-                </span>
+                <span className="event-intro">쿠팡와우회원 특별 프로모션</span>
               </span>
             </li>
             <li className="item">

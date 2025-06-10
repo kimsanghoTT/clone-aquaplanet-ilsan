@@ -42,14 +42,23 @@ public class MemberController {
 	}
 	
 	@PostMapping("login/find/id")
-	public ResponseEntity<String> findId(@RequestBody Member member){
-		String foundEmail = memberService.findId(member);
+	public ResponseEntity<Map<String, String>> findId(@RequestBody Map<String, String> data){
+		String memberName = data.get("memberName");
+		String memberPhone = data.get("memberPhone");
 		
-		if(foundEmail != null) {
-			return ResponseEntity.ok(foundEmail);
+		Map<String, String> response = new HashMap<>();
+		
+		String memberEmail = memberService.findId(memberName, memberPhone);
+		
+		
+		if(!memberEmail.isEmpty()) {
+			response.put("result", "FOUND");
+			response.put("memberEmail", memberEmail);
+			return ResponseEntity.ok(response);
 		}
 		else {
-			return null;
+			response.put("result", "NOT_FOUND");
+			return ResponseEntity.ok(response);
 		}
 	}
 	
@@ -108,12 +117,13 @@ public class MemberController {
 		String newPw = data.get("memberPw");
 
 		Map<String, String> response = new HashMap<>();
-		boolean result = memberService.updatePw(memberEmail, newPw);
 		
 	    if (memberService.usedPwCheck(memberEmail, newPw)) {
 	        response.put("result", "USED_PW");
 	        return ResponseEntity.ok(response);
 	    }
+	    
+		boolean result = memberService.updatePw(memberEmail, newPw);
 
 	    if(result) {
 	        response.put("result", "SUCCESS");

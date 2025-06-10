@@ -1,101 +1,154 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "../../../css/ilsan/ilsan_header.css";
 import moment from "moment";
 import "moment/locale/ko";
 import gsap from "gsap";
+import LoginContext from "../../LoginContext";
 moment.locale("ko");
 
 const IlsanHeader = () => {
+  const { loginMember, setLoginMember } = useContext(LoginContext);
   const [categoryOpen, setCategoryOpen] = useState(false);
   const [joinOpen, setJoinOpen] = useState(false);
   const [hover, setHover] = useState(false);
   const aquaplanet = [
-    {text : "아쿠아플라넷", link: "https://www.aquaplanet.co.kr/index.do"},
-    {text: "아쿠아플라넷 제주", link: "https://www.aquaplanet.co.kr/jeju/index.do"},
-    {text: "아쿠아플라넷 여수", link: "https://www.aquaplanet.co.kr/yeosu/index.do"},
-    {text: "아쿠아플라넷 일산", link: "https://www.aquaplanet.co.kr/ilsan/index.do"},
-    {text: "아쿠아플라넷 광교", link: "https://www.aquaplanet.co.kr/gwanggyo/index.do"},
-  ]
+    { text: "아쿠아플라넷", link: "https://www.aquaplanet.co.kr/index.do" },
+    {
+      text: "아쿠아플라넷 제주",
+      link: "https://www.aquaplanet.co.kr/jeju/index.do",
+    },
+    {
+      text: "아쿠아플라넷 여수",
+      link: "https://www.aquaplanet.co.kr/yeosu/index.do",
+    },
+    {
+      text: "아쿠아플라넷 일산",
+      link: "https://www.aquaplanet.co.kr/ilsan/index.do",
+    },
+    {
+      text: "아쿠아플라넷 광교",
+      link: "https://www.aquaplanet.co.kr/gwanggyo/index.do",
+    },
+  ];
 
   const today = moment().format("M . DD");
   const weekday = moment().format("dddd");
 
+  useEffect(() => {
+    gsap.fromTo(
+      ".ilsan-header",
+      { opacity: 0, y: -130 },
+      { opacity: 1, y: 0, duration: 0.5, ease: "power1.out" }
+    );
+    const scrollEvent = () => {
+      //스크롤이 최상단에 왔는지 체크 -> 최상단 = 0
+      const scrollOnTop =
+        window.pageYOffset || document.documentElement.scrollTop;
+
+      if (scrollOnTop === 0) {
+        gsap.to(".upper-nav", { opacity: 1, duration: 0.5, height: "50px" });
+        gsap.to(".ilsan-header", { y: 0, duration: 0.5 });
+      } else if (scrollOnTop !== 0) {
+        gsap.to(".upper-nav", { opacity: 0, duration: 0.5, height: 0 });
+        gsap.to(".ilsan-header", { y: "-20px", duration: 0.5 });
+      }
+    };
+
+    window.addEventListener("scroll", scrollEvent);
+
+    return () => {
+      window.removeEventListener("scroll", scrollEvent);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!hover) {
+      setCategoryOpen(false);
+      setJoinOpen(false);
+    }
+  }, [hover]);
+
   const categoryMenu = () => {
     setCategoryOpen(!categoryOpen);
   };
+
   const joinMenu = () => {
     setJoinOpen(!joinOpen);
   };
 
-  useEffect(() => {
-    gsap.fromTo(".ilsan-header", {opacity:0, y: -130}, {opacity:1, y:0, duration:0.5, ease: "power1.out"});
-    const scrollEvent = () => {
-      
-      //스크롤이 최상단에 왔는지 체크 -> 최상단 = 0
-      const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
-
-      if(scrollOnTop === 0 ){
-        gsap.to(".upper-nav", {opacity: 1, duration: 0.5, height: "50px"});
-        gsap.to(".ilsan-header", {y: 0, duration: 0.5});
-      }
-      else if(scrollOnTop !== 0){
-        gsap.to(".upper-nav", {opacity: 0, duration: 0.5, height: 0});
-        gsap.to(".ilsan-header", {y: "-20px", duration: 0.5});
-      }
-
-    }
-  
-    window.addEventListener("scroll", scrollEvent);
-
-    return(() => {
-      window.removeEventListener("scroll", scrollEvent);
-    })
-  },[])
-
-  useEffect(() => {
-    if(!hover){
-      setCategoryOpen(false);
-      setJoinOpen(false);
-    }
-  },[hover])
-
   const headerMouseOn = () => {
     setHover(true);
 
-    gsap.to(".ilsan-header", {backgroundColor : "#fff", color: "#767676", duration: 0.1});
-    gsap.to(".nav-toggle-box", {backgroundColor: "#fff", height: "350px", opacity: 1, ease: "power3.out", borderBottom:"1px solid #e0e0e0", duration: 0.5});
-    
+    gsap.to(".ilsan-header", {
+      backgroundColor: "#fff",
+      color: "#767676",
+      duration: 0.1,
+    });
+    gsap.to(".nav-toggle-box", {
+      backgroundColor: "#fff",
+      height: "350px",
+      opacity: 1,
+      ease: "power3.out",
+      borderBottom: "1px solid #e0e0e0",
+      duration: 0.5,
+    });
+
     const subMenuLists = document.querySelectorAll(".sub-menu");
     subMenuLists.forEach((menu) => {
-    gsap.to(menu, {opacity: 1, duration: 0.5})
-  })
-  }
+      gsap.to(menu, { opacity: 1, duration: 0.5 });
+    });
+  };
+
   const headerMouseLeave = () => {
     setHover(false);
 
-    gsap.to(".ilsan-header", {backgroundColor: "transparent", duration: 0.1})
-    gsap.to(".nav-toggle-box", {backgroundColor: "transparent", height: 0, opacity: 0, ease: "power1.in", duration: 0.5});
-    
+    gsap.to(".ilsan-header", { backgroundColor: "transparent", duration: 0.1 });
+    gsap.to(".nav-toggle-box", {
+      backgroundColor: "transparent",
+      height: 0,
+      opacity: 0,
+      ease: "power1.in",
+      duration: 0.5,
+    });
+
     const subMenuLists = document.querySelectorAll(".sub-menu");
     subMenuLists.forEach((menu) => {
-    gsap.to(menu, {opacity: 0, duration: 0.5})
-  })
+      gsap.to(menu, { opacity: 0, duration: 0.5 });
+    });
+  };
+
+  const logout = () => {
+    window.location.reload();
+    setLoginMember(null);
+    localStorage.removeItem("loginMember");
   }
 
   return (
-    <header className="ilsan-header" onMouseEnter={headerMouseOn} onMouseLeave={headerMouseLeave}>
+    <header
+      className="ilsan-header"
+      onMouseEnter={headerMouseOn}
+      onMouseLeave={headerMouseLeave}
+    >
       <div className="upper-nav">
         <div className="upper-nav-left">
           <div className="item-category">
-            <button className="item-category-family-btn" type="button" onClick={categoryMenu}>
+            <button
+              className="item-category-family-btn"
+              type="button"
+              onClick={categoryMenu}
+            >
               <span className="ico"></span>
               <span>
                 <strong>아쿠아플라넷 일산</strong>
               </span>
             </button>
-            <ul className={`item-category-family-list ${categoryOpen ? "show" : ""}`}>
+            <ul
+              className={`item-category-family-list ${categoryOpen ? "show" : ""}`}
+            >
               {aquaplanet.map((text, index) => (
-                <li key={index}><a href={text.link}>{text.text}</a></li>
+                <li key={index}>
+                  <a href={text.link}>{text.text}</a>
+                </li>
               ))}
             </ul>
           </div>
@@ -135,7 +188,11 @@ const IlsanHeader = () => {
         <div className="nav-inner">
           <div className="ilsan-logo">
             <a href="/">
-            {hover ? <img src="/img/ilsan/logo_ilsan.png" alt="logo"/> : <img src="/img/ilsan/logo_ilsan_white.png" alt="white_logo"/>}
+              {hover ? (
+                <img src="/img/ilsan/logo_ilsan.png" alt="logo" />
+              ) : (
+                <img src="/img/ilsan/logo_ilsan_white.png" alt="white_logo" />
+              )}
             </a>
           </div>
           <nav className="gnb">
@@ -262,16 +319,33 @@ const IlsanHeader = () => {
             <div className="log-in">
               <button onClick={joinMenu} type="button">
                 <span className="ico"></span>
-                <span className="log-in-text">Log In</span>
-                <span className="ico2" style={joinOpen ? {transform: 'rotate(180deg)'} : {}}></span>
+                <span className="log-in-text">{loginMember ? loginMember.memberName + "님" : "Log In"}</span>
+                <span
+                  className="ico2"
+                  style={joinOpen ? { transform: "rotate(180deg)" } : {}}
+                ></span>
               </button>
               <div className={`join ${joinOpen ? "show" : ""}`}>
-                <a href="/aquaplanet/member/login">
-                  <span className="text-join">Log In</span>
-                </a>
-                <a href="/aquaplanet/member/signup">
-                  <span className="text-join">회원가입</span>
-                </a>
+                {loginMember != null ? (
+                  <>
+                  <a href="/aquaplanet/member/mypage">
+                    <span className="text-join">My Page</span>
+                  </a>
+                  <span className="header-log-out" onClick={logout}>
+                    <span className="text-join">Log Out</span>
+                  </span>
+                  </>
+
+                ) : (
+                  <>
+                    <a href="/aquaplanet/member/login">
+                      <span className="text-join">Log In</span>
+                    </a>
+                    <a href="/aquaplanet/member/signup">
+                      <span className="text-join">회원가입</span>
+                    </a>
+                  </>
+                )}
               </div>
             </div>
             <div className="ticket-box">
@@ -284,25 +358,64 @@ const IlsanHeader = () => {
         </div>
         <div className="nav-toggle-box">
           <div className="operating-area">
-            <span style={{fontSize: 30, fontFamily: "MyriadPro-Bold", color: "#222222", fontWeight: 600}}>
+            <span
+              style={{
+                fontSize: 30,
+                fontFamily: "MyriadPro-Bold",
+                color: "#222222",
+                fontWeight: 600,
+              }}
+            >
               {today}
             </span>
-            <span style={{fontSize: 16, fontFamily: "NotoSans-Light", color: "#222222"}}>
+            <span
+              style={{
+                fontSize: 16,
+                fontFamily: "NotoSans-Light",
+                color: "#222222",
+              }}
+            >
               &nbsp;
               {weekday}
             </span>
             <span className="ico"></span>
-            <span style={{fontSize: 24, fontFamily: "NotoSans-Light", color: "#222222"}}>
+            <span
+              style={{
+                fontSize: 24,
+                fontFamily: "NotoSans-Light",
+                color: "#222222",
+              }}
+            >
               운영시간
             </span>
             <p>
-            <span style={{ fontSize: 18, fontFamily: "MyriadPro-Bold", color: "#222222", fontWeight: 600 }}>
+              <span
+                style={{
+                  fontSize: 18,
+                  fontFamily: "MyriadPro-Bold",
+                  color: "#222222",
+                  fontWeight: 600,
+                }}
+              >
                 10 : 00 - 18 : 00
               </span>
             </p>
-            <p style={{fontSize: 15, fontFamily: "NotoSans-Regular", color: "#222222"}}>
+            <p
+              style={{
+                fontSize: 15,
+                fontFamily: "NotoSans-Regular",
+                color: "#222222",
+              }}
+            >
               ※ 입장 마감 &nbsp;
-              <span style={{fontSize: 18, fontFamily: "MyriadPro-Bold", color: "#222222", fontWeight: 600}}>
+              <span
+                style={{
+                  fontSize: 18,
+                  fontFamily: "MyriadPro-Bold",
+                  color: "#222222",
+                  fontWeight: 600,
+                }}
+              >
                 17 : 00
               </span>
             </p>
@@ -310,7 +423,10 @@ const IlsanHeader = () => {
           <div className="item-banner">
             <div>
               <a href="/">
-                <img src="/img/ilsan/202131054071614396438_6.png" alt="banner"/>
+                <img
+                  src="/img/ilsan/202131054071614396438_6.png"
+                  alt="banner"
+                />
               </a>
             </div>
           </div>
