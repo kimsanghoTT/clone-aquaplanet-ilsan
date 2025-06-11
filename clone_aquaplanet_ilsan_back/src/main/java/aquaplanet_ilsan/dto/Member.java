@@ -20,4 +20,5 @@ public class Member {
 	private String memberSubEmail;
 	private String memberRegionCity;
 	private String memberRegionDistrict;
+	private String preferredBranch;
 }

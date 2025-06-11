@@ -15,11 +15,13 @@ public class MemberServiceImpl implements MemberService{
 	@Autowired
 	MemberMapper memberMapper;
 	
+	//회원가입
 	@Override
 	public void signup(Member member) {	
 		memberMapper.signup(member);
 	}
 	
+	//아이디 중복체크
 	@Override
 	public int duplicateCheck(String email) {
 		return memberMapper.duplicateCheck(email);

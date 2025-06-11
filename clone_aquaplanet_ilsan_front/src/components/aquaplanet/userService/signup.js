@@ -15,6 +15,7 @@ const Signup = () => {
     memberRegionDistrict: "",
     memberName: "",
     memberPhone: "",
+    preferredBranch:[]
   });
   const errMsg = {
     EMAIL_FORMAT: "올바른 이메일 형식을 입력해주세요",
@@ -30,6 +31,7 @@ const Signup = () => {
     PW_CONFIRM: "비밀번호가 일치하지 않습니다",
     NAME_FORMAT: "올바른 이름을 작성해주세요",
     PHONE_FORMAT: "올바른 전화번호를 작성해주세요",
+    PREFERRED_BRANCH: "최소 하나 이상의 선호지역을 선택해주세요",
     GENERIC_ERROR:
       "요청 처리 중 오류가 발생했습니다. 문제가 지속되면 관리자에게 문의해주세요.",
   };
@@ -54,8 +56,7 @@ const Signup = () => {
     일산: false,
     광교: false,
   });
-  const [selectedPreferredBranchList, setSelectedPreferredBranchList] =
-    useState([]);
+
 
   const cityRef = useRef(null);
   const districtRef = useRef(null);
@@ -222,9 +223,6 @@ const Signup = () => {
       setDistrictLabel(availableDistrict[index]);
       setDistrictSelectorOpen(!districtSelectorOpen);
     }
-
-    console.log(selectedCityIndex);
-    console.log(availableDistrict);
   };
 
   const submitPersonalData = async (e) => {
@@ -266,43 +264,59 @@ const Signup = () => {
       return;
     }
 
-    try {
-      await axios.post("/aquaplanet/signup", member);
-      setStep(2);
-    } catch {
-      alert(errMsg.GENERIC_ERROR);
-    }
+    setStep(2);
   };
 
   const preferredBranchSelection = (e) => {
     const value = e.target.value;
     const checked = e.target.checked;
 
-    setSelectedPreferredBranchList((list) => {
-      if (checked) {
-        if (!list.includes(value)) {
-          return [...list, value];
-        } else {
-          return list.filter((item) => item !== value);
-        }
-      }
-      return list;
-    });
-
     setSelectedPreferredBranch((branch) => ({
       ...branch,
       [value]: checked,
     }));
+
+    setMember(member => {
+      let branches;
+      if(checked){
+        branches = member.preferredBranch.includes(value) ? member.preferredBranch : [...member.preferredBranch, value];
+      }
+      else{
+        branches = member.preferredBranch.filter(item => item !== value);
+      }
+      return {
+        ...member,
+        preferredBranch: branches
+      }
+    })
   };
 
-  const submitPreferredBranchData = async (e) => {};
+  const submitFinalMemberData = async (e) => {
+    e.preventDefault();
 
-  useEffect(() => {
-    console.log(
-      "업데이트된 selectedPreferredBranchList:",
-      selectedPreferredBranchList
-    );
-  }, [selectedPreferredBranchList]);
+    if(member.preferredBranch.length === 0){
+      alert(errMsg.PREFERRED_BRANCH);
+      return;
+    }
+
+    const finalData = {
+      ...member,
+      preferredBranch: member.preferredBranch.join(",")
+    }
+
+    try {
+      const response = await axios.post("/aquaplanet/signup", finalData);
+      if(response.status === 200){
+      alert("회원가입이 완료되었습니다. 로그인 후 이용할 수 있습니다.");
+      navigate("/aquaplanet/member/login");
+      }
+      else{
+        alert(errMsg.GENERIC_ERROR);
+      }
+    } catch {
+      alert(errMsg.GENERIC_ERROR);
+    }
+  };
 
   return (
     <section className="member-signup">
@@ -545,7 +559,7 @@ const Signup = () => {
           </div>
         )}
         {step === 2 && (
-          <div className="member-signup-favorite-region-box">
+          <div className="member-signup-preferred-branch-box">
             <div className="member-signup-title">
               <p>
                 아쿠아플라넷에 <br />
@@ -553,7 +567,7 @@ const Signup = () => {
               </p>
               <p>어디로 방문하실 계획이신가요?</p>
             </div>
-            <form className="signup-form" onSubmit={submitPreferredBranchData}>
+            <form className="signup-form" onSubmit={submitFinalMemberData}>
               <label
                 className={selectedPreferredBranch["여수"] ? "on" : ""}
                 htmlFor="여수"
@@ -609,6 +623,7 @@ const Signup = () => {
                 value={"광교"}
                 onChange={preferredBranchSelection}
               />
+              <button className="signup-submit-btn">선택하기</button>
             </form>
           </div>
         )}

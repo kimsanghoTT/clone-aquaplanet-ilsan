@@ -281,17 +281,17 @@
 }
 
 /*두 번째 폼*/
-.member-signup-favorite-region-box {
+.member-signup-preferred-branch-box {
   width: 500px;
   margin: 125px auto 60px;
 }
-.member-signup-favorite-region-box .signup-form {
+.member-signup-preferred-branch-box .signup-form {
   margin: 46px 0 0;
 }
-.member-signup-favorite-region-box .signup-form input {
+.member-signup-preferred-branch-box .signup-form input {
   display: none;
 }
-.member-signup-favorite-region-box .signup-form label {
+.member-signup-preferred-branch-box .signup-form label {
   display: block;
   border: 1px solid #dddddd;
   border-radius: 5px;
@@ -302,13 +302,32 @@
   margin-bottom: 10px;
   position: relative;
   cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease;
 }
-.member-signup-favorite-region-box .signup-form label.on{
-    color: #2771F1;
-    border-color: #2771F1;
-    -ms-transform: scale(1);
-    transform: scale(1);
-    animation-name: registerTendencyForm-scaleUp;
-    animation-duration: 0.5s;
-    animation-iteration-count: 1;
+.member-signup-preferred-branch-box .signup-form label.on {
+  color: #2771f1;
+  border-color: #2771f1;
+  animation-name: selectedBranch;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+.member-signup-preferred-branch-box .signup-form label.on::after {
+  content: "";
+  position: absolute;
+  right: 25px;
+  top: 40%;
+  width: 15px;
+  height: 10px;
+  background: url("../../../public/img/aquaplanet/ico_square3.svg") no-repeat
+    right center;
+}
+@keyframes selectedBranch{
+  0%{
+    animation-timing-function: ease-out;
+    box-shadow: 0 0 4px #2771F1;
+  }
+  100%{
+    box-shadow: none;
+  }
+
 }
