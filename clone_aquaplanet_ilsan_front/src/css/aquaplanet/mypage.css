@@ -25,4 +25,163 @@
   width: 50%;
   height: 100%;
   overflow: scroll;
+  font-family: NotoSans KR;
+}
+.member-mypage-box {
+  width: 500px;
+  margin: 150px auto;
+}
+.member-mypage-title p:first-child {
+  font-size: 40px;
+  font-weight: bold;
+  font-family: Noto Sans KR;
+  margin: 0;
+  line-height: 1.15;
+}
+.member-mypage-title p:last-child {
+  margin: 40px 0 60px 0;
+  font-size: 20px;
+  line-height: 28px;
+  color: #222222;
+  font-family: Noto Sans KR;
+  font-weight: 500;
+}
+.member-mypage-title p:last-child em{
+  font-style: normal;
+  color: #ff6600;
+}
+.member-mypage-content .logout-btn{
+  font-size: 14px;
+  display: block;
+  border: none;
+  background-color: #fff;
+  color: #999999;
+  text-decoration: underline;
+  padding: 0;
+  margin-bottom: 30px;
+  font-family: NotoSans KR;
+}
+.member-mypage-content .mypage-section-title{
+  color: #b4b4b4;
+  font-size: 14px;
+  margin-bottom: 20px;
+  display: block;
+}
+.mypage-setting-account li{
+  position: relative;
+    line-height: 30px;
+}
+.mypage-setting-account li a{
+    color: #222;
+    font-size: 14px;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+.mypage-setting-account li a::after{
+  content: '';
+  display: inline-block;
+    width: 5px;
+    height: 9px;
+  position: absolute;
+  background: url("../../../public/img/aquaplanet/ico_arrowright.svg") no-repeat center/cover;
+    background-size: 5px 9px;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.mypage-setting-branch{
+  border-top: 1px solid #dddddd;
+  padding-top: 26px;
+  margin-top: 26px;
+}
+.branch-form{
+  margin-bottom: 44px;
+}
+.branch-form input{
+  display: none;
+}
+.branch-form label{
+  display: inline-block;
+  width: 80px;
+  height: 50px;
+  font-size: 19px;
+  text-align: center;
+  line-height: 50px;
+  border: 1px solid #dddddd;
+  border-radius: 100px;
+  margin-right: 20px;
+  box-sizing: border-box;
+  transition: color 0.3s ease, background-color 0.3s ease;
+  cursor: pointer;
+}
+.branch-form label.on{
+  background-color: #222222;
+  color: #fff;
+}
+.mypage-pay-method{
+  width: 100%;
+  display: flex;
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+}
+.mypage-pay-method span:first-child{
+      color: #222;
+    font-size: 14px;
+    margin: 0;
+}
+.mypage-pay-method select{
+  display: none;
+}
+.pay-method-display{
+  border-radius: 30px;
+    border: 1px solid #999;
+    color: #222222;
+    width: 180px;
+    box-sizing: border-box;
+    height: 50px;
+    line-height: 48px;
+    padding: 0 20px;
+    font-size: 14px;
+    position: relative;
+    cursor: pointer;
+}
+.pay-method-display::after{
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: '';
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.pay-method-display.on::after{
+  transform: rotate(180deg);
+}
+.pay-method-selector{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 180px;
+  border: 1px solid #dddddd;
+  display: none;
+}
+.pay-method-selector.on{
+  display: block;
+}
+.pay-method-option{
+  line-height: 24px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.pay-method-option.selected{
+    border: 1px solid #003eff;
+    background: #007fff;
+    font-weight: 400;
+    color: #fff;
 }
