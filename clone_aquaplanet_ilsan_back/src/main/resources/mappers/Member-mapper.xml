@@ -20,4 +20,10 @@
  	<select id="usedPwCheck">
  		SELECT memberPw FROM Member WHERE memberEmail = #{memberEmail};
 	</select>
+    <select id="getPreferredBranch" resultType="java.lang.String">
+        SELECT preferredBranch FROM Member WHERE memberEmail = #{memberEmail}
+    </select>
+    <update id="updatePreferredBranch" parameterType="Member">
+        UPDATE Member SET preferredBranch = #{preferredBranch} WHERE memberEmail = #{memberEmail}
+    </update>
 </mapper>

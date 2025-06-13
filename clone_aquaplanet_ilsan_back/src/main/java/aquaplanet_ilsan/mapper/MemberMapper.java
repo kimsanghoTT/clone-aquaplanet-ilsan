@@ -20,4 +20,8 @@ public interface MemberMapper {
 	int updatePw(@Param("memberEmail")String email, @Param("memberPw") String newPw);
 	
 	Member usedPwCheck(@Param("memberEmail") String email);
+	
+	String getPreferredBranch(@Param("memberEmail") String memberEmail);
+	
+	int updatePreferredBranch(Member member);
 }

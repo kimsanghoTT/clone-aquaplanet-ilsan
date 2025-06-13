@@ -17,4 +17,8 @@ public interface MemberService {
 	boolean updatePw(String email, String newPw);
 	
 	boolean usedPwCheck(String email, String password);
+	
+	String getPreferredBranch(String memberEmail);
+	
+	boolean updatePreferredBranch(Member member);
 }

@@ -47,8 +47,7 @@ const FindIdModal = ({ onClose, switchToPw }) => {
   };
 
   return (
-    <>
-      <div className="modal-overlay-film"></div>
+      <div className="modal-wrapper">
       <div className="modal-container">
         <button
           className="modal-close-btn"
@@ -112,7 +111,8 @@ const FindIdModal = ({ onClose, switchToPw }) => {
           </div>
         )}
       </div>
-    </>
+      </div>
+
   );
 };
 export default FindIdModal;

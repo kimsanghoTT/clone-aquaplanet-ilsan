@@ -71,5 +71,14 @@ public class MemberServiceImpl implements MemberService{
 		return memberMapper.updatePw(email, newPw) > 0;
 	}
 	
-
+	@Override
+	public String getPreferredBranch(String memberEmail) {
+		return memberMapper.getPreferredBranch(memberEmail);
+	}
+	
+	@Override
+	public boolean updatePreferredBranch(Member member) {
+		int updatedRows = memberMapper.updatePreferredBranch(member);
+        return updatedRows > 0;
+	}
 }
