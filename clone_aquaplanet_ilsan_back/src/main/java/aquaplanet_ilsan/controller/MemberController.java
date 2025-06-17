@@ -138,21 +138,23 @@ public class MemberController {
 	}
 	
 	@GetMapping("/mypage/getPreferredBranch/{memberEmail}")
-	public ResponseEntity<Map<String, Boolean>> getPreferredBranch(@PathVariable String memberEmail){
+	public ResponseEntity<Map<String, Boolean>> getPreferredBranch(@PathVariable("memberEmail") String memberEmail){
 		String preferredBranch = memberService.getPreferredBranch(memberEmail);
 		
 		Map<String, Boolean> map = new HashMap<>();
 		List<String> allBranches = Arrays.asList("63", "여수", "제주", "일산", "광교");
 		for(String branch : allBranches) {
-			map.put(preferredBranch, false);
+			map.put(branch, false);
 		}
 		
 		if(map != null && !map.isEmpty()) {
 			String[] branchList = preferredBranch.split(",");
+			
 			for(String branch : branchList) {
 				String formattedString = branch.trim();
+				
 				if(allBranches.contains(formattedString)) {
-					map.put(preferredBranch, true);
+					map.put(formattedString, true);
 				}
 			}
 		}
@@ -160,26 +162,20 @@ public class MemberController {
 	}
 	
 	@PostMapping("/mypage/updatePreferredBranch")
-	public ResponseEntity<Map<String, String>> updatePreferredBranch(@RequestBody Map<String, String> requestBody){
-		String memberEmail = requestBody.get("memberEmail");
-		String preferredBranch = requestBody.get("preferredBranch");
-		
-		Member member = new Member();
-		member.setMemberEmail(memberEmail);
-		member.setPreferredBranch(preferredBranch);
-		
-		boolean updateData = memberService.updatePreferredBranch(member);
-		
-		Map<String, String> response = new HashMap<>();
-		
-		if(updateData) {
-			response.put("result", "SUCCESS");
-			return ResponseEntity.ok(response);
-		}
-		else {
-			response.put("result", "FAIL");
-			return ResponseEntity.ok(response);
-		}
+	public ResponseEntity<Map<String, String>> updatePreferredBranch(@RequestBody Member member){
+
+	    boolean updateData = memberService.updatePreferredBranch(member);
+
+	    Map<String, String> response = new HashMap<>();
+
+	    if(updateData) {
+	        response.put("result", "SUCCESS");
+	        return ResponseEntity.ok(response);
+	    }
+	    else {
+	        response.put("result", "FAIL");
+	        return ResponseEntity.ok(response);
+	    }
 	}
 	
 }

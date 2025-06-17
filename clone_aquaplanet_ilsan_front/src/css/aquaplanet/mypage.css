@@ -60,6 +60,7 @@
   padding: 0;
   margin-bottom: 30px;
   font-family: NotoSans KR;
+  cursor: pointer;
 }
 .member-mypage-content .mypage-section-title {
   color: #b4b4b4;
@@ -190,7 +191,7 @@
   color: #fff;
 }
 
-.mypage-setting-cs{
+.mypage-setting-cs {
   margin-top: 26px;
   padding-top: 26px;
   border-top: 1px solid #dddddd;
@@ -221,23 +222,23 @@
   top: 50%;
   transform: translateY(-50%);
 }
-.terms-modal-wrapper{
+.terms-modal-wrapper {
   position: fixed;
   z-index: 1000;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0,0,0,0.8);
+  background: rgba(0, 0, 0, 0.8);
   justify-content: center;
   align-items: center;
   display: none;
 }
-.terms-modal-wrapper.open{
-    display: flex;
+.terms-modal-wrapper.open {
+  display: flex;
 }
-.terms-modal-container{
-    position: relative;
+.terms-modal-container {
+  position: relative;
   background-color: #fff;
   border-radius: 15px;
   width: 800px;
@@ -245,8 +246,8 @@
   overflow: hidden;
   font-family: NotoSans KR;
 }
-.terms-modal-container .modal-close-btn{
-    background: url("../../../public/img/aquaplanet/ico_closebutton.svg")
+.terms-modal-container .modal-close-btn {
+  background: url("../../../public/img/aquaplanet/ico_closebutton.svg")
     no-repeat center;
   background-size: 100%;
   width: 30px;
@@ -259,18 +260,18 @@
   right: 15px;
   top: 15px;
 }
-.modal-terms-content{
+.modal-terms-content {
   padding: 30px 26px 40px;
   margin-top: 30px;
   max-height: 600px;
   overflow-y: auto;
 }
-.modal-terms-content h2{
+.modal-terms-content h2 {
   margin: 0;
   font-size: 24px;
   margin-bottom: 30px;
 }
-.modal-terms-content select{
+.modal-terms-content select {
   display: none;
 }
 .terms-version-display {
@@ -278,7 +279,7 @@
   border: 1px solid #dddddd;
   border-radius: 3px;
   color: #666666;
-  width: 14em;
+  width: 232px;
   line-height: 38px;
   padding: 0 20px 0 14px;
   font-size: 14px;
@@ -303,9 +304,8 @@
 }
 .terms-version-selector {
   position: absolute;
-  top: 50px;
-  right: 0;
-  width: 180px;
+  left: 26px;
+  width: 232px;
   border: 1px solid #dddddd;
   display: none;
   z-index: 20;
@@ -315,8 +315,9 @@
 }
 .terms-version-item {
   line-height: 24px;
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
+  padding: 3px 1em 3px .4em;
 }
 .terms-version-item.selected {
   border: 1px solid #003eff;
@@ -324,14 +325,218 @@
   font-weight: 400;
   color: #fff;
 }
-.terms-detail{
+.terms-detail {
   font-size: 13px;
   font-family: "맑은 고딕";
   font-weight: 300;
   color: #666666;
 }
-.terms-detail span{
+.terms-detail span {
   display: block;
   font-size: 16px;
   font-weight: 600;
+}
+
+/*내 정보 수정*/
+.mypage-update-btn-area {
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid #dddddd;
+}
+.mypage-update-btn-area button {
+  cursor: pointer;
+  width: 180px;
+  font-size: 18px;
+  line-height: 48px;
+  text-align: center;
+  border: 1px solid #999999;
+  color: #222222;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.mypage-update-btn-area button:first-child {
+  border: 1px solid #2771f1;
+  color: #2771f1;
+  border-radius: 40px;
+  background-color: #fff;
+  margin-right: 9px;
+}
+.user-profile-item{
+  display: flex;
+  line-height: 40px;
+  font-size: 14px;
+}
+.user-profile-list .profile-label{
+  color: #b4b4b4;
+  display: inline-block;
+  width: 116px;
+}
+.user-profile-list .profile-value{
+  color: #222;
+  display: inline-block;
+  flex: 1;
+  font-weight: 500;
+}
+.agreeForm{
+  margin-top: 40px;
+  padding-top: 35px;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mypage-option-item{
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+.mypage-option-item .marketing-terms-btn{
+    font-size: 14px;
+  display: inline-block;
+  border: none;
+  background-color: #fff;
+  color: #999999;
+  text-decoration: underline;
+  padding: 0;
+  font-family: NotoSans KR;
+  cursor: pointer;
+  margin-left: 17px;
+}
+.mypage-util-btn-area {
+  margin-top:60px;
+}
+.mypage-util-btn-area button{
+    cursor: pointer;
+  font-size: 18px;
+  padding: 0 20px;
+  line-height: 48px;
+  text-align: center;
+  border: 1px solid #999999;
+  color: #222222;
+  border-radius: 40px;
+  background-color: #fff;
+  margin-right: 10px;
+}
+.mypage-util-btn-area button:first-child{
+    border: 1px solid #2771f1;
+  color: #2771f1;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.marketing-modal-wrapper {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.marketing-modal-wrapper.open {
+  display: flex;
+}
+.marketing-modal-container {
+  position: relative;
+  background-color: #fff;
+  border-radius: 15px;
+  width: 800px;
+  z-index: 20;
+  overflow: hidden;
+  font-family: NotoSans KR;
+}
+.marketing-modal-container .modal-close-btn {
+  background: url("../../../public/img/aquaplanet/ico_closebutton.svg")
+    no-repeat center;
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #efefef;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.modal-marketing-content {
+  padding: 30px 26px 40px;
+  margin-top: 30px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.modal-marketing-content h2 {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.modal-marketing-content select {
+  display: none;
+}
+.marketing-version-display {
+  display: inline-block;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  color: #666666;
+  width: 196px;
+  line-height: 38px;
+  padding: 0 20px 0 14px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+}
+.marketing-version-display::after {
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.marketing-version-display.on::after {
+  transform: rotate(180deg);
+}
+.marketing-version-selector {
+  position: absolute;
+  top: 152px;
+  left: 26px;
+  width: 196px;
+  border: 1px solid #dddddd;
+  display: none;
+  z-index: 20;
+}
+.marketing-version-selector.on {
+  display: block;
+}
+.marketing-version-item {
+  line-height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px 1em 3px .4em;
+}
+.marketing-version-item.selected {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.marketing-detail{
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+.marketing-detail .marking-paragraph p{
+  line-height: 24px;
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
 }

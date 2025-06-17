@@ -21,4 +21,5 @@ public class Member {
 	private String memberRegionCity;
 	private String memberRegionDistrict;
 	private String preferredBranch;
+	private String memberBirth;
 }

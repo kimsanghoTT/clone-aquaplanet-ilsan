@@ -3,14 +3,14 @@ import "../../../css/aquaplanet/mypage.css";
 import LoginContext from "../../LoginContext";
 import axios from "axios";
 import TermsDetail from "./terms_detail";
+import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {
-  const { loginMember } = useContext(LoginContext);
+  const { loginMember, setLoginMember } = useContext(LoginContext);
   const [selectedPayMethod, setSelectedPayMethod] = useState("신용카드");
   const [payMethodListOpen, setPayMethodListOpen] = useState(false);
   const [termsModalOpen, setTermsModalOpen] = useState(false);
-  const [selectedTermsVersion, setSelectedTermsVersion] =
-    useState("이용약관 v 1.0");
+  const [selectedTermsVersion, setSelectedTermsVersion] = useState("이용약관 v 1.0");
   const [termsVersionListOpen, setTermsVersionListOpen] = useState(false);
   const [selectedPreferredBranch, setSelectedPreferredBranch] = useState({
     63: false,
@@ -20,68 +20,56 @@ const MyPage = () => {
     광교: false,
   });
   const payMethod = ["신용카드", "계좌이체", "휴대폰결제", "네이버페이"];
+  const navigate = useNavigate();
 
   useEffect(() => {
-    if (loginMember && loginMember.memberEmail) {
-      const fetchPreferredBranch = async () => {
-        try {
-          const response = await axios.get(
-            `/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`
-          );
-          setSelectedPreferredBranch(response.data);
-          console.log("초기 선호 지점 불러오기 성공:", response.data);
-        } catch (error) {
-          console.error("초기 선호 지점 불러오기 실패:", error);
-        }
-      };
-      fetchPreferredBranch();
+    const getPreferredBranches = async () => {
+      try{
+        const response = await axios.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
+        setSelectedPreferredBranch(response.data);
+      }
+      catch{
+        alert("실패");
+      }
     }
-  }, [loginMember]); 
 
-  useEffect(() => {
-    if (loginMember && loginMember.memberEmail) {
-      const updatePreferredBranch = async () => {
-        try {
-          const preferredBranchesArray = Object.keys(selectedPreferredBranch).filter(
-            (branch) => selectedPreferredBranch[branch]
-          );
-          const preferredBranchesString = preferredBranchesArray.join(",");
-
-          const dataToSend = {
-            memberEmail: loginMember.memberEmail, 
-            preferredBranch: preferredBranchesString, 
-          };
-
-          const response = await axios.post(
-            "/aquaplanet/mypage/updatePreferredBranch",
-            dataToSend
-          );
-
-          if (response.data && response.data.result === "SUCCESS") {
-            console.log("선호 지점 업데이트 성공:", response.data.message || "업데이트 성공");
-          } else {
-            console.warn("선호 지점 업데이트 실패:", response.data ? response.data.message : "알 수 없는 오류");
-          }
-        } catch (error) {
-          console.error("선호 지점 업데이트 중 오류 발생:", error);
-          if (error.response) {
-            console.error("응답 데이터:", error.response.data);
-            console.error("응답 상태:", error.response.status);
-          }
-        }
-      };
-      updatePreferredBranch();
+    if(loginMember){
+      getPreferredBranches();
     }
-  }, [selectedPreferredBranch, loginMember]);
+  },[loginMember])
 
-  const preferredBranchSelection = (e) => {
+
+  const preferredBranchSelection = async (e) => {
     const value = e.target.value;
     const checked = e.target.checked;
 
-    setSelectedPreferredBranch((branch) => ({
-      ...branch,
-      [value]: checked,
-    }));
+    if(!checked){
+      const count = Object.values(selectedPreferredBranch).filter(value => value).length; //지점 중 true인 것만 골라 그것들의 개수 = 길이 반환
+      if(count <= 1){
+        alert("최소 하나 이상의 선호 지점을 선택해주세요");
+        return;
+      }
+    }
+
+    const updatedPreferredBranch = {
+      ...selectedPreferredBranch,
+      [value]:checked
+    }
+    setSelectedPreferredBranch(updatedPreferredBranch);
+
+    const sortSelected = Object.keys(updatedPreferredBranch).filter(key => updatedPreferredBranch[key]);
+    const selectedBranchString = sortSelected.join(",");
+
+    try{
+      await axios.post("/aquaplanet/mypage/updatePreferredBranch",{
+        memberEmail: loginMember.memberEmail,
+        preferredBranch: selectedBranchString
+      })
+    }
+    catch{
+      alert("에러발생");
+    }
+
   };
 
   const handlePayMethodList = () => {
@@ -106,6 +94,12 @@ const MyPage = () => {
     setTermsVersionListOpen(false);
   };
 
+  const logout = () => {
+    navigate("/");
+    setLoginMember(null);
+    localStorage.removeItem("loginMember");
+  }
+
   if (!loginMember) {
     return;
   }
@@ -126,12 +120,12 @@ const MyPage = () => {
             </p>
           </div>
           <div className="member-mypage-content">
-            <button className="logout-btn">로그아웃</button>
+            <button className="logout-btn" onClick={logout}>로그아웃</button>
             <div className="mypage-setting-account">
               <span className="mypage-section-title">계정관리</span>
               <ul>
                 <li>
-                  <a href="/aquaplanet/member/mypage">내 정보 관리</a>
+                  <a href="/aquaplanet/member/mypage/updateUserInfo">내 정보 관리</a>
                 </li>
                 <li>
                   <a href="/aquaplanet/member/mypage">SNS로그인 연동 설정</a>
