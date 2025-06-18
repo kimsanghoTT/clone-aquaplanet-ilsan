@@ -329,7 +329,7 @@ const IlsanHeader = () => {
               <div className={`join ${joinOpen ? "show" : ""}`}>
                 {loginMember != null ? (
                   <>
-                  <a href="/aquaplanet/member/mypage">
+                  <a href="/aquaplanet/member/mypage/setting">
                     <span className="text-join">My Page</span>
                   </a>
                   <span className="header-log-out" onClick={logout}>

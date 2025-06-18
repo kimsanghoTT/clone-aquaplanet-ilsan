@@ -1,49 +1,36 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../../css/aquaplanet/mypage.css";
+import '../../../css/aquaplanet/mypage_account.css';
 import LoginContext from "../../LoginContext";
-import axios from "axios";
-import { useNavigate } from "react-router-dom";
 import { Switch } from "antd";
 import "antd/dist/reset.css";
+import AccountUpdate from "./mypage_account_update";
 
 const MyPageAccount = () => {
   const { loginMember } = useContext(LoginContext);
-  const [pwVision, setPwVision] = useState(false);
-  const [certification, setCertification] = useState("");
-  const [step, setStep] = useState(1);
   const [marketingModalOpen, setMarketingModalOpen] = useState(false);
-  const [selectedMarketingVersion, setSelectedMarketingVersion] =
-    useState("마케팅 활용 동의 v 1.0");
-  const [marketingVersionListOpen, setMarketingVersionListOpen] =
-    useState(false);
+  const [selectedMarketingVersion, setSelectedMarketingVersion] = useState("마케팅 활용 동의 v 1.0");
+  const [marketingVersionListOpen, setMarketingVersionListOpen] = useState(false);
   const [agreeToMarketing, setAgreeToMarketing] = useState({
     marketing: false,
     sns: false,
     email: false,
   });
-  const errMsg = {
-    PW_MATCH: "비밀번호가 일치하지 않습니다.",
-  };
-  const navigate = useNavigate();
+  const [utilFunction, setUtilFunction] = useState(
+    sessionStorage.getItem("utilFunction") || ""
+  );
   const formattedPhone = loginMember?.memberPhone
     ? `${loginMember.memberPhone.substring(0, 3)}-${loginMember.memberPhone.substring(3, 7)}-${loginMember.memberPhone.substring(7)}`
     : "";
 
-  const pwVisionOn = () => {
-    setPwVision(!pwVision);
-  };
+  useEffect(() => {
+    sessionStorage.setItem("utilFunction", utilFunction);
+  }, [utilFunction]);
 
-  const userCertification = () => {
-    if (loginMember.memberPw === certification) {
-      setStep(2);
-    } else {
-      alert(errMsg.PW_MATCH);
+  useEffect(() => {
+    return () => {
+      sessionStorage.removeItem("utilFunction");
     }
-  };
-
-  const backToSetting = () => {
-    navigate("/aquaplanet/member/mypage");
-  };
+  })
 
   const handleToAgree = (option) => {
     if (option === "marketing") {
@@ -58,8 +45,8 @@ const MyPageAccount = () => {
           ...value,
           [option]: !value[option],
         };
-        const isSomeChildSwitchTrue =
-          handleChildSwitch.sns || handleChildSwitch.email;
+        //sns나 email 둘 중하나라도 true가 되면 marketing도 true로 바꾸기
+        const isSomeChildSwitchTrue = handleChildSwitch.sns || handleChildSwitch.email;
         handleChildSwitch.marketing = isSomeChildSwitchTrue;
 
         //객체 새 상태로 저장 지시
@@ -76,9 +63,17 @@ const MyPageAccount = () => {
     setMarketingVersionListOpen(!marketingVersionListOpen);
   };
 
-  const termsVersionSelection = (version) => {
+  const marketingVersionSelection = (version) => {
     setSelectedMarketingVersion(version);
     setMarketingVersionListOpen(false);
+  };
+
+  const btnUtilList = (utilItem) => {
+    setUtilFunction(utilItem);
+  }
+
+  const resetUtilFunction = () => {
+    setUtilFunction("");
   };
 
   if (!loginMember) {
@@ -91,44 +86,7 @@ const MyPageAccount = () => {
         <figure className="member-visual-image"></figure>
       </div>
       <div className="aquaplanet-member-content">
-        {step === 1 && (
-          <div className="member-mypage-box">
-            <div className="member-mypage-title">
-              <p>비밀번호 확인</p>
-              <p style={{ marginBottom: "35px" }}>
-                고객정보 확인을 위해 비밀번호를 입력해 주세요.
-              </p>
-            </div>
-            <div className="member-mypage-content">
-              <div className="form-item">
-                <label htmlFor="newPw" style={{ fontSize: "14px" }}>
-                  비밀번호
-                </label>
-                <button
-                  type="button"
-                  className={`pw-vision ${pwVision ? "on" : ""}`}
-                  onClick={pwVisionOn}
-                  style={{ top: "30px" }}
-                >
-                  <span className="ico1"></span>
-                </button>
-                <input
-                  id="newPw"
-                  type={pwVision ? "text" : "password"}
-                  required
-                  placeholder="비밀번호를 입력해 주세요"
-                  value={certification}
-                  onChange={(e) => setCertification(e.target.value)}
-                />
-              </div>
-              <div className="mypage-update-btn-area">
-                <button onClick={userCertification}>확인</button>
-                <button onClick={backToSetting}>취소</button>
-              </div>
-            </div>
-          </div>
-        )}
-        {step === 2 && (
+        {!utilFunction && (
           <div className="member-mypage-box">
             <div className="member-mypage-title">
               <p>내 정보</p>
@@ -210,9 +168,7 @@ const MyPageAccount = () => {
                   </div>
                 </div>
               </form>
-              <div
-                className={`marketing-modal-wrapper ${marketingModalOpen ? "open" : ""}`}
-              >
+              <div className={`marketing-modal-wrapper ${marketingModalOpen ? "open" : ""}`}>
                 <div className="marketing-modal-container">
                   <button
                     className="modal-close-btn"
@@ -236,7 +192,7 @@ const MyPageAccount = () => {
                       <li
                         value={"마케팅 활용 동의 v 1.0"}
                         className={`marketing-version-item ${selectedMarketingVersion === "마케팅 활용 동의 v 1.0" ? "selected" : ""}`}
-                        onClick={() => termsVersionSelection("마케팅 활용 동의 v 1.0")}
+                        onClick={() => marketingVersionSelection("마케팅 활용 동의 v 1.0")}
                       >
                         마케팅 활용 동의 v 1.0
                       </li>
@@ -264,12 +220,21 @@ const MyPageAccount = () => {
                 </div>
               </div>
               <div className="mypage-util-btn-area">
-                <button onClick={userCertification}>내 정보 수정하기</button>
-                <button onClick={backToSetting}>비밀번호 변경하기</button>
-                <button onClick={backToSetting}>탈퇴하기</button>
+                <button type="button" onClick={() => btnUtilList("updateProfile")}>내 정보 수정하기</button>
+                <button type="button" onClick={() => btnUtilList("updatePw")}>비밀번호 변경하기</button>
+                <button type="button" onClick={() => btnUtilList("deleteAccount")}>탈퇴하기</button>
               </div>
             </div>
           </div>
+        )}
+        {utilFunction === "updateProfile" && (
+          <AccountUpdate utilType={"updateProfile"} onCancel={resetUtilFunction}/>
+        )}
+        {utilFunction === "updatePw" && (
+          <AccountUpdate utilType={"updatePw"} onCancel={resetUtilFunction}/>
+        )}
+        {utilFunction === "deleteAccount" && (
+          <AccountUpdate utilType={"deleteAccount"} onCancel={resetUtilFunction}/>
         )}
       </div>
     </section>

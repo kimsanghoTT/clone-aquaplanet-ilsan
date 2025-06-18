@@ -125,7 +125,7 @@ const MyPage = () => {
               <span className="mypage-section-title">계정관리</span>
               <ul>
                 <li>
-                  <a href="/aquaplanet/member/mypage/updateUserInfo">내 정보 관리</a>
+                  <a href="/aquaplanet/member/mypage/certification">내 정보 관리</a>
                 </li>
                 <li>
                   <a href="/aquaplanet/member/mypage">SNS로그인 연동 설정</a>

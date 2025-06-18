@@ -57,7 +57,6 @@ const Signup = () => {
     광교: false,
   });
 
-
   const cityRef = useRef(null);
   const districtRef = useRef(null);
 

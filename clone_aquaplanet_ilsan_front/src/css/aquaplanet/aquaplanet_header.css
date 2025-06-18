@@ -10,10 +10,12 @@
   font-family: NotoSans KR;
   z-index: 10;
   position: relative;
+  align-items: center;
 }
 .aquaplanet-header h1 {
   width: 184px;
   height: 50px;
+  margin: 0;
 }
 .aquaplanet-header h1 a {
   display: inline-block;

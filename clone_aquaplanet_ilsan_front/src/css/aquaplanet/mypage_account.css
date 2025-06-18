@@ -1,0 +1,461 @@
+/*비밀번호 증명*/
+.member-certification .form-item .pw-vision {
+  position: absolute;
+  right: 5px;
+  top: 27px;
+  width: 31px;
+  height: 40px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.member-certification .form-item .pw-vision .ico1,
+.member-certification .form-item .pw-vision .ico2 {
+  display: inline-block;
+  background: url(../../../public/img/aquaplanet/ico_eye1.svg) no-repeat center;
+  width: 100%;
+  height: 100%;
+  background-size: 21px 10px;
+}
+.member-certification .form-item .pw-vision.on .ico1 {
+  background: url(../../../public/img/aquaplanet/ico_eye2.svg) no-repeat center;
+  width: 100%;
+  height: 100%;
+  background-size: 21px 10px;
+}
+.mypage-certification-btn-area {
+  margin-top: 30px;
+  padding-top: 28px;
+  border-top: 1px solid #dddddd;
+}
+.mypage-certification-btn-area button {
+  cursor: pointer;
+  width: 180px;
+  font-size: 18px;
+  line-height: 48px;
+  text-align: center;
+  border: 1px solid #999999;
+  color: #222222;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.mypage-certification-btn-area button:first-child {
+  border: 1px solid #2771f1;
+  color: #2771f1;
+  border-radius: 40px;
+  background-color: #fff;
+  margin-right: 9px;
+}
+
+/* 내정보 */
+.user-profile-item {
+  display: flex;
+  line-height: 40px;
+  font-size: 14px;
+}
+.user-profile-list .profile-label {
+  color: #b4b4b4;
+  display: inline-block;
+  width: 116px;
+}
+.user-profile-list .profile-value {
+  color: #222;
+  display: inline-block;
+  flex: 1;
+  font-weight: 500;
+}
+.agreeForm {
+  margin-top: 40px;
+  padding-top: 35px;
+  border-top: 1px solid #dddddd;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.mypage-option-item {
+  font-size: 14px;
+  display: flex;
+  justify-content: space-between;
+  line-height: 30px;
+  box-sizing: border-box;
+}
+.mypage-option-item .marketing-terms-btn {
+  font-size: 14px;
+  display: inline-block;
+  border: none;
+  background-color: #fff;
+  color: #999999;
+  text-decoration: underline;
+  padding: 0;
+  font-family: NotoSans KR;
+  cursor: pointer;
+  margin-left: 17px;
+}
+.mypage-util-btn-area {
+  margin-top: 60px;
+}
+.mypage-util-btn-area button {
+  cursor: pointer;
+  font-size: 18px;
+  padding: 0 20px;
+  line-height: 48px;
+  text-align: center;
+  border: 1px solid #999999;
+  color: #222222;
+  border-radius: 40px;
+  background-color: #fff;
+  margin-right: 10px;
+}
+.mypage-util-btn-area button:first-child {
+  border: 1px solid #2771f1;
+  color: #2771f1;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.marketing-modal-wrapper {
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.8);
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+.marketing-modal-wrapper.open {
+  display: flex;
+}
+.marketing-modal-container {
+  position: relative;
+  background-color: #fff;
+  border-radius: 15px;
+  width: 800px;
+  z-index: 20;
+  overflow: hidden;
+  font-family: NotoSans KR;
+}
+.marketing-modal-container .modal-close-btn {
+  background: url("../../../public/img/aquaplanet/ico_closebutton.svg")
+    no-repeat center;
+  background-size: 100%;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 50%;
+  border: 1px solid #efefef;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+}
+.modal-marketing-content {
+  padding: 30px 26px 40px;
+  margin-top: 30px;
+  max-height: 600px;
+  overflow-y: auto;
+}
+.modal-marketing-content h2 {
+  margin: 0;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.modal-marketing-content select {
+  display: none;
+}
+.marketing-version-display {
+  display: inline-block;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  color: #666666;
+  width: 196px;
+  line-height: 38px;
+  padding: 0 20px 0 14px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+}
+.marketing-version-display::after {
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.marketing-version-display.on::after {
+  transform: rotate(180deg);
+}
+.marketing-version-selector {
+  position: absolute;
+  top: 152px;
+  left: 26px;
+  width: 196px;
+  border: 1px solid #dddddd;
+  display: none;
+  z-index: 20;
+}
+.marketing-version-selector.on {
+  display: block;
+}
+.marketing-version-item {
+  line-height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px 1em 3px 0.4em;
+}
+.marketing-version-item.selected {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.marketing-detail {
+  display: flex;
+  gap: 24px;
+  flex-direction: column;
+}
+.marketing-detail .marking-paragraph p {
+  line-height: 24px;
+  margin: 0;
+  color: #666666;
+  font-size: 14px;
+}
+
+/*비밀번호 수정*/
+.member-update-pw .form-item:first-child {
+  display: flex;
+  margin-top: 60px;
+}
+.member-update-pw .form-item:nth-child(2) {
+  display: flex;
+  margin-bottom: 0;
+  border-bottom: 1px solid #dddddd;
+  padding-bottom: 43px;
+}
+.member-update-pw .form-item label {
+  display: block;
+  width: 94px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #b4b4b4;
+  margin: 0;
+  flex-shrink: 0;
+}
+.member-update-pw .form-item label:last-of-type {
+  display: block;
+  width: 94px;
+  line-height: 40px;
+  font-size: 12px;
+  color: #b4b4b4;
+  margin: 0;
+  flex-shrink: 0;
+}
+.member-update-pw .pw-modify-entryBox {
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.member-update-pw .form-item input {
+  width: 100%;
+  color: #222222;
+  font-size: 12px;
+  line-height: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  outline: none;
+}
+.member-update-pw .form-item .pw-vision {
+  position: absolute;
+  right: 5px;
+  top: 0;
+  width: 31px;
+  height: 40px;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+.member-update-pw .form-item .pw-vision .ico1,
+.member-update-pw .form-item .pw-vision .ico2 {
+  display: inline-block;
+  background: url(../../../public/img/aquaplanet/ico_eye1.svg) no-repeat center;
+  width: 100%;
+  height: 100%;
+  background-size: 21px 10px;
+}
+.member-update-pw .form-item .pw-vision.on .ico1 {
+  background: url(../../../public/img/aquaplanet/ico_eye2.svg) no-repeat center;
+  width: 100%;
+  height: 100%;
+  background-size: 21px 10px;
+}
+.modify-errMsg-box {
+  margin: 9px 0 0 14px;
+  display: none;
+}
+.modify-errMsg-box.err-on {
+  display: block;
+}
+.modify-errMsg-box .modify-errMsg {
+  display: block;
+  color: #ff4d47;
+  font-size: 14px;
+  line-height: 24px;
+}
+.mypage-modify-btn-area {
+  margin-top: 28px;
+}
+.mypage-modify-btn-area button {
+  cursor: pointer;
+  width: 180px;
+  font-size: 18px;
+  line-height: 48px;
+  text-align: center;
+  border: 1px solid #999999;
+  color: #222222;
+  border-radius: 40px;
+  background-color: #fff;
+}
+.mypage-modify-btn-area button:first-child {
+  border: 1px solid #2771f1;
+  color: #2771f1;
+  border-radius: 40px;
+  background-color: #fff;
+  margin-right: 9px;
+}
+
+/* 프로필 수정 */
+.member-update-profile .profile-form-wrapper {
+  margin-top: 60px;
+  padding-bottom: 43px;
+  border-bottom: 1px solid #dddddd;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.modify-form-content {
+  display: flex;
+}
+.modify-form-content label {
+  width: 94px;
+  line-height: 40px;
+  font-size: 14px;
+  color: #b4b4b4;
+}
+.modify-form-content input {
+  flex: 1;
+  display: block;
+  width: 100%;
+  color: #222222;
+  font-size: 12px;
+  line-height: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  outline: none;
+}
+.modify-form-content select {
+  display: none;
+}
+.modify-form-content .region-selector {
+  display: flex;
+  justify-content: space-between;
+  flex: 1;
+}
+.modify-form-content .select-city-box,
+.modify-form-content .select-district-box {
+  position: relative;
+  display: inline-block;
+  width: 49%;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 40px;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+.modify-form-content .select-city,
+.modify-form-content .select-district {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+  color: #666666;
+  font-size: 14px;
+  line-height: 40px;
+}
+.modify-form-content .select-city span:first-child,
+.modify-form-content .select-district span:first-child {
+  padding-left: 15px;
+}
+.modify-form-content .select-city .ico,
+.modify-form-content .select-district .ico {
+  position: absolute;
+  right: 20px;
+  display: inline-block;
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg) no-repeat
+    center;
+  margin: 16px 0 0 0;
+  width: 11px;
+  height: 6px;
+  transition: transform 0.4s ease;
+}
+.modify-form-content .select-city .ico.on,
+.modify-form-content .select-district .ico.on {
+  transform: rotate(180deg);
+}
+.modify-form-content .select-city-box ul,
+.modify-form-content .select-district-box ul {
+  position: absolute;
+  left: -1px;
+  bottom: 38px;
+  border: 1px solid #dddddd;
+  width: 100%;
+  margin: 0;
+  padding-inline-start: 0;
+  max-height: 300px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.modify-form-content .city-item,
+.modify-form-content .district-item {
+  background-color: white;
+  border: 1px solid transparent;
+  position: relative;
+  font-size: 12px;
+  line-height: 24px;
+  padding: 3px 10px;
+  z-index: 100;
+}
+.modify-form-content .city-item:hover,
+.modify-form-content .district-item:hover {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.modify-form-content .city-item.on,
+.modify-form-content .district-item.on {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}

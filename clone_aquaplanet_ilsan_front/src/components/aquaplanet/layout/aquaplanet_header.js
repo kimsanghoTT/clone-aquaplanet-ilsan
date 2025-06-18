@@ -63,7 +63,7 @@ const AquaplanetHeader = () => {
   };
 
   const navigateMyPage = () => {
-    navigate("/aquaplanet/member/mypage");
+    navigate("/aquaplanet/member/mypage/setting");
   };
   
   const logout = () => {
