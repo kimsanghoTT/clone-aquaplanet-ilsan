@@ -1,14 +1,15 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const MainInfoSection = () => {
+  const sectionRef = useRef(null);
   useEffect(() => {
-    const sectionTitle = document.querySelectorAll(
+    const sectionTitle = sectionRef.current.querySelectorAll(
       ".section-title-reverse01 p"
     );
-    const sectionContent = document.querySelectorAll(".info-item");
+    const sectionContent = sectionRef.current.querySelectorAll(".info-item");
 
     gsap.fromTo(
       sectionTitle,
@@ -33,7 +34,7 @@ const MainInfoSection = () => {
   }, []);
   
   return (
-    <section className="main-section section03">
+    <section className="main-section section03" ref={sectionRef}>
       <div className="section-container-inner">
         <div className="section-title-box-reverse section-title-reverse01">
           <p>Information</p>

@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from "react";
-import '../../../css/aquaplanet/mypage_account.css';
-import LoginContext from "../../LoginContext";
+import '../../../../css/aquaplanet/mypage_account.css';
+import LoginContext from "../../../LoginContext";
 import { Switch } from "antd";
 import "antd/dist/reset.css";
 import AccountUpdate from "./mypage_account_update";

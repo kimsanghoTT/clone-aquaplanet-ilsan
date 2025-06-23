@@ -21,4 +21,6 @@ public interface MemberService {
 	String getPreferredBranch(String memberEmail);
 	
 	boolean updatePreferredBranch(Member member);
+	
+	void modifyProfile(Member member);
 }

@@ -82,10 +82,6 @@ const Signup = () => {
     } else {
       setAvailableDistrict([]);
     }
-    setMember((prevSelection) => ({
-      ...prevSelection,
-      memberRegionDistrict: "",
-    }));
   }, [member.memberRegionCity]);
 
   useEffect(() => {
@@ -138,7 +134,6 @@ const Signup = () => {
 
   const insertData = (e) => {
     const { name, value } = e.target;
-
     setMember((userData) => ({
       ...userData,
       [name]: value,
@@ -209,6 +204,21 @@ const Signup = () => {
     }));
   };
 
+  const resetRegionSelection = (e) => {
+    setMember((userData) => ({
+      ...userData,
+      memberRegionCity: "",
+      memberRegionDistrict: "",
+    }));
+    setCityLabel("광역시/도");
+    setDistrictLabel("시/군/구");
+    setSelectedCityIndex(null);
+    setSelectedDistrictIndex(null);
+    setCitySelectorOpen(false);
+    setDistrictSelectorOpen(false);
+    setAvailableDistrict([]);
+  }
+
   const updateSelectedLabel = (index, type) => {
     if (type === "city") {
       setSelectedCityIndex(index);
@@ -217,7 +227,8 @@ const Signup = () => {
       // 시/군/구 박스 초기화
       setSelectedDistrictIndex(null);
       setDistrictLabel("시/군/구");
-    } else if (type === "district") {
+    } 
+    else if (type === "district") {
       setSelectedDistrictIndex(index);
       setDistrictLabel(availableDistrict[index]);
       setDistrictSelectorOpen(!districtSelectorOpen);
@@ -496,7 +507,7 @@ const Signup = () => {
                           : { display: "none" }
                       }
                     >
-                      <li className="city-item">광역시/도</li>
+                      <li className="city-item" onClick={resetRegionSelection}>광역시/도</li>
                       {cityData.map((data, index) => (
                         <li
                           className={`city-item ${selectedCityIndex === index ? "on" : ""}`}

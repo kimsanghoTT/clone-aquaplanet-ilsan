@@ -1,12 +1,28 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const MainEventSection = () => {
+  const sectionRef = useRef(null);
+    const events = [
+    {
+      title: "이벤트",
+      text: "특별 이벤트와/통합 이벤트를 만나보세요",
+    },
+    {
+      title: "제휴할인",
+      text: "제휴카드, 멤버십 할인 등/우대 혜택을 알아보세요.",
+    },
+    {
+      title: "연간회원",
+      text: "365일 매일매일/아쿠아플라넷과 함께해요!",
+    },
+  ];
+
   useEffect(() => {
-    const sectionTitle = document.querySelectorAll(".section-title02 p");
-    const sectionContent = document.querySelectorAll(".event-item");
+    const sectionTitle = sectionRef.current.querySelectorAll(".section-title02 p");
+    const sectionContent = sectionRef.current.querySelectorAll(".event-item");
 
     gsap.fromTo(
       sectionTitle,
@@ -31,39 +47,28 @@ const MainEventSection = () => {
     );
   }, []);
 
-  const eventTapActive = (event) => {
+  const toggleEventTap = (event, isActive) => {
     const selectedTap = event.currentTarget;
-    const ico = selectedTap.querySelectorAll(".event-item .ico");
-    const title = selectedTap.querySelectorAll(".event-card-title");
-    const text = selectedTap.querySelectorAll(".event-card-text");
-    const link = selectedTap.querySelectorAll(".event-item a");
+    const ico = selectedTap.querySelector(".ico");
+    const title = selectedTap.querySelector(".event-card-title");
+    const text = selectedTap.querySelector(".event-card-text");
+    const link = selectedTap.querySelector("a");
 
-    gsap.to(selectedTap, { background: "#3366FF", duration: 0.6 });
-    gsap.to(ico, { opacity: 1, y: -50, duration: 0.6 });
-    gsap.to(title, { y: -80, duration: 0.6 });
-    gsap.to(text, { y: -80, duration: 0.6 });
-    gsap.to(link, { opacity: 1, y: -20, duration: 0 });
-  };
-
-  const eventTapInactive = (event) => {
-    const selectedTap = event.currentTarget;
-    const ico = selectedTap.querySelectorAll(".event-item .ico");
-    const title = selectedTap.querySelectorAll(".event-card-title");
-    const text = selectedTap.querySelectorAll(".event-card-text");
-    const link = selectedTap.querySelectorAll(".event-item a");
+    if (!ico || !title || !text || !link) return;
 
     gsap.to(selectedTap, {
-      background: "rgba(255, 255, 255, 0.15)",
+      background: isActive ? "#3366FF" : "rgba(255, 255, 255, 0.15)",
       duration: 0.6,
     });
-    gsap.to(ico, { opacity: 0.5, y: 0, duration: 0.6 });
-    gsap.to(title, { y: 0, duration: 0.6 });
-    gsap.to(text, { y: 0, duration: 0.6 });
-    gsap.to(link, { opacity: 0, y: 0, duration: 0 });
+      
+    gsap.to(ico, { opacity: isActive ? 1 : 0.5, y: isActive ? -50 : 0, duration: 0.6 });
+    gsap.to(title, { y: isActive ? -80 : 0, duration: 0.6 });
+    gsap.to(text, { y: isActive ? -80 : 0, duration: 0.6 });
+    gsap.to(link, { opacity: isActive ? 1 : 0, y: isActive ? -20 : 0, duration: 0 });
   };
-  
+
   return (
-    <section className="main-section section04">
+    <section className="main-section section04" ref={sectionRef}>
       <div className="section-container-inner">
         <div className="section-title-box section-title02">
           <p>Event</p>
@@ -72,44 +77,26 @@ const MainEventSection = () => {
           </p>
         </div>
         <div className="event-section-content-box">
-          <div
-            className="event-item"
-            onMouseEnter={eventTapActive}
-            onMouseLeave={eventTapInactive}
-          >
-            <span className="ico"></span>
-            <span className="event-card-title">이벤트</span>
-            <span className="event-card-text">
-              특별 이벤트와 <br /> 통합 이벤트를 만나보세요
-            </span>
-            <a href="/">자세히 보기</a>
-          </div>
-          <div
-            className="event-item"
-            onMouseEnter={eventTapActive}
-            onMouseLeave={eventTapInactive}
-          >
-            <span className="ico"></span>
-            <span className="event-card-title">제휴할인</span>
-            <span className="event-card-text">
-              제휴카드, 멤버십 할인 등 <br />
-              우대 혜택을 알아보세요.
-            </span>
-            <a href="/">자세히 보기</a>
-          </div>
-          <div
-            className="event-item"
-            onMouseEnter={eventTapActive}
-            onMouseLeave={eventTapInactive}
-          >
-            <span className="ico"></span>
-            <span className="event-card-title">연간회원</span>
-            <span className="event-card-text">
-              365일 매일매일 <br />
-              아쿠아플라넷과 함께해요!
-            </span>
-            <a href="/">자세히 보기</a>
-          </div>
+          {events.map((item, index) => (
+            <div
+              key={index}
+              className="event-item"
+              onMouseEnter={(e) => toggleEventTap(e, true)}
+              onMouseLeave={(e) => toggleEventTap(e, false)}
+            >
+              <span className="ico"></span>
+              <span className="event-card-title">{item.title}</span>
+              <span className="event-card-text">
+                {item.text.split("/").map((text, index) => (
+                  <React.Fragment key={index}>
+                    {text}
+                    <br/>
+                  </React.Fragment>
+                ))}
+              </span>
+              <a href='/'>자세히 보기</a>
+            </div>
+          ))}
         </div>
       </div>
     </section>

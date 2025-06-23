@@ -1,8 +1,25 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
-import cityData from "./city_district.json";
-import "../../../css/aquaplanet/mypage_account.css";
-import LoginContext from "../../LoginContext";
+import cityData from "../city_district.json";
+import "../../../../css/aquaplanet/mypage_account.css";
+import LoginContext from "../../../LoginContext";
 import axios from "axios";
+
+const msg = {
+  PW_FORMAT1: "영문 포함 10~13자",
+  PW_FORMAT2: "특수문자 포함 8~13자",
+  PW_CHANGE: "비밀번호가 변경되었습니다.",
+  PW_FORMAT:
+    "비밀번호는 영문 숫자 포함 10~13자, 특수문자 포함 시 8~13자로 입력해 주세요",
+  PW_CONFIRM: "비밀번호가 일치하지 않습니다",
+  USED_PW: "이전과 다른 비밀번호를 작성해주세요",
+  EMAIL_FORMAT: "올바른 이메일 형식을 입력해주세요",
+  EMAIL_AVAILABLE: "사용 가능한 이메일을 입력해 주세요",
+  NAME_FORMAT: "올바른 이름을 작성해주세요",
+  PHONE_FORMAT: "올바른 전화번호를 작성해주세요",
+  BIRTH_FORMAT:"올바른 생년월일을 입력해주세요",
+  GENERIC_ERROR:
+    "요청 처리 중 오류가 발생했습니다. 문제가 지속되면 관리자에게 문의해주세요.",
+};
 
 const AccountUpdate = ({ utilType, onCancel }) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -14,10 +31,12 @@ const AccountUpdate = ({ utilType, onCancel }) => {
   const [districtSelectorOpen, setDistrictSelectorOpen] = useState(false);
   const [selectedCityIndex, setSelectedCityIndex] = useState(null);
   const [selectedDistrictIndex, setSelectedDistrictIndex] = useState(null);
-  const [cityLabel, setCityLabel] = useState(loginMember.memberRegionCity);
-  const [districtLabel, setDistrictLabel] = useState(loginMember.memberRegionDistrict);
+  const [cityLabel, setCityLabel] = useState(loginMember?.memberRegionCity || "광역시/도");
+  const [districtLabel, setDistrictLabel] = useState(loginMember?.memberRegionDistrict || "시/군/구");
   const [availableDistrict, setAvailableDistrict] = useState([]);
+  const [modifyStep, setModifyStep] = useState(null);
   const [modifyProfile, setModifyProfile] = useState({
+    memberNo: loginMember.memberNo,
     memberName: loginMember.memberName || "",
     memberPhone: loginMember.memberPhone || "",
     memberBirth: loginMember.memberBirth || "",
@@ -25,20 +44,8 @@ const AccountUpdate = ({ utilType, onCancel }) => {
     memberRegionCity: loginMember.memberRegionCity || "",
     memberRegionDistrict: loginMember.memberRegionDistrict || "",
   });
-  const msg = {
-    PW_FORMAT1: "영문 포함 10~13자",
-    PW_FORMAT2: "특수문자 포함 8~13자",
-    PW_CHANGE: "비밀번호가 변경되었습니다.",
-    PW_FORMAT:
-      "비밀번호는 영문 숫자 포함 10~13자, 특수문자 포함 시 8~13자로 입력해 주세요",
-    PW_CONFIRM: "비밀번호가 일치하지 않습니다",
-    USED_PW: "이전과 다른 비밀번호를 작성해주세요",
-    EMAIL_FORMAT: "올바른 이메일 형식을 입력해주세요",
-    EMAIL_AVAILABLE: "사용 가능한 이메일을 입력해 주세요",
-    NAME_FORMAT: "올바른 이름을 작성해주세요",
-    PHONE_FORMAT: "올바른 전화번호를 작성해주세요",
-    BIRTH_FORMAT:"올바른 생년월일을 입력해주세요"
-  };
+  const [exitCheckPw, setExitCheckPw] = useState("");
+  const [checkExitTerms, setCheckExitTerms] = useState(false);
 
   const cityRef = useRef(null);
   const districtRef = useRef(null);
@@ -180,6 +187,31 @@ const AccountUpdate = ({ utilType, onCancel }) => {
     }
   };
 
+  const resetRegionSelection = (e) => {
+    setModifyProfile((userData) => ({
+      ...userData,
+      memberRegionCity: "",
+      memberRegionDistrict: "",
+    }));
+    setCityLabel("광역시/도");
+    setDistrictLabel("시/군/구");
+    setSelectedCityIndex(null);
+    setSelectedDistrictIndex(null);
+    setCitySelectorOpen(false);
+    setDistrictSelectorOpen(false);
+    setAvailableDistrict([]);
+  }
+
+  const completeModifyProfile = (e) => {
+    if(e === 1){
+     setModifyStep("complete");
+    }
+    if(e === 2){
+      setModifyStep(null);
+      onCancel();
+    }
+  }
+
   const submitModifyProfile = async (e) => {
     e.preventDefault();
 
@@ -191,15 +223,51 @@ const AccountUpdate = ({ utilType, onCancel }) => {
       alert(msg.PHONE_FORMAT);
       return;
     }
-    if(!emailPattern.test(modifyProfile.memberSubEmail)){
+    if(modifyProfile.memberSubEmail && !emailPattern.test(modifyProfile.memberSubEmail)){
       alert(msg.EMAIL_FORMAT);
       return;
     }
-    if(!birthPattern.test(modifyProfile.memberBirth)){
+    if(modifyProfile.memberBirth && !birthPattern.test(modifyProfile.memberBirth)){
       alert(msg.BIRTH_FORMAT);
       return;
     }
+    
+    try {
+      const response = await axios.post("/aquaplanet/mypage/modifyProfile", modifyProfile);
+      if(response.status === 200){
+        setLoginMember({
+          ...loginMember,
+          memberName: modifyProfile.memberName,
+          memberPhone: modifyProfile.memberPhone,
+          memberBirth: modifyProfile.memberBirth,
+          memberSubEmail: modifyProfile.memberSubEmail,
+          memberRegionCity: modifyProfile.memberRegionCity,
+          memberRegionDistrict: modifyProfile.memberRegionDistrict
+        })
+      }
+    } catch {
+      alert(msg.GENERIC_ERROR);
+    }
   };
+
+  const handleCheckExitTerms = () => {
+    setCheckExitTerms(!checkExitTerms);
+  }
+
+  const submitExitMember = async (e) => {
+    e.preventDefault();
+
+    if(exitCheckPw !== loginMember.memberPw){
+      alert(msg.PW_CONFIRM);
+      return;
+    }
+
+    try{
+      const response = await axios.delete("/aquaplanet/mypage/delete");
+    }catch{
+
+    }
+  }
 
   return (
     <>
@@ -361,7 +429,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                             : { display: "none" }
                         }
                       >
-                        <li className="city-item">광역시/도</li>
+                        <li className="city-item" onClick={resetRegionSelection}>광역시/도</li>
                         {cityData.map((data, index) => (
                           <li
                             className={`city-item ${selectedCityIndex === index ? "on" : ""}`}
@@ -417,7 +485,72 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                 </div>
               </div>
               <div className="mypage-modify-btn-area">
-                <button>변경내용 저장</button>
+                <button onClick={() => completeModifyProfile(1)}>변경내용 저장</button>
+                <button type="button" onClick={onCancel}>
+                  취소
+                </button>
+              </div>
+            </form>
+            {modifyStep === "complete" && (
+            <div className="modal-wrapper">
+              <div className="modal-container">
+                <button
+                  className="modal-close-btn"
+                  type="button"
+                  onClick={() => completeModifyProfile(2)}
+                ></button>
+                  <div className="result-form">
+                    <div className="form-content">
+                      <span className="form-title">
+                        내 정보가 정상적으로 <br/>
+                        수정되었습니다.
+                        </span>
+                      <p>
+                        아래 확인 버튼을 눌러주세요!
+                      </p>
+                    </div>
+                    <div className="modal-button-list">
+                      <button type="button" 
+                      onClick={() => completeModifyProfile(2)} 
+                      style={{backgroundColor: "#2771f1", color: "#fff", width: "100%"}}>
+                        확인
+                      </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            )}
+          </div>
+        </div>
+      )}
+      {utilType === "deleteAccount" && (
+        <div className="member-mypage-box">
+          <div className="member-mypage-title">
+            <p>회원탈퇴</p>
+            <p className="mypage-exit-title">
+              정말 아쿠아플라넷 회원에서 탈퇴하시겠어요?
+            </p>
+            <p className="mypage-exit-message">
+            탈퇴하시면 온라인에서 구매하신 티켓을 확인하실 수 없습니다.
+            그래도 탈퇴하시겠습니까?
+            </p>
+          </div>
+          <div className="member-mypage-content member-exit">
+            <form onSubmit={submitExitMember}>
+              <div className="exit-form-wrapper">
+                <div className={`member-exit-check ${checkExitTerms ? "agree" : ""}`} onClick={handleCheckExitTerms}>
+                  <span>내용을 이해했으며, 탈퇴 후 온라인에서 티켓 및 쿠폰, 쿠폰 교환권, 스탬프 등 서비스를 통해 획득한 내용들을 확인할 수 없음에 동의합니다.</span>
+                  <br/>
+                  <span>※ 카카오 계정으로 가입한 경우 ‘카카오 설정 → 카카오 계정 → 연결된 서비스 관리’에서 삭제할 수 있습니다.</span>
+                </div>
+                <div className="member-exit-check-pw">
+                  <label htmlFor="memberPw">비밀번호</label>
+                  <input type="password" value={exitCheckPw} onChange={(e) => setExitCheckPw(e.target.value)} 
+                  placeholder="비밀번호를 입력해 주세요"/>
+                </div>
+              </div>
+              <div className="mypage-modify-btn-area">
+                <button>회원 탈퇴</button>
                 <button type="button" onClick={onCancel}>
                   취소
                 </button>
@@ -426,7 +559,6 @@ const AccountUpdate = ({ utilType, onCancel }) => {
           </div>
         </div>
       )}
-      {utilType === "deleteAccount" && <div></div>}
     </>
   );
 };

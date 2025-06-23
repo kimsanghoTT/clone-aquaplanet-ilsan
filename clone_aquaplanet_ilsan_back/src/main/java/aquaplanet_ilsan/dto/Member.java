@@ -13,7 +13,9 @@ import lombok.ToString;
 @NoArgsConstructor
 public class Member {
 
+	private int memberNo;
 	private String memberName;
+	private String memberBirth;
 	private String memberPhone;
 	private String memberEmail;
 	private String memberPw;
@@ -21,5 +23,4 @@ public class Member {
 	private String memberRegionCity;
 	private String memberRegionDistrict;
 	private String preferredBranch;
-	private String memberBirth;
 }

@@ -1,12 +1,36 @@
 import gsap from "gsap";
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const MainCommunitySection = () => {
+  const sectionRef = useRef(null);
+  const notice = [
+    {
+      type:"공지",
+      title:"'25년 이용요금 변경 안내",
+      date:"2025.04.25"
+    },
+    {
+      type:"공지",
+      title:"특별 전시 '다흑 곤충 파충류 기획전' 기간 연장 안내",
+      date:"2025.03.10"
+    },
+    {
+      type:"공지",
+      title:"반입 제한 물품 안내",
+      date:"2023.08.03"
+    },
+    {
+      type:"공지",
+      title:"관람동선 모바일 전자 리플렛",
+      date:"2023.02.09"
+    },
+  ]
+
   useEffect(() => {
-    const sectionTitle = document.querySelectorAll(".section-title03 p");
-    const sectionContent = document.querySelectorAll(".notice-item");
+    const sectionTitle = sectionRef.current.querySelectorAll(".section-title03 p");
+    const sectionContent = sectionRef.current.querySelectorAll(".notice-item");
 
     gsap.fromTo(
       sectionTitle,
@@ -31,7 +55,7 @@ const MainCommunitySection = () => {
   }, []);
 
   return (
-    <section className="main-section section06">
+    <section className="main-section section06" ref={sectionRef}>
       <div className="section-container-inner">
         <div className="section-title-box section-title03">
           <p>Community</p>
@@ -41,46 +65,17 @@ const MainCommunitySection = () => {
         </div>
         <div className="community-section-content-box">
           <ul>
-            <li className="notice-item">
-              <a href="/">
-                <div>
-                  <span className="notice-type">공지</span>
-                  <span className="notice-title">'25년 이용요금 변경 안내</span>
-                  <span className="notice-date">2025.04.25</span>
-                </div>
-              </a>
-            </li>
-            <li className="notice-item">
-              <a href="/">
-                <div>
-                  <span className="notice-type">공지</span>
-                  <span className="notice-title">
-                    특별 전시 '다흑 곤충 파충류 기획전' 기간 연장 안내
-                  </span>
-                  <span className="notice-date">2025.03.10</span>
-                </div>
-              </a>
-            </li>
-            <li className="notice-item">
-              <a href="/">
-                <div>
-                  <span className="notice-type">공지</span>
-                  <span className="notice-title">반입 제한 물품 안내</span>
-                  <span className="notice-date">2023.08.03</span>
-                </div>
-              </a>
-            </li>
-            <li className="notice-item">
-              <a href="/">
-                <div>
-                  <span className="notice-type">공지</span>
-                  <span className="notice-title">
-                    관람동선 모바일 전자 리플렛
-                  </span>
-                  <span className="notice-date">2023.02.09</span>
-                </div>
-              </a>
-            </li>
+            {notice.map((item, index) => (
+              <li key={index} className="notice-item">
+                <a href="/">
+                  <div>
+                    <span className="notice-type">{item.type}</span>
+                    <span className="notice-title">{item.title}</span>
+                    <span className="notice-date">{item.date}</span>
+                  </div>
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

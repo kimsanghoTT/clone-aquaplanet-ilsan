@@ -66,19 +66,31 @@ public class MemberServiceImpl implements MemberService{
 		return newPassword.equals(isExistMember.getMemberPw());
 	}
 	
+	//비밀번호 수정
 	@Override
 	public boolean updatePw(String email, String newPw) {
 		return memberMapper.updatePw(email, newPw) > 0;
 	}
 	
+	//선호지점 가져오기
 	@Override
 	public String getPreferredBranch(String memberEmail) {
 		return memberMapper.getPreferredBranch(memberEmail);
 	}
 	
+	//선호지점 갱신
 	@Override
 	public boolean updatePreferredBranch(Member member) {
 		int updatedRows = memberMapper.updatePreferredBranch(member);
         return updatedRows > 0;
+	}
+	
+	//프로필 수정
+	@Override
+	public void modifyProfile(Member member) {
+		System.out.println("===================================");
+		System.out.println("member : " + member);
+		System.out.println("===================================");
+		memberMapper.modifyProfile(member);
 	}
 }

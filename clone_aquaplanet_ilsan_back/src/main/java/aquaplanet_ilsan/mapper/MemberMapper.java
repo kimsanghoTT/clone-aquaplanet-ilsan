@@ -24,4 +24,6 @@ public interface MemberMapper {
 	String getPreferredBranch(@Param("memberEmail") String memberEmail);
 	
 	int updatePreferredBranch(Member member);
+	
+	void modifyProfile(Member member);
 }

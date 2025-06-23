@@ -89,7 +89,7 @@
   font-family: NotoSans-Bold;
   font-weight: 600;
   line-height: 1;
-  margin: 0;
+  margin-bottom: 30px;
 }
 .section-container-inner .section-title-box-reverse {
   text-align: end;
@@ -105,7 +105,7 @@
   font-family: NotoSans-Bold;
   font-weight: 600;
   line-height: 1;
-  margin: 0;
+  margin-bottom: 30px;
 }
 
 /*프로그램 섹션*/
@@ -422,6 +422,7 @@
 .event-item span:nth-child(2) ~ span {
   display: inline-block;
   text-align: center;
+  line-height: 1.5;
 }
 .event-item span:nth-child(2) {
   font-size: 28px;
@@ -515,6 +516,7 @@
 .group-item span:nth-child(2) ~ span {
   display: inline-block;
   text-align: center;
+  line-height: 1.5;
 }
 .group-item span:nth-child(2) {
   font-size: 28px;

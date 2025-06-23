@@ -459,3 +459,26 @@
   font-weight: 400;
   color: #fff;
 }
+
+/* 회원탈퇴 */
+.member-mypage-title .mypage-exit-title{
+  margin: 0;
+  font-size: 24px;
+  margin-top: 40px;
+}
+.member-mypage-title p.mypage-exit-message{
+  margin: 0;
+  font-size: 20px;
+  margin-top: 22px;
+  line-height: 28px;
+  letter-spacing: -0.5px;
+}
+.member-exit .member-exit-check{
+    cursor: pointer;
+    color: #B4B4B4;
+    font-size: 14px;
+    line-height: 20px;
+}
+.member-exit .member-exit-check::before{
+  
+}

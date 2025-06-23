@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../../css/aquaplanet/mypage.css";
-import LoginContext from "../../LoginContext";
+import "../../../../css/aquaplanet/mypage.css";
+import LoginContext from "../../../LoginContext";
 import axios from "axios";
-import TermsDetail from "./terms_detail";
+import TermsDetail from "../terms_detail";
 import { useNavigate } from "react-router-dom";
 
 const MyPage = () => {

@@ -29,21 +29,25 @@ public class MemberController {
 	@Autowired
 	MailService mailService;
 	
+	//회원가입
 	@PostMapping("/signup")
 	public void signup(@RequestBody Member member) {
 		memberService.signup(member);
 	}
 	
+	//이메일 중복 확인
 	@GetMapping("/duplicate")
 	public int duplicateCheck(@RequestParam("memberEmail") String email) {
 		return memberService.duplicateCheck(email);
 	}
 	
+	//로그인
 	@PostMapping("/login")
 	public Map<String, Object> login(@RequestBody Member member){
 		return memberService.login(member);
 	}
 	
+	//아이디 찾기
 	@PostMapping("login/find/id")
 	public ResponseEntity<Map<String, String>> findId(@RequestBody Map<String, String> data){
 		String memberName = data.get("memberName");
@@ -65,6 +69,7 @@ public class MemberController {
 		}
 	}
 	
+	//인증번호 요청
 	@PostMapping("/login/find/requestCode")
 	public ResponseEntity<Map<String, String>> requestAuthCode(@RequestBody Map<String, String> data){
 		String memberEmail = data.get("memberEmail");
@@ -88,6 +93,7 @@ public class MemberController {
 		}
 	}
 	
+	//인증번호 확인
 	@PostMapping("/login/find/verifyCode")
 	public ResponseEntity<Map<String, String>> verifyAuthCode(@RequestBody Map<String, String> data){
 		String memberEmail = data.get("memberEmail");
@@ -114,6 +120,7 @@ public class MemberController {
 		}
 	}
 
+	//비밀번호 수정
 	@PostMapping("/login/find/updatePw")
 	public ResponseEntity<Map<String, String>> updatePw(@RequestBody Map<String, String> data){
 		String memberEmail = data.get("memberEmail");
@@ -137,6 +144,7 @@ public class MemberController {
 	    }
 	}
 	
+	//선호지점 가져오기
 	@GetMapping("/mypage/getPreferredBranch/{memberEmail}")
 	public ResponseEntity<Map<String, Boolean>> getPreferredBranch(@PathVariable("memberEmail") String memberEmail){
 		String preferredBranch = memberService.getPreferredBranch(memberEmail);
@@ -161,6 +169,7 @@ public class MemberController {
 		return ResponseEntity.ok(map);
 	}
 	
+	//선호지점 갱신
 	@PostMapping("/mypage/updatePreferredBranch")
 	public ResponseEntity<Map<String, String>> updatePreferredBranch(@RequestBody Member member){
 
@@ -176,6 +185,12 @@ public class MemberController {
 	        response.put("result", "FAIL");
 	        return ResponseEntity.ok(response);
 	    }
+	}
+	
+	@PostMapping("/mypage/modifyProfile")
+	public void modifyProfile(@RequestBody Member member) {
+		System.out.println(member);
+		memberService.modifyProfile(member);
 	}
 	
 }

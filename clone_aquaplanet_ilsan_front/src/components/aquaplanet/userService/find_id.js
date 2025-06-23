@@ -112,7 +112,6 @@ const FindIdModal = ({ onClose, switchToPw }) => {
         )}
       </div>
       </div>
-
   );
 };
 export default FindIdModal;

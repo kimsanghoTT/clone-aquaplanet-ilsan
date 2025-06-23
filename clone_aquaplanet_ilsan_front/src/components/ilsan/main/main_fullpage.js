@@ -87,7 +87,7 @@ const Main = () => {
                 scrolling.current = true;
 
                 const wheelingDirection = e.deltaY > 0 ? 1 : -1
-                scroll.scrollMore(wheelingDirection * 476, {duration: 700, smooth: true});
+                scroll.scrollMore(wheelingDirection * 500, {duration: 700, smooth: true});
 
                 setTimeout(() => {
                     scrolling.current = false;

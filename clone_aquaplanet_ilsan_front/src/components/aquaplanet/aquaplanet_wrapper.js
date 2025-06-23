@@ -3,9 +3,9 @@ import { Route, Routes } from "react-router-dom";
 import Signup from "./userService/signup";
 import AquaplanetHeader from "./layout/aquaplanet_header";
 import Login from "./userService/login";
-import MyPage from "./userService/mypage_setting";
-import MyPageAccount from "./userService/mypage_account";
-import AccountCertification from "./userService/mypage_certification";
+import MyPage from "./userService/mypage/mypage_setting";
+import MyPageAccount from "./userService/mypage/mypage_account";
+import AccountCertification from "./userService/mypage/mypage_certification";
 
 const AquaplanetWrapper = () => {
 
