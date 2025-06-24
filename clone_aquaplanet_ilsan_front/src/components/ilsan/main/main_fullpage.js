@@ -1,5 +1,8 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useCallback } from "react"; // useCallback 추가
 import { animateScroll as scroll } from "react-scroll";
+// gsap와 ScrollTrigger는 여기서는 사용되지 않으므로 제거합니다.
+// import gsap from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 import MainVideoSection from "./main_section01_video";
 import MainProgramSection from "./main_section02_program";
 import MainInfoSection from "./main_section03_information";
@@ -9,120 +12,102 @@ import MainCommunitySection from "./main_section06_community";
 import "../../../css/ilsan/main.css";
 
 const Main = () => {
-
     const scrolling = useRef(false);
+    const headerRef = useRef(null); 
 
     useEffect(() => {
-        function mouseWheeling (e) {
+        headerRef.current = document.querySelector("header");
+    }, []); 
 
-            // 사이드바(이벤트 리스트)에서 스크롤 시 본 페이지에서의 스크롤을 막음
-            if (e.target.closest(".event-item-box")) {
-                    return; 
-            }
-            // 스크롤이 동작 중(애니메이션 중) 이면 중복 실행 방지
-            if(scrolling.current){
-                e.preventDefault();
-                return;
-            }
+    const handleWheel = useCallback((e) => {
+        if (e.target.closest(".event-item-box")) {
+            return;
+        }
 
+        if (scrolling.current) {
             e.preventDefault();
-            scrolling.current = true;
-            
-            //e.deltaY = 마우스 휠 방향 객체 : 위->양수, 아래->음수 반환
-            const wheelingDirection = e.deltaY > 0 ? 1 : -1
-            scroll.scrollMore(wheelingDirection * window.innerHeight, {duration: 700, smooth: true});
-
-            setTimeout(() => {
-                scrolling.current = false;
-            }, 900);
+            return;
         }
 
-        function ArrowMoving (e) {
-            //방향키일 때만 동작하도록 설정
-            if(e.key !== "ArrowUp" && e.key !== "ArrowDown"){
-                return;
-            }
+        e.preventDefault(); 
 
-            if(scrolling.current){
-                e.preventDefault();
-                return;
-            }
-            scrolling.current = true;
-            
-            const keyboardArrowDirection = e.key === "ArrowUp" ? -1 : 1;
-            scroll.scrollMore(keyboardArrowDirection * 920, {duration: 700, smooth: true});
+        scrolling.current = true;
 
-            setTimeout(() => {
-                scrolling.current = false;
-            }, 900);
+        const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
+        const wheelingDirection = e.deltaY > 0 ? 1 : -1; 
+
+        let scrollAmount = window.innerHeight; 
+        let duration = 700;
+
+        if (scrollOnBottom <= 0) {
+            scrollAmount = 500;
         }
 
-        function headerToBottom () {
-            const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
+        scroll.scrollMore(wheelingDirection * scrollAmount, { duration: duration, smooth: true });
 
-            if(scrollOnBottom <= 0){
-                document.querySelector("header").style.display = "none";
-            }
-            else if(scrollOnBottom > 0){
-                document.querySelector("header").style.display = "block";
-            }
+        setTimeout(() => {
+            scrolling.current = false;
+        }, duration + 200); 
+    }, []); 
+
+    const handleArrowMoving = useCallback((e) => {
+        if (e.key !== "ArrowUp" && e.key !== "ArrowDown") {
+            return;
         }
 
-        function footerScrollMoving (e) {
-            const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
-            const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
-
-            if(scrollOnBottom <= 0){
-
-                if (e.target.closest(".event-item-box")) {
-                        return; 
-                }
-                if(scrolling.current){
-                    e.preventDefault();
-                    return;
-                }
-
-                e.preventDefault();
-                scrolling.current = true;
-
-                const wheelingDirection = e.deltaY > 0 ? 1 : -1
-                scroll.scrollMore(wheelingDirection * 500, {duration: 700, smooth: true});
-
-                setTimeout(() => {
-                    scrolling.current = false;
-                }, 900);
-            }
+        if (scrolling.current) {
+            e.preventDefault();
+            return;
         }
-        
-        //페이지가 로드 될 때 마우스 휠을 이벤트 동작 대상으로 지정
-        window.addEventListener("wheel", mouseWheeling);
-        window.addEventListener("wheel", footerScrollMoving);
 
-        //페이지가 로드 될 때 방향키 눌림를 이벤트 동작 대상으로 지정
-        window.addEventListener("keydown", ArrowMoving)
+        e.preventDefault();
 
-        //메인페이지에서 스크롤이 최하단에 닿으면 헤더 안보이게 설정
-        window.addEventListener("scroll", headerToBottom);
+        scrolling.current = true;
 
-        //페이지 로딩이 끝날 때 마우스 휠을 이벤트 동작 대상에서 제거해 메모리 누수 방지
-        return (() => {
-            window.removeEventListener("wheel", mouseWheeling);
-            window.removeEventListener("wheel", footerScrollMoving);
-            window.removeEventListener("keydown", ArrowMoving);
-            window.removeEventListener("scroll", headerToBottom);
-        })
+        const keyboardArrowDirection = e.key === "ArrowUp" ? -1 : 1;
+        scroll.scrollMore(keyboardArrowDirection * window.innerHeight, { duration: 700, smooth: true }); 
 
-    },[])
-    return(
+        setTimeout(() => {
+            scrolling.current = false;
+        }, 900);
+    }, []); 
+
+    const handleHeaderVisibility = useCallback(() => {
+        if (!headerRef.current) return; 
+
+        const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
+        const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
+
+        if (scrollOnBottom <= 0) {
+            headerRef.current.style.display = "none";
+        } else {
+            headerRef.current.style.display = "block";
+        }
+    }, []); 
+
+    useEffect(() => {
+        window.addEventListener("wheel", handleWheel, { passive: false }); 
+        window.addEventListener("keydown", handleArrowMoving);
+        window.addEventListener("scroll", handleHeaderVisibility);
+
+        return () => {
+            window.removeEventListener("wheel", handleWheel, { passive: false });
+            window.removeEventListener("keydown", handleArrowMoving);
+            window.removeEventListener("scroll", handleHeaderVisibility);
+        };
+    }, [handleWheel, handleArrowMoving, handleHeaderVisibility]); 
+
+    return (
         <div className="main-wrapper">
-            <MainVideoSection/>
-            <MainProgramSection/>
-            <MainInfoSection/>
-            <MainEventSection/>
-            <MainGroupSection/>
-            <MainCommunitySection/>
+            <MainVideoSection />
+            <MainProgramSection />
+            <MainInfoSection />
+            <MainEventSection />
+            <MainGroupSection />
+            <MainCommunitySection />
         </div>
-    )
-}
+    );
+};
+
 export default Main;
