@@ -96,8 +96,8 @@ const Main = () => {
         }
         
         //페이지가 로드 될 때 마우스 휠을 이벤트 동작 대상으로 지정
-        window.addEventListener("wheel", mouseWheeling, {passive : false});
-        window.addEventListener("wheel", footerScrollMoving, {passive: false});
+        window.addEventListener("wheel", mouseWheeling);
+        window.addEventListener("wheel", footerScrollMoving);
 
         //페이지가 로드 될 때 방향키 눌림를 이벤트 동작 대상으로 지정
         window.addEventListener("keydown", ArrowMoving)
