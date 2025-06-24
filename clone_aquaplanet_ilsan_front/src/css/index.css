@@ -1,6 +1,6 @@
 @charset "utf-8";
-body {
-  font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+html, body {
+  font-family: NotoSans KR;
   color: #000;
   background-color: #fff;
   font-size: 12px;

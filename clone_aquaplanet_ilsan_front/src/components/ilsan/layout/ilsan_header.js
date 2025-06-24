@@ -350,7 +350,7 @@ const IlsanHeader = () => {
               </div>
             </div>
             <div className="ticket-box">
-              <a href="/">
+              <a href="/aquaplanet/mall" target="_blank">
                 <span className="ico"></span>
                 <span className="ticket-text">티켓구매</span>
               </a>

@@ -1,0 +1,49 @@
+/* 공통 */
+.aquaplanet-default-wrapper{
+    display: flex;
+}
+.aquaplanet-grid-default-left{
+    width: 620px;
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 80px);
+}
+.aquaplanet-grid-default-left-slide{
+    overflow-y: hidden;
+}
+.aquaplanet-grid-default-left-slide img{
+    width: 100%;
+}
+.event-area-notice-link{
+    background-color: #03021E;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    border-top: 1px solid #ddd;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 40px 0;
+    box-sizing: border-box;
+    line-height: 20px;
+}
+.event-area-notice-link .notice-tag{
+    background-color: #fff;
+    border-radius: 50px;
+    color: #222;
+    font-size: 12px;
+    padding: 0 6px;
+    margin-right:20px;
+}
+.event-area-notice-link a{
+    color: #fff;
+}
+
+.aquaplanet-grid-default-right{
+    background-color: #F5F6F9;
+    flex: 1;
+    flex-basis: 50%;
+}
+

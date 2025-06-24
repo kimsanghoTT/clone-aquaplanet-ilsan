@@ -79,7 +79,7 @@ const AquaplanetHeader = () => {
       ></div>
       <header className="aquaplanet-header">
         <h1>
-          <a href="/">
+          <a href="/aquaplanet/mall">
             <span className="aquaplanet-logo"></span>
           </a>
         </h1>

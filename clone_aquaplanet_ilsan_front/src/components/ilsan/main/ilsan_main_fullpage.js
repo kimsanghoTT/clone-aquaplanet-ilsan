@@ -1,11 +1,11 @@
 import React, { useCallback, useEffect, useRef } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import MainVideoSection from "./main_section01_video";
-import MainProgramSection from "./main_section02_program";
-import MainInfoSection from "./main_section03_information";
-import MainEventSection from "./main_section04_event";
-import MainGroupSection from "./main_section05_group";
-import MainCommunitySection from "./main_section06_community";
+import MainVideoSection from "./ilsan_main_section01_video";
+import MainProgramSection from "./ilsan_main_section02_program";
+import MainInfoSection from "./ilsan_main_section03_information";
+import MainEventSection from "./ilsan_main_section04_event";
+import MainGroupSection from "./ilsan_main_section05_group";
+import MainCommunitySection from "./ilsan_main_section06_community";
 import "../../../css/ilsan/main.css";
 
 const Main = () => {

@@ -6,6 +6,7 @@ import Login from "./userService/login";
 import MyPage from "./userService/mypage/mypage_setting";
 import MyPageAccount from "./userService/mypage/mypage_account";
 import AccountCertification from "./userService/mypage/mypage_certification";
+import Main from "./main/aquaplanet_main";
 
 const AquaplanetWrapper = () => {
 
@@ -18,6 +19,7 @@ const AquaplanetWrapper = () => {
             <Route path="/member/mypage/setting" element={<MyPage/>}/>
             <Route path="/member/mypage/updateUserInfo" element={<MyPageAccount/>}/>
             <Route path="/member/mypage/certification" element={<AccountCertification/>}/>
+            <Route path="/mall" element={<Main/>}/>
         </Routes>
         </>
     )
