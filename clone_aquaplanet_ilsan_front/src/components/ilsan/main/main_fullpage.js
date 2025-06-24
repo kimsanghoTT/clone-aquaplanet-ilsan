@@ -13,7 +13,7 @@ const Main = () => {
     const scrolling = useRef(false);
 
     useEffect(() => {
-        const mouseWheeling = (e) => {
+        function mouseWheeling (e) {
 
             // 사이드바(이벤트 리스트)에서 스크롤 시 본 페이지에서의 스크롤을 막음
             if (e.target.closest(".event-item-box")) {
@@ -37,7 +37,7 @@ const Main = () => {
             }, 900);
         }
 
-        const ArrowMoving = (e) => {
+        function ArrowMoving (e) {
             //방향키일 때만 동작하도록 설정
             if(e.key !== "ArrowUp" && e.key !== "ArrowDown"){
                 return;
@@ -57,7 +57,7 @@ const Main = () => {
             }, 900);
         }
 
-        const headerToBottom = () => {
+        function headerToBottom () {
             const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
 
@@ -69,7 +69,7 @@ const Main = () => {
             }
         }
 
-        const footerScrollMoving = (e) => {
+        function footerScrollMoving (e) {
             const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
             const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
 
