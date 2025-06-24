@@ -2,23 +2,38 @@ import React, { useContext, useState } from "react";
 import LoginContext from "../../../LoginContext";
 import { useNavigate } from "react-router-dom";
 import '../../../../css/aquaplanet/mypage_account.css';
+import axios from "axios";
 
 const AccountCertification = () => {
   const { loginMember } = useContext(LoginContext);
   const [pwVision, setPwVision] = useState(false);
-  const [certification, setCertification] = useState("");
+  const [inputPw, setInputPw] = useState("");
   const navigate = useNavigate();
 
   const pwVisionOn = () => {
     setPwVision(!pwVision);
   };
 
-  const userCertification = () => {
-    if (loginMember.memberPw === certification) {
-      navigate("/aquaplanet/member/mypage/updateUserInfo");
-    } else {
-      alert("비밀번호가 일치하지 않습니다.");
+  const userCertification = async (e) => {
+    e.preventDefault();
+
+    try{
+      const response = await axios.post("/aquaplanet/mypage/checkPassword",
+        {
+          memberNo:loginMember.memberNo,
+          inputPw:inputPw
+        });
+      if(response.data.result === "validated"){
+        navigate("/aquaplanet/member/mypage/updateUserInfo");
+      }
+      else{
+        alert("비밀번호가 일치하지 않습니다.");
+      }
     }
+    catch{
+      alert("비밀번호를 정확히 입력해주세요");
+    }
+
   };
 
   const backToSetting = () => {
@@ -28,8 +43,6 @@ const AccountCertification = () => {
   if(!loginMember){
     return;
   }
-
-  console.log(loginMember);
 
   return (
     <section className="member-mypage">
@@ -61,8 +74,8 @@ const AccountCertification = () => {
                 type={pwVision ? "text" : "password"}
                 required
                 placeholder="비밀번호를 입력해 주세요"
-                value={certification}
-                onChange={(e) => setCertification(e.target.value)}
+                value={inputPw}
+                onChange={(e) => setInputPw(e.target.value)}
               />
             </div>
             <div className="mypage-certification-btn-area">

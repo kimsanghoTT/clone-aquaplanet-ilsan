@@ -473,12 +473,73 @@
   line-height: 28px;
   letter-spacing: -0.5px;
 }
+.member-exit .exit-form-wrapper{
+  margin-bottom: 28px;
+  padding-bottom: 30px;
+  border-bottom: 1px solid #dddddd;
+}
 .member-exit .member-exit-check{
     cursor: pointer;
     color: #B4B4B4;
     font-size: 14px;
     line-height: 20px;
+    word-break: keep-all;
+    margin: 50px 0 35px 0;
+    transition: all 0.3s ease;
+}
+.member-exit .member-exit-check.active{
+  color: #222222;
 }
 .member-exit .member-exit-check::before{
-  
+  content: "";
+  display: inline-block;
+  vertical-align: top;
+  border-radius: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-color: transparent;
+  background-image: url(../../../public/img/aquaplanet/ico_square1.svg);
+}
+.member-exit .member-exit-check.active::before{
+  background-color: #222;
+  background-size: 60%;
+  border: 0;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../public/img/aquaplanet/ico_square2.svg);
+  transition: all 0.4s ease;
+}
+.member-exit-check-pw label{
+  font-size: 14px;
+  display: block;
+  margin-bottom: 8px;
+  color: #222;
+}
+.member-exit-check-pw input{
+  display: block;
+  width: 100%;
+  color: #222222;
+  font-size: 12px;
+  line-height: 40px;
+  height: 40px;
+  border: 1px solid #ddd;
+  background: #fff;
+  border-radius: 5px;
+  padding: 0 10px;
+  box-sizing: border-box;
+  outline: none;
+}
+.member-exit .modal-wrapper .modal-container .form-content p{
+  margin: 17px 0 0 0;
+  font-size: 12px;
+  color: #666666;
+  line-height: 18px;
 }

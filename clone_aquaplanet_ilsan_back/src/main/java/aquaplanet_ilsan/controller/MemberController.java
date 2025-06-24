@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -187,10 +188,36 @@ public class MemberController {
 	    }
 	}
 	
+	//비밀번호 확인
+	@PostMapping("/mypage/checkPassword")
+	public ResponseEntity<Map<String,String>> checkPassword(@RequestBody Map<String, String> request) {
+        int memberNo = Integer.parseInt(request.get("memberNo"));
+        String memberPw = request.get("inputPw");
+        
+        boolean isPasswordCorrect = memberService.checkPassword(memberNo, memberPw);
+        
+        Map<String, String> response = new HashMap<>();
+        
+        if(isPasswordCorrect) {
+        	response.put("result", "validated");
+        	return ResponseEntity.ok(response);
+        }
+        else {
+        	response.put("result", "invalidated");
+        	return ResponseEntity.ok(response);
+        }
+	}
+	
+	//프로필 갱신
 	@PostMapping("/mypage/modifyProfile")
 	public void modifyProfile(@RequestBody Member member) {
-		System.out.println(member);
 		memberService.modifyProfile(member);
+	}
+	
+	//회원 탈퇴
+	@DeleteMapping("mypage/deleteAccount/{memberNo}")
+	public void deleteAccount(@PathVariable("memberNo") int memberNo) {
+		memberService.deleteAccount(memberNo);
 	}
 	
 }

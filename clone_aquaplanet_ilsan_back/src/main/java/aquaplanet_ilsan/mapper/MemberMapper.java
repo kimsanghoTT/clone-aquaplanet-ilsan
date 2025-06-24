@@ -8,7 +8,6 @@ import aquaplanet_ilsan.dto.Member;
 @Mapper
 public interface MemberMapper {
 
-	//회원가입
 	void signup(Member member);
 	
 	int duplicateCheck(String email);
@@ -25,5 +24,9 @@ public interface MemberMapper {
 	
 	int updatePreferredBranch(Member member);
 	
+	int checkPassword(@Param("memberNo") int memberNo, @Param("memberPw") String inputPw);
+	
 	void modifyProfile(Member member);
+	
+	void deleteAccount(int MemberNo);
 }

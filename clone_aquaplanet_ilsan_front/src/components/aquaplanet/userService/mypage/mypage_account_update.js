@@ -3,6 +3,9 @@ import cityData from "../city_district.json";
 import "../../../../css/aquaplanet/mypage_account.css";
 import LoginContext from "../../../LoginContext";
 import axios from "axios";
+import moment from "moment";
+import { useNavigate } from "react-router-dom";
+moment.locale("ko");
 
 const msg = {
   PW_FORMAT1: "영문 포함 10~13자",
@@ -17,6 +20,8 @@ const msg = {
   NAME_FORMAT: "올바른 이름을 작성해주세요",
   PHONE_FORMAT: "올바른 전화번호를 작성해주세요",
   BIRTH_FORMAT:"올바른 생년월일을 입력해주세요",
+  EXIT_TERMS:"탈퇴 후 온라인에서 티켓을 확인할 수 없음에 동의해주세요.",
+  FINAL_CONFIRM:"회원탈퇴를 계속하시겠습니까?",
   GENERIC_ERROR:
     "요청 처리 중 오류가 발생했습니다. 문제가 지속되면 관리자에게 문의해주세요.",
 };
@@ -46,6 +51,9 @@ const AccountUpdate = ({ utilType, onCancel }) => {
   });
   const [exitCheckPw, setExitCheckPw] = useState("");
   const [checkExitTerms, setCheckExitTerms] = useState(false);
+  const [noticeExitModal, setNoticeExitModal] = useState(false);
+  const today = moment().format("YYYY.MM.DD");
+  const navigate = useNavigate();
 
   const cityRef = useRef(null);
   const districtRef = useRef(null);
@@ -257,16 +265,48 @@ const AccountUpdate = ({ utilType, onCancel }) => {
   const submitExitMember = async (e) => {
     e.preventDefault();
 
-    if(exitCheckPw !== loginMember.memberPw){
-      alert(msg.PW_CONFIRM);
+    if(!checkExitTerms){
+      alert(msg.EXIT_TERMS);
       return;
     }
 
     try{
-      const response = await axios.delete("/aquaplanet/mypage/delete");
-    }catch{
+      const validationResponse = await axios.post("/aquaplanet/mypage/checkPassword",
+      {
+        memberNo:loginMember.memberNo,
+        inputPw:exitCheckPw
+      });
 
+      if(validationResponse.data.result === "invalidated"){
+        alert(msg.PW_CONFIRM);
+        return;
+      }
+
+      const finalConfirm = window.confirm(msg.FINAL_CONFIRM);
+      if(!finalConfirm){
+        return;
+      }
+
+      const deleteResponse = await axios.delete(`/aquaplanet/mypage/deleteAccount/${loginMember.memberNo}`);
+      
+      if(deleteResponse.status === 200){
+        setNoticeExitModal(!noticeExitModal);
+      }
+      else{
+        alert(msg.GENERIC_ERROR);
+      }
     }
+    catch{
+      alert(msg.GENERIC_ERROR);
+      return;
+    }
+  }
+
+  const finishExitAccount = () => {
+    localStorage.removeItem("loginMember");
+    setLoginMember(null);
+    setNoticeExitModal(!noticeExitModal);
+    navigate("/");
   }
 
   return (
@@ -538,7 +578,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
           <div className="member-mypage-content member-exit">
             <form onSubmit={submitExitMember}>
               <div className="exit-form-wrapper">
-                <div className={`member-exit-check ${checkExitTerms ? "agree" : ""}`} onClick={handleCheckExitTerms}>
+                <div className={`member-exit-check ${checkExitTerms ? "active" : ""}`} onClick={handleCheckExitTerms}>
                   <span>내용을 이해했으며, 탈퇴 후 온라인에서 티켓 및 쿠폰, 쿠폰 교환권, 스탬프 등 서비스를 통해 획득한 내용들을 확인할 수 없음에 동의합니다.</span>
                   <br/>
                   <span>※ 카카오 계정으로 가입한 경우 ‘카카오 설정 → 카카오 계정 → 연결된 서비스 관리’에서 삭제할 수 있습니다.</span>
@@ -556,6 +596,33 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                 </button>
               </div>
             </form>
+            {noticeExitModal && (
+            <div className="modal-wrapper">
+              <div className="modal-container">
+                <button
+                  className="modal-close-btn"
+                  type="button"
+                  onClick={finishExitAccount}
+                ></button>
+                  <div className="result-form">
+                    <div className="form-content">
+                      <p>
+                        {today}부로 <br/>
+                        아쿠아플라넷의 회원 탈퇴요건에 <br/>
+                        동의하셨습니다.
+                      </p>
+                    </div>
+                    <div className="modal-button-list">
+                      <button type="button" 
+                      onClick={finishExitAccount} 
+                      style={{backgroundColor: "#2771f1", color: "#fff", width: "100%"}}>
+                        확인
+                      </button>
+                    </div>
+                  </div>
+              </div>
+            </div>
+            )}
           </div>
         </div>
       )}

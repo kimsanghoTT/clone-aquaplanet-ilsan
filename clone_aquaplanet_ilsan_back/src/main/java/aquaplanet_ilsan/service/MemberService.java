@@ -22,5 +22,9 @@ public interface MemberService {
 	
 	boolean updatePreferredBranch(Member member);
 	
+	boolean checkPassword(int memberNo, String inputPw);
+	
 	void modifyProfile(Member member);
+	
+	void deleteAccount(int MemberNo);
 }

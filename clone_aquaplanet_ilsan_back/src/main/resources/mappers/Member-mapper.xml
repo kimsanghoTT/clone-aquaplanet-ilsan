@@ -3,32 +3,38 @@
 <mapper namespace="aquaplanet_ilsan.mapper.MemberMapper">
 	<insert id="signup" parameterType="aquaplanet_ilsan.dto.Member">
 	    INSERT INTO Member (memberEmail, memberPw, memberSubEmail, memberRegionCity, memberRegionDistrict, memberName, memberPhone, preferredBranch)
-	    VALUES (#{memberEmail}, #{memberPw}, #{memberSubEmail}, #{memberRegionCity}, #{memberRegionDistrict}, #{memberName}, #{memberPhone}, #{preferredBranch});
+	    VALUES (#{memberEmail}, #{memberPw}, #{memberSubEmail}, #{memberRegionCity}, #{memberRegionDistrict}, #{memberName}, #{memberPhone}, #{preferredBranch})
 	</insert>
 	<select id="duplicateCheck">
-		SELECT COUNT(*) FROM Member WHERE memberEmail = #{memberEmail};
+		SELECT COUNT(*) FROM Member WHERE memberEmail = #{memberEmail}
 	</select>
 	<select id="login" resultType="aquaplanet_ilsan.dto.Member">
-		SELECT * FROM Member WHERE memberEmail = #{memberEmail} AND memberPw = #{memberPw};
+		SELECT * FROM Member WHERE memberEmail = #{memberEmail} AND memberPw = #{memberPw}
 	</select>
 	<select id="findId" parameterType="Member">
-		SELECT * FROM Member WHERE memberName = #{memberName} AND memberPhone = #{memberPhone};
+		SELECT * FROM Member WHERE memberName = #{memberName} AND memberPhone = #{memberPhone}
 	</select>
 	<update id="updatePw" parameterType="Member">
-		UPDATE Member SET memberPw = #{memberPw} WHERE memberEmail = #{memberEmail};
+		UPDATE Member SET memberPw = #{memberPw} WHERE memberEmail = #{memberEmail}
 	</update>
  	<select id="usedPwCheck">
- 		SELECT memberPw FROM Member WHERE memberEmail = #{memberEmail};
+ 		SELECT memberPw FROM Member WHERE memberEmail = #{memberEmail}
 	</select>
     <select id="getPreferredBranch" resultType="java.lang.String">
-        SELECT preferredBranch FROM Member WHERE memberEmail = #{memberEmail};
+        SELECT preferredBranch FROM Member WHERE memberEmail = #{memberEmail}
     </select>
     <update id="updatePreferredBranch" parameterType="Member">
-        UPDATE Member SET preferredBranch = #{preferredBranch} WHERE memberEmail = #{memberEmail};
+        UPDATE Member SET preferredBranch = #{preferredBranch} WHERE memberEmail = #{memberEmail}
     </update>
+    <select id="checkPassword">
+    	SELECT COUNT(*) FROM Member WHERE memberNo = #{memberNo} AND memberPw = #{memberPw}
+    </select>
     <update id="modifyProfile" parameterType="Member">
     	UPDATE Member SET memberName = #{memberName}, memberPhone = #{memberPhone}, memberBirth = #{memberBirth}, 
     	memberSubEmail = #{memberSubEmail}, memberRegionCity = #{memberRegionCity}, memberRegionDistrict = #{memberRegionDistrict}
-    	WHERE memberNo = #{memberNo};
+    	WHERE memberNo = #{memberNo}
     </update>
+    <delete id="deleteAccount" parameterType="int">
+    	DELETE FROM Member WHERE memberNo = #{memberNo}
+    </delete>
 </mapper>

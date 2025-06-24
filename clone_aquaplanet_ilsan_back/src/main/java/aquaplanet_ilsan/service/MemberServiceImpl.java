@@ -85,12 +85,21 @@ public class MemberServiceImpl implements MemberService{
         return updatedRows > 0;
 	}
 	
+	//비밀번호 확인
+	@Override
+	public boolean checkPassword(int memberNo, String inputPw) {
+		return memberMapper.checkPassword(memberNo, inputPw) > 0;
+	}
+	
 	//프로필 수정
 	@Override
 	public void modifyProfile(Member member) {
-		System.out.println("===================================");
-		System.out.println("member : " + member);
-		System.out.println("===================================");
 		memberMapper.modifyProfile(member);
+	}
+	
+	//회원 탈퇴
+	@Override
+	public void deleteAccount(int MemberNo) {
+		memberMapper.deleteAccount(MemberNo);
 	}
 }

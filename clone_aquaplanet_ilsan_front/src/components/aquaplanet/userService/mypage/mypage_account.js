@@ -4,9 +4,10 @@ import LoginContext from "../../../LoginContext";
 import { Switch } from "antd";
 import "antd/dist/reset.css";
 import AccountUpdate from "./mypage_account_update";
+import { useNavigate } from "react-router-dom";
 
 const MyPageAccount = () => {
-  const { loginMember } = useContext(LoginContext);
+  const { loginMember, setLoginMember } = useContext(LoginContext);
   const [marketingModalOpen, setMarketingModalOpen] = useState(false);
   const [selectedMarketingVersion, setSelectedMarketingVersion] = useState("마케팅 활용 동의 v 1.0");
   const [marketingVersionListOpen, setMarketingVersionListOpen] = useState(false);
@@ -21,6 +22,8 @@ const MyPageAccount = () => {
   const formattedPhone = loginMember?.memberPhone
     ? `${loginMember.memberPhone.substring(0, 3)}-${loginMember.memberPhone.substring(3, 7)}-${loginMember.memberPhone.substring(7)}`
     : "";
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     sessionStorage.setItem("utilFunction", utilFunction);
@@ -76,6 +79,12 @@ const MyPageAccount = () => {
     setUtilFunction("");
   };
 
+  const logout = () => {
+    navigate("/");
+    setLoginMember(null);
+    localStorage.removeItem("loginMember");
+  }
+
   if (!loginMember) {
     return;
   }
@@ -97,7 +106,7 @@ const MyPageAccount = () => {
               </p>
             </div>
             <div className="member-mypage-content">
-              <button className="logout-btn">로그아웃</button>
+              <button type="button" className="logout-btn" onClick={logout}>로그아웃</button>
               <ul className="user-profile-list">
                 <li className="user-profile-item">
                   <span className="profile-label">이름</span>
