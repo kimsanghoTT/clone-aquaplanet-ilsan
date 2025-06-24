@@ -244,8 +244,10 @@
 .ilsan-logo img {
   width: 100%;
   display: block;
-  margin: auto;
+  margin: auto 0;
   height: 100%;
+  border: none;
+  
 }
 /** 내비게이션 **/
 .gnb {

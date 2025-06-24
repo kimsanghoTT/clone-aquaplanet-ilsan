@@ -108,6 +108,7 @@ const Main = () => {
         //페이지 로딩이 끝날 때 마우스 휠을 이벤트 동작 대상에서 제거해 메모리 누수 방지
         return (() => {
             window.removeEventListener("wheel", mouseWheeling);
+            window.removeEventListener("wheel", footerScrollMoving);
             window.removeEventListener("keydown", ArrowMoving);
             window.removeEventListener("scroll", headerToBottom);
         })

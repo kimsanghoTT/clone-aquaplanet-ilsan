@@ -57,6 +57,11 @@ aside.active .top-btn {
   text-align: center;
   transition: filter 0.6s ease;
   box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 5px;
 }
 .event-btn-text-box span:first-child {
   display: inline-block;
