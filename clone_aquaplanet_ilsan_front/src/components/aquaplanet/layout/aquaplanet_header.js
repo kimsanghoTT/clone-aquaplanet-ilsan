@@ -2,20 +2,17 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "../../../css/aquaplanet/aquaplanet_header.css";
 import LoginContext from "../../LoginContext";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
-const AquaplanetHeader = () => {
+const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch }) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
-  const [locationSelectorOpen, setLocationSelectorOpen] = useState(false);
+  const [branchSelectorOpen, setBranchSelectorOpen] = useState(false);
   const [toggleBoxOpen, setToggleBoxOpen] = useState(false);
-  const location = ["여수", "제주", "일산", "광교"];
-  const [selectedLocation, setSelectedLocation] = useState({
-    여수: "selected",
-    제주: "selected",
-    일산: "selected",
-    광교: "selected",
-  });
+  const [branchSelectionState, setBranchSelectionState] = useState(selectedPreferredBranch);
+  const branch = ["여수", "제주", "일산", "광교"];
+
   const navigationList = {
-    "티켓 구매하기": "https://mall.aquaplanet.co.kr/index.do",
+    "티켓 구매하기": "/aquaplanet/mall",
     "나의 티켓 보기": "https://mall.aquaplanet.co.kr/mypage/ticket_list.do",
     "구매내역 보기": "https://mall.aquaplanet.co.kr/mypage/reservation_list.do",
     "나의 쿠폰함": "https://mall.aquaplanet.co.kr/mypage/coupon_list.do",
@@ -33,7 +30,8 @@ const AquaplanetHeader = () => {
   useEffect(() => {
     const clickOutside = (e) => {
       if (locationRef.current && !locationRef.current.contains(e.target)) {
-        setLocationSelectorOpen(false);
+        setBranchSelectorOpen(false);
+        setBranchSelectionState(selectedPreferredBranch);
       }
     };
 
@@ -41,22 +39,54 @@ const AquaplanetHeader = () => {
     return () => {
       document.removeEventListener("mousedown", clickOutside);
     };
-  }, []);
+  }, [selectedPreferredBranch]);
 
-  const locationSelector = () => {
-    setLocationSelectorOpen(true);
+  useEffect(() => {
+    const getPreferredBranches = async () => {
+      try{
+        const response = await axios.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
+        setSelectedPreferredBranch(response.data);
+        setBranchSelectionState(response.data);
+      }
+      catch{
+        console.log("선호지점 가져오기 오류");
+      }
+    }
+
+    if(loginMember){
+      getPreferredBranches();
+    }
+  },[loginMember, setSelectedPreferredBranch])
+
+  const branchSelector = () => {
+    setBranchSelectorOpen(true);
   };
 
-  const handleFilter = (location) => {
-    setSelectedLocation((prevFilter) => {
-      const transFilter = prevFilter[location] === "selected" ? "" : "selected";
-
-      return {
-        ...prevFilter,
-        [location]: transFilter,
-      };
-    });
+  const handleFilter = (branch) => {
+    setBranchSelectionState((before) => ({
+      ...before,
+      [branch]: !before[branch],
+    }));
   };
+
+  const applyFilter = () => {
+    const whenAllUnselected = Object.values(branchSelectionState).every(f => !f);
+
+    if(whenAllUnselected){
+      //reduce = 객체, 문자열, 배열 등을 압축하는 것. 여기선 하나의 가상 객체 생성을 위해 사용
+      const returnToAllSelected = branch.reduce((newVar, branch) => {
+        newVar[branch] = true;
+        return newVar;
+      },{})
+
+      setSelectedPreferredBranch(returnToAllSelected);
+    }
+    else{
+      setSelectedPreferredBranch(branchSelectionState);
+    }
+
+    setBranchSelectorOpen(false);
+  }
 
   const handleToggleBox = () => {
     setToggleBoxOpen(!toggleBoxOpen);
@@ -97,29 +127,29 @@ const AquaplanetHeader = () => {
 
           <div className="function-util">
             <div className="aquaplanet-location-selector">
-              <button type="button" onClick={locationSelector}>
+              <button type="button" onClick={branchSelector}>
                 <span>지역</span>
               </button>
               <div
                 ref={locationRef}
-                className={`aquaplanet-location-list ${locationSelectorOpen ? "on" : ""}`}
+                className={`aquaplanet-location-list ${branchSelectorOpen ? "on" : ""}`}
               >
                 <ul>
-                  {location.map((location, index) => (
+                  {branch.map((branch, index) => (
                     <li
                       key={index}
                       className={
-                        selectedLocation[location] === "selected"
+                        branchSelectionState[branch]
                           ? "selected"
                           : ""
                       }
-                      onClick={() => handleFilter(location)}
+                      onClick={() => handleFilter(branch)}
                     >
-                      {location}
+                      {branch}
                     </li>
                   ))}
                 </ul>
-                <button type="button">적용</button>
+                <button type="button" onClick={applyFilter}>적용</button>
               </div>
             </div>
             <a

@@ -31,7 +31,7 @@ const Footer = () => {
   };
 
   return (
-    <footer>
+    <footer className="ilsan-footer">
       <div className="footer-inner">
         <div className="footer-menu-list">
           <dl className="footer-menu-item">

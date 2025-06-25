@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import Main from "./main/ilsan_main_fullpage";
 import IlsanHeader from "./layout/ilsan_header";
 import AsideBar from "./layout/aside";
-import Footer from "./layout/footer";
+import Footer from "./layout/ilsan_footer";
 
 const IlsanWrapper = () => {
   return (

@@ -1,0 +1,156 @@
+.aquaplanet-footer {
+  width: 100%;
+  padding: 7px 60px 34px;
+  background-color: #fff;
+  border-top: 1px solid #f5f6f9;
+  display: flex;
+  flex-wrap: wrap;
+}
+.aquaplanet-footer * {
+  white-space: nowrap;
+}
+.aquaplanet-footer .footer-column {
+  padding-top: 20px;
+}
+.aquaplanet-footer .footer-column:first-child {
+  margin-right: 44px;
+}
+.aquaplanet-footer .footer-column:last-child {
+  flex: 1;
+}
+.aquaplanet-footer .footer-column .footer-crumbs {
+  display: flex;
+  width: 100%;
+}
+.aquaplanet-footer .footer-column .footer-crumbs li a {
+  color: #222;
+  font-size: 14px;
+  flex-shrink: 0;
+}
+.aquaplanet-footer .footer-column .footer-crumbs li a::before {
+  display: inline-block;
+  content: "·";
+  color: #222;
+  font-size: 14px;
+  margin: 0 3px 0 4px;
+  padding: 0;
+  text-align: center;
+}
+.aquaplanet-footer .footer-column .footer-crumbs li:first-child a::before {
+  content: none;
+  margin: 0;
+}
+.footer-company-info {
+  background: url("../../../public/img/aquaplanet/logo_footer.png") no-repeat
+    left top;
+  margin-top: 24px;
+  padding-top: 70px;
+}
+.footer-company-info p {
+  color: #666666;
+  font-size: 12px;
+  line-height: 20px;
+  margin: 0;
+}
+.footer-company-info p:nth-of-type(3) span:last-child {
+  margin-left: 10px;
+}
+.footer-column .footer-company-info .copyright {
+  padding: 9px 0 0;
+  color: #b4b4b4;
+  font-size: 11px;
+}
+.footer-column .footer-cs-info {
+  display: flex;
+}
+.footer-column .footer-cs-info .cs-phone-number span {
+  display: block;
+  color: #222;
+}
+.footer-column .footer-cs-info .cs-phone-number span:last-of-type {
+  font-size: 27px;
+  margin-top: 4px;
+}
+.footer-column .footer-cs-info .cs-time {
+  margin-top: 12px;
+  margin-left: 34px;
+  color: #222;
+  line-height: 17px;
+}
+.aquaplanet-footer .aquaplaent-family-site-btn {
+  padding-top: 20px;
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 1;
+  position: relative;
+}
+.family-link-display {
+  display: inline-block;
+  border: 1px solid #dddddd;
+  border-radius: 3px;
+  color: #666666;
+  width: 232px;
+  line-height: 38px;
+  padding: 0 20px 0 14px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+}
+.family-link-display::after {
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.family-link-display.on::after {
+  transform: rotate(180deg);
+}
+.family-link-selector {
+  position: absolute;
+  width: 232px;
+  right: 0;
+  bottom: 40px;
+  background-color: #fff;
+  border: 1px solid #dddddd;
+  display: none;
+  z-index: 20;
+  max-height: 300px;
+  overflow-y: scroll;
+}
+.family-link-selector.on {
+  display: block;
+}
+.family-link-item {
+  width: 100%;
+  height: 100%;
+  line-height: 24px;
+  font-size: 12px;
+  padding: 3px 1em 3px 0.4em;
+  color: #666666;
+  cursor: pointer;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+}
+.family-link-item:first-child{
+    color:#b4b4b4;
+    pointer-events: none;
+}
+.family-link-item.selected {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.family-link-item:hover{
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}

@@ -1,0 +1,61 @@
+.aquaplanet-item-detail-wrapper{
+    width: 100%;
+    height: calc(100vh - 80px);
+    display: flex;
+    overflow: hidden;
+}
+.item-detail-default-grid-left{
+    width: 50%;
+    height: 100%;
+}
+.item-detail-default-grid-right{
+    width: 50%;
+    height: 100%;
+}
+.item-detail-container{
+    display: block;
+    padding-top: 120px;
+    margin: 0 auto;
+    min-height: calc(100% - 80px);
+    box-sizing: border-box;
+    text-align: center;
+}
+.item-first-order-form{
+    display: inline-block;
+    text-align: left;
+}
+
+.item-detail-footer{
+    display: flex;
+    height: 80px;
+    align-items: center;
+}
+.item-detail-footer span:first-child{
+    width: 180px;
+    text-align: center;
+    font-size: 16px;
+}
+.item-detail-footer span:nth-child(2){
+padding: 0 6px;
+border: 1px solid #222;
+border-radius: 15px;
+line-height: 18px;
+margin-right: 20px;
+}
+.item-detail-footer span:nth-child(3){
+    flex: 1;
+    font-size: 16px;
+    color: #656565;
+    cursor: pointer;
+}
+.item-detail-footer span:last-child{
+    width: 160px;
+    text-align: center;
+    font-size: 16px;
+    color: #656565;
+    cursor: pointer;
+}
+.item-detail-footer span:nth-child(3):hover,
+.item-detail-footer span:last-child:hover{
+    color: #222;
+}

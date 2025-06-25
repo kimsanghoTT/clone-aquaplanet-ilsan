@@ -1,0 +1,238 @@
+[
+    {
+        "id":"ilsan-01",
+        "image":"../../../img/aquaplanet/main01.png",
+        "branch":"일산",
+        "ticketTitle":"일산 입장권(~6/30)",
+        "description":"더아쿠아+더정글+스카이팜+다흑 특별 전시",
+        "price":"25,000",
+        "canceledPrice":"39,000",
+        "discount":"36%",
+        "available":"1시간 뒤 사용가능",
+        "details": [
+            {
+                "name": "더아쿠아+더정글+스카이팜+다흑 특별 전시",
+                "price": "25,000"
+            },
+            {
+                "name": "스탬프 50% 할인쿠폰 전용 상품(+14,000원)",
+                "price": "39,000",
+                "dependsOn": 0
+            }
+        ]
+    },
+    {
+        "id":"jeju-01",
+        "image":"../../../img/aquaplanet/main02.png",
+        "branch":"제주",
+        "ticketTitle":"제주 입장권(~06/30)",
+        "description":"아쿠아리움 + 오션아레나 + 해녀 특별 전시",
+        "price":"36,900",
+        "canceledPrice":"44,600",
+        "discount":"17%",
+        "available":"",
+        "details": [
+            {
+                "name": "아쿠아리움 + 오션아레나 + 해녀 특별 전시",
+                "price": "36,900"
+            },
+            {
+                "name": "스탬프 50% 할인쿠폰 전용 상품(+7,700원)",
+                "price": "44,600",
+                "dependsOn": 0
+            }
+        ]
+    },
+    {
+        "id":"yeosu-01",
+        "image":"../../../img/aquaplanet/main03.png",
+        "branch":"여수",
+        "ticketTitle":"여수 종합권 (~06/30)",
+        "description":"아쿠아리움 + 헬가 스텐첼 전시 + 5D 영상관",
+        "price":"33,000",
+        "canceledPrice":"39,900",
+        "discount":"17%",
+        "available":"1일 뒤 사용가능",
+        "details": [
+            {
+                "name": "여수_종합권(대소공통)",
+                "price": "33,000"
+            },
+            {
+                "name": "스탬프 50% 할인쿠폰 전용 상품(+6,900원)",
+                "price": "39,900",
+                "dependsOn": 0
+            }
+        ]
+    },
+    {
+        "id":"yeosu-02",
+        "image":"../../../img/aquaplanet/main04.png",
+        "branch":"여수",
+        "ticketTitle":"여수 입장권(~06/30)",
+        "description":"아쿠아리움 + 헬가 스텐첼 전시",
+        "price":"30,000",
+        "canceledPrice":"36,400",
+        "discount":"18%",
+        "available":"1일 뒤 사용가능",
+        "details": [
+            {
+                "name": "여수_종합권(대소공통)",
+                "price": "30,000"
+            }
+        ]
+    },
+    {
+        "id":"gwanggyo-01",
+        "image":"../../../img/aquaplanet/main05.png",
+        "branch":"광교",
+        "ticketTitle":"광교 입장권 (~06/30)",
+        "description":"아쿠아리움 입장권",
+        "price":"24,000",
+        "canceledPrice":"30,000",
+        "discount":"20%",
+        "available":"1시간 뒤 사용가능",
+        "details": [
+            {
+                "name": "광교 종합권",
+                "price": "24,000"
+            }
+        ]
+    },
+    {
+        "id":"ilsan-02",
+        "image":"../../../img/aquaplanet/main06.png",
+        "branch":"일산",
+        "ticketTitle":"일산 연간 다인권 (4인)",
+        "description":"구매 후 현장 등록일로부터 1년간 이용가능 / 구매방법 확인 必",
+        "price":"97,500",
+        "canceledPrice":"130,000",
+        "discount":"25%",
+        "available":"",
+        "details": [
+            {
+                "name": "연간 입장권 _ 4인(A)",
+                "price": "97,500"
+            },
+            {
+                "name": "연간 입장권 _ 4인(B)",
+                "price": "97,500"
+            },
+            {
+                "name": "연간 입장권 _ 4인(C)",
+                "price": "97,500"
+            },
+            {
+                "name": "연간 입장권 _ 4인(D)",
+                "price": "97,500"
+            }
+        ]
+    },
+    {
+        "id":"ilsan-03",
+        "image":"../../../img/aquaplanet/main07.png",
+        "branch":"일산",
+        "ticketTitle":"일산 연간 다인권 (3인)",
+        "description":"구매 후 현장 등록일로부터 1년간 이용가능 / 구매방법 확인 必",
+        "price":"100,000",
+        "canceledPrice":"130,000",
+        "discount":"23%",
+        "available":"",
+        "details": [
+            {
+                "name": "연간 입장권 _ 3인(A)",
+                "price": "100,000"
+            },
+            {
+                "name": "연간 입장권 _ 3인(B)",
+                "price": "100,000"
+            },
+            {
+                "name": "연간 입장권 _ 3인(C)",
+                "price": "100,000"
+            }
+        ]
+    },
+    {
+        "id":"ilsan-04",
+        "image":"../../../img/aquaplanet/main08.png",
+        "branch":"일산",
+        "ticketTitle":"일산 연간 다인권 (2인)",
+        "description":"구매 후 현장 등록일로부터 1년간 이용가능 / 구매방법 확인 必",
+        "price":"110,000",
+        "canceledPrice":"130,000",
+        "discount":"15%",
+        "available":"",
+        "details": [
+            {
+                "name": "연간 입장권 _ 2인(A)",
+                "price": "110,000"
+            },
+            {
+                "name": "연간 입장권 _ 2인(B)",
+                "price": "110,000"
+            }
+        ]
+    },
+    {
+        "id":"ilsan-05",
+        "image":"../../../img/aquaplanet/main09.png",
+        "branch":"일산",
+        "ticketTitle":"일산 연간 다인권 (1인)",
+        "description":"구매 후 현장 등록일로부터 1년간 이용가능",
+        "price":"130,000",
+        "canceledPrice":"",
+        "discount":"",
+        "available":"",
+        "details": [
+            {
+                "name": "연간 입장권 _ 1인",
+                "price": "130,000"
+            }
+        ]
+    },
+    {
+        "id":"gwanggyo-02",
+        "image":"../../../img/aquaplanet/main10.png",
+        "branch":"광교",
+        "ticketTitle":"광교 연간 다인권 (신규고객)",
+        "description":"아쿠아리움 연간이용권 (신규고객)",
+        "price":"150,000",
+        "canceledPrice":"",
+        "discount":"",
+        "available":"",
+        "details": [
+            {
+                "name": "연간권 _ 실버(신규)",
+                "price": "150,000"
+            },
+            {
+                "name": "연간권 _ 골드(신규)(+50,000원)",
+                "price": "200,000",
+                "dependsOn": 0
+            }
+        ]
+    },
+    {
+        "id":"gwanggyo-03",
+        "image":"../../../img/aquaplanet/main11.png",
+        "branch":"광교",
+        "ticketTitle":"광교 연간 다인권 (갱신고객)",
+        "description":"아쿠아리움 연간이용권 (갱신고객)",
+        "price":"110,000",
+        "canceledPrice":"150,000",
+        "discount":"27%",
+        "available":"",
+        "details": [
+            {
+                "name": "연간권 _ 실버('23년 갱신)",
+                "price": "110,000"
+            },
+            {
+                "name": "연간권 _ 골드('23년 갱신)(+40,000원)",
+                "price": "150,000",
+                "dependsOn": 0
+            }
+        ]
+    }
+]

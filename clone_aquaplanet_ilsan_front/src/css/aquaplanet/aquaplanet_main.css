@@ -1,12 +1,14 @@
 /* 공통 */
 .aquaplanet-default-wrapper{
     display: flex;
+    max-height: calc(100vh - 80px);
 }
 .aquaplanet-grid-default-left{
     width: 620px;
     display: flex;
     flex-direction: column;
     max-height: calc(100vh - 80px);
+    flex-shrink: 0;
 }
 .aquaplanet-grid-default-left-slide{
     overflow-y: hidden;
@@ -17,7 +19,7 @@
 .event-area-notice-link{
     background-color: #03021E;
     width: 100%;
-    height: 60px;
+    height: 70px;
     margin: 0;
     border-top: 1px solid #ddd;
     color: #fff;
@@ -41,9 +43,123 @@
     color: #fff;
 }
 
+/*메인 몰 오른쪽*/
 .aquaplanet-grid-default-right{
     background-color: #F5F6F9;
     flex: 1;
     flex-basis: 50%;
+    overflow-y: auto;
 }
-
+.aquaplanet-board-item-list{
+    margin-top: 30px;
+    padding: 0 0 30px 50px;
+}
+.aquaplanet-board-item{
+    display: inline-block;
+    width: 380px;
+    height: 483px;
+    overflow: hidden;
+    border-radius: 15px;
+    background-color: #fff;
+    position: relative;
+    margin: 10px;
+}
+.aquaplanet-board-item a{
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+}
+.aquaplanet-board-item figure{
+    width: 100%;
+    height: 280px;
+    position: relative;
+    margin: 0;
+}
+.aquaplanet-board-item figure .branch-tag{
+    position: absolute;
+    left: 15px;
+    top: 15px;
+    display: inline-block;
+    text-align: center;
+    min-width: 36px;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+}
+.aquaplanet-board-item figure img{
+    width: 100%;
+    min-height: 100%;
+}
+.aquaplanet-board-item-info{
+    width: 100%;
+    height: 162px;
+    box-sizing: border-box;
+    padding: 22px 30px 0;
+    position: relative;
+}
+.aquaplanet-board-item-info .title{
+    font-size: 16px;
+    color: #222;
+    line-height: 21px;
+    font-weight: 500;
+    margin: 0;
+}
+.aquaplanet-board-item-info .description{
+    margin: 0;
+    color: #b4b4b4;
+    font-size: 12px;
+    line-height: 19px;
+    padding-right: 70px;
+    margin: 7px 0 22px 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.aquaplanet-board-item-info .price{
+    margin: 0;
+    line-height: 32px;
+    font-weight: 900;
+    font-size: 24px;
+    color: #222;
+}
+.aquaplanet-board-item-info .canceled-price em,
+.aquaplanet-board-item-info .price em{
+    font-style: normal;
+}
+.aquaplanet-board-item-info .canceled-price{
+    line-height: 16px;
+    color: #b4b4b4;
+    font-size: 12px;
+    font-weight: 900;
+    text-decoration: line-through;
+}
+.aquaplanet-board-item-info .discount{
+    position: absolute;
+    background-color: #ff6600;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: 900;
+    color: #fff;
+    text-align: center;
+    line-height: 60px;
+    right: 30px;
+    bottom: 24px;
+}
+.aquaplanet-board-item .available{
+    position: absolute;
+    left: 20px;
+    right: 20px;
+    bottom: 0;
+    box-sizing: border-box;
+    height: 40px;
+    padding: 10px 10px 0;
+    line-height: 18px;
+    border-top: 1px solid #dddddd;
+    font-size: 14px;
+    color: #2771f1;
+}

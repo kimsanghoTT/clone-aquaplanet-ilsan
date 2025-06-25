@@ -29,7 +29,7 @@ const MyPage = () => {
         setSelectedPreferredBranch(response.data);
       }
       catch{
-        alert("실패");
+        console.log("선호지점 가져오기 오류");
       }
     }
 
