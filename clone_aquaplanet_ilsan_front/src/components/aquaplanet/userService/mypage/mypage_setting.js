@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from "react";
 import "../../../../css/aquaplanet/mypage.css";
 import LoginContext from "../../../LoginContext";
-import axios from "axios";
 import TermsDetail from "../terms_detail";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../axiosIntercepting";
 
 const MyPage = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -25,7 +25,7 @@ const MyPage = () => {
   useEffect(() => {
     const getPreferredBranches = async () => {
       try{
-        const response = await axios.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
+        const response = await axiosInstance.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
         setSelectedPreferredBranch(response.data);
       }
       catch{
@@ -61,7 +61,7 @@ const MyPage = () => {
     const selectedBranchString = sortSelected.join(",");
 
     try{
-      await axios.post("/aquaplanet/mypage/updatePreferredBranch",{
+      await axiosInstance.post("/aquaplanet/mypage/updatePreferredBranch",{
         memberEmail: loginMember.memberEmail,
         preferredBranch: selectedBranchString
       })

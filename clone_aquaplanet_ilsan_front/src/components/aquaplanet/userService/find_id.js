@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useState } from "react";
 import "../../../css/aquaplanet/login_modals.css";
+import axiosInstance from "../../axiosIntercepting";
 
 const FindIdModal = ({ onClose, switchToPw }) => {
   const [step, setStep] = useState(1);
@@ -10,7 +10,10 @@ const FindIdModal = ({ onClose, switchToPw }) => {
     memberPhone: "",
     memberEmail:""
   });
-
+  const msg = {
+    NOT_FOUND: "일치하는 회원 정보를 찾을 수 없습니다.",
+    UNKNOWN_ERR: "알 수 없는 오류가 발생했습니다. 다시 시도해 주세요.",
+  };
   const insertData = (e) => {
     const { name, value } = e.target;
 
@@ -23,25 +26,23 @@ const FindIdModal = ({ onClose, switchToPw }) => {
   const searchId = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post("/aquaplanet/login/find/id", {
+      const response = await axiosInstance.post("/aquaplanet/login/find/id", {
         memberName: member.memberName,
         memberPhone: member.memberPhone,
-        memberEmail: member.memberEmail
       });
 
-      console.log(response.data);
       if (response.data.result === "FOUND") {
         setUserId(response.data.memberEmail);
         setStep(2);
       } else if (response.data.result === "NOT_FOUND") {
-        alert("일치하는 회원 정보를 찾을 수 없습니다.");
+        alert(msg.NOT_FOUND);
         return;
       } else {
-        alert("일치하는 회원 정보를 찾을 수 없습니다.");
+        alert(msg.UNKNOWN_ERR);
         return;
       }
     } catch {
-      alert("에러 발생");
+      alert(msg.UNKNOWN_ERR);
       return;
     }
   };

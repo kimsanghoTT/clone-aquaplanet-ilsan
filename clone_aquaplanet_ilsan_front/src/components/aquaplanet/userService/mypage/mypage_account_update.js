@@ -2,9 +2,9 @@ import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import cityData from "../city_district.json";
 import "../../../../css/aquaplanet/mypage_account.css";
 import LoginContext from "../../../LoginContext";
-import axios from "axios";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../axiosIntercepting";
 moment.locale("ko");
 
 const msg = {
@@ -124,7 +124,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
     }
 
     try {
-      const response = await axios.post("/aquaplanet/login/find/updatePw", {
+      const response = await axiosInstance.post("/aquaplanet/login/find/updatePw", {
         memberEmail: loginMember.memberEmail,
         memberPw: modifyPw,
       });
@@ -139,11 +139,11 @@ const AccountUpdate = ({ utilType, onCancel }) => {
         alert(msg.USED_PW);
         return;
       } else {
-        alert(msg.UNKNOWN_ERR);
+        alert(msg.GENERIC_ERROR);
         return;
       }
     } catch {
-      alert(msg.UNKNOWN_ERR);
+      alert(msg.GENERIC_ERROR);
       return;
     }
   };
@@ -211,13 +211,8 @@ const AccountUpdate = ({ utilType, onCancel }) => {
   }
 
   const completeModifyProfile = (e) => {
-    if(e === 1){
-     setModifyStep("complete");
-    }
-    if(e === 2){
       setModifyStep(null);
       onCancel();
-    }
   }
 
   const submitModifyProfile = async (e) => {
@@ -241,7 +236,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
     }
     
     try {
-      const response = await axios.post("/aquaplanet/mypage/modifyProfile", modifyProfile);
+      const response = await axiosInstance.post("/aquaplanet/mypage/modifyProfile", modifyProfile);
       if(response.status === 200){
         setLoginMember({
           ...loginMember,
@@ -252,6 +247,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
           memberRegionCity: modifyProfile.memberRegionCity,
           memberRegionDistrict: modifyProfile.memberRegionDistrict
         })
+        setModifyStep("complete");
       }
     } catch {
       alert(msg.GENERIC_ERROR);
@@ -271,11 +267,13 @@ const AccountUpdate = ({ utilType, onCancel }) => {
     }
 
     try{
-      const validationResponse = await axios.post("/aquaplanet/mypage/checkPassword",
+      const validationResponse = await axiosInstance.post("/aquaplanet/mypage/checkPassword",
       {
         memberNo:loginMember.memberNo,
         inputPw:exitCheckPw
       });
+
+      console.log("비밀번호 확인", validationResponse);
 
       if(validationResponse.data.result === "invalidated"){
         alert(msg.PW_CONFIRM);
@@ -287,8 +285,8 @@ const AccountUpdate = ({ utilType, onCancel }) => {
         return;
       }
 
-      const deleteResponse = await axios.delete(`/aquaplanet/mypage/deleteAccount/${loginMember.memberNo}`);
-      
+      const deleteResponse = await axiosInstance.delete(`/aquaplanet/mypage/deleteAccount/${loginMember.memberNo}`);
+      console.log("삭제 응답 확인", deleteResponse);
       if(deleteResponse.status === 200){
         setNoticeExitModal(!noticeExitModal);
       }
@@ -296,9 +294,10 @@ const AccountUpdate = ({ utilType, onCancel }) => {
         alert(msg.GENERIC_ERROR);
       }
     }
-    catch{
-      alert(msg.GENERIC_ERROR);
-      return;
+    catch (error) { // 에러 객체 받기
+    console.error("Error during delete operation:", error); // 에러 로그 출력
+    alert(msg.GENERIC_ERROR);
+    return;
     }
   }
 
@@ -387,6 +386,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                     id="memberName"
                     value={modifyProfile.memberName}
                     onChange={handleProfile}
+                    required
                   />
                 </div>
                 <div className="modify-form-content">
@@ -397,6 +397,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                     value={modifyProfile.memberPhone}
                     onChange={handleProfile}
                     placeholder="'-'빼고 입력"
+                    required
                   />
                 </div>
                 <div className="modify-form-content">
@@ -525,7 +526,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                 </div>
               </div>
               <div className="mypage-modify-btn-area">
-                <button onClick={() => completeModifyProfile(1)}>변경내용 저장</button>
+                <button>변경내용 저장</button>
                 <button type="button" onClick={onCancel}>
                   취소
                 </button>
@@ -537,7 +538,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                 <button
                   className="modal-close-btn"
                   type="button"
-                  onClick={() => completeModifyProfile(2)}
+                  onClick={completeModifyProfile}
                 ></button>
                   <div className="result-form">
                     <div className="form-content">
@@ -551,7 +552,7 @@ const AccountUpdate = ({ utilType, onCancel }) => {
                     </div>
                     <div className="modal-button-list">
                       <button type="button" 
-                      onClick={() => completeModifyProfile(2)} 
+                      onClick={completeModifyProfile} 
                       style={{backgroundColor: "#2771f1", color: "#fff", width: "100%"}}>
                         확인
                       </button>

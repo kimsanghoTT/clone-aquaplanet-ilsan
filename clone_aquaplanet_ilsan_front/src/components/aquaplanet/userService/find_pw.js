@@ -1,6 +1,6 @@
-import axios from "axios";
 import React, { useMemo, useState } from "react";
 import "../../../css/aquaplanet/login_modals.css";
+import axiosInstance from "../../axiosIntercepting";
 
 const FindPwModal = ({ onClose }) => {
   const [step, setStep] = useState(1);
@@ -8,9 +8,7 @@ const FindPwModal = ({ onClose }) => {
   const [newPw, setNewPw] = useState("");
   const [newPwDoubleCheck, setNewPwDoubleCheck] = useState("");
   const [pwVision, setPwVision] = useState(false);
-  const [member, setMember] = useState({
-    memberEmail: "",
-  });
+  const [member, setMember] = useState({memberEmail: "",});
   const msg = {
     SEND_AUTHCODE: "이메일로 인증번호가 발송되었습니다.",
     NOT_FOUND: "입력하신 이메일과 일치하는 회원 정보를 찾을 수 없습니다.",
@@ -43,7 +41,7 @@ const FindPwModal = ({ onClose }) => {
     e.preventDefault();
     console.log(member);
     try {
-      const response = await axios.post("/aquaplanet/login/find/requestCode", {
+      const response = await axiosInstance.post("/aquaplanet/login/find/requestCode", {
         memberEmail: member.memberEmail,
       });
 
@@ -64,7 +62,7 @@ const FindPwModal = ({ onClose }) => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/aquaplanet/login/find/verifyCode", {
+      const response = await axiosInstance.post("/aquaplanet/login/find/verifyCode", {
         memberEmail: member.memberEmail,
         authCode: authCode,
       });
@@ -89,17 +87,13 @@ const FindPwModal = ({ onClose }) => {
       alert(msg.PW_FORMAT);
       return;
     }
-    if (newPw === "") {
-      alert(msg.PW_FORMAT);
-      return;
-    }
     if (newPw !== newPwDoubleCheck) {
       alert(msg.PW_CONFIRM);
       return;
     }
 
     try {
-      const response = await axios.post("/aquaplanet/login/find/updatePw", {
+      const response = await axiosInstance.post("/aquaplanet/login/find/updatePw", {
         memberEmail: member.memberEmail,
         memberPw: newPw,
       });

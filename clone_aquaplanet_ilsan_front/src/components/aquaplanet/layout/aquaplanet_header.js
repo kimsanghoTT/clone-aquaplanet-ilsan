@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "../../../css/aquaplanet/aquaplanet_header.css";
 import LoginContext from "../../LoginContext";
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+import axiosInstance from "../../axiosIntercepting";
 
 const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch }) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -44,7 +44,7 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
   useEffect(() => {
     const getPreferredBranches = async () => {
       try{
-        const response = await axios.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
+        const response = await axiosInstance.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
         setSelectedPreferredBranch(response.data);
         setBranchSelectionState(response.data);
       }
@@ -99,7 +99,7 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
   const logout = () => {
     setLoginMember(null);
     localStorage.removeItem("loginMember");
-    window.location.reload();
+    navigate("/aquaplanet/mall")
   }
 
   return (

@@ -1,9 +1,9 @@
-import axios from "axios";
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import cityData from "./city_district.json";
 import "../../../css/aquaplanet/signup.css";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../axiosIntercepting";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -146,7 +146,7 @@ const Signup = () => {
       return;
     }
 
-    const response = await axios.get("/aquaplanet/duplicate", {
+    const response = await axiosInstance.get("/aquaplanet/duplicate", {
       params: {
         memberEmail: member.memberEmail,
       },
@@ -315,7 +315,7 @@ const Signup = () => {
     }
 
     try {
-      const response = await axios.post("/aquaplanet/signup", finalData);
+      const response = await axiosInstance.post("/aquaplanet/signup", finalData);
       if(response.status === 200){
       alert("회원가입이 완료되었습니다. 로그인 후 이용할 수 있습니다.");
       navigate("/aquaplanet/member/login");

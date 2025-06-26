@@ -1,10 +1,10 @@
 import React, { useContext, useState } from "react";
 import "../../../css/aquaplanet/login.css";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import FindIdModal from "./find_id";
 import FindPwModal from "./find_pw";
 import LoginContext from "../../LoginContext";
+import axiosInstance from "../../axiosIntercepting";
 
 const Login = () => {
   const {setLoginMember} = useContext(LoginContext);
@@ -32,7 +32,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post("/aquaplanet/login", member);
+      const response = await axiosInstance.post("/aquaplanet/login", member);
 
       if (response.data && response.data.result) {
         setLoginMember(response.data.loginMember);

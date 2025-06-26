@@ -340,10 +340,10 @@ const IlsanHeader = () => {
                 ) : (
                   <>
                     <a href="/aquaplanet/member/login">
-                      <span className="text-join">Log In</span>
+                      <span className="text-join" target="_blank">Log In</span>
                     </a>
                     <a href="/aquaplanet/member/signup">
-                      <span className="text-join">회원가입</span>
+                      <span className="text-join" target="_blank">회원가입</span>
                     </a>
                   </>
                 )}

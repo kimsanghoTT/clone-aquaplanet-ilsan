@@ -2,13 +2,17 @@ import React, { useContext, useState } from "react";
 import LoginContext from "../../../LoginContext";
 import { useNavigate } from "react-router-dom";
 import '../../../../css/aquaplanet/mypage_account.css';
-import axios from "axios";
+import axiosInstance from "../../../axiosIntercepting";
 
 const AccountCertification = () => {
   const { loginMember } = useContext(LoginContext);
   const [pwVision, setPwVision] = useState(false);
   const [inputPw, setInputPw] = useState("");
   const navigate = useNavigate();
+  const msg = {
+    INVALID1: "비밀번호가 일치하지 않습니다.",
+    INVALID2: "비밀번호를 정확히 입력해주세요"
+  }
 
   const pwVisionOn = () => {
     setPwVision(!pwVision);
@@ -18,7 +22,7 @@ const AccountCertification = () => {
     e.preventDefault();
 
     try{
-      const response = await axios.post("/aquaplanet/mypage/checkPassword",
+      const response = await axiosInstance.post("/aquaplanet/mypage/checkPassword",
         {
           memberNo:loginMember.memberNo,
           inputPw:inputPw
@@ -27,11 +31,11 @@ const AccountCertification = () => {
         navigate("/aquaplanet/member/mypage/updateUserInfo");
       }
       else{
-        alert("비밀번호가 일치하지 않습니다.");
+        alert(msg.INVALID1);
       }
     }
     catch{
-      alert("비밀번호를 정확히 입력해주세요");
+      alert(msg.INVALID2);
     }
 
   };
