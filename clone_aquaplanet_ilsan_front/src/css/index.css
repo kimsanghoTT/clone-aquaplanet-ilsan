@@ -19,3 +19,6 @@ ul{
   padding-inline-start: 0;
   margin: 0;
 }
+.blind{
+  display: none;
+}

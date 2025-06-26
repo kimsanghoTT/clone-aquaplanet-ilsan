@@ -59,3 +59,58 @@ margin-right: 20px;
 .item-detail-footer span:last-child:hover{
     color: #222;
 }
+
+.item-first-order-form form select {
+  display: none;
+}
+.item-detail-option-select .selected-option-display {
+  border: 1px solid #999;
+  color: #222222;
+  width: 180px;
+  box-sizing: border-box;
+  height: 50px;
+  line-height: 48px;
+  padding: 0 20px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+}
+.item-detail-option-select .selected-option-display::after {
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.item-detail-option-select .selected-option-display.on::after {
+  transform: rotate(180deg);
+}
+.item-detail-option-select .option-list {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 180px;
+  border: 1px solid #dddddd;
+  display: none;
+  z-index: 20;
+}
+.item-detail-option-select .option-list.on {
+  display: block;
+}
+.item-detail-option-select .item-option {
+  line-height: 24px;
+  font-size: 13px;
+  cursor: pointer;
+}
+.item-detail-option-select .item-option.selected {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}

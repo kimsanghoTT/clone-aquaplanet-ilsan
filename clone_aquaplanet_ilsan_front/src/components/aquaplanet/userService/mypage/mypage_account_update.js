@@ -293,11 +293,9 @@ const AccountUpdate = ({ utilType, onCancel }) => {
       else{
         alert(msg.GENERIC_ERROR);
       }
-    }
-    catch (error) { // 에러 객체 받기
-    console.error("Error during delete operation:", error); // 에러 로그 출력
-    alert(msg.GENERIC_ERROR);
-    return;
+    }catch(error){ 
+      alert(msg.GENERIC_ERROR);
+      return;
     }
   }
 
