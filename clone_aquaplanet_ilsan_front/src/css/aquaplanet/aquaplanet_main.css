@@ -48,6 +48,7 @@
     background-color: #F5F6F9;
     flex: 1;
     flex-basis: 50%;
+    overflow: hidden;
     overflow-y: auto;
 }
 .aquaplanet-board-item-list{

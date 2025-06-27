@@ -8,6 +8,7 @@ import MyPageAccount from "./userService/mypage/mypage_account";
 import AccountCertification from "./userService/mypage/mypage_certification";
 import MainMall from "./main_mall/aquaplanet_main";
 import AquaplanetItemDetail from "./main_mall/aquaplanet_item_detail";
+import AquaplanetReservation from "./main_mall/aquaplanet_reservation";
 
 const AquaplanetWrapper = () => {
     const [selectedPreferredBranch, setSelectedPreferredBranch] = useState({
@@ -31,6 +32,7 @@ const AquaplanetWrapper = () => {
             <Route path="/member/mypage/certification" element={<AccountCertification/>}/>
             <Route path="/mall" element={<MainMall selectedPreferredBranch={selectedPreferredBranch}/>}/>
             <Route path="/mall/item_detail/:id" element={<AquaplanetItemDetail />} />
+            <Route path="/mall/item_detail/:id/order/:memberNo" element={<AquaplanetReservation/>}/>
         </Routes>
         </>
     )

@@ -1,6 +1,7 @@
 @charset "utf-8";
 html, body {
-  font-family: NotoSans KR;
+  font-family: 'NotoSans KR';
+  font-weight: 400;
   color: #000;
   background-color: #fff;
   font-size: 12px;
@@ -14,9 +15,18 @@ body::-webkit-scrollbar {
 a{
   text-decoration: none;
 }
+p{
+  margin: 0;
+}
 ul{
   list-style: none;
   padding-inline-start: 0;
+  margin: 0;
+}
+em{
+  font-style: normal;
+}
+figure{
   margin: 0;
 }
 .blind{

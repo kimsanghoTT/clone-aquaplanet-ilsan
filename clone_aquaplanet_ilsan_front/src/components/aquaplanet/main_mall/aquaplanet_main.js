@@ -20,7 +20,7 @@ const MainMall = ({selectedPreferredBranch}) => {
         <div className="aquaplanet-grid-default-left-slide">
             <img
               src="../../../img/aquaplanet/db7d81e4-4dc6-4f5e-a356-8a071918ddc8.jpg"
-              alt="메인비주얼"
+              alt="main_visual"
             />
         </div>
         <div className="event-area-notice-link">
@@ -54,7 +54,12 @@ const MainMall = ({selectedPreferredBranch}) => {
                 </div>     
                 {cardData.available && (
                 <div className="available">
-                  <p>{cardData.available}</p>
+                  {cardData.available === "1hour" ? (
+                    <p>1시간 뒤 사용가능</p>
+                  ) : (
+                    <p>1일 뒤 사용가능</p>
+                  )
+                  }
                 </div>
                 )}   
               </Link>
