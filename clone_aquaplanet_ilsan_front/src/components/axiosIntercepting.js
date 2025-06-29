@@ -174,8 +174,5 @@ const axiosIntercepting = {
 };
 
 const useDemoMode = process.env.REACT_APP_DEMO_MODE === "true";
-const axiosInstance =
-  process.env.NODE_ENV === "development" && useDemoMode
-    ? axiosIntercepting
-    : axios;
+const axiosInstance = useDemoMode ? axiosIntercepting : axios;
 export default axiosInstance;

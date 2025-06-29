@@ -34,6 +34,8 @@ const Login = () => {
     try {
       const response = await axiosInstance.post("/aquaplanet/login", member);
 
+      console.log(response);
+
       if (response.data && response.data.result) {
         setLoginMember(response.data.loginMember);
         navigate(-1);

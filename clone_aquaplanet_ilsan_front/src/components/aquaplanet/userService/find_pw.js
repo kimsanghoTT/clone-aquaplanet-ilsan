@@ -39,7 +39,7 @@ const FindPwModal = ({ onClose }) => {
 
   const requestAuthCode = async (e) => {
     e.preventDefault();
-    console.log(member);
+    
     try {
       const response = await axiosInstance.post("/aquaplanet/login/find/requestCode", {
         memberEmail: member.memberEmail,

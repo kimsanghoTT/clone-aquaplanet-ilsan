@@ -4,7 +4,6 @@ import "../../../css/aquaplanet/aquaplanet_reservation.css";
 
 const AquaplanetReservation = () => {
   const { state } = useLocation();
-  console.log(state);
 
   return (
     <section className="aquaplanet-item-order-wrapper">
