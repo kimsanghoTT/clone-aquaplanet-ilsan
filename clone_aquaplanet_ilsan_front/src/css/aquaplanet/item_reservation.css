@@ -1,0 +1,50 @@
+.aquaplanet-item-order-wrapper {
+  width: 100%;
+  height: calc(100vh - 80px);
+  display: flex;
+  overflow: hidden;
+}
+.item-order-container {
+  padding: 120px 0 80px;
+  text-align: center;
+}
+.item-final-order-form {
+  width: 500px;
+  display: inline-block;
+  text-align: left;
+}
+
+/* 좌측 폼 */
+.item-order-default-grid-left {
+  width: 50%;
+  height: 100%;
+  min-width: 640px;
+  overflow-y: auto;
+}
+.bill-area-content .item .item-function button {
+  display: inline-block;
+  width: 21px;
+  height: 21px;
+  border: 1px solid #ddd;
+  border-radius: 50px;
+  background: no-repeat center;
+  cursor: pointer;
+}
+.bill-area-content .item .item-function button.minus {
+  background-image: url("../../../public/img/aquaplanet/ico_minus1.svg");
+}
+.bill-area-content .item .item-function button.plus {
+  background-image: url("../../../public/img/aquaplanet/ico_plus1.svg");
+}
+.bill-area-content .item .item-function button.cancel {
+  background: #222 url("../../../public/img/aquaplanet/ico_del1.svg") no-repeat
+    center;
+}
+
+/*우측 폼*/
+.item-order-default-grid-right {
+  width: 50%;
+  min-height: 100%;
+  background-color: #f5f6f9;
+  min-width: 640px;
+}

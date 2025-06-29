@@ -8,7 +8,7 @@ import MyPageAccount from "./userService/mypage/mypage_account";
 import AccountCertification from "./userService/mypage/mypage_certification";
 import MainMall from "./main_mall/aquaplanet_main";
 import AquaplanetItemDetail from "./main_mall/aquaplanet_item_detail";
-import AquaplanetReservation from "./main_mall/aquaplanet_reservation";
+import AquaplanetReservation from "./main_mall/aquaplanet_item_reservation";
 
 const AquaplanetWrapper = () => {
     const [selectedPreferredBranch, setSelectedPreferredBranch] = useState({

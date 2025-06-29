@@ -84,14 +84,25 @@ const AquaplanetItemDetail = () => {
 
   const handleQuantity = (btnType, item) => {
     if (btnType === "minus") {
-      setSelectedItemOption(prevOption => prevOption.map(option => {
-        if(option.option.name === item.option.name){
-          setQuantityExceedMsg(false);
-          const newQuantity = option.quantity > 1 ? option.quantity - 1 : 1;
-          return {...option, quantity: newQuantity};
+      setSelectedItemOption(prevOption => {
+        const substractOptionQuantity = prevOption.map(detail => {
+          if(detail.option.name === item.option.name){
+            const newQuantity = detail.quantity > 1 ? detail.quantity - 1 : 1;
+            return {...detail, quantity: newQuantity};
+          }
+          return detail
+        })
+
+        const totalQuantity = calcTotalTicketQuantity(substractOptionQuantity);
+        if(totalQuantity >= finalItem.maxQuantity){
+          setQuantityExceedMsg(true);
         }
-        return option
-      }))
+        else{
+          setQuantityExceedMsg(false);
+        }
+        return substractOptionQuantity;
+      })
+    
     }
     else if (btnType === "plus") {
       setSelectedItemOption(prevOption =>{
@@ -101,18 +112,15 @@ const AquaplanetItemDetail = () => {
           setQuantityExceedMsg(true);
           return prevOption;
         }
-
-        return prevOption.map(option => {
-          if(option.option.name === item.option.name){
-            const newQuantity = option.quantity < finalItem.maxQuantity ? option.quantity + 1 : 10;
-            return {...option, quantity: newQuantity};
-          }
-          return option
-        })
+        return prevOption.map(detail =>
+          detail.option.name === item.option.name ?
+          {...detail, quantity: detail.quantity + 1} :
+          detail
+        )
       })
     }
     else if (btnType === "cancel") {
-      setSelectedItemOption(prevOption => prevOption.filter(option => option.option.name !== item.option.name));
+      setSelectedItemOption(prevOption => prevOption.filter(detail => detail.option.name !== item.option.name));
       setQuantityExceedMsg(false);
     }
     else if(btnType === "init"){
@@ -142,9 +150,11 @@ const AquaplanetItemDetail = () => {
 
     navigate(
       `/aquaplanet/mall/item_detail/${finalItem.id}/order/${loginMember?.memberNo}`, 
-      {state:{baseData: finalItem, selectedOption:selectedItemOption, initTotalPrice:totalPrice}}
+      {state:{baseData: finalItem, selectedOption:selectedItemOption}}
     ); 
   }
+
+  console.log("선택 옵션" + selectedItemOption);
 
   return (
     <>
