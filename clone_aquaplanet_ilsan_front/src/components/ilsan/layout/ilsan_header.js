@@ -124,6 +124,10 @@ const IlsanHeader = () => {
     localStorage.removeItem("loginMember");
   }
 
+  if(!loginMember){
+    return;
+  }
+
   return (
     <header
       className="ilsan-header"
