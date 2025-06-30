@@ -154,8 +154,6 @@ const AquaplanetItemDetail = () => {
     ); 
   }
 
-  console.log("선택 옵션" + selectedItemOption);
-
   return (
     <>
       {finalItem ? (

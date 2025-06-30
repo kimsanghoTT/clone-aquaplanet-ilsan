@@ -19,9 +19,101 @@
   width: 50%;
   height: 100%;
   min-width: 640px;
-  overflow-y: auto;
 }
-.bill-area-content .item .item-function button {
+.item-final-order-form .order-area-title{
+  border-bottom: 1px solid #222;
+  position: relative;
+}
+.item-final-order-form .order-area-title span:first-child{
+  display: inline-block;
+  height: 78px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #222;
+}
+.item-final-order-form .order-area-title .warn-msg{
+  position: absolute;
+  right: 0;
+  color: #ff4d47;
+  line-height: 21px;
+  display: inline-block;
+  font-size: 16px;
+  top: 35px;
+}
+.item-final-order-form .order-area-content {
+  display: flex;
+  padding: 20px 0;
+  border-bottom: 1px solid #ddd;
+  justify-content: space-between;
+}
+.item-final-order-form .order-area-content figure{
+  display: inline-block;
+  overflow: hidden;
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background-color: #f4f0f0;
+  margin-top: 10px;
+}
+.item-final-order-form .order-area-content figure img{
+  width: 100%;
+}
+.order-area-content .item-list{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.order-area-content .item-list .quantity-message{
+  color: #ff4d47;
+  font-size: 15px;
+}
+.order-area-content .item{
+  display: flex;
+  align-items: center;
+  width: 390px;
+  min-height: 42px;
+}
+.order-area-content .item .item-label{
+    display: inline-block;
+    text-align: center;
+    min-width: 36px;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    margin-right: 8px;
+}
+.order-area-content .item .item-name{
+  flex: 1;
+  line-height: 21px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #222;
+  margin-right: 12px;
+}
+.order-area-content .item .item-function input{
+  border: none;
+  text-align: center;
+  width: 30px;
+  height: 21px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  vertical-align: top;
+}
+.order-area-content .item .item-price{
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+  width: 95px;
+  height: 21px;
+  line-height: 21px;
+  text-align: right;
+  margin-left: 5px;
+}
+.order-area-content .item .item-function button {
   display: inline-block;
   width: 21px;
   height: 21px;
@@ -30,15 +122,62 @@
   background: no-repeat center;
   cursor: pointer;
 }
-.bill-area-content .item .item-function button.minus {
+.order-area-content .item .item-function button.minus {
   background-image: url("../../../public/img/aquaplanet/ico_minus1.svg");
 }
-.bill-area-content .item .item-function button.plus {
+.order-area-content .item .item-function button.plus {
   background-image: url("../../../public/img/aquaplanet/ico_plus1.svg");
 }
-.bill-area-content .item .item-function button.cancel {
-  background: #222 url("../../../public/img/aquaplanet/ico_del1.svg") no-repeat
-    center;
+.item-final-order-form .order-area-total-price{
+  padding-top: 20px;
+}
+.order-area-total-price .calc-line{
+  display: flex;
+  justify-content: space-between;
+}
+.order-area-total-price .calc-line:nth-child(2){
+  margin-top: 10px;
+}
+.order-area-total-price .calc-line span:first-child{
+  font-size: 14px;
+  line-height: 26px;
+  color: #222;
+}
+.order-area-total-price .calc-line span:last-child{
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 26px;
+  color: #222;
+}
+.order-area-total-price .final-bill-line{
+  margin-top: 21px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.order-area-total-price .final-bill-line span:first-child{
+  font-size: 18px;
+  line-height: 34px;
+}
+.order-area-total-price .final-bill-line span:last-child{
+  font-size: 36px;
+  font-weight: 900;
+  color: #ff6600;
+  line-height: 48px;
+}
+.order-area-total-price .order-cancel{
+  margin-top: 20px;
+}
+.order-area-total-price .order-cancel button{
+  cursor: pointer;
+  width: 180px;
+  font-size: 18px;
+  line-height: 48px;
+  text-align: center;
+  border: 1px solid #999999;
+  color: #222222;
+  border-radius: 40px;
+  background-color: #fff;
 }
 
 /*우측 폼*/
@@ -47,4 +186,327 @@
   min-height: 100%;
   background-color: #f5f6f9;
   min-width: 640px;
+}
+.item-final-order-form .area-title{
+  display: flex;
+  justify-content: space-between;
+  line-height: 32px;
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  height: 54px;
+  border-bottom: 1px solid #999;
+}
+.item-final-order-form .pay-area-payment .area-title{
+  border: 0 none;
+  height: auto;
+}
+.item-final-order-form .area-content{
+  margin-top: 30px;
+}
+.item-final-order-form .pay-area-payment .area-content{
+  margin-top: 20px;
+}
+.pay-area-user-info .area-content dl{
+  display: flex;
+  justify-content: space-between;
+  margin: 0;
+}
+.pay-area-user-info .area-content dl:last-child{
+  margin-top: 15px;
+}
+.pay-area-user-info .area-content dt{
+  display: block;
+  line-height: 21px;
+  font-size: 14px;
+  color: #000;
+}
+.pay-area-user-info .area-content dd{
+  width: 340px;
+  font-weight: 500;
+  margin: 0;
+  display: block;
+  line-height: 21px;
+  font-size: 14px;
+  color: #000;
+}
+.item-final-order-form .pay-area-coupon{
+  margin-top: 60px;
+}
+.pay-area-coupon .area-title .btn-best-discount::before{
+  content: "";
+  display: inline-block;
+  vertical-align: middle;
+  border-radius: 100%;
+  overflow: hidden;
+  box-sizing: border-box;
+  border: 1px solid #dddddd;
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  margin-right: 8px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: 60%;
+  background-color: transparent;
+  background-image: url(../../../public/img/aquaplanet/ico_square1.svg);
+}
+.pay-area-coupon .area-title .btn-best-discount{
+  font-size: 14px;
+  color: #b4b4b4;
+  line-height: 54px;
+  cursor: pointer;
+  font-weight: 400;
+  transition: all 0.3s ease;
+}
+.pay-area-coupon .area-title .btn-best-discount.on::before{
+  background-color: #222;
+  background-size: 60%;
+  border: 0;
+  width: 20px;
+  height: 20px;
+  background-image: url(../../../public/img/aquaplanet/ico_square2.svg);
+  transition: all 0.6s ease;
+}
+.pay-area-coupon .area-title .btn-best-discount.on{
+  color: #000;
+}
+
+.pay-area-coupon .area-content {
+ display: flex;
+ justify-content: space-between;
+ align-items: end;
+}
+.pay-area-coupon .area-content button {
+  background-color: #2771f1;
+  color: #fff;
+  border-radius: 4px;
+  font-size: 14px;
+  line-height: 40px;
+  text-align: center;
+  padding: 0 20px;
+  width: 230px;
+  border: none;
+  cursor: pointer;
+}
+.pay-area-coupon .area-content .discounted-price{
+  width: 215px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 15px;
+  line-height: 20px;
+  color: #000;
+}
+
+.pay-area-coupon .area-content .discounted-price span:last-child{
+  font-weight: bold;
+}
+.item-final-order-form .pay-area-payment{
+  margin-top: 60px;
+}
+.item-final-order-form .pay-area-payment button{
+  width: 120px;
+  text-align: center;
+  height: 40px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: #fff;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  cursor: pointer;
+}
+.item-final-order-form .pay-area-payment button span{
+  display: inline-block;
+  line-height: 38px;
+  font-size: 14px;
+  color: #222;
+  padding-left: 25px;
+}
+.pay-area-payment button:first-child span{
+  background: url("../../../public/img/aquaplanet/item_detail/ico_card.png") no-repeat left center;
+  background-size: 20px 20px;
+}
+.pay-area-payment button:nth-child(2) span{
+  background: url("../../../public/img/aquaplanet/item_detail/ico_backTransfer.png") no-repeat left center;
+  background-size: 25px 25px;
+}
+.pay-area-payment button:nth-child(3) span{
+  background: url("../../../public/img/aquaplanet/item_detail/ico_phonePayment.png") no-repeat left center;
+  background-size: 20px 20px;
+}
+.pay-area-payment button:last-child span{
+  background: url("../../../public/img/aquaplanet/item_detail/ico_naverpay.png") no-repeat left center;
+  background-size: 15px 15px;
+}
+
+/* 쿠폰 모달*/
+.coupon-form .form-container{
+  padding: 30px 0 40px 0;
+}
+.coupon-form .form-container .form-title{
+  display: block;
+  padding: 0 26px;
+  color: #000;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 36px;
+  letter-spacing: -1;
+}
+.coupon-form .form-container .coupon-form-content{
+  margin-top: 17px;
+  padding: 0 26px;
+}
+.coupon-form-content .coupon-form-label{
+  display: flex;
+  align-items: center;
+}
+.coupon-form-content .coupon-form-label span:first-child{
+    display: inline-block;
+    text-align: center;
+    min-width: 36px;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
+    margin-right: 8px;
+}
+.coupon-form-content .coupon-form-label span:last-child{
+  display: inline-block;
+  line-height: 24px;
+  font-size: 18px;
+  font-weight: 500;
+  color: #222;
+}
+.coupon-form-content .coupon-select-area{
+  margin-top: 30px;
+  position: relative;
+}
+.coupon-select-area .discountable-item-name{
+  display: block;
+  line-height: 20px;
+  font-size: 14px;
+  color: #222;
+}
+.coupon-select-area .selected-coupon-display{
+  display: block;
+  border: 1px solid #dddddd;
+  color: #666666;
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+  line-height: 38px;
+  padding: 0 20px 0 14px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 3px;
+  margin-top: 6px;
+}
+.coupon-select-area .selected-coupon-display::after {
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.coupon-select-area .selected-coupon-display.on::after {
+  transform: rotate(180deg);
+}
+.coupon-select-area .coupon-list {
+  width: 348px;
+  position: absolute;
+  top: 60px;
+  right: 0;
+  border: 1px solid #dddddd;
+  background-color: #fff;
+  display: none;
+  z-index: 2000;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.coupon-select-area .coupon-list.on {
+  display: block;
+}
+.coupon-select-area .coupon {
+  line-height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px 1em 3px 0.4em;
+  border: 1px solid transparent;
+}
+.coupon-select-area .coupon:hover {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.coupon-select-area .calc-bill-table{
+  margin-top: 6px;
+  width: 100%;
+}
+.coupon-select-area .calc-bill-table caption{
+  display: none;
+}
+.coupon-select-area .calc-bill-table th{
+  color: #b4b4b4;
+  text-align: center;
+  font-size: 14px;
+  line-height: 30px;
+}
+.coupon-select-area .calc-bill-table td{
+  color: #222;
+  line-height: 30px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 8px;
+  padding-top: 8px;
+}
+.coupon-select-area .calc-bill-table td:nth-child(2){
+  color: #ff6600;
+}
+.coupon-select-area .calc-bill-table td:last-child{
+  font-weight: 700;
+}
+.coupon-form-content .coupon-sum-discount{
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #ddd;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+}
+.coupon-form-content .coupon-sum-discount span:first-child{
+  font-size: 16px;
+  font-weight: 500;
+  color: #222;
+}
+.coupon-form-content .coupon-sum-discount span:last-child{
+  font-size: 24px;
+  font-weight: 700;
+  color: #ff6600;
+}
+.coupon-form .modal-button-list button{
+  border: none;
+  line-height: 39px;
+  padding: 0;
+  font-size: 16px;
+  cursor: pointer;
+}
+.coupon-form .modal-button-list button:first-child{
+  flex: 6;
+  background-color: #2771f1;
+  color: #fff;
+}
+.coupon-form .modal-button-list button:last-child{
+  flex: 4;
+  color: #222;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
 }
