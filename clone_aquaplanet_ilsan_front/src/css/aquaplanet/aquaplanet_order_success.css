@@ -1,0 +1,175 @@
+.order-success-wrapper{
+    overflow-y: auto;
+    height: 100%;
+    padding: 50px 0;
+    background-color: #f5f6f9;
+}
+.order-success-container {
+    width: 500px;
+    margin: 0 auto;
+}
+.order-success-container h2{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 53px;
+    color: #222;
+}
+.order-success-content{
+    width: 100%;
+}
+.confirm-ticket-list{
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    align-items: center;
+    height: 269px;
+    padding: 0 150px 0 40px;
+    border-radius: 20px;
+    background-color: #fff;
+}
+.confirm-ticket-list::before{
+    content: "";
+    position: absolute;
+    left: 350px;
+    top: -20px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #F5F6F9;
+    z-index: 10;
+}
+.confirm-ticket-list::after{
+    top: auto;
+    bottom: -20px;
+    content: "";
+    position: absolute;
+    left: 350px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-radius: 100%;
+    background-color: #F5F6F9;
+    z-index: 10;
+}
+.confirm-ticket-list .confirm-ticket-type{
+    position: absolute;
+    display: flex;
+    width: 330px;
+    left: 20px;
+    top: 20px;
+    align-items: center;
+}
+.confirm-ticket-type span:first-child{
+    margin-right: 8px;
+}
+.confirm-ticket-type span:last-child{
+    flex: 1;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #222;
+}
+.confirm-ticket-list .confirm-ticket-info{
+    width: 100%;
+    display: flex;
+}
+.confirm-ticket-info .ticket-info-image{
+    width: 100px;
+    height: 100px;
+    border-radius: 100%;
+    background-color: #f4f0f0;
+    margin-right: 30px;
+    overflow: hidden;
+}
+.confirm-ticket-info .ticket-info-image img{
+    width: 100%;
+    height: 100%;
+}
+.confirm-ticket-list .ticket-info-description{
+    flex: 1;
+}
+.ticket-info-description span{
+    line-height: 32px;
+    font-size: 24px;
+    color: #222;
+    display: block;
+}
+.ticket-info-description span:last-child{
+    line-height: 21px;
+    margin-top: 4px;
+    font-size: 16px;
+    color: #b4b4b4;
+}
+.confirm-ticket-list .barcode{
+    position: absolute;
+    right: -139px;
+    bottom: -130px;
+    text-align: center;
+    padding-top: 38px;
+    width: 269px;
+    height: 130px;
+    transform: rotate(-90deg);
+    transform-origin: 0% 0%;
+}
+.confirm-ticket-list .barcode .line{
+    display: inline-block;
+    vertical-align: top;
+    width: 163px;
+    height: 40px;
+}
+.confirm-ticket-list .barcode .line svg{
+    width: 100%;
+    height: 100%;
+}
+.confirm-ticket-list .barcode .number{
+    display: inline-block;
+    vertical-align: top;
+    line-height: 19px;
+    margin-top: 12px;
+    font-size: 14px;
+    color: #222;
+}
+.order-success-btn-area{
+    margin-top: 25px;
+}
+.order-success-btn-area button,
+.error-get-info button{
+    width: 100%;
+    text-align: center;
+    display: block;
+    background-color: #fff;
+    border: 1px solid #999;
+    color: #222;
+    border-radius: 25px;
+    font-size: 18px;
+    line-height: 48px;
+    padding: 0 20px;
+    margin-bottom: 9px;
+    cursor: pointer;
+}
+
+/* 에러 화면 */
+.order-error-wrapper{
+    width: 100%;
+    height: calc(100vh - 80px);
+    background-color: #F5F6F9;
+    display: flex;
+}
+.error-get-info{
+    width: 500px;
+    height: 400px;
+    margin: auto;
+}
+.error-get-info h2{
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 53px;
+    color: #222;
+}
+.error-get-info p{
+    font-size: 16px;
+    line-height: 24px;
+    margin-bottom: 20px;
+}

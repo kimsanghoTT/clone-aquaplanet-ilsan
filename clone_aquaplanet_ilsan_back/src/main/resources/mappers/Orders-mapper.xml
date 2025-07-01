@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="aquaplanet_ilsan.mapper.OrderMapper">
+	<insert id="orderTicket" parameterType="aquaplanet_ilsan.dto.Orders" useGeneratedKeys="true" keyProperty="orderNo">
+		insert into Orders (memberNo, ticketId, ticketTitle, ticketBranch, finalTotalPrice, orderStatus, paymentMethod, orderDate)
+		values (#{memberNo}, #{ticketId}, #{ticketTitle}, #{ticketBranch}, #{finalTotalPrice}, #{orderStatus}, #{paymentMethod}, #{orderDate})
+	</insert>
+	<insert id="orderTicketDetail" parameterType="java.util.List">
+	    INSERT INTO OrderDetail (orderNo, optionId, optionName, totalPricePerOption, quantity, optionStatus, usedDate, barcodeNumber)
+	    VALUES
+	    <foreach collection="orderDetails" item="detail" separator=",">
+	        (#{detail.orderNo}, #{detail.optionId}, #{detail.optionName}, 
+	        #{detail.totalPricePerOption}, #{detail.quantity}, #{detail.optionStatus}, #{detail.usedDate}, #{detail.barcodeNumber})
+	    </foreach>
+	</insert>
+</mapper>

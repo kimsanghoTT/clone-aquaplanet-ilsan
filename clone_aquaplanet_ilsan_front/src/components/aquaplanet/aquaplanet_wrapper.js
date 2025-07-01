@@ -1,14 +1,17 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Signup from "./userService/signup";
-import AquaplanetHeader from "./layout/aquaplanet_header";
-import Login from "./userService/login";
-import MyPage from "./userService/mypage/mypage_setting";
-import MyPageAccount from "./userService/mypage/mypage_account";
-import AccountCertification from "./userService/mypage/mypage_certification";
+import AquaplanetHeader from "./layout/aquaplanet_header"
+import Signup from "./userService/aquaplaent_signup";
+import Login from "./userService/aquaplanet_login";
+import MyPage from "./userService/mypage/aquaplanet_mypage_setting";
+import MyPageAccount from "./userService/mypage/aquaplanet_mypage_account"
+import AccountCertification from "./userService/mypage/aquaplanet_mypage_certification";
 import MainMall from "./main_mall/aquaplanet_main";
-import AquaplanetItemDetail from "./main_mall/aquaplanet_item_detail";
+import AquaplanetItemDetail from "./main_mall/ticket_reservation/aquaplanet_item_detail";
 import AquaplanetReservation from "./main_mall/ticket_reservation/aquaplanet_item_reservation";
+import SuccessOrder from "./main_mall/ticket_reservation/aquaplanet_order_success";
+import MyTicketList from "./userService/aquaplanet_my_ticket";
+import MyPurchaseList from "./userService/aquaplanet_my_purchase_list";
 
 const AquaplanetWrapper = () => {
     const [selectedPreferredBranch, setSelectedPreferredBranch] = useState({
@@ -20,7 +23,7 @@ const AquaplanetWrapper = () => {
 
     return(
         <>
-        <AquaplanetHeader 
+        <AquaplanetHeader
         selectedPreferredBranch={selectedPreferredBranch} 
         setSelectedPreferredBranch={setSelectedPreferredBranch}
         />
@@ -33,6 +36,9 @@ const AquaplanetWrapper = () => {
             <Route path="/mall" element={<MainMall selectedPreferredBranch={selectedPreferredBranch}/>}/>
             <Route path="/mall/item_detail/:id" element={<AquaplanetItemDetail />} />
             <Route path="/mall/item_detail/:id/order/:memberNo" element={<AquaplanetReservation/>}/>
+            <Route path="/mall/item_detail/:id/order/:memberNo/orderDone" element={<SuccessOrder/>}/>
+            <Route path="/member/myTicket" element={<MyTicketList/>}/>
+            <Route path="/member/myPurchaseList" element={<MyPurchaseList/>}/>
         </Routes>
         </>
     )

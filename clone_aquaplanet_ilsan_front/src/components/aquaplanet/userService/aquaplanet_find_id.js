@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import "../../../css/aquaplanet/login_modals.css";
+import "../../../css/aquaplanet/aquaplanet_login_modals.css";
 import axiosInstance from "../../axiosIntercepting";
 
 const FindIdModal = ({ onClose, switchToPw }) => {

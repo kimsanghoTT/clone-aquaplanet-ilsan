@@ -1,8 +1,8 @@
 import React, { useContext, useEffect, useRef, useState } from "react";
-import "../../../css/aquaplanet/item_detail.css";
+import "../../../../css/aquaplanet/aquaplanet_item_detail.css";
 import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
-import LoginContext from "../../LoginContext";
-import itemData from "./main_mall_item.json";
+import LoginContext from "../../../LoginContext";
+import itemData from "../main_mall_item.json";
 
 const calcTotalTicketQuantity = (selectedOptions) => {
   return selectedOptions.reduce((total, option) => total + option.quantity, 0); 

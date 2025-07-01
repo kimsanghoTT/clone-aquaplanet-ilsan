@@ -6,7 +6,7 @@ import MainInfoSection from "./ilsan_main_section03_information";
 import MainEventSection from "./ilsan_main_section04_event";
 import MainGroupSection from "./ilsan_main_section05_group";
 import MainCommunitySection from "./ilsan_main_section06_community";
-import "../../../css/ilsan/main.css";
+import "../../../css/ilsan/ilsan_main.css";
 
 const Main = () => {
 

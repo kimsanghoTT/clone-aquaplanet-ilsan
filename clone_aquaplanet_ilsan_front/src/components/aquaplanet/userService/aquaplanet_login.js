@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import "../../../css/aquaplanet/login.css";
+import "../../../css/aquaplanet/aquaplanet_login.css";
 import { useNavigate } from "react-router-dom";
-import FindIdModal from "./find_id";
-import FindPwModal from "./find_pw";
+import FindIdModal from "./aquaplanet_find_id";
+import FindPwModal from "./aquaplanet_find_pw";
 import LoginContext from "../../LoginContext";
 import axiosInstance from "../../axiosIntercepting";
 
@@ -38,7 +38,7 @@ const Login = () => {
 
       if (response.data && response.data.result) {
         setLoginMember(response.data.loginMember);
-        navigate(-1);
+        navigate("/aquaplanet/mall");
       } else {
         alert("아이디 또는 비밀번호가 올바르지 않습니다.");
       }

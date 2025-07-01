@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import "../../../css/ilsan/aside.css";
+import "../../../css/ilsan/ilsan_aside.css";
 import gsap from "gsap";
 
 const AsideBar = () => {

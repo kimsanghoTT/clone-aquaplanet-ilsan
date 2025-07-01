@@ -1,7 +1,5 @@
 package aquaplanet_ilsan.dto;
 
-import java.time.LocalDateTime;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,11 +11,14 @@ import lombok.ToString;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class OptionDetail {
+public class OrderDetail {
+    private int orderDetailNo;
+    private int orderNo; 
 	private String optionId;
 	private String optionName;
 	private int totalPricePerOption;
 	private int quantity;
 	private String optionStatus;
-	private LocalDateTime usedDate;
+	private String barcodeNumber;
+	private String usedDate;
 }

@@ -11,18 +11,18 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
   const [branchSelectionState, setBranchSelectionState] = useState(selectedPreferredBranch);
   const branch = ["여수", "제주", "일산", "광교"];
 
-  const navigationList = {
-    "티켓 구매하기": "/aquaplanet/mall",
-    "나의 티켓 보기": "https://mall.aquaplanet.co.kr/mypage/ticket_list.do",
-    "구매내역 보기": "https://mall.aquaplanet.co.kr/mypage/reservation_list.do",
-    "나의 쿠폰함": "https://mall.aquaplanet.co.kr/mypage/coupon_list.do",
-    추천코드: "https://mall.aquaplanet.co.kr/mypage/recommend_code.do",
-    이벤트: "https://mall.aquaplanet.co.kr/event/list.do",
-    스탬프: "https://mall.aquaplanet.co.kr/mypage/stamp/card.do",
-    공지사항: "https://mall.aquaplanet.co.kr/customer/notice/list.do",
-    "자주묻는 질문": "https://mall.aquaplanet.co.kr/customer/faq/list.do",
-    "1:1 문의": "https://mall.aquaplanet.co.kr/mypage/qna/list.do",
-  };
+  const navigationList = [
+    {text:"티켓 구매하기", url:"/aquaplanet/mall"},
+    {text:"나의 티켓 보기", url: "/aquaplanet/member/myTicket"},
+    {text:"구매내역 보기", url: "/aquaplanet/member/myPurchaseList"},
+    {text:"나의 쿠폰함", url: "#"},
+    {text:"추천코드", url: "#"},
+    {text:"이벤트", url: "#"},
+    {text:"스탬프", url: "#"},
+    {text:"공지사항", url: "#"},
+    {text:"자주묻는 질문", url: "#"},
+    {text:"1:1 문의", url: "#"},
+  ];
 
   const locationRef = useRef(null);
   const navigate = useNavigate();
@@ -154,7 +154,7 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
             </div>
             <a
               className="navigate-home"
-              href="https://www.aquaplanet.co.kr/63/index.do"
+              href="/aquaplanet/mall"
             >
               <span>아쿠아플라넷 홈페이지</span>
             </a>
@@ -177,9 +177,9 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
         <div className="aquaplanet-header-layout01">
           <menu className="aquaplanet-header-navigation">
             <ul className="aquaplanet-header-navigation-list">
-              {Object.entries(navigationList).map(([text, url]) => (
-                <li className="navi-item" key={text}>
-                  <a href={url}>{text}</a>
+              {navigationList.map((item, index) => (
+                <li className="navi-item" key={index}>
+                  <a href={item.url}>{item.text}</a>
                 </li>
               ))}
             </ul>

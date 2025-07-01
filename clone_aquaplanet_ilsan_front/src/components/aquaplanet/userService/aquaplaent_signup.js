@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
 import cityData from "./city_district.json";
-import "../../../css/aquaplanet/signup.css";
+import "../../../css/aquaplanet/aquaplanet_signup.css";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../axiosIntercepting";

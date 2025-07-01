@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
-import "../../../../css/aquaplanet/mypage.css";
+import "../../../../css/aquaplanet/aquaplanet_mypage.css";
 import LoginContext from "../../../LoginContext";
-import TermsDetail from "../terms_detail";
+import TermsDetail from "../aquaplanet_terms_detail";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../axiosIntercepting";
 

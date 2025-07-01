@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import cityData from "../city_district.json";
-import "../../../../css/aquaplanet/mypage_account.css";
+import "../../../../css/aquaplanet/aquaplanet_mypage_account.css";
 import LoginContext from "../../../LoginContext";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";

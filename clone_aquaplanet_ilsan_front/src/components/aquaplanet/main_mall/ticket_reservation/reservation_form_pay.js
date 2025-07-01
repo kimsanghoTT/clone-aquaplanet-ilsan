@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import axiosInstance from "../../../axiosIntercepting";
+import moment from "moment";
 
 const PayForm = ({
   baseData,
@@ -9,6 +11,8 @@ const PayForm = ({
   totalDiscountPrice,
   totalDiscountableOptionPrice,
   discountableItems,
+  finalizedOptions,
+  finalTotalPrice
 }) => {
   const [couponModal, setCouponModal] = useState(false);
   const [openCouponList, setOpenCouponList] = useState(false);
@@ -38,11 +42,6 @@ const PayForm = ({
       case "bestDiscount":
         setActiveBestDiscount(!activeBestDiscount);
         break;
-      case "finishPay":
-        navigate(
-          `/aquaplanet/mall/item_detail/${baseData.id}/order/${loginMember.memberNo}/orderDone`
-        );
-        break;
       default:
         break;
     }
@@ -61,44 +60,90 @@ const PayForm = ({
   };
 
   const autoApplyBestCoupon = () => {
-    if (!availableCoupons) {
-      return;
+    if(!activeBestDiscount){
+      if (!availableCoupons) {
+        return;
+      }
+
+      let potentialDiscount = 0;
+      let bestCoupon = null;
+
+      availableCoupons.forEach((element) => {
+        let realDiscountedPrice = 0;
+        if (element.discountAmount !== undefined) {
+          //만약 고정할인액이 티켓 가격보다 높을 경우 티켓 가격에 맞춰 줌
+          realDiscountedPrice = Math.min(
+            element.discountAmount,
+            totalDiscountableOptionPrice
+          );
+        } else if (element.discountRate !== undefined) {
+          realDiscountedPrice =
+            element.discountRate * totalDiscountableOptionPrice;
+          realDiscountedPrice = Math.min(
+            realDiscountedPrice,
+            totalDiscountableOptionPrice
+          );
+        }
+        realDiscountedPrice = Math.round(realDiscountedPrice / 10) * 10;
+        realDiscountedPrice = Math.max(realDiscountedPrice, 0);
+
+        if (realDiscountedPrice > potentialDiscount) {
+          potentialDiscount = realDiscountedPrice;
+          bestCoupon = element;
+        }
+      });
+
+      if (bestCoupon) {
+        handleCouponChange(bestCoupon);
+      } else {
+        handleCouponChange(null);
+      }
     }
 
-    let potentialDiscount = 0;
-    let bestCoupon = null;
-
-    availableCoupons.forEach((element) => {
-      let realDiscountedPrice = 0;
-      if (element.discountAmount !== undefined) {
-        //만약 고정할인액이 티켓 가격보다 높을 경우 티켓 가격에 맞춰 줌
-        realDiscountedPrice = Math.min(
-          element.discountAmount,
-          totalDiscountableOptionPrice
-        );
-      } else if (element.discountRate !== undefined) {
-        realDiscountedPrice =
-          element.discountRate * totalDiscountableOptionPrice;
-        realDiscountedPrice = Math.min(
-          realDiscountedPrice,
-          totalDiscountableOptionPrice
-        );
-      }
-      realDiscountedPrice = Math.round(realDiscountedPrice / 10) * 10;
-      realDiscountedPrice = Math.max(realDiscountedPrice, 0);
-
-      if (realDiscountedPrice > potentialDiscount) {
-        potentialDiscount = realDiscountedPrice;
-        bestCoupon = element;
-      }
-    });
-
-    if (bestCoupon) {
-      handleCouponChange(bestCoupon);
-    } else {
-      handleCouponChange(null);
-    }
   };
+
+  const finishPay = async (payment) => {
+    const orderData = {
+      memberNo: loginMember.memberNo,
+      ticketId: baseData.id,
+      ticketTitle: baseData.ticketTitle,
+      ticketBranch: baseData.branch,
+      finalTotalPrice: finalTotalPrice,
+      orderStatus:"사용가능",
+      orderDate: moment().format("YYYY-MM-DD HH:mm:ss"),
+      paymentMethod: payment
+    }
+    const orderDetailDataList = finalizedOptions.map(item => ({
+      optionId:item.option.id,
+      optionName:item.option.name,
+      quantity: item.quantity,
+      totalPricePerOption: item.totalPricePerOption,
+      optionStatus:"사용대기",
+      usedDate:null
+    }))
+    const requestBody = {
+      orderData: orderData,
+      orderDetailDataList: orderDetailDataList
+    }
+    try{
+      const response = 
+      await axiosInstance.post(`/aquaplanet/mall/${baseData.id}/order/${loginMember.memberNo}`, requestBody);
+      if(response.data.result === "SUCCESS"){
+        const postedOrderData = response.data.orderData;
+        const postedOrderDetailDataList = response.data.orderDetailDataList;
+        alert("결제가 완료되었습니다.");
+        navigate(`/aquaplanet/mall/item_detail/${baseData.id}/order/${loginMember.memberNo}/orderDone`, 
+          {state:{orderData :postedOrderData, orderDetailDataList:postedOrderDetailDataList, baseData:baseData}});
+      }
+      else{
+        alert("결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요.")
+      }
+    }
+    catch{
+      alert("결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요.");
+    }
+
+  }
 
   return (
     <div className="item-order-container">
@@ -267,16 +312,16 @@ const PayForm = ({
             <span>결제 수단 선택</span>
           </div>
           <div className="area-content">
-            <button onClick={() => handleButtons("finishPay")}>
+            <button onClick={() => finishPay("신용카드")}>
               <span>신용카드</span>
             </button>
-            <button onClick={() => handleButtons("finishPay")}>
+            <button onClick={() => finishPay("계좌이체")}>
               <span>계좌이체</span>
             </button>
-            <button onClick={() => handleButtons("finishPay")}>
+            <button onClick={() => finishPay("휴대폰결제")}>
               <span>휴대폰결제</span>
             </button>
-            <button onClick={() => handleButtons("finishPay")}>
+            <button onClick={() => finishPay("네이버페이")}>
               <span>네이버페이</span>
             </button>
           </div>

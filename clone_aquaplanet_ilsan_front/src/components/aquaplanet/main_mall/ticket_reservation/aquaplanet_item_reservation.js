@@ -1,10 +1,10 @@
-import React, { useContext, useState } from "react";
+import React, { useCallback, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
-import "../../../../css/aquaplanet/item_reservation.css";
+import "../../../../css/aquaplanet/aquaplanet_item_reservation.css";
 import LoginContext from "../../../LoginContext";
-import OrderForm from "./reservation_order_form";
-import PayForm from "./reservation_pay_form";
 import couponList from "../coupon_list.json";
+import OrderForm from "./reservation_form_order";
+import PayForm from "./reservation_form_pay";
 
 const AquaplanetReservation = () => {
   const { loginMember } = useContext(LoginContext);
@@ -15,22 +15,27 @@ const AquaplanetReservation = () => {
   const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
   const [totalDiscountableOptionPrice, setTotalDiscountableOptionPrice] = useState(0);
   const [finalizedOptions, setFinalizedOptions] = useState(selectedOption); 
+  const [finalTotalPrice, setFinalTotalPrice] = useState(0);
 
-  const handleSelectCoupon = (coupon) => {
+  const handleSelectCoupon = useCallback((coupon) => {
     setSelectedCoupon(coupon);
-  };
+  },[]);
 
-  const handleDiscountPrice = (discountAmount) => {
+  const handleDiscountPrice = useCallback((discountAmount) => {
     setTotalDiscountPrice(discountAmount);
-  }
+  },[]);
 
-  const handleDiscountablePriceChange = (price) => {
+  const handleDiscountablePriceChange = useCallback((price) => {
     setTotalDiscountableOptionPrice(price);
-  };
+  },[]);
 
-  const handleFinalizedOptionsChange = (options) => {
+  const handleFinalizedOptionsChange = useCallback((options) => {
     setFinalizedOptions(options);
-  };
+  },[]);
+
+  const handleFinalTotalPrice = useCallback((finalPrice) => {
+    setFinalTotalPrice(finalPrice);
+  },[]);
 
   const discountableItems = finalizedOptions.filter(item => item.option.discountable);
 
@@ -48,6 +53,7 @@ const AquaplanetReservation = () => {
           onDiscountChange={handleDiscountPrice}
           onDiscountablePriceChange={handleDiscountablePriceChange}
           onFinalizedOptionsChange={handleFinalizedOptionsChange}
+          onFinalTotalPriceChange={handleFinalTotalPrice}
         />
       </div>
       <div className="item-order-default-grid-right">
@@ -59,6 +65,8 @@ const AquaplanetReservation = () => {
           totalDiscountPrice={totalDiscountPrice}
           totalDiscountableOptionPrice={totalDiscountableOptionPrice}
           discountableItems={discountableItems}
+          finalizedOptions={finalizedOptions}
+          finalTotalPrice={finalTotalPrice}
         />
       </div>
     </section>

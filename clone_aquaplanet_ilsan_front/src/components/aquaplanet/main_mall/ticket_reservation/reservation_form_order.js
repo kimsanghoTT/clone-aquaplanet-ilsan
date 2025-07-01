@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const OrderForm = ({baseData, selectedOption, selectedCoupon, onDiscountChange, onDiscountablePriceChange ,onFinalizedOptionsChange}) => {
+const OrderForm = ({baseData, selectedOption, selectedCoupon, onDiscountChange, onDiscountablePriceChange ,onFinalizedOptionsChange, onFinalTotalPriceChange}) => {
     const navigate = useNavigate();
     const [finalizedOptions, setFinalizedOptions] = useState(selectedOption);
     const [quantityExceedMsg, setQuantityExceedMsg] = useState(false);
@@ -16,44 +16,59 @@ const OrderForm = ({baseData, selectedOption, selectedCoupon, onDiscountChange, 
     };
 
     useEffect(() => {
-        //기본 합계
-        let sumPrice = 0;
-        finalizedOptions.forEach((item) => {
-            const itemPrice = parseInt(item.option.price.replace(/,/g, ""));
-            sumPrice += itemPrice * item.quantity;
-        });
-        setTotalSumPrice(sumPrice);
+        // 기본 합계 및 할인 가능한 옵션들의 원가 합계
+        let originTotalPrice = 0; 
+        let discountableOptionTotalPrice = 0;
 
-        // 할인가능한 상품 총 금액 계산
-        let discountableOptionPrice = 0;
-        finalizedOptions.forEach(item => {
-            if(item.option && item.option.discountable){
-                const itemPrice = parseInt(item.option.price.replace(/,/g, ""));
-                discountableOptionPrice += itemPrice * item.quantity;
-            }
-        })
-        onDiscountablePriceChange(discountableOptionPrice);
+        // 각 옵션의 원가 합산, 할인 가능한 옵션일 경우 따로 합산, 임시 객체 생성
+        const sumOptions = finalizedOptions.map((item) => {
+        const itemPrice = parseInt(item.option.price.replace(/,/g, ""));
+        const originTotal = itemPrice * item.quantity;
+        originTotalPrice += originTotal; 
 
-        //할인 적용 계산
-        let discountPrice = 0;
-        if(selectedCoupon){
-            if(selectedCoupon.discountAmount !== undefined){
-                discountPrice = selectedCoupon.discountAmount;
-            }
-            else if(selectedCoupon.discountRate !== undefined){
-                discountPrice = selectedCoupon.discountRate * discountableOptionPrice;
-            }
+        if (item.option.discountable) {
+            discountableOptionTotalPrice += originTotal; 
         }
-        discountPrice = Math.min(discountPrice, discountableOptionPrice);
-        discountPrice = Math.round(discountPrice / 10) * 10;
-        setTotalDiscountPrice(discountPrice);
-        onDiscountChange(discountPrice);
+        return { ...item, originTotal: originTotal };
+        });
 
-        //최종 금액 계산
-        let finalPrice = sumPrice - discountPrice;
+        // 총 할인 금액 계산
+        let calculatedTotalDiscountPrice = 0; 
+                                            
+        if (selectedCoupon) {
+        if (selectedCoupon.discountAmount !== undefined) {
+            calculatedTotalDiscountPrice = selectedCoupon.discountAmount;
+        } else if (selectedCoupon.discountRate !== undefined) {
+            calculatedTotalDiscountPrice = selectedCoupon.discountRate * discountableOptionTotalPrice;
+        }
+        }
+        calculatedTotalDiscountPrice = Math.min(calculatedTotalDiscountPrice, discountableOptionTotalPrice);
+        calculatedTotalDiscountPrice = Math.round(calculatedTotalDiscountPrice / 10) * 10;
+
+        // 할인 가능한 금액에 할인가 적용 계산 (각 옵션별 최종 가격 및 할인 금액)
+        const applyDiscountToDiscountableItem = sumOptions.map(item => {
+        let totalPricePerOption = item.originTotal; 
+
+        if (item.option.discountable && discountableOptionTotalPrice > 0) {
+            totalPricePerOption = item.originTotal - calculatedTotalDiscountPrice;
+        }
+
+        return {...item, totalPricePerOption: totalPricePerOption};
+        });
+
+        //최종 총합 계산, 원가 총합 - 할인가 총합
+        let finalPrice = originTotalPrice - calculatedTotalDiscountPrice;
         finalPrice = Math.max(finalPrice, 0);
-        setFinalTotalPrice(finalPrice);
-    }, [finalizedOptions, selectedCoupon, onDiscountChange, onDiscountablePriceChange]);
+
+        setTotalDiscountPrice(calculatedTotalDiscountPrice);
+        onDiscountChange(calculatedTotalDiscountPrice);
+        onDiscountablePriceChange(discountableOptionTotalPrice); 
+        setTotalSumPrice(originTotalPrice);
+        setFinalTotalPrice(finalPrice); 
+        onFinalTotalPriceChange(finalPrice); 
+        onFinalizedOptionsChange(applyDiscountToDiscountableItem);
+
+    }, [finalizedOptions, selectedCoupon, onDiscountChange, onDiscountablePriceChange, onFinalTotalPriceChange, onFinalizedOptionsChange]);
 
     const calcTotalTicketQuantity = (selectedOptions) => {
         return selectedOptions.reduce((total, option) => total + option.quantity, 0);
