@@ -133,7 +133,10 @@ const PayForm = ({
         const postedOrderDetailDataList = response.data.orderDetailDataList;
         alert("결제가 완료되었습니다.");
         navigate(`/aquaplanet/mall/item_detail/${baseData.id}/order/${loginMember.memberNo}/orderDone`, 
-          {state:{orderData :postedOrderData, orderDetailDataList:postedOrderDetailDataList, baseData:baseData}});
+        {
+          state:{orderData :postedOrderData, orderDetailDataList:postedOrderDetailDataList, baseData:baseData},
+          replace:true
+        });
       }
       else{
         alert("결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요.")

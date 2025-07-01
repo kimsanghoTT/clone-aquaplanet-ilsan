@@ -1,5 +1,5 @@
 import moment from "moment";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "../../../../css/aquaplanet/aquaplanet_order_success.css";
 import Barcode from "react-barcode";
@@ -7,17 +7,38 @@ import Barcode from "react-barcode";
 const SuccessOrder = () => {
     const navigate = useNavigate();
     const {state} = useLocation();
-    const orderData = state.orderData;
-    const orderDetailDataList = state.orderDetailDataList;
-    const baseData = state.baseData;
-    const formattedTime = moment(orderData.orderDate).format("YYYY.MM.DD");
+    const orderData = state?.orderData;
+    const orderDetailDataList = state?.orderDetailDataList;
+    const baseData = state?.baseData;
+    const formattedTime = orderData ? moment(orderData.orderDate).format("YYYY.MM.DD") : '';
+    const pushedState = useRef(false);
+
+    //뒤로가기로 결제페이지, 확인페이지 막는 로직
+    useEffect(() => {
+        if (!pushedState.current) {
+            window.history.pushState(null, '', window.location.href);
+            pushedState.current = true;
+        }
+
+        const handleBackspace = () => {
+            alert("잘못된 접근입니다. 메인 페이지로 이동합니다.");
+            navigate("/aquaplanet/mall", {replace:true});
+        }
+
+        window.history.pushState(null, '', window.location.href);
+        window.addEventListener("popstate", handleBackspace);
+
+        return () => {
+            window.removeEventListener("popstate", handleBackspace);
+        }
+    },[navigate])
 
     const handleBtns = (btnType) => {
         if(btnType === "myTicket"){
-            navigate("/aquaplanet/member/myTicket");
+            navigate("/aquaplanet/member/myTicket",{relative:true});
         }
         else if(btnType === "mainMall"){
-            navigate("/aquaplanet/mall");
+            navigate("/aquaplanet/mall", {replace:true});
         }
     }
 

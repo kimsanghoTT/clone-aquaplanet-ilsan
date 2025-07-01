@@ -52,6 +52,7 @@ const axiosIntercepting = {
       setTimeout(() => {
         const baseUrl = process.env.REACT_APP_API_BASE_URL || "";
         const fullUrl = `${baseUrl}${url}`;
+        const orderUrlPattern = new RegExp(`${baseUrl}/aquaplanet/mall/[a-z0-9-]+/order/\\d+$`);
 
         if (fullUrl === `${baseUrl}/aquaplanet/signup`) {
           resolve({ status: 200 });
@@ -143,7 +144,29 @@ const axiosIntercepting = {
           }
         } else if (fullUrl === `${baseUrl}/aquaplanet/mypage/modifyProfile`) {
           resolve({ status: 200 });
-        } else {
+        } 
+        else if(orderUrlPattern.test(fullUrl)){
+          const generateOrderNo = Math.floor(Math.random() * 100);
+          const generateBarcode = () => {
+            let barcode = '';
+            for(let i = 0; i < 16; i++){
+              barcode += Math.floor(Math.random() * 10);
+            }
+            return barcode;
+          }
+
+          const generateOrderData = {
+            ...data.orderData,
+            orderNo:generateOrderNo
+          }
+          const generateOrderDetailDataList = data.orderDetailDataList.map(item => ({
+            ...item,
+            orderNo:generateOrderNo,
+            barcodeNumber:generateBarcode()
+          }))
+          resolve({data: {result:"SUCCESS", orderData:generateOrderData, orderDetailDataList:generateOrderDetailDataList}})
+        }
+        else {
           reject(new Error(`처리되지 않은 요청 ${fullUrl}`));
         }
       }, 500);
