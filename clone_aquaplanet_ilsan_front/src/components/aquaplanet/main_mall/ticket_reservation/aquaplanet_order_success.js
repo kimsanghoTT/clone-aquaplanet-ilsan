@@ -12,6 +12,12 @@ const SuccessOrder = () => {
     const baseData = state?.baseData;
     const formattedTime = orderData ? moment(orderData.orderDate).format("YYYY.MM.DD") : '';
     const pushedState = useRef(false);
+    const branchColor = {
+    일산: "#5400FF",
+    제주: "#34A5FC",
+    여수: "#76E479",
+    광교: "#f8a139",
+    };
 
     //뒤로가기로 결제페이지, 확인페이지 막는 로직
     useEffect(() => {
@@ -65,7 +71,7 @@ const SuccessOrder = () => {
                     {orderDetailDataList.map(item => (
                     <div key={item.optionId} className="confirm-ticket-list">
                         <div className="confirm-ticket-type">
-                            <span>{orderData.ticketBranch}</span>
+                            <span style={{backgroundColor:branchColor[orderData.ticketBranch]}}>{orderData.ticketBranch}</span>
                             <span>{orderData.ticketTitle}</span>
                         </div>
                         <div className="confirm-ticket-info">

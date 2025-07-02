@@ -204,7 +204,7 @@ const Signup = () => {
     }));
   };
 
-  const resetRegionSelection = (e) => {
+  const resetRegionSelection = () => {
     setMember((userData) => ({
       ...userData,
       memberRegionCity: "",

@@ -52,9 +52,9 @@ const MainMall = ({selectedPreferredBranch}) => {
                   <span className="discount">{cardData.discount}</span>
                   )}
                 </div>     
-                {cardData.available && (
+                {cardData.delay && (
                 <div className="available">
-                  {cardData.available === "1hour" ? (
+                  {cardData.delay === "1hour" ? (
                     <p>1시간 뒤 사용가능</p>
                   ) : (
                     <p>1일 뒤 사용가능</p>

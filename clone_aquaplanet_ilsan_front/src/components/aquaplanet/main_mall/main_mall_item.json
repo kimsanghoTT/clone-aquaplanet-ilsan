@@ -9,7 +9,7 @@
     "canceledPrice": "39,000",
     "discount": "36%",
     "maxQuantity": 10,
-    "available": "1hour",
+    "delay": "1hour",
     "map": {
       "latitude": 37.663561,
       "longitude": 126.75545
@@ -19,13 +19,15 @@
         "id": "ilsan-01-01",
         "name": "더아쿠아+더정글+스카이팜+다흑 특별 전시",
         "price": "25,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "1hour"
       },
       {
         "id": "ilsan-01-02",
         "name": "스탬프 50% 할인쿠폰 전용 상품(+14,000원)",
         "price": "39,000",
-        "discountable": true
+        "discountable": true,
+        "delay": "1hour"
       }
     ],
     "detailImages": {
@@ -38,7 +40,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/ilsan/ilsan_01_03.jpg"
-    }
+    },
+    "itemCategory": "general"
   },
   {
     "id": "jeju-01",
@@ -50,7 +53,7 @@
     "canceledPrice": "44,600",
     "discount": "17%",
     "maxQuantity": 10,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 33.432779,
       "longitude": 126.927823
@@ -60,13 +63,15 @@
         "id": "jeju-01-01",
         "name": "아쿠아리움 + 오션아레나 + 해녀 특별 전시",
         "price": "36,900",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "jeju-01-02",
         "name": "스탬프 50% 할인쿠폰 전용 상품(+7,700원)",
         "price": "44,600",
-        "discountable": true
+        "discountable": true,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -79,7 +84,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/jeju/jeju_01_03.jpg"
-    }
+    },
+    "itemCategory": "general"
   },
   {
     "id": "yeosu-01",
@@ -91,7 +97,7 @@
     "canceledPrice": "39,900",
     "discount": "17%",
     "maxQuantity": 10,
-    "available": "1day",
+    "delay": "1day",
     "map": {
       "latitude": 34.746462,
       "longitude": 127.748332
@@ -101,13 +107,8 @@
         "id": "yeosu-01-01",
         "name": "여수_종합권(대소공통)",
         "price": "33,000",
-        "discountable": false
-      },
-      {
-        "id": "yeosu-01-02",
-        "name": "스탬프 50% 할인쿠폰 전용 상품(+6,900원)",
-        "price": "39,900",
-        "discountable": true
+        "discountable": false,
+        "delay": "1day"
       }
     ],
     "detailImages": {
@@ -125,7 +126,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/yeosu/yeosu_01_04.jpg"
-    }
+    },
+    "itemCategory": "general"
   },
   {
     "id": "yeosu-02",
@@ -137,7 +139,7 @@
     "canceledPrice": "36,400",
     "discount": "18%",
     "maxQuantity": 10,
-    "available": "1day",
+    "delay": "1day",
     "map": {
       "latitude": 34.746462,
       "longitude": 127.748332
@@ -147,7 +149,8 @@
         "id": "yeosu-02-01",
         "name": "여수_입장권(대소공통)",
         "price": "30,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "1day"
       }
     ],
     "detailImages": {
@@ -165,7 +168,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/yeosu/yeosu_02_04.jpg"
-    }
+    },
+    "itemCategory": "general"
   },
   {
     "id": "gwanggyo-01",
@@ -177,7 +181,7 @@
     "canceledPrice": "30,000",
     "discount": "20%",
     "maxQuantity": 10,
-    "available": "1hour",
+    "delay": "1hour",
     "map": {
       "latitude": 37.285061,
       "longitude": 127.05708
@@ -187,7 +191,8 @@
         "id": "gwanggyo-01-01",
         "name": "광교 종합권",
         "price": "24,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "1hour"
       }
     ],
     "detailImages": {
@@ -200,7 +205,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/gwanggyo/gwanggyo_01_03.png"
-    }
+    },
+    "itemCategory": "general"
   },
   {
     "id": "ilsan-02",
@@ -212,7 +218,7 @@
     "canceledPrice": "130,000",
     "discount": "25%",
     "maxQuantity": 4,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 37.663561,
       "longitude": 126.75545
@@ -222,25 +228,29 @@
         "id": "ilsan-02-01",
         "name": "연간 입장권 _ 4인(A)",
         "price": "97,500",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "ilsan-02-02",
         "name": "연간 입장권 _ 4인(B)",
         "price": "97,500",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "ilsan-02-03",
         "name": "연간 입장권 _ 4인(C)",
         "price": "97,500",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "ilsan-02-04",
         "name": "연간 입장권 _ 4인(D)",
         "price": "97,500",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -253,7 +263,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/ilsan/ilsan_02_03.jpg"
-    }
+    },
+    "itemCategory": "premium"
   },
   {
     "id": "ilsan-03",
@@ -265,7 +276,7 @@
     "canceledPrice": "130,000",
     "discount": "23%",
     "maxQuantity": 3,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 37.663561,
       "longitude": 126.75545
@@ -275,19 +286,22 @@
         "id": "ilsan-03-01",
         "name": "연간 입장권 _ 3인(A)",
         "price": "100,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "ilsan-03-02",
         "name": "연간 입장권 _ 3인(B)",
         "price": "100,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "ilsan-03-03",
         "name": "연간 입장권 _ 3인(C)",
         "price": "100,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -300,7 +314,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/ilsan/ilsan_03_03.jpg"
-    }
+    },
+    "itemCategory": "premium"
   },
   {
     "id": "ilsan-04",
@@ -312,7 +327,7 @@
     "canceledPrice": "130,000",
     "discount": "15%",
     "maxQuantity": 2,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 37.663561,
       "longitude": 126.75545
@@ -322,13 +337,15 @@
         "id": "ilsan-04-01",
         "name": "연간 입장권 _ 2인(A)",
         "price": "110,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "ilsan-04-02",
         "name": "연간 입장권 _ 2인(B)",
         "price": "110,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -341,7 +358,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/ilsan/ilsan_04_03.jpg"
-    }
+    },
+    "itemCategory": "premium"
   },
   {
     "id": "ilsan-05",
@@ -353,7 +371,7 @@
     "canceledPrice": "",
     "discount": "",
     "maxQuantity": 1,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 37.663561,
       "longitude": 126.75545
@@ -363,7 +381,8 @@
         "id": "ilsan-05-01",
         "name": "연간 입장권 _ 1인",
         "price": "130,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -376,7 +395,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/ilsan/ilsan_05_03.jpg"
-    }
+    },
+    "itemCategory": "premium"
   },
   {
     "id": "gwanggyo-02",
@@ -388,7 +408,7 @@
     "canceledPrice": "",
     "discount": "",
     "maxQuantity": 1,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 37.285061,
       "longitude": 127.05708
@@ -398,13 +418,15 @@
         "id": "gwanggyo-02-01",
         "name": "연간권 _ 실버(신규)",
         "price": "150,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "gwanggyo-02-02",
         "name": "연간권 _ 골드(신규)(+50,000원)",
         "price": "200,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -452,7 +474,8 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/gwanggyo/gwanggyo_02_10.jpg"
-    }
+    },
+    "itemCategory": "premium"
   },
   {
     "id": "gwanggyo-03",
@@ -464,7 +487,7 @@
     "canceledPrice": "150,000",
     "discount": "27%",
     "maxQuantity": 1,
-    "available": "",
+    "delay": "",
     "map": {
       "latitude": 37.285061,
       "longitude": 127.05708
@@ -474,13 +497,15 @@
         "id": "gwanggyo-03-01",
         "name": "연간권 _ 실버('23년 갱신)",
         "price": "110,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       },
       {
         "id": "gwanggyo-03-02",
         "name": "연간권 _ 골드('23년 갱신)(+40,000원)",
         "price": "150,000",
-        "discountable": false
+        "discountable": false,
+        "delay": "none"
       }
     ],
     "detailImages": {
@@ -528,6 +553,7 @@
         }
       ],
       "refundPolicy": "/img/aquaplanet/item_detail/gwanggyo/gwanggyo_03_10.jpg"
-    }
+    },
+    "itemCategory": "premium"
   }
 ]

@@ -122,8 +122,8 @@ const OrderForm = ({baseData, selectedOption, selectedCoupon, onDiscountChange, 
             <div className="item-final-order-form">
                 <div className="order-area-title">
                     <span>결제</span>
-                    {baseData.available &&
-                    (baseData.available === "1hour" ? (
+                    {baseData.delay &&
+                    (baseData.delay === "1hour" ? (
                         <span className="warn-msg">선택하신 상품은 구매 1시간 후 사용이 가능합니다.</span>
                     ) : (
                         <span className="warn-msg">선택하신 상품은 구매 1일 후 사용이 가능합니다.</span>

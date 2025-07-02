@@ -21,4 +21,5 @@ public class OrderDetail {
 	private String optionStatus;
 	private String barcodeNumber;
 	private String usedDate;
+	private String delay;
 }

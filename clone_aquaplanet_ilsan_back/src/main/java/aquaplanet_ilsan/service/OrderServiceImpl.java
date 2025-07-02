@@ -45,4 +45,17 @@ public class OrderServiceImpl implements OrderService{
 		//상세 주문 주입
 		orderMapper.orderTicketDetail(insertOrderDetail);
 	}
+	
+	//사용가능한 티켓 + 티켓 세부 옵션 불러오기
+	@Override
+	public List<Orders> getOrderedAvailableTickets(int memberNo) {
+		return orderMapper.getOrderedAvailableTickets(memberNo);
+	}
+	
+	@Override
+	public List<OrderDetail> getOrderedAvailableTicketDetails(int orderNo) {
+		return orderMapper.getOrderedAvailableTicketDetails(orderNo);
+	}
+	
+
 }

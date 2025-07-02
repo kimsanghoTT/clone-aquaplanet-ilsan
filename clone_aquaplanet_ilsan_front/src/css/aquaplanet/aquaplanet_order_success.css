@@ -24,7 +24,7 @@
     display: flex;
     position: relative;
     align-items: center;
-    height: 269px;
+    height: 270px;
     padding: 0 150px 0 40px;
     border-radius: 20px;
     background-color: #fff;
@@ -64,6 +64,14 @@
 }
 .confirm-ticket-type span:first-child{
     margin-right: 8px;
+    display: inline-block;
+    text-align: center;
+    min-width: 36px;
+    padding: 0 6px;
+    border-radius: 10px;
+    font-size: 12px;
+    line-height: 20px;
+    color: #fff;
 }
 .confirm-ticket-type span:last-child{
     flex: 1;

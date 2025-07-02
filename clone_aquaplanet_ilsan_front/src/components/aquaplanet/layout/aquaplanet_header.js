@@ -43,14 +43,9 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
 
   useEffect(() => {
     const getPreferredBranches = async () => {
-      try{
-        const response = await axiosInstance.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
-        setSelectedPreferredBranch(response.data);
-        setBranchSelectionState(response.data);
-      }
-      catch{
-        console.log("선호지점 가져오기 오류");
-      }
+      const response = await axiosInstance.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
+      setSelectedPreferredBranch(response.data);
+      setBranchSelectionState(response.data);
     }
 
     if(loginMember){

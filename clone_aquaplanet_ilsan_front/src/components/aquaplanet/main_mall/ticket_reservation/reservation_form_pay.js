@@ -111,7 +111,9 @@ const PayForm = ({
       finalTotalPrice: finalTotalPrice,
       orderStatus:"사용가능",
       orderDate: moment().format("YYYY-MM-DD HH:mm:ss"),
-      paymentMethod: payment
+      paymentMethod: payment,
+      itemCategory:baseData.itemCategory,
+      delay:baseData.delay
     }
     const orderDetailDataList = finalizedOptions.map(item => ({
       optionId:item.option.id,
@@ -119,12 +121,15 @@ const PayForm = ({
       quantity: item.quantity,
       totalPricePerOption: item.totalPricePerOption,
       optionStatus:"사용대기",
-      usedDate:null
+      usedDate:null,
+      delay:item.option.delay
     }))
     const requestBody = {
       orderData: orderData,
       orderDetailDataList: orderDetailDataList
     }
+        console.log(orderData);
+    console.log(orderDetailDataList);
     try{
       const response = 
       await axiosInstance.post(`/aquaplanet/mall/${baseData.id}/order/${loginMember.memberNo}`, requestBody);

@@ -2,15 +2,25 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="aquaplanet_ilsan.mapper.OrderMapper">
 	<insert id="orderTicket" parameterType="aquaplanet_ilsan.dto.Orders" useGeneratedKeys="true" keyProperty="orderNo">
-		insert into Orders (memberNo, ticketId, ticketTitle, ticketBranch, finalTotalPrice, orderStatus, paymentMethod, orderDate)
-		values (#{memberNo}, #{ticketId}, #{ticketTitle}, #{ticketBranch}, #{finalTotalPrice}, #{orderStatus}, #{paymentMethod}, #{orderDate})
+		insert into 
+		Orders 
+		(memberNo, ticketId, ticketTitle, ticketBranch, finalTotalPrice, orderStatus, paymentMethod, orderDate, itemCategory, delay)
+		values 
+		(#{memberNo}, #{ticketId}, #{ticketTitle}, #{ticketBranch}, 
+		#{finalTotalPrice}, #{orderStatus}, #{paymentMethod}, #{orderDate}, #{itemCategory}, #{delay})
 	</insert>
 	<insert id="orderTicketDetail" parameterType="java.util.List">
-	    INSERT INTO OrderDetail (orderNo, optionId, optionName, totalPricePerOption, quantity, optionStatus, usedDate, barcodeNumber)
-	    VALUES
+	    insert into OrderDetail (orderNo, optionId, optionName, totalPricePerOption, quantity, optionStatus, usedDate, barcodeNumber, delay)
+	    values
 	    <foreach collection="orderDetails" item="detail" separator=",">
 	        (#{detail.orderNo}, #{detail.optionId}, #{detail.optionName}, 
-	        #{detail.totalPricePerOption}, #{detail.quantity}, #{detail.optionStatus}, #{detail.usedDate}, #{detail.barcodeNumber})
+	        #{detail.totalPricePerOption}, #{detail.quantity}, #{detail.optionStatus}, #{detail.usedDate}, #{detail.barcodeNumber}, #{detail.delay})
 	    </foreach>
 	</insert>
+	<select id="getOrderedAvailableTickets">
+		select * from Orders where memberNo = #{memberNo} and orderStatus = "사용가능"
+	</select>
+	<select id="getOrderedAvailableTicketDetails">
+		select * from OrderDetail where orderNo = #{orderNo} and optionStatus = "사용대기"
+	</select>
 </mapper>

@@ -21,4 +21,6 @@ public class Orders {
 	private String orderStatus;
 	private String orderDate;
 	private String paymentMethod;
+	private String itemCategory;
+	private String delay;
 }
