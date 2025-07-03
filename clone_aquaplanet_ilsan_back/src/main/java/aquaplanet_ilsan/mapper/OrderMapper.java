@@ -14,7 +14,15 @@ public interface OrderMapper {
 	
 	int orderTicketDetail(@Param("orderDetails") List<OrderDetail> orderDetails);
 	
-	List<Orders> getOrderedAvailableTickets(@Param("memberNo") int memberNo);
+	List<Orders> getAvailableOrderedTickets(@Param("memberNo") int memberNo);
 	
-	List<OrderDetail> getOrderedAvailableTicketDetails(@Param("orderNo") int orderNo);
+	List<OrderDetail> getAvailableOrderedTicketDetails(@Param("orderNo") int orderNo);
+	
+	List<Orders> getAllOrderedTickets(@Param("memberNo") int memberNo);
+	
+	List<OrderDetail> getAllOrderedTicketDetails(@Param("orderNo") int orderNo);
+	
+	int refundTicket(@Param("memberNo") int memberNo, @Param("orderNo") int orderNo);
+	
+	int refundTicketDetail(@Param("orderNo") int orderNo, @Param("orderDetailNo") int OrderDetailNo);
 }

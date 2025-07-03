@@ -1,3 +1,4 @@
+/*공통 틀*/
 .aquaplanet-user-dashboard-wrapper {
   width: 100%;
   height: calc(100vh - 80px);
@@ -23,7 +24,6 @@
   text-align: center;
   min-height: 100%;
   position: relative;
-
 }
 .user-dashboard-container.right-side {
   background-color: #f5f6f9;
@@ -32,13 +32,6 @@
   display: inline-block;
   width: 500px;
   text-align: left;
-}
-.user-dashboard-container .ticket-list {
-  width: 500px;
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-  gap: 25px;
 }
 
 /*내 티켓 보기*/
@@ -49,17 +42,17 @@
   font-weight: 700;
   color: #222;
 }
-.user-dashboard-content .my-ticket-list-tab {
+.user-dashboard-content .my-ticket-list-tab.left-ticket-list {
   margin-top: 36px;
   height: 40px;
   display: flex;
   justify-content: space-between;
 }
-.my-ticket-list-tab .ticket-type-tab-list {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list {
   display: flex;
   gap: 20px;
 }
-.my-ticket-list-tab .ticket-type-tab-list span {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list span {
   line-height: 40px;
   font-size: 18px;
   color: #666666;
@@ -68,7 +61,7 @@
   cursor: pointer;
   transition: color 0.4s ease;
 }
-.my-ticket-list-tab .ticket-type-tab-list span::after {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list span::after {
   content: "";
   position: absolute;
   left: 0;
@@ -80,21 +73,21 @@
   width: 0;
   transition: width 0.4s ease;
 }
-.my-ticket-list-tab .ticket-type-tab-list span:hover {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list span:hover {
   color: #222;
   font-weight: 600;
 }
-.my-ticket-list-tab .ticket-type-tab-list span:hover::after {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list span:hover::after {
   width: 100%;
 }
-.my-ticket-list-tab .ticket-type-tab-list span.active {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list span.active {
   color: #222;
   font-weight: 600;
 }
-.my-ticket-list-tab .ticket-type-tab-list span.active::after {
+.my-ticket-list-tab.left-ticket-list .ticket-type-tab-list span.active::after {
   width: 100%;
 }
-.my-ticket-list-tab .ticket-branch-filter {
+.my-ticket-list-tab.left-ticket-list .ticket-branch-filter {
   width: 150px;
   flex-shrink: 0;
   position: relative;
@@ -163,7 +156,7 @@
   font-weight: 400;
   color: #fff;
 }
-.my-ticket-list-board{
+.my-ticket-list-board {
   margin-top: 36px;
   padding: 25px 0;
   border-top: 1px solid #ddd;
@@ -172,11 +165,11 @@
   flex-direction: column;
   gap: 40px;
 }
-.my-ticket-list-board .ticket-item{
+.my-ticket-list-board .ticket-item {
   display: flex;
   cursor: pointer;
 }
-.my-ticket-list-board .ticket-item figure{
+.my-ticket-list-board .ticket-item figure {
   display: inline-block;
   overflow: hidden;
   width: 80px;
@@ -185,24 +178,24 @@
   background-color: #f4f0f0;
   margin-right: 30px;
 }
-.my-ticket-list-board .ticket-item figure img{
+.my-ticket-list-board .ticket-item figure img {
   width: 100%;
 }
-.my-ticket-list-board .ticket-item .ticket-order-info{
+.my-ticket-list-board .ticket-item .ticket-order-info {
   flex: 1;
 }
-.my-ticket-list-board .ticket-item .ticket-order-info .branch{
-    margin-right: 8px;
-    display: inline-block;
-    text-align: center;
-    min-width: 36px;
-    padding: 0 6px;
-    border-radius: 10px;
-    font-size: 12px;
-    line-height: 20px;
-    color: #fff;
+.my-ticket-list-board .ticket-item .ticket-order-info .branch {
+  margin-right: 8px;
+  display: inline-block;
+  text-align: center;
+  min-width: 36px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
 }
-.my-ticket-list-board .ticket-item .ticket-order-info .ticket-title{
+.my-ticket-list-board .ticket-item .ticket-order-info .ticket-title {
   display: block;
   font-size: 14px;
   color: #222;
@@ -210,10 +203,10 @@
   margin-top: 7px;
   line-height: 19px;
 }
-.my-ticket-list-board .ticket-item .ticket-order-info > div{
+.my-ticket-list-board .ticket-item .ticket-order-info > div {
   margin-top: 13px;
 }
-.my-ticket-list-board .ticket-item .ticket-order-info > div span{
+.my-ticket-list-board .ticket-item .ticket-order-info > div span {
   display: inline-block;
   margin-right: 30px;
   font-size: 14px;
@@ -241,7 +234,14 @@
 }
 
 /*우측 폼*/
-.ticket-list .ticket-shape {
+.user-dashboard-container .ticket-detail-list {
+  width: 500px;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+  gap: 25px;
+}
+.ticket-detail-list .ticket-shape {
   width: 100%;
   position: relative;
   height: 270px;
@@ -252,7 +252,7 @@
   align-items: center;
   overflow: hidden;
 }
-.ticket-list .ticket-shape::before {
+.ticket-detail-list .ticket-shape::before {
   content: "";
   position: absolute;
   left: 350px;
@@ -264,7 +264,7 @@
   background-color: #f5f6f9;
   z-index: 10;
 }
-.ticket-list .ticket-shape::after {
+.ticket-detail-list .ticket-shape::after {
   top: auto;
   bottom: -20px;
   content: "";
@@ -277,10 +277,10 @@
   background-color: #f5f6f9;
   z-index: 10;
 }
-.ticket-list .ticket-shape .ticket-delay-film{
+.ticket-detail-list .ticket-shape .ticket-delay-film {
   display: none;
 }
-.ticket-list .ticket-shape .ticket-delay-film.on{
+.ticket-detail-list .ticket-shape .ticket-delay-film.on {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -291,19 +291,19 @@
   right: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0,0,0,0.8);
+  background-color: rgba(0, 0, 0, 0.8);
   z-index: 9;
 }
-.ticket-delay-film .delay-notice-text-box{
+.ticket-delay-film .delay-notice-text-box {
   text-align: center;
 }
-.ticket-delay-film .delay-notice-text-box p{
+.ticket-delay-film .delay-notice-text-box p {
   color: #fff;
   font-size: 18px;
   font-weight: 600;
   line-height: 24px;
 }
-.ticket-delay-film .delay-notice-text-box p:last-child{
+.ticket-delay-film .delay-notice-text-box p:last-child {
   margin-top: 20px;
   color: #999;
   font-weight: 400;
@@ -389,11 +389,11 @@
   font-size: 14px;
   color: #222;
 }
-.ticket-list.no-data {
+.ticket-detail-list.no-data {
   display: inline-block;
   width: 500px;
 }
-.ticket-list.no-data .ticket-shape.no-data {
+.ticket-detail-list.no-data .ticket-shape.no-data {
   display: flex;
   width: 500px;
   background-color: #fff;
@@ -403,8 +403,9 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  padding: 0;
 }
-.ticket-list.no-data .ticket-shape.no-data::before {
+.ticket-detail-list.no-data .ticket-shape.no-data::before {
   content: "";
   position: absolute;
   left: 350px;
@@ -416,7 +417,7 @@
   background-color: #f5f6f9;
   z-index: 10;
 }
-.ticket-list.no-data .ticket-shape.no-data::after {
+.ticket-detail-list.no-data .ticket-shape.no-data::after {
   top: auto;
   bottom: -20px;
   content: "";
@@ -429,21 +430,21 @@
   background-color: #f5f6f9;
   z-index: 10;
 }
-.ticket-list.no-data span {
+.ticket-detail-list.no-data span {
   display: block;
 }
-.ticket-list.no-data span:first-child {
+.ticket-detail-list.no-data span:first-child {
   font-size: 24px;
   line-height: 32px;
   color: #222;
 }
-.ticket-list.no-data span:nth-child(2) {
+.ticket-detail-list.no-data span:nth-child(2) {
   font-size: 16px;
   line-height: 21px;
   margin-top: 4px;
   color: #b4b4b4;
 }
-.ticket-list.no-data a {
+.ticket-detail-list.no-data a {
   display: inline-block;
   width: 200px;
   background-color: #fff;
@@ -456,7 +457,264 @@
   margin-top: 21px;
   transition: all 0.4s ease;
 }
-.ticket-list.no-data a:hover {
+.ticket-detail-list.no-data a:hover {
   color: #fff;
   background-color: #2771f1;
+}
+
+/*구매내역*/
+/*좌측 폼*/
+.user-dashboard-content .my-ticket-list-tab.left-purchase-list {
+  margin-top: 36px;
+  height: 40px;
+  display: flex;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.my-ticket-list-tab.left-purchase-list .ticket-branch-filter,
+.my-ticket-list-tab.left-purchase-list .ticket-status-filter {
+  width: 112px;
+  flex-shrink: 0;
+  position: relative;
+}
+.ticket-status-filter .status-select-display {
+  display: block;
+  border: 1px solid #dddddd;
+  color: #666666;
+  width: 100%;
+  box-sizing: border-box;
+  height: 40px;
+  line-height: 38px;
+  padding: 0 20px 0 14px;
+  font-size: 14px;
+  position: relative;
+  cursor: pointer;
+  border-radius: 3px;
+}
+.ticket-status-filter .status-select-display::after {
+  background: url(../../../public/img/aquaplanet/ico_arrowdown.svg);
+  content: "";
+  display: inline-block;
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-size: 10px 10px;
+  top: 40%;
+  right: 20px;
+  transform: rotate(0deg);
+  transition: all 0.4s ease;
+}
+.ticket-status-filter .status-select-display.on::after {
+  transform: rotate(180deg);
+}
+.ticket-status-filter .status-option-list {
+  width: 100%;
+  position: absolute;
+  top: 40px;
+  right: 0;
+  border: 1px solid #dddddd;
+  background-color: #fff;
+  display: none;
+  z-index: 20;
+  overflow: hidden;
+  overflow-y: auto;
+}
+.ticket-status-filter .status-option-list.on {
+  display: block;
+}
+.ticket-status-filter .status-option {
+  line-height: 24px;
+  font-size: 12px;
+  cursor: pointer;
+  padding: 3px 1em 3px 0.4em;
+  border: 1px solid transparent;
+}
+.ticket-status-filter .status-option.selected {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.ticket-status-filter .status-option:hover {
+  border: 1px solid #003eff;
+  background: #007fff;
+  font-weight: 400;
+  color: #fff;
+}
+.ticket-order-info .ticket-status {
+  font-size: 14px;
+  font-weight: 500;
+  color: #b4b4b4;
+}
+
+/* 우측 폼 */
+.user-dashboard-container .my-purchase-detail-info {
+  width: 500px;
+  display: inline-block;
+  text-align: left;
+}
+.my-purchase-detail-info .purchase-detail-title {
+  border-bottom: 1px solid #222;
+  position: relative;
+}
+.my-purchase-detail-info .purchase-detail-title h2 {
+  height: 78px;
+  line-height: 54px;
+  font-size: 40px;
+  font-weight: 700;
+  color: #222;
+  margin: 0;
+}
+.my-purchase-detail-info .purchase-detail-title span {
+  position: absolute;
+  right: 0;
+  font-size: 16px;
+  color: #222;
+  line-height: 21px;
+  top: 35px;
+}
+.purchase-detail-title span em {
+  color: #999;
+}
+.my-purchase-detail-info .purchase-detail-content {
+  padding: 20px 0;
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #dddddd;
+}
+.purchase-detail-content .ticket-banner-image {
+  width: 80px;
+  height: 80px;
+  border-radius: 8px;
+  background-color: #f4f0f0;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.purchase-detail-content .ticket-banner-image img {
+  width: 100%;
+}
+.purchase-detail-content .purchase-option-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.purchase-detail-content .purchase-option {
+  display: flex;
+  width: 390px;
+  justify-content: center;
+  align-items: center;
+  min-height: 42px;
+}
+.purchase-detail-content .purchase-option .branch {
+  margin-right: 8px;
+  display: inline-block;
+  text-align: center;
+  min-width: 36px;
+  padding: 0 6px;
+  border-radius: 10px;
+  font-size: 12px;
+  line-height: 20px;
+  color: #fff;
+}
+.purchase-detail-content .purchase-option .option-name,
+.purchase-detail-content .purchase-option .option-status,
+.purchase-detail-content .purchase-option .option-quantity,
+.purchase-detail-content .purchase-option .option-total-price {
+  text-align: center;
+  width: 70px;
+  font-size: 16px;
+  color: #222;
+  font-weight: 600;
+  line-height: 21px;
+}
+.purchase-detail-content .purchase-option .option-name {
+  font-size: 14px;
+  text-align: left;
+  flex: 1;
+}
+.purchase-detail-content .purchase-option .option-total-price {
+  text-align: right;
+  width: 95px;
+  margin-left: 5px;
+}
+.my-purchase-detail-info .purchase-detail-total {
+  margin-top: 5px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+.purchase-detail-total span:first-child {
+  font-size: 18px;
+  line-height: 25px;
+  color: #222;
+}
+.purchase-detail-total span:last-child {
+  line-height: 48px;
+  color: #ff6600;
+  font-size: 36px;
+  font-weight: 900;
+}
+.my-purchase-detail-info .purchase-detail-recipient {
+  margin-top: 57px;
+  border-bottom: 1px solid #ddd;
+}
+.purchase-detail-recipient .order-box {
+  width: 235px;
+  padding-bottom: 22px;
+}
+.order-box .title {
+  line-height: 24px;
+  padding-bottom: 13px;
+  margin-bottom: 22px;
+  border-bottom: 1px solid #ddd;
+  font-size: 18px;
+  color: #666;
+}
+.order-box dl{
+  margin: 0;
+  display: flex;
+  color: #656565;
+  font-size: 14px;
+  line-height: 24px;
+}
+.order-box dl:last-child{
+  margin-top: 12px;
+}
+.order-box dt{
+  width: 93px;
+}
+.order-box dd{
+  flex: 1;
+  margin: 0;
+}
+.my-purchase-detail-info .purchase-detail-payment{
+  display: flex;
+  margin-top: 30px;
+      line-height: 24px;
+    font-size: 18px;
+    color: #666;
+}
+.my-purchase-detail-info .purchase-detail-payment span:first-child{
+  width: 93px;
+}
+.my-purchase-detail-info .purchase-detail-payment span:last-child{
+  flex: 1;
+}
+.purchase-detail-btn-area{
+  display: flex;
+  margin-top: 66px;
+  justify-content: center;
+  gap: 8px;
+}
+.purchase-detail-btn-area button{
+  cursor: pointer;
+  background-color: #fff;
+  border-radius: 25px;
+  text-align: center;
+  border: 1px solid #999;
+  width: 170px;
+  color: #222;
+  font-size: 18px;
+    line-height: 48px;
+    padding: 0 20px;
 }

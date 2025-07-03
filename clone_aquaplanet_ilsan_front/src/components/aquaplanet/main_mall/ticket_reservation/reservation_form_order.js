@@ -22,38 +22,39 @@ const OrderForm = ({baseData, selectedOption, selectedCoupon, onDiscountChange, 
 
         // 각 옵션의 원가 합산, 할인 가능한 옵션일 경우 따로 합산, 임시 객체 생성
         const sumOptions = finalizedOptions.map((item) => {
-        const itemPrice = parseInt(item.option.price.replace(/,/g, ""));
-        const originTotal = itemPrice * item.quantity;
-        originTotalPrice += originTotal; 
+            const itemPrice = parseInt(item.option.price.replace(/,/g, ""));
+            const originOptionTotal = itemPrice * item.quantity;
+            originTotalPrice += originOptionTotal; 
 
-        if (item.option.discountable) {
-            discountableOptionTotalPrice += originTotal; 
-        }
-        return { ...item, originTotal: originTotal };
+            if (item.option.discountable) {
+                discountableOptionTotalPrice += originOptionTotal; 
+            }
+            return { ...item, originOptionTotal: originOptionTotal };
         });
 
         // 총 할인 금액 계산
         let calculatedTotalDiscountPrice = 0; 
                                             
         if (selectedCoupon) {
-        if (selectedCoupon.discountAmount !== undefined) {
-            calculatedTotalDiscountPrice = selectedCoupon.discountAmount;
-        } else if (selectedCoupon.discountRate !== undefined) {
-            calculatedTotalDiscountPrice = selectedCoupon.discountRate * discountableOptionTotalPrice;
-        }
+            if (selectedCoupon.discountAmount !== undefined) {
+                calculatedTotalDiscountPrice = selectedCoupon.discountAmount;
+            } 
+            else if (selectedCoupon.discountRate !== undefined) {
+                calculatedTotalDiscountPrice = selectedCoupon.discountRate * discountableOptionTotalPrice;
+            }
         }
         calculatedTotalDiscountPrice = Math.min(calculatedTotalDiscountPrice, discountableOptionTotalPrice);
         calculatedTotalDiscountPrice = Math.round(calculatedTotalDiscountPrice / 10) * 10;
 
         // 할인 가능한 금액에 할인가 적용 계산 (각 옵션별 최종 가격 및 할인 금액)
         const applyDiscountToDiscountableItem = sumOptions.map(item => {
-        let totalPricePerOption = item.originTotal; 
+            let totalPricePerOption = item.originOptionTotal; 
 
-        if (item.option.discountable && discountableOptionTotalPrice > 0) {
-            totalPricePerOption = item.originTotal - calculatedTotalDiscountPrice;
-        }
+            if (item.option.discountable && discountableOptionTotalPrice > 0) {
+                totalPricePerOption = item.originOptionTotal - calculatedTotalDiscountPrice;
+            }
 
-        return {...item, totalPricePerOption: totalPricePerOption};
+            return {...item, totalPricePerOption: totalPricePerOption};
         });
 
         //최종 총합 계산, 원가 총합 - 할인가 총합
@@ -61,10 +62,10 @@ const OrderForm = ({baseData, selectedOption, selectedCoupon, onDiscountChange, 
         finalPrice = Math.max(finalPrice, 0);
 
         setTotalDiscountPrice(calculatedTotalDiscountPrice);
-        onDiscountChange(calculatedTotalDiscountPrice);
-        onDiscountablePriceChange(discountableOptionTotalPrice); 
         setTotalSumPrice(originTotalPrice);
         setFinalTotalPrice(finalPrice); 
+        onDiscountChange(calculatedTotalDiscountPrice);
+        onDiscountablePriceChange(discountableOptionTotalPrice); 
         onFinalTotalPriceChange(finalPrice); 
         onFinalizedOptionsChange(applyDiscountToDiscountableItem);
 

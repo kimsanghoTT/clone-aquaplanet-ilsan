@@ -43,9 +43,20 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
 
   useEffect(() => {
     const getPreferredBranches = async () => {
-      const response = await axiosInstance.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
-      setSelectedPreferredBranch(response.data);
-      setBranchSelectionState(response.data);
+      try{
+        const response = await axiosInstance.get(`/aquaplanet/mypage/getPreferredBranch/${loginMember.memberEmail}`);
+        setSelectedPreferredBranch(response.data);
+        setBranchSelectionState(response.data);
+      }
+      catch{
+        setSelectedPreferredBranch({
+        여수: true,
+        제주: true,
+        일산: true,
+        광교: true,
+        });
+      }
+
     }
 
     if(loginMember){
@@ -174,7 +185,7 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
             <ul className="aquaplanet-header-navigation-list">
               {navigationList.map((item, index) => (
                 <li className="navi-item" key={index}>
-                  <a href={item.url}>{item.text}</a>
+                  <a href={loginMember ? item.url : "/aquaplanet/member/login"}>{item.text}</a>
                 </li>
               ))}
             </ul>

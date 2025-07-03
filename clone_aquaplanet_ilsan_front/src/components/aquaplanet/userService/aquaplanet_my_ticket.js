@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import "../../../css/aquaplanet/aquaplanet_user_dashboard.css";
 import ticketData from "../main_mall/main_mall_item.json";
 import axiosInstance from "../../axiosIntercepting";
@@ -6,7 +6,6 @@ import LoginContext from "../../LoginContext";
 import Barcode from "react-barcode";
 import moment from "moment";
 
-const branches = ["63", "여수", "제주", "일산", "광교"];
 
 const MyTicketList = () => {
     const {loginMember} = useContext(LoginContext);
@@ -19,6 +18,8 @@ const MyTicketList = () => {
     const [filteredTicketList, setFilteredTicketList] = useState([]);
     const [selectedOrderNo, setSelectedOrderNo] = useState(null);
     const branchFilterRef = useRef();
+    const branches = useMemo(() => ["63", "여수", "제주", "일산", "광교"], []) ;
+
     const branchColor = {
     일산: "#5400FF",
     제주: "#34A5FC",
@@ -26,11 +27,10 @@ const MyTicketList = () => {
     광교: "#f8a139",
     };
 
-
     useEffect(() => {
         const clickOutside = (e) => {
             if (branchFilterRef.current && !branchFilterRef.current.contains(e.target)) {
-            setBranchFilterOpen(false);
+                setBranchFilterOpen(false);
             }
         };
 
@@ -105,9 +105,7 @@ const MyTicketList = () => {
             return;
         }
 
-        const filteredByTab = orderedTicketList.filter(ticket => {
-            return ticket.itemCategory === activeTab;
-        })
+        const filteredByTab = orderedTicketList.filter(ticket => ticket.itemCategory === activeTab);
 
         const filteredByBranch = filteredByTab.filter(ticket => {
             if(branchFilterIndex === null){
@@ -117,7 +115,7 @@ const MyTicketList = () => {
         })
 
         setFilteredTicketList(filteredByBranch);
-    },[activeTab, branchFilterIndex, orderedTicketList])
+    },[activeTab, branchFilterIndex, orderedTicketList, branches])
     
     const handleBtns = (type) => {
         if(type === "general"){
@@ -129,16 +127,15 @@ const MyTicketList = () => {
         else if(type === "filter"){
             setBranchFilterOpen(!branchFilterOpen)
         }
+        else if(type === "reset"){
+            setBranchFilterLabel("지역");
+            setBranchFilterIndex(null);
+            setBranchFilterOpen(false);
+        }
     }
 
     const handleOrderClick = (orderNo) => {
         setSelectedOrderNo(orderNo);
-    }
-
-    const resetFilterOption = () => {
-        setBranchFilterLabel("지역");
-        setBranchFilterIndex(null);
-        setBranchFilterOpen(false);
     }
 
     const selectFilterOption = (index) => {
@@ -163,7 +160,7 @@ const MyTicketList = () => {
                 <div className="user-dashboard-container">
                     <div className="user-dashboard-content">
                         <h2>나의 티켓 보기</h2>
-                        <div className="my-ticket-list-tab">
+                        <div className="my-ticket-list-tab left-ticket-list">
                             <div className="ticket-type-tab-list">
                                 <span className={activeTab === "general" ? "active" : ""} onClick={() => handleBtns("general")}>일반티켓</span>
                                 <span className={activeTab === "premium" ? "active" : ""} onClick={() => handleBtns("premium")}>프리미엄티켓</span>
@@ -177,7 +174,7 @@ const MyTicketList = () => {
                                 </span>
                                 <ul className={`branch-option-list ${branchFilterOpen ? "on" : ""}`}>
                                     <li className={`branch-option ${branchFilterIndex === null ? "selected" : ""}`} 
-                                    onClick={resetFilterOption}>
+                                    onClick={() => handleBtns("reset")}>
                                         지역
                                     </li>
                                     {branches.map((branch, index) => (
@@ -197,7 +194,7 @@ const MyTicketList = () => {
                             <div className="my-ticket-list-board">
                                 {filteredTicketList.map(order =>{
                                     const getBaseTicketData = getBaseTicketInfo(order.ticketId);
-                                    console.log(order);
+
                                     return(
                                     <div className="ticket-item" key={order.orderNo} onClick={() => handleOrderClick(order.orderNo)}>
                                         <figure>
@@ -207,7 +204,7 @@ const MyTicketList = () => {
                                             <span className="branch" style={{backgroundColor:branchColor[order.ticketBranch]}}>{order.ticketBranch}</span>
                                             <span className="ticket-title">{order.ticketTitle}</span>
                                             <div>
-                                                <span>{order.finalTotalPrice}원</span>
+                                                <span>{order.finalTotalPrice.toLocaleString()}원</span>
                                                 <span>{moment(order.orderDate).format("YYYY.MM.DD")}</span>
                                             </div>
                                         </div>
@@ -229,12 +226,17 @@ const MyTicketList = () => {
             <div className="user-dashboard-default-grid-right">
                 <div className="user-dashboard-container right-side">
                     {orderedTicketDetailList.length > 0 ? (
-                    <div className="ticket-list">
+                    <div className="ticket-detail-list">
                         {orderedTicketDetailList.map(item => {
-                            const getOrderNo = getBaseTicketDetailInfo();
-                            const detailData = getBaseTicketInfo(getOrderNo.ticketId);
+
+                            //서버에서 넘어온 주문 배열 중 주문번호가 일치하는 객체 하나 찾기
+                            const getTicketId = getBaseTicketDetailInfo();
+
+                            // getTicketId로 찾은 객체의 ticketId를 통해 json 파일 속 일치하는 티켓 정보 가져옴
+                            const detailData = getBaseTicketInfo(getTicketId.ticketId);
                             const isDelay = item.delay !== "none" ? item.delay : "none";
                             const delayTime = isDelay === "1hour" ? "1 시간" : "24 시간"
+
                             return (
                                 <div key={item.optionId} className="ticket-shape">
                                     <div className={`ticket-delay-film ${isDelay !== "none" ? "on": ""}`}>
@@ -271,7 +273,7 @@ const MyTicketList = () => {
                         })}
                     </div>
                     ) : (
-                    <div className="ticket-list no-data">
+                    <div className="ticket-detail-list no-data">
                         <div className="ticket-shape no-data">
                             <span>아직 구매한 상품이 없습니다.</span>
                             <span>티켓을 구매하면 상세 내역을 확인할 수 있습니다.</span>

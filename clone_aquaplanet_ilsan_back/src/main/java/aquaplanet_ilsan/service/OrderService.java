@@ -10,7 +10,11 @@ public interface OrderService {
 
 	void insertOrderList(OrderRequest request);
 	
-	List<Orders> getOrderedAvailableTickets(int memberNo);
+	List<Orders> getAvailableOrderedTickets(int memberNo);
 	
-	List<OrderDetail> getOrderedAvailableTicketDetails(int orderNo);
+	List<OrderDetail> getAvailableOrderedTicketDetails(int orderNo);
+	
+	List<Orders> getAllOrderedTickets(int memberNo);
+	
+	List<OrderDetail> getAllOrderedTicketDetails(int orderNo);
 }

@@ -17,10 +17,16 @@
 	        #{detail.totalPricePerOption}, #{detail.quantity}, #{detail.optionStatus}, #{detail.usedDate}, #{detail.barcodeNumber}, #{detail.delay})
 	    </foreach>
 	</insert>
-	<select id="getOrderedAvailableTickets">
+	<select id="getAvailableOrderedTickets">
 		select * from Orders where memberNo = #{memberNo} and orderStatus = "사용가능"
 	</select>
-	<select id="getOrderedAvailableTicketDetails">
+	<select id="getAvailableOrderedTicketDetails">
 		select * from OrderDetail where orderNo = #{orderNo} and optionStatus = "사용대기"
+	</select>
+	<select id="getAllOrderedTickets">
+		select * from Orders where memberNo = #{memberNo}
+	</select>
+	<select id="getAllOrderedTicketDetails">
+		select * from OrderDetail where orderNo = #{orderNo}
 	</select>
 </mapper>

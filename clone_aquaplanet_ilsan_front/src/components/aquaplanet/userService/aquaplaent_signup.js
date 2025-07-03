@@ -138,6 +138,10 @@ const Signup = () => {
       ...userData,
       [name]: value,
     }));
+
+    if(name === "memberEmail"){
+      setDupleCheck(false);
+    }
   };
 
   const duplicateCheck = async () => {

@@ -51,13 +51,13 @@ public class OrderController {
 	}
 	
 	@GetMapping("/member/myTicket/{memberNo}")
-	public ResponseEntity<Map<String, Object>> getOrderedAvailableTickets(@PathVariable("memberNo") int memberNo){
-		List<Orders> orderedTickets = orderService.getOrderedAvailableTickets(memberNo);
+	public ResponseEntity<Map<String, Object>> getAvailableOrderedTickets(@PathVariable("memberNo") int memberNo){
+		List<Orders> availableOrderedTickets = orderService.getAvailableOrderedTickets(memberNo);
 		
 		Map<String, Object> response = new HashMap<>();
 		try {
 			response.put("result", "SUCCESS");
-			response.put("orderData", orderedTickets);
+			response.put("orderData", availableOrderedTickets);
 			return ResponseEntity.ok(response);
 		}
 		catch(Exception e){
@@ -69,19 +69,51 @@ public class OrderController {
 	}
 	
 	@GetMapping("/member/myTicketDetail/{orderNo}")
-	public ResponseEntity<Map<String, Object>> getOrderedAvailableTicketDetails(@PathVariable("orderNo") int orderNo){
-		List<OrderDetail> orderDetailDataList =orderService.getOrderedAvailableTicketDetails(orderNo);
+	public ResponseEntity<Map<String, Object>> getAvailableOrderedTicketDetails(@PathVariable("orderNo") int orderNo){
+		List<OrderDetail> availableOrderDetailDataList = orderService.getAvailableOrderedTicketDetails(orderNo);
 		
 		Map<String, Object> response = new HashMap<>();
 		try {
 
 			response.put("result", "SUCCESS");
-			response.put("orderDetailDataList", orderDetailDataList);
+			response.put("orderDetailDataList", availableOrderDetailDataList);
 			return ResponseEntity.ok(response);
 		}
 		catch(Exception e) {
 			response.put("result", "ERROR");
 			response.put("orderDetailDataList", null);
+			return ResponseEntity.ok(response);
+		}
+	}
+	
+	@GetMapping("/member/myOrderedTickets/{memberNo}")
+	public ResponseEntity<Map<String, Object>> getAllOrderedTickets(@PathVariable("memberNo") int memberNo){
+		List<Orders> allOrderedTicketData = orderService.getAllOrderedTickets(memberNo);
+		
+		Map<String, Object> response = new HashMap<>();
+		try {
+			response.put("result", "SUCCESS");
+			response.put("allOrderData", allOrderedTicketData);
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			response.put("result", "ERROR");
+			response.put("allOrderData", null);
+			return ResponseEntity.ok(response);
+		}
+	}
+	
+	@GetMapping("/member/myOrderedTicketDetails/{orderNo}")
+	public ResponseEntity<Map<String, Object>> getAllOrderedTicketDetails(@PathVariable("orderNo") int orderNo){
+		List<OrderDetail> allOrderDetailDataList = orderService.getAllOrderedTicketDetails(orderNo);
+		
+		Map<String, Object> response = new HashMap<>();
+		try {
+			response.put("result", "SUCCESS");
+			response.put("allOrderDetailDataList", allOrderDetailDataList);
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			response.put("result", "ERROR");
+			response.put("allOrderDetailDataList", null);
 			return ResponseEntity.ok(response);
 		}
 	}
