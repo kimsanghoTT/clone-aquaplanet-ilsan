@@ -1,38 +1,11 @@
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import React, { useEffect, useRef } from "react";
-gsap.registerPlugin(ScrollTrigger);
+import React, { useRef } from "react";
+import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
 
 const MainInfoSection = () => {
   const sectionRef = useRef(null);
-  useEffect(() => {
-    const sectionTitle = sectionRef.current.querySelectorAll(
-      ".section-title-reverse01 p"
-    );
-    const sectionContent = sectionRef.current.querySelectorAll(".info-item");
 
-    gsap.fromTo(
-      sectionTitle,
-      { opacity: 0, y: 50 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.2,
-        scrollTrigger: { trigger: ".section03", start: "top 30%" },
-      }
-    );
-    gsap.fromTo(
-      sectionContent,
-      { opacity: 0, y: 100 },
-      {
-        opacity: 1,
-        y: 0,
-        stagger: 0.1,
-        scrollTrigger: { trigger: ".section03", start: "top 30%" },
-      }
-    );
-  }, []);
-  
+  useSectionScrollAnimation(sectionRef, ".section-title-reverse01 p", ".info-item");
+
   return (
     <section className="main-section section03" ref={sectionRef}>
       <div className="section-container-inner">
@@ -42,7 +15,7 @@ const MainInfoSection = () => {
             아쿠아플라넷 일산을 <strong>제대로 즐기는 방법!</strong>
           </p>
         </div>
-        <div className="info-section-content-box">
+        <div className="info-section-content-box section-content-box">
           <div className="info-item operating-info">
             <span className="operating-title">운영시간</span>
             <dl>

@@ -80,6 +80,9 @@
   margin-inline-start: 0;
   margin-right: 30px;
 }
+.company-info dt a{
+  color: #999;
+}
 .company-address {
   display: block;
   font-family: NotoSans-Light;
@@ -130,7 +133,7 @@
   padding-inline-start: 0;
   position: absolute;
   right: 0;
-  bottom: 37px;
+  bottom: 50px;
   width: 200px;
   box-sizing: border-box;
   border: 1px solid #262626;

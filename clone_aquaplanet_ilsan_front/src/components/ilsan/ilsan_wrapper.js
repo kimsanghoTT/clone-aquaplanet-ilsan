@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
-import Main from "./main/ilsan_main_fullpage";
-import IlsanHeader from "./layout/ilsan_header";
-import AsideBar from "./layout/ilsan_aside";
-import Footer from "./layout/ilsan_footer";
+import Main from "./main/pages/ilsan_main_fullpage";
+import IlsanHeader from "./layout/Header/ilsan_header";
+import AsideBar from "./layout/AsideBar/ilsan_aside";
+import Footer from "./layout/Footer/ilsan_footer";
 
 const IlsanWrapper = () => {
   return (
