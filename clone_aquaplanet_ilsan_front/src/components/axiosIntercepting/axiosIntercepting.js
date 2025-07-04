@@ -238,6 +238,7 @@ const axiosIntercepting = {
             const match = fullUrl.match(refundUrlPattern);
 
             if(match){
+              /*
               const orderNo = match[1];
               const memberNo = match[2];
 
@@ -253,6 +254,7 @@ const axiosIntercepting = {
                 ...requestBody.orderDetailDataList,
                 optionStatus:"환불완료"
               }
+              */
 
               resolve({data:{result:"SUCCESS"}})
             }
