@@ -1,4 +1,7 @@
 import axios from "axios";
+import ticketData from "../aquaplanet/main_mall/main_mall_item.json";
+import mockOrders from "./mock_orders.json";
+import mockOrderDetails from "./mock_orders_detail.json";
 
 // 시연용 백엔드 우회 코드, 백엔드 활성화 시 .env에서 DEMO_MODE 주석처리 할 것
 const axiosIntercepting = {
@@ -17,9 +20,7 @@ const axiosIntercepting = {
           } else {
             resolve({ data: 0 });
           }
-        } else if (
-          fullUrl.startsWith(`${baseUrl}/aquaplanet/mypage/getPreferredBranch/`)
-        ) {
+        } else if (fullUrl.startsWith(`${baseUrl}/aquaplanet/mypage/getPreferredBranch/`)) {
           const initBranches = {
             63: false,
             여수: false,
@@ -40,10 +41,80 @@ const axiosIntercepting = {
           }
 
           resolve({ data: responseData });
+        } else if(fullUrl.startsWith(`${baseUrl}/aquaplanet/member/myTicket/`)){
+          const memberNo = fullUrl.split('/').pop();
+
+          if(memberNo && parseInt(memberNo) > 0){
+
+            const userAvailableOrders = mockOrders.filter(
+              order => order.orderStatus === "사용가능"
+            );
+            resolve({data:{result:"SUCCESS", orderData:userAvailableOrders}});
+          }
+          else{
+            resolve({data:{result:"FAILED", orderData:[]}});
+          }
+          return;
+        } else if(fullUrl.startsWith(`${baseUrl}/aquaplanet/member/myTicketDetail/`)){
+            const orderNo = parseInt(fullUrl.split("/").pop());
+            const order = mockOrders.find(o => o.orderNo === orderNo); 
+
+            let mockOrderDetailDataList = [];
+
+            if (order) {
+                const ticket = ticketData.find(t => t.id === order.ticketId);
+                if (ticket) {
+                  mockOrderDetailDataList = ticket.details.map(detail => {
+                    let barcodeNumber = '';
+
+                    for (let i = 0; i < 16; i++) {
+                      barcodeNumber += Math.floor(Math.random() * 10); // 0부터 9까지의 숫자
+                    }
+
+                    return {
+                      orderNo: order.orderNo,
+                      optionId: detail.id,
+                      optionName: detail.name,
+                      quantity: order.ticketId === "ilsan-01" ? 2 : 1, 
+                      totalPricePerOption: parseFloat(detail.price.replace(/,/g, '')),
+                      optionStatus: "사용대기",
+                      usedDate: null,
+                      barcodeNumber: barcodeNumber, 
+                      delay: detail.delay || ticket.delay || "none",
+                    }
+                    });
+                }
+            }
+
+          if (mockOrderDetailDataList.length > 0) {
+            resolve({ data: { result: "SUCCESS", orderDetailDataList: mockOrderDetailDataList } });
+          } else {
+            resolve({ data: { result: "SUCCESS", orderDetailDataList: [] } });
+          }
+          return;
+        } else if(fullUrl.startsWith(`${baseUrl}/aquaplanet/member/myOrderedTickets/`)) {
+          const memberNo = fullUrl.split("/").pop();
+          
+          if(memberNo && memberNo > 0){
+            resolve({data:{result:"SUCCESS", allOrderData:mockOrders}});
+          }
+          else{
+            resolve({data:{result:"FAILED", allOrderData:[]}})
+          }
+        } else if(fullUrl.startsWith(`${baseUrl}/aquaplanet/member/myOrderedTicketDetails/`)){
+            const orderNoStr = fullUrl.split("/").pop();
+            const orderNo = parseInt(orderNoStr); 
+            const mockOrderDetailDataList = mockOrderDetails.filter(detail => detail.orderNo === orderNo);
+
+            if (mockOrderDetailDataList.length > 0) {
+                resolve({ data: { result: "SUCCESS", allOrderDetailDataList: mockOrderDetailDataList } });
+            } else {
+                resolve({ data: { result: "SUCCESS", allOrderDetailDataList: [] } });
+            }
         } else {
           reject(new Error(`처리되지 않은 요청 ${fullUrl}`));
         }
-      }, 500);
+      }, 0);
     });
   },
 
@@ -53,6 +124,7 @@ const axiosIntercepting = {
         const baseUrl = process.env.REACT_APP_API_BASE_URL || "";
         const fullUrl = `${baseUrl}${url}`;
         const orderUrlPattern = new RegExp(`${baseUrl}/aquaplanet/mall/[a-z0-9-]+/order/\\d+$`);
+        const refundUrlPattern = new RegExp(`${baseUrl}/aquaplanet/member/remove/(\\d+)/order/(\\d+)`);
 
         if (fullUrl === `${baseUrl}/aquaplanet/signup`) {
           resolve({ status: 200 });
@@ -128,9 +200,7 @@ const axiosIntercepting = {
           } else {
             resolve({ data: { result: "NOT_FOUND", memberEmail: null } });
           }
-        } else if (
-          fullUrl === `${baseUrl}/aquaplanet/mypage/updatePreferredBranch`
-        ) {
+        } else if (fullUrl === `${baseUrl}/aquaplanet/mypage/updatePreferredBranch`) {
           if (data.memberEmail && data.preferredBranch !== undefined) {
             resolve({ status: 200 });
           } else {
@@ -144,8 +214,7 @@ const axiosIntercepting = {
           }
         } else if (fullUrl === `${baseUrl}/aquaplanet/mypage/modifyProfile`) {
           resolve({ status: 200 });
-        } 
-        else if(orderUrlPattern.test(fullUrl)){
+        } else if(orderUrlPattern.test(fullUrl)){
           const generateOrderNo = Math.floor(Math.random() * 100);
           const generateBarcode = () => {
             let barcode = '';
@@ -165,8 +234,29 @@ const axiosIntercepting = {
             barcodeNumber:generateBarcode()
           }))
           resolve({data: {result:"SUCCESS", orderData:generateOrderData, orderDetailDataList:generateOrderDetailDataList}})
-        }
-        else {
+        } else if(refundUrlPattern.test(fullUrl)){
+            const match = fullUrl.match(refundUrlPattern);
+
+            if(match){
+              const orderNo = match[1];
+              const memberNo = match[2];
+
+              const requestBody = data;
+              console.log(requestBody);
+
+              const refundOrderData = {
+                ...requestBody.orderData,
+                orderStatus:"환불완료"
+              }
+
+              const refundOrderDetailDataList = {
+                ...requestBody.orderDetailDataList,
+                optionStatus:"환불완료"
+              }
+
+              resolve({data:{result:"SUCCESS"}})
+            }
+        } else {
           reject(new Error(`처리되지 않은 요청 ${fullUrl}`));
         }
       }, 500);

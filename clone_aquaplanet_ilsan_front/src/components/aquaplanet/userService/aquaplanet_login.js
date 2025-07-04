@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import FindIdModal from "./aquaplanet_find_id";
 import FindPwModal from "./aquaplanet_find_pw";
 import LoginContext from "../../LoginContext";
-import axiosInstance from "../../axiosIntercepting";
+import axiosInstance from "../../axiosIntercepting/axiosIntercepting";
 
 const Login = () => {
   const {setLoginMember} = useContext(LoginContext);

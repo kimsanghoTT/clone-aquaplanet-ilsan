@@ -3,7 +3,7 @@ import cityData from "./city_district.json";
 import "../../../css/aquaplanet/aquaplanet_signup.css";
 import gsap from "gsap";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axiosIntercepting";
+import axiosInstance from "../../axiosIntercepting/axiosIntercepting";
 
 const Signup = () => {
   const navigate = useNavigate();

@@ -22,7 +22,7 @@ public interface OrderMapper {
 	
 	List<OrderDetail> getAllOrderedTicketDetails(@Param("orderNo") int orderNo);
 	
-	int refundTicket(@Param("memberNo") int memberNo, @Param("orderNo") int orderNo);
+	int refundOrder(@Param("memberNo") int memberNo, @Param("orderNo") int orderNo, @Param("orderStatus") String orderStatus);
 	
-	int refundTicketDetail(@Param("orderNo") int orderNo, @Param("orderDetailNo") int OrderDetailNo);
+	int refundOrderDetail(@Param("orderNo") int orderNo, @Param("optionStatus") String optionStatus);
 }

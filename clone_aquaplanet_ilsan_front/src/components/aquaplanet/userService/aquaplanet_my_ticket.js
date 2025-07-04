@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import "../../../css/aquaplanet/aquaplanet_user_dashboard.css";
 import ticketData from "../main_mall/main_mall_item.json";
-import axiosInstance from "../../axiosIntercepting";
+import axiosInstance from "../../axiosIntercepting/axiosIntercepting";
 import LoginContext from "../../LoginContext";
 import Barcode from "react-barcode";
 import moment from "moment";
@@ -48,6 +48,8 @@ const MyTicketList = () => {
 
             try{
                 const response = await axiosInstance.get(`/aquaplanet/member/myTicket/${loginMember.memberNo}`);
+                console.log(response.data);
+                console.log(loginMember.memberNo);
                 if(response.data.result === "SUCCESS"){
                     const orders = response.data.orderData;
                     setOrderedTicketList(orders);

@@ -17,4 +17,6 @@ public interface OrderService {
 	List<Orders> getAllOrderedTickets(int memberNo);
 	
 	List<OrderDetail> getAllOrderedTicketDetails(int orderNo);
+	
+	void refundOrder(OrderRequest request);
 }

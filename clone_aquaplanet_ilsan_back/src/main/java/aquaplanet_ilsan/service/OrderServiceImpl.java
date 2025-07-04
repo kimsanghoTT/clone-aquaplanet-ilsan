@@ -21,7 +21,7 @@ public class OrderServiceImpl implements OrderService{
 	private final Random random = ThreadLocalRandom.current(); 
 	
 	@Override
-	@Transactional
+	@Transactional // 주문 정보 삽입, 주문 세부 정보 삽입 -> 2가지 쿼리를 하나의 트랜잭션으로 묶어서 처리
 	public void insertOrderList(OrderRequest request) {
 		//들어온 데이터 분류
 		Orders insertOrder = request.getOrderData();
@@ -68,5 +68,16 @@ public class OrderServiceImpl implements OrderService{
 		return orderMapper.getAllOrderedTicketDetails(orderNo);
 	}
 	
-
+	//환불 기능
+	@Override
+	@Transactional // Orders, OrderDetail 각각의 테이블에 해당하는 두 가지 쿼리를 하나의 트랜잭션으로 처리
+	public void refundOrder(OrderRequest request) {
+		int memberNo = request.getOrderData().getMemberNo();
+		int orderNo = request.getOrderData().getOrderNo();
+		String orderStatus = request.getOrderData().getOrderStatus();
+		String optionStatus = request.getOrderDetailDataList().get(0).getOptionStatus();
+		
+		orderMapper.refundOrder(memberNo, orderNo, orderStatus);
+		orderMapper.refundOrderDetail(orderNo, optionStatus);
+	}
 }

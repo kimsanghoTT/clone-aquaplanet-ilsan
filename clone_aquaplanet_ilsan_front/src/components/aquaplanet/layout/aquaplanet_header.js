@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "../../../css/aquaplanet/aquaplanet_header.css";
 import LoginContext from "../../LoginContext";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axiosIntercepting";
+import axiosInstance from "../../axiosIntercepting/axiosIntercepting";
 
 const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch }) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
@@ -100,6 +100,7 @@ const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch 
 
   const navigateMyPage = () => {
     navigate("/aquaplanet/member/mypage/setting");
+    setToggleBoxOpen(false);
   };
   
   const logout = () => {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../axiosIntercepting";
+import axiosInstance from "../../../axiosIntercepting/axiosIntercepting";
 import moment from "moment";
 
 const PayForm = ({
@@ -128,8 +128,6 @@ const PayForm = ({
       orderData: orderData,
       orderDetailDataList: orderDetailDataList
     }
-        console.log(orderData);
-    console.log(orderDetailDataList);
     try{
       const response = 
       await axiosInstance.post(`/aquaplanet/mall/${baseData.id}/order/${loginMember.memberNo}`, requestBody);

@@ -1,7 +1,7 @@
 import moment from "moment";
-import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from "react";
+import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
 import LoginContext from "../../LoginContext";
-import axiosInstance from "../../axiosIntercepting";
+import axiosInstance from "../../axiosIntercepting/axiosIntercepting";
 import ticketData from "../main_mall/main_mall_item.json";
 import Barcode from "react-barcode";
 
@@ -131,6 +131,7 @@ const MyPurchaseList = () => {
 
     },[branchFilterIndex, orderedTicketList, branches, statusFilterIndex ,statuses])
 
+
     const handleBtns = (type) => {
         if(type === "filter_branch"){
             setBranchFilterOpen(!branchFilterOpen)
@@ -176,12 +177,45 @@ const MyPurchaseList = () => {
         setShowTicketList(false);
     }
 
-    useEffect(() => {
-        if(filteredTicketList.length === 0 || !selectedOrderNo){
+    const refundOrder = async (orderNo, memberNo) => {
+        const confirmRefund = window.confirm("환불을 요청하시겠습니까?")
+        if(!confirmRefund){
             return;
         }
-        
+        const setOrderData = filteredTicketList.find(item => item.orderNo === orderNo);
+        const setOrderDetailDataList = orderedTicketDetailList;
+
+        const orderData = {
+            ...setOrderData,
+            orderStatus:"환불완료"
+        }
+        const orderDetailDataList = setOrderDetailDataList.map(prev => ({
+            ...prev,
+            optionStatus:"환불완료"
+        }))
+
+        const requestBody = {
+            orderData: orderData,
+            orderDetailDataList: orderDetailDataList
+        }
+        const response = await axiosInstance.post(`/aquaplanet/member/remove/${orderNo}/order/${memberNo}`, requestBody);
+
+        if(response.data.result === "SUCCESS"){
+            alert("취소가 완료되었습니다.");
+            document.location.reload();
+        }
+        else{
+            console.log(response.data.error);
+        }
+    }
+
+    useEffect(() => {
+
+    if(filteredTicketList.length === 0 || !selectedOrderNo){
+        return;
+    }
         const sliceOrder = filteredTicketList.find(ticket => ticket.orderNo === selectedOrderNo);
+
         if(sliceOrder){
             const selectedTicketData = getBaseTicketInfo(sliceOrder.ticketId);
             setSelectedOrderInfo(sliceOrder);
@@ -189,18 +223,7 @@ const MyPurchaseList = () => {
         }
 
     },[filteredTicketList, selectedOrderNo])
-
-
-    /* 환불 요청 하시겠습니까 ? - confirm -> 성공 시 alert 취소가 완료되었습니다. */
-    const refundOrder = async (orderNo, memberNo) => {
-        const confirmRefund = window.confirm("환불을 요청하시겠습니까?")
-        if(!confirmRefund){
-            return;
-        }
-        
-        const response = await axiosInstance.delete(`/aquaplanet/remove/${orderNo}/order/${memberNo}`)
-    }
-
+    
 
     return (
         <section className="aquaplanet-user-dashboard-wrapper">
@@ -338,12 +361,12 @@ const MyPurchaseList = () => {
                             </div>
                             <div className="purchase-detail-btn-area">
                                 <button onClick={() => handleBtns("showTicketList")}>구매내역보기</button>
-                                <button onClick={() => refundOrder(orderedTicketData.orderNo, loginMember.memberNo)}>환불요청하기</button>
+                                <button onClick={() => refundOrder(selectedOrderInfo.orderNo, loginMember.memberNo)}>환불요청하기</button>
                             </div>
                             </>
                     ) : 
                     (
-                        orderedTicketDetailList.length > 0 ? (
+                        orderedTicketDetailList.length > 0 && selectedOrderInfo && orderedTicketData ? (
                                 <>
                                 <div className="my-purchase-detail-info">
                                     <div className="purchase-detail-title">
@@ -391,7 +414,7 @@ const MyPurchaseList = () => {
                                 {selectedOrderInfo.orderStatus === "사용가능" && (
                                     <div className="purchase-detail-btn-area">
                                         <button onClick={() => handleBtns("showTicketList")}>티켓보기</button>
-                                        <button onClick={() => refundOrder(orderedTicketData.orderNo, loginMember.memberNo)}>환불요청하기</button>
+                                        <button onClick={() => refundOrder(selectedOrderInfo.orderNo, loginMember.memberNo)}>환불요청하기</button>
                                     </div>
                                 )}                    
                                 </>

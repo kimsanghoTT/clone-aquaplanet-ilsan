@@ -117,4 +117,27 @@ public class OrderController {
 			return ResponseEntity.ok(response);
 		}
 	}
+	
+	@PostMapping("/member/remove/{orderNo}/order/{memberNo}")
+	public ResponseEntity<Map<String, String>> refundOrder(
+			@PathVariable("orderNo") int orderNo,
+			@PathVariable("memberNo") int memberNo,
+			@RequestBody OrderRequest request
+			){
+		orderService.refundOrder(request);
+		
+		Map<String, String> response = new HashMap<>();
+		
+		System.out.println(request);
+		
+		try {
+			
+			response.put("result", "SUCCESS");
+			return ResponseEntity.ok(response);
+		} catch (Exception e) {
+			response.put("result", "FAILED");
+			response.put("error", e.toString());
+			return ResponseEntity.ok(response);
+		}
+	}
 }

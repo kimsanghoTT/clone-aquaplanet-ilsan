@@ -1,0 +1,110 @@
+[
+  {
+    "orderDetailNo": 1,
+    "orderNo": 1001,
+    "optionId": "ilsan-01-01",
+    "optionName": "더아쿠아+더정글+스카이팜+다흑 특별 전시",
+    "totalPricePerOption": 50000,
+    "quantity": 2,
+    "optionStatus": "사용가능",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "1hour"
+  },
+  {
+    "orderDetailNo": 2,
+    "orderNo": 1001,
+    "optionId": "ilsan-01-01",
+    "optionName": "스탬프 50% 할인쿠폰 전용 상품(+14,000원)",
+    "totalPricePerOption": 78000,
+    "quantity": 2,
+    "optionStatus": "사용가능",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "1hour"
+  },
+  {
+    "orderDetailNo": 3,
+    "orderNo": 1002,
+    "optionId": "jeju-01-01",
+    "optionName": "아쿠아리움 + 오션아레나 + 해녀 특별 전시",
+    "totalPricePerOption": 36900,
+    "quantity": 1,
+    "optionStatus": "환불완료",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "none"
+  },
+  {
+    "orderDetailNo": 4,
+    "orderNo": 1003,
+    "optionId": "yeosu-01-01",
+    "optionName": "여수_종합권(대소공통)",
+    "totalPricePerOption": 33000,
+    "quantity": 1,
+    "optionStatus": "사용가능",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "1day"
+  },
+  {
+    "orderDetailNo": 5,
+    "orderNo": 1004,
+    "optionId": "ilsan-02-01",
+    "optionName": "연간 입장권 _ 4인(A)",
+    "totalPricePerOption": 97500,
+    "quantity": 1,
+    "optionStatus": "사용가능",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "none"
+  },
+  {
+    "orderDetailNo": 6,
+    "orderNo": 1005,
+    "optionId": "gwanggyo-02-02",
+    "optionName": "연간권 _ 골드(신규)(+50,000원)",
+    "totalPricePerOption": 200000,
+    "quantity": 1,
+    "optionStatus": "사용가능",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "none"
+  },
+  {
+    "orderDetailNo": 7,
+    "orderNo": 1006,
+    "optionId": "yeosu-01-01",
+    "optionName": "여수_종합권(대소공통)",
+    "totalPricePerOption": 33000,
+    "quantity": 2,
+    "optionStatus": "사용가능",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "1day"
+  },
+  {
+    "orderDetailNo": 8,
+    "orderNo": 1007,
+    "optionId": "yeosu-02-01",
+    "optionName": "여수_입장권(대소공통)",
+    "totalPricePerOption": 30000,
+    "quantity": 3,
+    "optionStatus": "환불완료",
+    "barcodeNumber": null,
+    "usedDate": null,
+    "delay": "1day"
+  },
+  {
+    "orderDetailNo": 9,
+    "orderNo": 1008,
+    "optionId": "gwanggyo-01-01",
+    "optionName": "광교 종합권",
+    "totalPricePerOption": 24000,
+    "quantity": 1,
+    "optionStatus": "사용완료",
+    "barcodeNumber": "BARCODE12345",
+    "usedDate": "2025-05-01",
+    "delay": "1hour"
+  }
+]

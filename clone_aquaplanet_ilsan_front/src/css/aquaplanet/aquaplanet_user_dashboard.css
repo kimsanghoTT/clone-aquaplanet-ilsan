@@ -596,7 +596,7 @@
 .purchase-detail-content .purchase-option-list {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 20px;
 }
 .purchase-detail-content .purchase-option {
   display: flex;

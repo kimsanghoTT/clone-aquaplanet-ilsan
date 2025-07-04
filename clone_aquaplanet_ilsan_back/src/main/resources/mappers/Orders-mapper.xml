@@ -29,4 +29,10 @@
 	<select id="getAllOrderedTicketDetails">
 		select * from OrderDetail where orderNo = #{orderNo}
 	</select>
+	<update id="refundOrder" parameterType="Orders">
+		update Orders set orderStatus = #{orderStatus} where memberNo = #{memberNo} and orderNo = #{orderNo}
+	</update>
+	<update id="refundOrderDetail" parameterType="OrderDetail">
+		update OrderDetail set optionStatus = #{optionStatus} where orderNo = #{orderNo}
+	</update>
 </mapper>

@@ -3,7 +3,7 @@ import "../../../../css/aquaplanet/aquaplanet_mypage.css";
 import LoginContext from "../../../LoginContext";
 import TermsDetail from "../aquaplanet_terms_detail";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../axiosIntercepting";
+import axiosInstance from "../../../axiosIntercepting/axiosIntercepting";
 
 const MyPage = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
