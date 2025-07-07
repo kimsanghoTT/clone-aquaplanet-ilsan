@@ -89,6 +89,7 @@ public class MemberController {
 			return ResponseEntity.ok(response);
 		}
 		catch(Exception e){
+			e.printStackTrace();
 			response.put("result", "UNKNOWN_ERR");
 			return ResponseEntity.ok(response);
 		}

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../axiosIntercepting/axiosIntercepting";
+import axiosInstance from "../../../_axiosIntercepting/axiosIntercepting";
 import moment from "moment";
 
 const PayForm = ({

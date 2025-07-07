@@ -4,7 +4,7 @@ import "../../../../css/aquaplanet/aquaplanet_mypage_account.css";
 import LoginContext from "../../../LoginContext";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../axiosIntercepting/axiosIntercepting";
+import axiosInstance from "../../../_axiosIntercepting/axiosIntercepting";
 moment.locale("ko");
 
 const msg = {

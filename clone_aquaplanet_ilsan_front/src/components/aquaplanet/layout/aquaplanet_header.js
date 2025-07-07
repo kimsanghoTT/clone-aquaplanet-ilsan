@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useRef, useState } from "react";
 import "../../../css/aquaplanet/aquaplanet_header.css";
 import LoginContext from "../../LoginContext";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../axiosIntercepting/axiosIntercepting";
+import axiosInstance from "../../_axiosIntercepting/axiosIntercepting";
 
 const AquaplanetHeader = ({ selectedPreferredBranch, setSelectedPreferredBranch }) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);

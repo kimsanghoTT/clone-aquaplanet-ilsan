@@ -39,6 +39,7 @@
   color: #000;
   display: block;
   margin-bottom: 17px;
+  letter-spacing: -1px;
 }
 .form-content {
   padding: 30px 26px 40px;
@@ -109,6 +110,13 @@
 }
 .modal-button-list {
   display: flex;
+}
+.result-form p{
+  color: #666666;
+  line-height: 18px;
+}
+.result-form p:last-child{
+  margin-top: 17px;
 }
 .result-form button {
   font-size: 16px;
