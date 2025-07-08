@@ -1,8 +1,8 @@
 import React, { useContext, useState } from "react";
-import LoginContext from "../../../LoginContext";
+import LoginContext from "../../../../../LoginContext";
 import { useNavigate } from "react-router-dom";
-import '../../../../css/aquaplanet/aquaplanet_mypage_account.css';
-import axiosInstance from "../../../_axiosIntercepting/axiosIntercepting";
+import '../../../../../../css/aquaplanet/aquaplanet_mypage_account.css';
+import axiosInstance from "../../../../../_axiosIntercepting/axiosIntercepting";
 
 const AccountCertification = () => {
   const { loginMember } = useContext(LoginContext);

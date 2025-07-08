@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import cityData from "../../common_data/city_district.json";
 
-const useRegionSelector = ({member, setMember}) => {
+const useRegionSelector = ({initialRegion, onRegionChange }) => {
   const [citySelectorOpen, setCitySelectorOpen] = useState(false);
   const [districtSelectorOpen, setDistrictSelectorOpen] = useState(false);
 

@@ -177,14 +177,16 @@
   border: 1px solid #dddddd;
   display: none;
   z-index: 20;
+  background-color: #fff;
 }
 .pay-method-selector.on {
   display: block;
 }
 .pay-method-option {
   line-height: 24px;
-  font-size: 13px;
+  font-size: 12px;
   cursor: pointer;
+  padding: 3px 1em 3px 0.4em;
 }
 .pay-method-option.selected {
   border: 1px solid #003eff;
@@ -319,7 +321,7 @@
   line-height: 24px;
   font-size: 12px;
   cursor: pointer;
-  padding: 3px 1em 3px .4em;
+  padding: 3px 1em 3px 0.4em;
 }
 .terms-version-item.selected {
   border: 1px solid #003eff;
