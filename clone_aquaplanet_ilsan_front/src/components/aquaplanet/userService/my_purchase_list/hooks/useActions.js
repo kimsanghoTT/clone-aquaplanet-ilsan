@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useState } from "react";
-import ticketData from "../../../main_mall/main_mall_item.json";
+import ticketData from "../../../main/common_data/main_mall_item.json";
 import axiosInstance from "../../../../_axiosIntercepting/axiosIntercepting";
 
 const useActions = ({

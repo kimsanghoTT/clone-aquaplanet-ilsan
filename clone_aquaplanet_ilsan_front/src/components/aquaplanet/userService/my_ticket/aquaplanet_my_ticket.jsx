@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import "../../../../css/aquaplanet/aquaplanet_user_dashboard.css"
 import LoginContext from "../../../LoginContext";
 import useTicket from "./hooks/useticket";
-import TicketOrderList from "./my_ticket_order_list";
-import TicketOrderDetailList from "./my_ticket_order_detail_list";
+import TicketOrderList from "./sub_components/my_ticket_order_list";
+import TicketOrderDetailList from "./sub_components/my_ticket_order_detail_list";
 
 
 const MyTicketList = () => {

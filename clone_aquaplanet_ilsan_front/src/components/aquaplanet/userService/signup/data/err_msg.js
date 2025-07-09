@@ -12,6 +12,7 @@ export const errMsg = {
   PW_CONFIRM: "비밀번호가 일치하지 않습니다",
   NAME_FORMAT: "올바른 이름을 작성해주세요",
   PHONE_FORMAT: "올바른 전화번호를 작성해주세요",
+  DISTRICT_SELECTION:"시/군/구를 선택해주세요",
   PREFERRED_BRANCH: "최소 하나 이상의 선호지역을 선택해주세요",
   GENERIC_ERROR:
     "요청 처리 중 오류가 발생했습니다. 문제가 지속되면 관리자에게 문의해주세요.",

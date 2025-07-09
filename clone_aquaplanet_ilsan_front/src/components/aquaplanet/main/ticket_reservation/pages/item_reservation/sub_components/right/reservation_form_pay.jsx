@@ -1,7 +1,10 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axiosInstance from "../../../_axiosIntercepting/axiosIntercepting";
+import axiosInstance from "../../../../../../../_axiosIntercepting/axiosIntercepting";
 import moment from "moment";
+import { branchColor } from "../../../../../common_data/branch_color";
+import useCouponSelection from "../../../../hooks/useCouponSelection";
+import usePaymentProcess from "../../../../hooks/usePaymentProcess";
 
 const PayForm = ({
   baseData,
@@ -14,142 +17,36 @@ const PayForm = ({
   finalizedOptions,
   finalTotalPrice
 }) => {
-  const [couponModal, setCouponModal] = useState(false);
-  const [openCouponList, setOpenCouponList] = useState(false);
-  const [selectedCouponName, setSelectedCouponName] =
-    useState("쿠폰을 선택해 주세요.");
-  const [activeBestDiscount, setActiveBestDiscount] = useState(false);
-  const navigate = useNavigate();
-  const branchColor = {
-    일산: "#5400FF",
-    제주: "#34A5FC",
-    여수: "#76E479",
-    광교: "#f8a139",
-  };
+
   const formattedPhone = loginMember?.memberPhone
     ? `${loginMember.memberPhone.substring(0, 3)}-${loginMember.memberPhone.substring(3, 7)}-${loginMember.memberPhone.substring(7)}`
     : "";
 
-  const handleButtons = (type) => {
-    switch (type) {
-      case "modal":
-        setCouponModal(!couponModal);
-        if (!couponModal) setOpenCouponList(false);
-        break;
-      case "couponList":
-        setOpenCouponList(!openCouponList);
-        break;
-      case "bestDiscount":
-        setActiveBestDiscount(!activeBestDiscount);
-        break;
-      default:
-        break;
-    }
-  };
+  const {
+    couponModal,
+    openCouponList,
+    selectedCouponName,
+    activeBestDiscount,
+    handleButtons,
+    handleCouponChange,
+    autoApplyBestCoupon
+  } = useCouponSelection(availableCoupons, onSelectCoupon, totalDiscountableOptionPrice)
 
-  const handleCouponChange = (coupon) => {
-    if (coupon === null) {
-      setSelectedCouponName("쿠폰을 선택해 주세요.");
-      setOpenCouponList(false);
-      onSelectCoupon(null);
-      return;
-    }
-    setSelectedCouponName(coupon.name);
-    setOpenCouponList(false);
-    onSelectCoupon(coupon);
-  };
+  const {paymentProcess, isLoading} = usePaymentProcess();
 
-  const autoApplyBestCoupon = () => {
-    if(!activeBestDiscount){
-      if (!availableCoupons) {
-        return;
-      }
+  const handleFinishPay = (paymentMethod) => {
+    if(isLoading) return;
 
-      let potentialDiscount = 0;
-      let bestCoupon = null;
-
-      availableCoupons.forEach((element) => {
-        let realDiscountedPrice = 0;
-        if (element.discountAmount !== undefined) {
-          //만약 고정할인액이 티켓 가격보다 높을 경우 티켓 가격에 맞춰 줌
-          realDiscountedPrice = Math.min(
-            element.discountAmount,
-            totalDiscountableOptionPrice
-          );
-        } else if (element.discountRate !== undefined) {
-          realDiscountedPrice =
-            element.discountRate * totalDiscountableOptionPrice;
-          realDiscountedPrice = Math.min(
-            realDiscountedPrice,
-            totalDiscountableOptionPrice
-          );
-        }
-        realDiscountedPrice = Math.round(realDiscountedPrice / 10) * 10;
-        realDiscountedPrice = Math.max(realDiscountedPrice, 0);
-
-        if (realDiscountedPrice > potentialDiscount) {
-          potentialDiscount = realDiscountedPrice;
-          bestCoupon = element;
-        }
-      });
-
-      if (bestCoupon) {
-        handleCouponChange(bestCoupon);
-      } else {
-        handleCouponChange(null);
-      }
-    }
-
-  };
-
-  const finishPay = async (payment) => {
-    const orderData = {
+    paymentProcess({
+      paymentMethod: paymentMethod,
       memberNo: loginMember.memberNo,
-      ticketId: baseData.id,
-      ticketTitle: baseData.ticketTitle,
-      ticketBranch: baseData.branch,
-      finalTotalPrice: finalTotalPrice,
-      orderStatus:"사용가능",
-      orderDate: moment().format("YYYY-MM-DD HH:mm:ss"),
-      paymentMethod: payment,
-      itemCategory:baseData.itemCategory,
-      delay:baseData.delay
-    }
-    const orderDetailDataList = finalizedOptions.map(item => ({
-      optionId:item.option.id,
-      optionName:item.option.name,
-      quantity: item.quantity,
-      totalPricePerOption: item.totalPricePerOption,
-      optionStatus:"사용대기",
-      usedDate:null,
-      delay:item.option.delay
-    }))
-    const requestBody = {
-      orderData: orderData,
-      orderDetailDataList: orderDetailDataList
-    }
-    try{
-      const response = 
-      await axiosInstance.post(`/aquaplanet/mall/${baseData.id}/order/${loginMember.memberNo}`, requestBody);
-      if(response.data.result === "SUCCESS"){
-        const postedOrderData = response.data.orderData;
-        const postedOrderDetailDataList = response.data.orderDetailDataList;
-        alert("결제가 완료되었습니다.");
-        navigate(`/aquaplanet/mall/item_detail/${baseData.id}/order/${loginMember.memberNo}/orderDone`, 
-        {
-          state:{orderData :postedOrderData, orderDetailDataList:postedOrderDetailDataList, baseData:baseData},
-          replace:true
-        });
-      }
-      else{
-        alert("결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요.")
-      }
-    }
-    catch{
-      alert("결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요.");
-    }
-
+      baseData: baseData,
+      finalizedOptions: finalizedOptions,
+      finalTotalPrice: finalTotalPrice
+    })
   }
+
+
 
   return (
     <div className="item-order-container">
@@ -318,16 +215,16 @@ const PayForm = ({
             <span>결제 수단 선택</span>
           </div>
           <div className="area-content">
-            <button onClick={() => finishPay("신용카드")}>
+            <button onClick={() => handleFinishPay("신용카드")}>
               <span>신용카드</span>
             </button>
-            <button onClick={() => finishPay("계좌이체")}>
+            <button onClick={() => handleFinishPay("계좌이체")}>
               <span>계좌이체</span>
             </button>
-            <button onClick={() => finishPay("휴대폰결제")}>
+            <button onClick={() => handleFinishPay("휴대폰결제")}>
               <span>휴대폰결제</span>
             </button>
-            <button onClick={() => finishPay("네이버페이")}>
+            <button onClick={() => handleFinishPay("네이버페이")}>
               <span>네이버페이</span>
             </button>
           </div>

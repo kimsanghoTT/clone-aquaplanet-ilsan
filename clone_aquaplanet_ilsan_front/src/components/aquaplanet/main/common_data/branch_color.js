@@ -1,0 +1,6 @@
+export const branchColor = {
+  일산: "#5400FF",
+  제주: "#34A5FC",
+  여수: "#76E479",
+  광교: "#f8a139",
+};

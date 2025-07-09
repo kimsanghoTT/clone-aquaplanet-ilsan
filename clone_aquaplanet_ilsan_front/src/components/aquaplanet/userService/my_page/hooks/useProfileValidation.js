@@ -19,8 +19,8 @@ const useProfileValidation = () => {
             alert(msg.BIRTH_FORMAT);
             return false;
         }
-        if (!profile.memberRegionCity && profile.memberRegionDistrict) {
-            alert("광역시/도를 먼저 선택해 주세요.");
+        if (profile.memberRegionCity && !profile.memberRegionDistrict) {
+            alert(msg.DISTRICT_SELECTION);
             return false;
         }
         return true;

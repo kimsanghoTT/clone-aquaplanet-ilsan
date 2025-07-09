@@ -1,4 +1,4 @@
-import { gnbMenuItems } from "./data/ilsan_header_data";
+import { gnbMenuItems } from "../data/ilsan_header_data";
 
 const GnbNav = ({subMenuRefs}) => {
   return (

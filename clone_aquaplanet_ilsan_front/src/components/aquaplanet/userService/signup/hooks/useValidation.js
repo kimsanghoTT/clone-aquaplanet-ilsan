@@ -92,8 +92,14 @@ const useValidation = (member) => {
       alert(errMsg.NAME_FORMAT);
       return false;
     }
+
     if (!phonePattern.test(member.memberPhone)) {
       alert(errMsg.PHONE_FORMAT);
+      return false;
+    }
+
+    if(member.memberRegionCity && !member.memberRegionDistrict){
+      alert(errMsg.DISTRICT_SELECTION);
       return false;
     }
 

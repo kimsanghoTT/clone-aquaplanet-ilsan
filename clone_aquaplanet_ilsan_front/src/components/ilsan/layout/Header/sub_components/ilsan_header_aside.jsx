@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
-import LoginContext from "../../../LoginContext";
+import LoginContext from "../../../../LoginContext";
 
 const AsideSection = ({isHovered}) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);

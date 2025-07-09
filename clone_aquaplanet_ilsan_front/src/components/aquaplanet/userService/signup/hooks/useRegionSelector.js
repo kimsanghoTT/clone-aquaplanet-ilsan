@@ -85,9 +85,15 @@ const useRegionSelector = ({member, setMember}) => {
     setSelectedCityIndex(null);
     setCityLabel("광역시/도");
     setCitySelectorOpen(false);
+
+    setSelectedDistrictIndex(null);
+    setDistrictLabel("시/군/구");
+    setCitySelectorOpen(false);
+    
     setMember((prev) => ({
       ...prev,
       memberRegionCity: "",
+      memberRegionDistrict:""
     }));
   };
 

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
-import { branches, branchColor } from "./data/branch";
-import ticketData from "../../main_mall/main_mall_item.json";
+import { branches, branchColor } from "../data/branch";
+import ticketData from "../../../main/common_data/main_mall_item.json";
 import moment from "moment";
 
 const TicketOrderList = ({orderedTicketList, onOrderSelect}) => {

@@ -28,7 +28,7 @@ const AccountCertification = () => {
           inputPw:inputPw
         });
       if(response.data.result === "validated"){
-        navigate("/aquaplanet/member/mypage/updateUserInfo");
+        navigate("/aquaplanet/member/mypage/userInfo");
       }
       else{
         alert(msg.INVALID1);

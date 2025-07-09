@@ -3,8 +3,9 @@ import "../../../../css/ilsan/ilsan_aside.css"
 import useTooltipVisibility from "./hooks/useTooltipVisibility";
 import useScrollToTop from "./hooks/useScrollToTop";
 import asideEvents from "./data/asides_events";
-import EventListItem from "./event_item_list";
 import useMainPageScroll from "../../main/hooks/useMainPageScroll";
+import EventListItem from "./sub_components/event_item_list"
+import SocialIcons from "./sub_components/social_icons";
 
 const AsideBar = () => {
   const [eventListOpen, setEventListOpen] = useState(false);
@@ -33,28 +34,7 @@ const AsideBar = () => {
             </span>
           </button>
         </div>
-        <ul className="social-icons">
-          <li className="location">
-            <a href="/">
-              <span className="ico" title="가이드맵"></span>
-            </a>
-          </li>
-          <li className="youtube">
-            <a href="/" title="유튜브">
-              <span className="ico"></span>
-            </a>
-          </li>
-          <li className="program" title="프로그램">
-            <a href="/">
-              <span className="ico"></span>
-            </a>
-          </li>
-          <li className="instagram" title="인스타그램">
-            <a href="/">
-              <span className="ico"></span>
-            </a>
-          </li>
-        </ul>
+        <SocialIcons/>
         <div className="top-btn">
           <button type="button" onClick={backToTop}>
             <span className="ico"></span>

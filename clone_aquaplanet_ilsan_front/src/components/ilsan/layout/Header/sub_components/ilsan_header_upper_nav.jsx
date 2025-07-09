@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { aquaplanetLinks } from "./data/ilsan_header_data";
+import { aquaplanetLinks } from "../data/ilsan_header_data";
 
 const UpperNav = ({isHovered}) => {
   const [categoryOpen, setCategoryOpen] = useState(false);

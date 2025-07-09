@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import cityData from "../../common_data/city_district.json";
 
-const useRegionSelector = ({initialRegion, onRegionChange }) => {
+const useRegionSelector = ({initialCity, initialDistrict, onRegionChange}) => {
   const [citySelectorOpen, setCitySelectorOpen] = useState(false);
   const [districtSelectorOpen, setDistrictSelectorOpen] = useState(false);
 
@@ -17,15 +17,29 @@ const useRegionSelector = ({initialRegion, onRegionChange }) => {
   const districtRef = useRef(null);
 
   useEffect(() => {
-    const selectedCity = cityData.find(
-      (data) => data.city === member.memberRegionCity
-    );
-    if (selectedCity) {
+    setCityLabel(initialCity || "광역시/도");
+    setDistrictLabel(initialDistrict || "시/군/구");
+    
+    const cityIndex = cityData.findIndex(data => data.city === initialCity);
+    setSelectedCityIndex(cityIndex !== -1 ? cityIndex : null);
+
+    if(cityIndex !== -1 && initialCity){
+      const selectedCity = cityData[cityIndex];
       setAvailableDistrict(selectedCity.district);
-    } else {
-      setAvailableDistrict([]);
+
+      if(initialDistrict){
+        const districtIndex = selectedCity.district.indexOf(initialDistrict);
+        setSelectedDistrictIndex(districtIndex !== -1 ? districtIndex : null);
+      }
+      else{
+        setSelectedDistrictIndex(null);
+      }
     }
-  }, [member.memberRegionCity]);
+    else{
+      setAvailableDistrict([]);
+      setSelectedDistrictIndex(null);
+    }
+  }, [initialCity, initialDistrict]);
 
   useEffect(() => {
     const clickOutside = (e) => {
@@ -57,48 +71,42 @@ const useRegionSelector = ({initialRegion, onRegionChange }) => {
   };
 
   const selectCity = (index) => {
+    const selectedCity = cityData[index].city;
     setSelectedCityIndex(index);
-    setCityLabel(cityData[index].city);
+    setCityLabel(selectedCity);
     setCitySelectorOpen(false);
 
     // 도시 선택 시 시/군/구 초기화
     setSelectedDistrictIndex(null);
     setDistrictLabel("시/군/구");
-    setMember((prev) => ({
-      ...prev,
-      memberRegionCity: cityData[index].city,
-      memberRegionDistrict: "",
-    }));
+    onRegionChange(selectedCity, "");
   };
 
   const selectDistrict = (index) => {
+    const selectedDistrict = availableDistrict[index];
     setSelectedDistrictIndex(index);
-    setDistrictLabel(availableDistrict[index]);
+    setDistrictLabel(selectedDistrict);
     setDistrictSelectorOpen(false);
-    setMember((prev) => ({
-      ...prev,
-      memberRegionDistrict: availableDistrict[index],
-    }));
+    onRegionChange(cityLabel, selectedDistrict);
   };
 
   const resetCitySelection = () => {
     setSelectedCityIndex(null);
     setCityLabel("광역시/도");
     setCitySelectorOpen(false);
-    setMember((prev) => ({
-      ...prev,
-      memberRegionCity: "",
-    }));
+
+    setSelectedDistrictIndex(null);
+    setDistrictLabel("시/군/구");
+    setCitySelectorOpen(false);
+    
+    onRegionChange("", "");
   };
 
   const resetDistrictSelection = () => {
     setSelectedDistrictIndex(null);
     setDistrictLabel("시/군/구");
     setDistrictSelectorOpen(false);
-    setMember((prev) => ({
-      ...prev,
-      memberRegionDistrict: "",
-    }));
+    onRegionChange(cityLabel, "");
   };
 
   return {
@@ -116,6 +124,7 @@ const useRegionSelector = ({initialRegion, onRegionChange }) => {
     selectDistrict,
     resetCitySelection,
     resetDistrictSelection,
+    cityData
   };
 };
 export default useRegionSelector;

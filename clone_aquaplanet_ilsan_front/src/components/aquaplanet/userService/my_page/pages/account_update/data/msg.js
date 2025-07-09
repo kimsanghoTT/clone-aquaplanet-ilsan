@@ -11,6 +11,7 @@ export const msg = {
   NAME_FORMAT: "올바른 이름을 작성해주세요",
   PHONE_FORMAT: "올바른 전화번호를 작성해주세요",
   BIRTH_FORMAT:"올바른 생년월일을 입력해주세요",
+  DISTRICT_SELECTION:"시/군/구를 선택해주세요",
   EXIT_TERMS:"탈퇴 후 온라인에서 티켓을 확인할 수 없음에 동의해주세요.",
   FINAL_CONFIRM:"회원탈퇴를 계속하시겠습니까?",
   GENERIC_ERROR:

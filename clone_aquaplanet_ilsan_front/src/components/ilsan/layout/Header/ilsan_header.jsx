@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import "../../../../css/ilsan/ilsan_header.css";
 import gsap from "gsap"; 
-import UpperNav from "./ilsan_header_upper_nav.jsx";
-import AsideSection from "./ilsan_header_aside.jsx";
-import GnbToggleArea from "./ilsan_header_gnb_toggle.jsx";
-import useHeaderScrollEvent from "./hooks/useHeaderScrollEvent.js";
-import useHeaderHoverEvent from "./hooks/useHeaderHoverEvent.js";
-import GnbNav from "./ilsan_header_gnb_nav.jsx";
+import useHeaderHoverEvent from "./hooks/useHeaderHoverEvent";
+import useHeaderScrollEvent from "./hooks/useHeaderScrollEvent";
+import AsideSection from "./sub_components/ilsan_header_aside";
+import GnbNav from "./sub_components/ilsan_header_gnb_nav";
+import GnbToggleArea from "./sub_components/ilsan_header_gnb_toggle";
+import UpperNav from "./sub_components/ilsan_header_upper_nav";
 
 const IlsanHeader = () => {
   const headerRef = useRef(null);

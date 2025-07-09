@@ -1,5 +1,5 @@
 import axios from "axios";
-import ticketData from "../aquaplanet/main_mall/main_mall_item.json";
+import ticketData from "../aquaplanet/main/common_data/main_mall_item.json";
 import mockOrders from "./mock_orders.json";
 import mockOrderDetails from "./mock_orders_detail.json";
 

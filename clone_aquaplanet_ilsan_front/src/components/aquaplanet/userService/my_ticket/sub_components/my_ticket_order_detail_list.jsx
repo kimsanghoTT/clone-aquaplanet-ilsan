@@ -1,7 +1,7 @@
 import React from "react";
 import Barcode from "react-barcode";
-import { branchColor } from "./data/branch";
-import ticketData from "../../main_mall/main_mall_item.json";
+import { branchColor } from "../data/branch";
+import ticketData from "../../../main/common_data/main_mall_item.json";
 
 const TicketOrderDetailList = ({orderedTicketDetailList, orderedTicketList, selectedOrderNo}) => {
 
