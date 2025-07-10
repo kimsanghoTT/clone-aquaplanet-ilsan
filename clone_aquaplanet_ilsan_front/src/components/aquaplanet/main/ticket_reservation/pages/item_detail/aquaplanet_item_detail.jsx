@@ -5,11 +5,11 @@ import LoginContext from "../../../../../LoginContext";
 import itemData from "../../../common_data/main_mall_item.json";
 import useOptionSelection from "../../hooks/useOptionSelection";
 import { branchColor } from "../../../common_data/branch_color";
-import ItemDetailSummery from "./sub_components/item_detail_summery";
-import ItemOptionSelector from "./sub_components/item_detail_option_selector";
-import SelectedOptionList from "./sub_components/item_detail_selected_option_list";
-import ItemDetailBillBox from "./sub_components/item_detail_bill_box";
-import ItemDetailInfoSection from "./sub_components/item_detail_info_section";
+import ItemDetailSummery from "./sub_components/item_detail_summery.jsx";
+import ItemOptionSelector from "./sub_components/item_detail_option_selector.jsx";
+import SelectedOptionList from "./sub_components/item_detail_selected_option_list.jsx";
+import ItemDetailBillBox from "./sub_components/item_detail_bill_box.jsx";
+import ItemDetailInfoSection from "./sub_components/item_detail_info_section.jsx";
 
 const AquaplanetItemDetail = () => {
   const { state } = useLocation();

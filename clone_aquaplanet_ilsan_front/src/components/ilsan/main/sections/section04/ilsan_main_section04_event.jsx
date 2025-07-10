@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import events from "../../data/events";
 import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
-import EventItems from "./ilsan_main_section04_event_toggle_item";
+import EventItems from "./ilsan_main_section04_event_toggle_item.jsx";
 
 const MainEventSection = () => {
   const sectionRef = useRef(null);

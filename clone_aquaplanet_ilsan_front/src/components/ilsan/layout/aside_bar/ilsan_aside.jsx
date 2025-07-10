@@ -4,8 +4,8 @@ import useTooltipVisibility from "./hooks/useTooltipVisibility";
 import useScrollToTop from "./hooks/useScrollToTop";
 import asideEvents from "./data/asides_events";
 import useMainPageScroll from "../../main/hooks/useMainPageScroll";
-import EventListItem from "./sub_components/event_item_list"
-import SocialIcons from "./sub_components/social_icons";
+import EventListItem from "./sub_components/event_item_list.jsx"
+import SocialIcons from "./sub_components/social_icons.jsx";
 
 const AsideBar = () => {
   const [eventListOpen, setEventListOpen] = useState(false);

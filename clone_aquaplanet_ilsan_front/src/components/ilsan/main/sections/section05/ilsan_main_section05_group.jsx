@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import groups from "../../data/groups";
 import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
-import GroupItems from "./ilsan_main_section05_group_toggle_item";
+import GroupItems from "./ilsan_main_section05_group_toggle_item.jsx";
 
 const MainGroupSection = () => {
   const sectionRef = useRef(null);

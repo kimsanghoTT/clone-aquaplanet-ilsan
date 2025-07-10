@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import programs from "../../data/programs";
 import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
-import ProgramItems from "./ilsan_main_section02_program_toggle_item";
+import ProgramItems from "./ilsan_main_section02_program_toggle_item.jsx";
 
 const MainProgramSection = () => {
   const sectionRef = useRef(null);

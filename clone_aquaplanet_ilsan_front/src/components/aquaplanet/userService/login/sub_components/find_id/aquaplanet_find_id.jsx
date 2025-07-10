@@ -1,6 +1,6 @@
 import React from "react";
-import FindIdForm from "./find_id_form";
-import FindIdResult from "./find_id_result";
+import FindIdForm from "./sub_components/find_id_form.jsx";
+import FindIdResult from "./sub_components/find_id_result.jsx";
 import useFindId from "../../hooks/useFIndId";
 
 const FindIdModal = ({ onClose, switchToPwModal }) => {

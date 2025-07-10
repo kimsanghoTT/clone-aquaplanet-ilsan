@@ -3,10 +3,10 @@ import "../../../../css/ilsan/ilsan_header.css";
 import gsap from "gsap"; 
 import useHeaderHoverEvent from "./hooks/useHeaderHoverEvent";
 import useHeaderScrollEvent from "./hooks/useHeaderScrollEvent";
-import AsideSection from "./sub_components/ilsan_header_aside";
-import GnbNav from "./sub_components/ilsan_header_gnb_nav";
-import GnbToggleArea from "./sub_components/ilsan_header_gnb_toggle";
-import UpperNav from "./sub_components/ilsan_header_upper_nav";
+import AsideSection from "./sub_components/ilsan_header_aside.jsx";
+import GnbNav from "./sub_components/ilsan_header_gnb_nav.jsx";
+import GnbToggleArea from "./sub_components/ilsan_header_gnb_toggle.jsx";
+import UpperNav from "./sub_components/ilsan_header_upper_nav.jsx";
 
 const IlsanHeader = () => {
   const headerRef = useRef(null);

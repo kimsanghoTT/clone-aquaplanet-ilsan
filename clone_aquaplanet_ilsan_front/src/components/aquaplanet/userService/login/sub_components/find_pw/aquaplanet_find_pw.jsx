@@ -1,9 +1,9 @@
 import React from "react";
 import useFindPw from "../../hooks/useFindPw";
-import FindPwInputEmail from "./find_pw_input_email_form";
-import FindPwInputAuthCode from "./find_pw_input_auth_code_form";
-import FindPwUpdateForm from "./find_pw_input_new_pw";
-import FindPwResult from "./find_pw_result";
+import FindPwInputEmail from "./sub_components/find_pw_input_email_form.jsx";
+import FindPwInputAuthCode from "./sub_components/find_pw_input_auth_code_form.jsx";
+import FindPwUpdateForm from "./sub_components/find_pw_input_new_pw.jsx";
+import FindPwResult from "./sub_components/find_pw_result.jsx";
 
 const FindPwModal = ({ onClose }) => {
   const {

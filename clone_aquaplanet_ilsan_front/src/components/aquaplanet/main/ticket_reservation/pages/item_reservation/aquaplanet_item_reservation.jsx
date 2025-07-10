@@ -2,8 +2,8 @@ import React, { useCallback, useContext, useState } from "react";
 import { useLocation } from "react-router-dom";
 import "../../../../../../css/aquaplanet/aquaplanet_item_reservation.css";
 import LoginContext from "../../../../../LoginContext";
-import OrderForm from "./sub_components/left/reservation_form_order";
-import PayForm from "./sub_components/right/reservation_form_pay";
+import OrderForm from "./sub_components/left/reservation_form_order.jsx";
+import PayForm from "./sub_components/right/reservation_form_pay.jsx";
 
 const AquaplanetReservation = () => {
   const { loginMember } = useContext(LoginContext);

@@ -1,20 +1,20 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import AquaplanetHeader from "./layout/header/aquaplanet_header"
-import Signup from "./userService/signup/aquaplaent_signup";
-import Login from "./userService/login/aquaplanet_login";
-import MyPageSetting from "./userService/my_page/pages/settings/aquaplanet_mypage_setting";
-import MyPageAccount from "./userService/my_page/pages/account/aquaplanet_mypage_account"
-import AccountCertification from "./userService/my_page/pages/certification/aquaplanet_mypage_certification";
-import MainMall from "./main/mall/aquaplanet_main";
-import AquaplanetItemDetail from "./main/ticket_reservation/pages/item_detail/aquaplanet_item_detail";
-import AquaplanetReservation from "./main/ticket_reservation/pages/item_reservation/aquaplanet_item_reservation";
-import SuccessOrder from "./main/ticket_reservation/pages/order_success/aquaplanet_order_success";
-import MyTicketList from "./userService/my_ticket/aquaplanet_my_ticket";
-import MyPurchaseList from "./userService/my_purchase_list/aquaplanet_my_purchase_list";
-import UpdateProfile from "./userService/my_page/pages/account_update/update_profile/aquaplanet_mypage_account_update_profile";
-import UpdatePassword from "./userService/my_page/pages/account_update/update_password/aquaplanet_mypage_account_update_pw";
-import DeleteAccount from "./userService/my_page/pages/account_update/delete_account/aquaplanet_mypage_account_delete";
+import Signup from "./userService/signup/aquaplaent_signup.jsx";
+import Login from "./userService/login/aquaplanet_login.jsx";
+import MyPageSetting from "./userService/my_page/pages/settings/aquaplanet_mypage_setting.jsx";
+import MyPageAccount from "./userService/my_page/pages/account/aquaplanet_mypage_account.jsx"
+import AccountCertification from "./userService/my_page/pages/certification/aquaplanet_mypage_certification.jsx";
+import MainMall from "./main/mall/aquaplanet_main.jsx";
+import AquaplanetItemDetail from "./main/ticket_reservation/pages/item_detail/aquaplanet_item_detail.jsx";
+import AquaplanetReservation from "./main/ticket_reservation/pages/item_reservation/aquaplanet_item_reservation.jsx";
+import SuccessOrder from "./main/ticket_reservation/pages/order_success/aquaplanet_order_success.jsx";
+import MyTicketList from "./userService/my_ticket/aquaplanet_my_ticket.jsx";
+import MyPurchaseList from "./userService/my_purchase_list/aquaplanet_my_purchase_list.jsx";
+import UpdateProfile from "./userService/my_page/pages/account_update/update_profile/aquaplanet_mypage_account_update_profile.jsx";
+import UpdatePassword from "./userService/my_page/pages/account_update/update_password/aquaplanet_mypage_account_update_pw.jsx";
+import DeleteAccount from "./userService/my_page/pages/account_update/delete_account/aquaplanet_mypage_account_delete.jsx";
 
 const AquaplanetWrapper = () => {
     const [selectedPreferredBranch, setSelectedPreferredBranch] = useState({

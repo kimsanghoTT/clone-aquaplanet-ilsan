@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import LoginContext from "../../../../../../LoginContext";
 import axiosInstance from "../../../../../../_axiosIntercepting/axiosIntercepting";
 import { msg } from "../data/msg";
-import ExitSuccessModal from "./sub_components/exit_user_success_modal";
+import ExitSuccessModal from "./sub_components/exit_user_success_modal.jsx";
 moment.locale("ko");
 
 const DeleteAccount = () => {

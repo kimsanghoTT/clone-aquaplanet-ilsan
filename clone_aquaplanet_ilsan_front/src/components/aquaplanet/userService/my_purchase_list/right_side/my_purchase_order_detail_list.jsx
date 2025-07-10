@@ -1,8 +1,8 @@
 import React from "react";
 // 필요한 하위 컴포넌트들을 임포트합니다.
-import TicketList from "./sub_components/purchase_ticket_list";
-import OrderDetailForm from "./sub_components/purchase_order_detail";
-import NoData from "./sub_components/no_data_form";
+import TicketList from "./sub_components/purchase_ticket_list.jsx";
+import OrderDetailForm from "./sub_components/purchase_order_detail.jsx";
+import NoData from "./sub_components/no_data_form.jsx";
 
 const PurchaseTicketDetailList = ({
     showTicketList, 

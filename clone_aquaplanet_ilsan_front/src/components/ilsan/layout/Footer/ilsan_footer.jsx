@@ -7,9 +7,9 @@ import {
   familySiteLinks 
 } from './data/ilsan_footer_data';
 import "../../../../css/ilsan/ilsan_footer.css";
-import FooterMenuSection from "./sub_components/ilsan_footer_menu";
-import CompanyInfo from "./sub_components/ilsan_footer_company_info";
-import FamilySite from "./sub_components/ilsan_footer_family_site";
+import FooterMenuSection from "./sub_components/ilsan_footer_menu.jsx";
+import CompanyInfo from "./sub_components/ilsan_footer_company_info.jsx";
+import FamilySite from "./sub_components/ilsan_footer_family_site.jsx";
 
 
 const Footer = () => {

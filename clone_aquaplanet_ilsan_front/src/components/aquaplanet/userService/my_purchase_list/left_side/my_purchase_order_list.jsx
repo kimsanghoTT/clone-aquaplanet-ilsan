@@ -1,7 +1,7 @@
 import React from "react";
-import BranchFilter from "./sub_components/filter_branch";
-import StatusFilter from "./sub_components/filter_status";
-import PurchaseTicketListBoard from "./sub_components/purchase_ticket_list_board";
+import BranchFilter from "./sub_components/filter_branch.jsx";
+import StatusFilter from "./sub_components/filter_status.jsx";
+import PurchaseTicketListBoard from "./sub_components/purchase_ticket_list_board.jsx";
 
 const PurchaseOrderList = ({
     branchFilterRef,

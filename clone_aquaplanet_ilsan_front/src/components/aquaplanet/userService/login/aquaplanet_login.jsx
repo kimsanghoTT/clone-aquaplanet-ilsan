@@ -1,10 +1,10 @@
 import React from "react";
 import "../../../../css/aquaplanet/aquaplanet_login.css";
 import "../../../../css/aquaplanet/aquaplanet_login_modals.css";
-import FindIdModal from "./sub_components/find_id/aquaplanet_find_id";
-import FindPwModal from "./sub_components/find_pw/aquaplanet_find_pw";
+import FindIdModal from "./sub_components/find_id/aquaplanet_find_id.jsx";
+import FindPwModal from "./sub_components/find_pw/aquaplanet_find_pw.jsx";
 import useFindModal from "./hooks/useFindModal";
-import LoginForm from "./sub_components/login_form";
+import LoginForm from "./sub_components/login_form.jsx";
 
 const Login = () => {
   const { openModal, handleModal, closeModal, switchToPwModal } = useFindModal();

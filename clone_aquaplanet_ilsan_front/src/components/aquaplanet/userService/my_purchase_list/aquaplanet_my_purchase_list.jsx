@@ -1,6 +1,6 @@
 import React from "react";
-import PurchaseOrderList from "./left_side/my_purchase_order_list";
-import PurchaseOrderDetailList from "./right_side/my_purchase_order_detail_list";
+import PurchaseOrderList from "./left_side/my_purchase_order_list.jsx";
+import PurchaseOrderDetailList from "./right_side/my_purchase_order_detail_list.jsx";
 import usePurchaseList from "./hooks/usePurchaseList";
 import { branchColor, branches, statuses } from "./data/constrants";
 

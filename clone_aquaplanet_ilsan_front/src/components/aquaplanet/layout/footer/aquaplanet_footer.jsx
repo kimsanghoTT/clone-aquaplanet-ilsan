@@ -1,6 +1,6 @@
 import React from "react";
 import "../../../../css/aquaplanet/aquaplanet_footer.css";
-import FamilySiteDropdown from "./sub_components/family_site_dropdown";
+import FamilySiteDropdown from "./sub_components/family_site_dropdown.jsx";
 
 const Footer = () => {
 

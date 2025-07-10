@@ -2,7 +2,7 @@ import React from "react";
 import useCouponSelection from "../../../../hooks/useCouponSelection";
 import couponList from "../../../../../common_data/coupon_list.json";
 import usePaymentProcess from "../../../../hooks/usePaymentProcess";
-import CouponModal from "./sub_components/pay_form_coupon_modal";
+import CouponModal from "./sub_components/pay_form_coupon_modal.jsx";
 
 const PayForm = ({
   baseData,

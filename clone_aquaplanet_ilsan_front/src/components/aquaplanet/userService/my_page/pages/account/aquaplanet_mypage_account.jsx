@@ -2,8 +2,8 @@ import React, { useContext } from "react";
 import '../../../../../../css/aquaplanet/aquaplanet_mypage_account.css';
 import LoginContext from "../../../../../LoginContext";
 import { useNavigate } from "react-router-dom";
-import UserProfileSection from "./sub_components/user_profile_section";
-import MarketingSection from "./sub_components/marketing_section";
+import UserProfileSection from "./sub_components/user_profile_section.jsx";
+import MarketingSection from "./sub_components/marketing_section.jsx";
 
 const MyPageAccount = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);

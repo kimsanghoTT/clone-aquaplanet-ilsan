@@ -4,9 +4,9 @@ import { useNavigate } from "react-router-dom";
 import { msg } from "../data/msg";
 import axiosInstance from "../../../../../../_axiosIntercepting/axiosIntercepting";
 import useProfileValidation from "../../../hooks/useProfileValidation";
-import ProfileForm from "./sub_components/profile_form";
-import ProfileRegionSelector from "./sub_components/profile_region_selector";
-import UpdateSuccessModal from "./sub_components/profile_update_success_modal";
+import ProfileForm from "./sub_components/profile_form.jsx";
+import ProfileRegionSelector from "./sub_components/profile_region_selector.jsx";
+import UpdateSuccessModal from "./sub_components/profile_update_success_modal.jsx";
 import "../../../../../../../css/aquaplanet/aquaplanet_mypage_account.css";
 
 const UpdateProfile = () => {

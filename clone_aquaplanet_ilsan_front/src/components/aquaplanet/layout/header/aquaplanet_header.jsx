@@ -4,8 +4,8 @@ import LoginContext from "../../../LoginContext";
 import { useNavigate } from "react-router-dom";
 import { branches, navigationList } from "../data/constants";
 import usePreferredBranchFilter from "./hooks/usePreferredBranchFilter";
-import HeaderBranchSelector from "./sub_components/header_branch_selector";
-import HeaderToggleBox from "./sub_components/header_toggle_box";
+import HeaderBranchSelector from "./sub_components/header_branch_selector.jsx";
+import HeaderToggleBox from "./sub_components/header_toggle_box.jsx";
 
 const AquaplanetHeader = ({ setSelectedPreferredBranch }) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);

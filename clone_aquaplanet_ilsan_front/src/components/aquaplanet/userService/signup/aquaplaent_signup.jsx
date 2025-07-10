@@ -7,8 +7,8 @@ import useMemberState from "./hooks/useMemberState";
 import useValidation from "./hooks/useValidation";
 import useCopyEmail from "./hooks/useCopyEmail";
 import usePreferredBranch from "./hooks/usePreferredBranch";
-import SignupPersonalForm from "./sub_components/signup_personal_form";
-import SignupPreferredBranchForm from "./sub_components/signup_preferred_branch_form";
+import SignupPersonalForm from "./sub_components/signup_personal_form.jsx";
+import SignupPreferredBranchForm from "./sub_components/signup_preferred_branch_form.jsx";
 import useRegionSelector from "./hooks/useRegionSelector";
 
 const Signup = () => {

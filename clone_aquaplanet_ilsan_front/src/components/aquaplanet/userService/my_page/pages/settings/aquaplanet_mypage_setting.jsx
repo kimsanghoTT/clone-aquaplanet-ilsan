@@ -2,10 +2,10 @@ import React, { useContext, useState } from "react";
 import "../../../../../../css/aquaplanet/aquaplanet_mypage.css";
 import LoginContext from "../../../../../LoginContext";
 import { useNavigate } from "react-router-dom";
-import CustomDropdown from "../../common_sub_components/customDropdown";
-import BranchCheckbox from "./sub_components/branch_checkbox";
+import CustomDropdown from "../../common_sub_components/customDropdown.jsx";
+import BranchCheckbox from "./sub_components/branch_checkbox.jsx";
 import usePreferredBranch from "../../hooks/usePreferredBranch";
-import TermsModal from "./sub_components/terms_modal";
+import TermsModal from "./sub_components/terms_modal.jsx";
 
 const MyPageSetting = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);

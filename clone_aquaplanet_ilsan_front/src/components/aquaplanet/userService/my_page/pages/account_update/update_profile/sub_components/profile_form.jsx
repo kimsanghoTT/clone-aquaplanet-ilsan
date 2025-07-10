@@ -1,5 +1,5 @@
 import React from "react";
-import ProfileInput from "./profile_input";
+import ProfileInput from "./profile_input.jsx";
 
 const ProfileForm = ({modifyProfile, handleProfileChange}) => {
 
