@@ -125,6 +125,10 @@
   background-color: #222222;
   color: #fff;
 }
+.toggle-btn-wrapper{
+  display: inline-block;
+  min-width: 180px;
+}
 .mypage-pay-method {
   width: 100%;
   display: flex;
@@ -141,6 +145,7 @@
   display: none;
 }
 .pay-method-display {
+  display: inline-block;
   border-radius: 30px;
   border: 1px solid #999;
   color: #222222;

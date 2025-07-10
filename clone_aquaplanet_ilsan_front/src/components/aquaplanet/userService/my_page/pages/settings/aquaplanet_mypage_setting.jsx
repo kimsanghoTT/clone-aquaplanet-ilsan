@@ -11,7 +11,7 @@ const MyPageSetting = () => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
   const [selectedPayMethod, setSelectedPayMethod] = useState("신용카드");
   const [termsModalOpen, setTermsModalOpen] = useState(false);
-  const {selectedPreferredBranch, preferredBranchSelection} = usePreferredBranch(loginMember.memberEmail);
+  const {selectedPreferredBranch, preferredBranchSelection} = usePreferredBranch(loginMember?.memberEmail);
   const payMethod = ["신용카드", "계좌이체", "휴대폰결제", "네이버페이"];
   const branches = ["63", "여수", "제주", "일산", "광교"];
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const MyPageSetting = () => {
     localStorage.removeItem("loginMember");
   }
 
-  if (!loginMember) {
+  if (!loginMember || !loginMember.memberEmail) {
     return;
   }
 

@@ -30,7 +30,7 @@ const HeaderToggleBox = ({toggleBoxOpen, navigationList, loginMember, logout}) =
           <div className="navigation-display-message">
             {loginMember ? (
               <p>
-                안녕하세요! <span>김상호</span>님 아쿠아플라넷에 <br />
+                안녕하세요! <span>{loginMember.memberName}</span>님 아쿠아플라넷에 <br />
                 오신것을 환영합니다
               </p>
             ) : (

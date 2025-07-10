@@ -75,7 +75,7 @@ const PayForm = ({
           </div>
           {couponModal && (
             <CouponModal
-              autoApplyBestCoupon={activeBestDiscount}
+              autoApplyBestCoupon={autoApplyBestCoupon}
               baseData={baseData}
               couponList={couponList}
               discountableItems={discountableItems}

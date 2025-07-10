@@ -25,7 +25,7 @@ const CustomDropdown = ({
   }, []);
 
   const handleOpen = () => {
-    setIsOpen(!isOpen);
+    setIsOpen(prev => !prev);
   };
 
   const handleSelect = (option) => {
@@ -34,15 +34,14 @@ const CustomDropdown = ({
   };
 
   return (
-    <>
+    <div className="toggle-btn-wrapper" ref={dropdownRef}>
       <span
         className={`${displayClassName} ${isOpen ? "on" : ""}`}
         onClick={handleOpen}
-        ref={dropdownRef}
       >
         {selectedValue}
       </span>
-      <ul className={`${selectorClassName} ${isOpen ? "on" : ""}`} ref={dropdownRef}>
+      <ul className={`${selectorClassName} ${isOpen ? "on" : ""}`}>
         {options.map((option) => (
           <li
             key={option}
@@ -54,7 +53,7 @@ const CustomDropdown = ({
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 export default CustomDropdown;
