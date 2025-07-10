@@ -16,6 +16,7 @@
   width: 184px;
   height: 50px;
   margin: 0;
+  flex-basis: 184px;
 }
 .aquaplanet-header h1 a {
   display: inline-block;
@@ -46,11 +47,11 @@
   position: relative;
   flex-shrink: 0;
 }
-.aquaplanet-location-selector {
+.aquaplanet-branch-selector {
   position: relative;
   margin-left: 53px;
 }
-.aquaplanet-location-selector > button {
+.aquaplanet-branch-selector > button {
   position: relative;
   width: 120px;
   border-radius: 25px;
@@ -62,7 +63,7 @@
   padding: 0 20px;
   cursor: pointer;
 }
-.aquaplanet-location-selector > button span::after {
+.aquaplanet-branch-selector > button span::after {
   content: "";
   display: inline-block;
   width: 10px;

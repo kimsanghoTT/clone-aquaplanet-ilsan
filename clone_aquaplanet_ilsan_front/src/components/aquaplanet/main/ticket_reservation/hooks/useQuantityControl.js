@@ -1,56 +1,63 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const useQuantityControl = ({initialOptions, maxQuantity}) => {
+const useQuantityControl = ({initialSelectedOption, maxQuantity}) => {
+    const [finalizedOptions, setFinalizedOptions] = useState(initialSelectedOption || []);
     const [quantityExceedMsg, setQuantityExceedMsg] = useState(false);
-    const [finalizedOptions, setFinalizedOptions] = useState(initialOptions);
 
-    const calcTotalTicketQuantity = useCallback((selectedOptions) => {
-        return selectedOptions.reduce((total, option) => total + option.quantity, 0);
-    },[]);
+    useEffect(() => {
+        setFinalizedOptions(Array.isArray(initialSelectedOption) ? initialSelectedOption : []);
+        setQuantityExceedMsg(false);
+    },[initialSelectedOption])
+
+    const calcTotalTicketQuantity = (options) => {
+        return (Array.isArray(options) ? options : []).reduce((total, option) => total + (option?.quantity || 0), 0);
+    };
 
     const handleQuantity = useCallback((btnType, itemOption) => {
-        if (btnType === "minus") {
-            setFinalizedOptions((prevOption) => {
-                const subtractOptionQuantity = prevOption.map((detail) => {
-                    if (itemOption.option.name === detail.option.name) {
-                        setQuantityExceedMsg(false);
-                        const newQuantity = detail.quantity > 1 ? detail.quantity - 1 : 1;
+        setFinalizedOptions(prevOptions => {
+            let newOptions;
+            if(btnType === "minus"){
+                newOptions = prevOptions.map(detail => {
+                    if(detail.option.name === itemOption.option.name){
+                        const newQuantity = Math.max(1, detail.quantity - 1);
                         return { ...detail, quantity: newQuantity };
                     }
                     return detail;
-                });
-
-                const totalQuantity = calcTotalTicketQuantity(subtractOptionQuantity);
-                if (totalQuantity >= maxQuantity) {
+                })
+            } 
+            else if(btnType === "plus"){
+                const currentTotalQuantity = calcTotalTicketQuantity(prevOptions);
+                if(currentTotalQuantity >= maxQuantity){
                     setQuantityExceedMsg(true);
-                } else {
-                    setQuantityExceedMsg(false);
+                    return prevOptions;
                 }
-                return subtractOptionQuantity;
-            });
-        } 
-        else if (btnType === "plus") {
-            setFinalizedOptions((prevOption) => {
-            const currentTotalQuantity = calcTotalTicketQuantity(prevOption);
 
-            if (currentTotalQuantity >= maxQuantity) {
-                setQuantityExceedMsg(true);
-                return prevOption;
+                newOptions = prevOptions.map((detail) =>
+                    itemOption.option.name === detail.option.name
+                    ? { ...detail, quantity: detail.quantity + 1 }
+                    : detail
+                );
+            }
+            else{
+                newOptions = prevOptions;
             }
 
-            return prevOption.map((detail) =>
-                itemOption.option.name === detail.option.name
-                ? { ...detail, quantity: detail.quantity + 1 }
-                : detail
-            );
-            });
-        }
-    },[calcTotalTicketQuantity, maxQuantity]);
+            const totalQuantityAfterChange = calcTotalTicketQuantity(newOptions);
+            if(totalQuantityAfterChange >= maxQuantity){
+                setQuantityExceedMsg(true);
+            }
+            else{
+                setQuantityExceedMsg(false);
+            }
 
-    return{
-        quantityExceedMsg,
+            return newOptions;
+        })
+    },[maxQuantity]);
+
+    return {
         finalizedOptions,
-        handleQuantity
+        handleQuantity,
+        quantityExceedMsg,
     }
 }
 export default useQuantityControl;

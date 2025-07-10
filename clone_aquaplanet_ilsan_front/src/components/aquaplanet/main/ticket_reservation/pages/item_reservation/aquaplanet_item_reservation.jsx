@@ -4,42 +4,31 @@ import "../../../../../../css/aquaplanet/aquaplanet_item_reservation.css";
 import LoginContext from "../../../../../LoginContext";
 import OrderForm from "./sub_components/left/reservation_form_order";
 import PayForm from "./sub_components/right/reservation_form_pay";
-import couponList from "../../../common_data/coupon_list.json";
 
 const AquaplanetReservation = () => {
   const { loginMember } = useContext(LoginContext);
   const { state } = useLocation();
-  const baseData = state.baseData;
-  const selectedOption = state.selectedOption;
+  const baseData = state?.baseData || {};
+  const initialSelectedOption = state?.selectedOption || [];
   const [selectedCoupon, setSelectedCoupon] = useState(null);
-  const [totalDiscountPrice, setTotalDiscountPrice] = useState(0);
-  const [totalDiscountableOptionPrice, setTotalDiscountableOptionPrice] = useState(0);
-  const [finalizedOptions, setFinalizedOptions] = useState(selectedOption); 
-  const [finalTotalPrice, setFinalTotalPrice] = useState(0);
+  const [calculatedOrderData, setCalculatedOrderData] = useState({
+    finalizedOptions: initialSelectedOption,
+    totalDiscountableOptionPrice: 0,
+    discountableItems : [],
+    finalTotalPrice: 0,
+    totalSumPrice: 0,
+    totalDiscountPrice:0
+  })
 
   const handleSelectCoupon = useCallback((coupon) => {
     setSelectedCoupon(coupon);
   },[]);
 
-  const handleDiscountPrice = useCallback((discountAmount) => {
-    setTotalDiscountPrice(discountAmount);
+  const handleCalculatedOrderDataChange = useCallback((data) => {
+    setCalculatedOrderData(data);
   },[]);
 
-  const handleDiscountablePriceChange = useCallback((price) => {
-    setTotalDiscountableOptionPrice(price);
-  },[]);
-
-  const handleFinalizedOptionsChange = useCallback((options) => {
-    setFinalizedOptions(options);
-  },[]);
-
-  const handleFinalTotalPrice = useCallback((finalPrice) => {
-    setFinalTotalPrice(finalPrice);
-  },[]);
-
-  const discountableItems = finalizedOptions.filter(item => item.option.discountable);
-
-  if (!loginMember) {
+  if(!loginMember){
     return;
   }
 
@@ -48,25 +37,21 @@ const AquaplanetReservation = () => {
       <div className="item-order-default-grid-left">
         <OrderForm
           baseData={baseData}
-          selectedOption={selectedOption}
+          initialSelectedOption={initialSelectedOption}
           selectedCoupon={selectedCoupon}
-          onDiscountChange={handleDiscountPrice}
-          onDiscountablePriceChange={handleDiscountablePriceChange}
-          onFinalizedOptionsChange={handleFinalizedOptionsChange}
-          onFinalTotalPriceChange={handleFinalTotalPrice}
+          onFinalizedOptionsChange={handleCalculatedOrderDataChange}
         />
       </div>
       <div className="item-order-default-grid-right">
         <PayForm
           baseData={baseData}
           loginMember={loginMember}
-          availableCoupons={couponList}
           onSelectCoupon={handleSelectCoupon}
-          totalDiscountPrice={totalDiscountPrice}
-          totalDiscountableOptionPrice={totalDiscountableOptionPrice}
-          discountableItems={discountableItems}
-          finalizedOptions={finalizedOptions}
-          finalTotalPrice={finalTotalPrice}
+          totalDiscountPrice={calculatedOrderData.totalDiscountPrice}
+          totalDiscountableOptionPrice={calculatedOrderData.totalDiscountableOptionPrice}
+          discountableItems={calculatedOrderData.discountableItems}
+          updatedFinalizedOptions={calculatedOrderData.finalizedOptions}
+          finalTotalPrice={calculatedOrderData.finalTotalPrice}
         />
       </div>
     </section>

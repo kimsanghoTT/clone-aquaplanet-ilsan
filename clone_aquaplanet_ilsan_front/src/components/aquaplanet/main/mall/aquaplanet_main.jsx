@@ -1,7 +1,7 @@
 import React from "react";
 import "../../../../css/aquaplanet/aquaplanet_main.css";
 import itemData from "../common_data/main_mall_item.json";
-import Footer from "../../layout/aquaplanet_footer";
+import Footer from "../../layout/footer/aquaplanet_footer";
 import MainMallBoardItem from "./sub_components/mall_board_item_list";
 
 const MainMall = ({selectedPreferredBranch}) => {

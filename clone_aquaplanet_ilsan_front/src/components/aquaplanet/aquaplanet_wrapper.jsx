@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import AquaplanetHeader from "./layout/aquaplanet_header"
+import AquaplanetHeader from "./layout/header/aquaplanet_header"
 import Signup from "./userService/signup/aquaplaent_signup";
 import Login from "./userService/login/aquaplanet_login";
 import MyPageSetting from "./userService/my_page/pages/settings/aquaplanet_mypage_setting";
@@ -9,7 +9,7 @@ import AccountCertification from "./userService/my_page/pages/certification/aqua
 import MainMall from "./main/mall/aquaplanet_main";
 import AquaplanetItemDetail from "./main/ticket_reservation/pages/item_detail/aquaplanet_item_detail";
 import AquaplanetReservation from "./main/ticket_reservation/pages/item_reservation/aquaplanet_item_reservation";
-import SuccessOrder from "./main/ticket_reservation/aquaplanet_order_success";
+import SuccessOrder from "./main/ticket_reservation/pages/order_success/aquaplanet_order_success";
 import MyTicketList from "./userService/my_ticket/aquaplanet_my_ticket";
 import MyPurchaseList from "./userService/my_purchase_list/aquaplanet_my_purchase_list";
 import UpdateProfile from "./userService/my_page/pages/account_update/update_profile/aquaplanet_mypage_account_update_profile";

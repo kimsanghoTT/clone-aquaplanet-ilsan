@@ -1,45 +1,49 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import useOrderCalculations from "../../../../hooks/useOrderCalculations";
 import useQuantityControl from "../../../../hooks/useQuantityControl";
+import useOrderCalculation from "../../../../hooks/useOrderCalculation";
 import OrderFormItemList from "./sub_components/order_form_item_list";
+console.log(OrderFormItemList);
 
 const OrderForm = ({
   baseData,
-  selectedOption,
+  initialSelectedOption,
   selectedCoupon,
-  onDiscountChange,
-  onDiscountablePriceChange,
   onFinalizedOptionsChange,
-  onFinalTotalPriceChange,
 }) => {
   const navigate = useNavigate();
 
-  const { quantityExceedMsg, finalizedOptions, handleQuantity } =
-    useQuantityControl(selectedOption, baseData?.maxQuantity);
+  const { finalizedOptions, handleQuantity, quantityExceedMsg } =
+    useQuantityControl({initialSelectedOption:initialSelectedOption, maxQuantity:baseData.maxQuantity});
 
   const {
     totalSumPrice,
     totalDiscountPrice,
-    finalTotalPrice,
     totalDiscountableOptionPrice,
-    calculatedFinalizedOptions,
-  } = useOrderCalculations({ finalizedOptions, selectedCoupon });
+    finalTotalPrice,
+    discountableItems,
+    updatedFinalizedOptions,
+  } = useOrderCalculation(finalizedOptions, selectedCoupon);
 
   useEffect(() => {
-    onDiscountChange(totalDiscountPrice);
-    onDiscountablePriceChange(totalDiscountableOptionPrice);
-    onFinalTotalPriceChange(finalTotalPrice);
-    onFinalizedOptionsChange(calculatedFinalizedOptions);
+    if (updatedFinalizedOptions && updatedFinalizedOptions.length > 0) {
+      onFinalizedOptionsChange({
+        finalizedOptions: updatedFinalizedOptions,
+        totalDiscountableOptionPrice: totalDiscountableOptionPrice,
+        discountableItems: discountableItems,
+        finalTotalPrice: finalTotalPrice,
+        totalSumPrice: totalSumPrice,
+        totalDiscountPrice: totalDiscountPrice,
+      });
+    }
   }, [
-    finalTotalPrice,
-    calculatedFinalizedOptions,
-    onDiscountChange,
-    onDiscountablePriceChange,
-    onFinalTotalPriceChange,
-    onFinalizedOptionsChange,
-    totalDiscountPrice,
+    updatedFinalizedOptions,
     totalDiscountableOptionPrice,
+    discountableItems,
+    finalTotalPrice,
+    totalSumPrice,
+    totalDiscountPrice,
+    onFinalizedOptionsChange,
   ]);
 
   const orderCancel = () => {
@@ -67,8 +71,8 @@ const OrderForm = ({
             <img src={baseData.detailImages.banner} alt="bannerImage" />
           </figure>
           <OrderFormItemList
-            baseData={baseData}
             finalizedOptions={finalizedOptions}
+            baseData={baseData}
             handleQuantity={handleQuantity}
             quantityExceedMsg={quantityExceedMsg}
           />

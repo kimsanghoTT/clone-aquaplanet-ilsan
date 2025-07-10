@@ -1,8 +1,9 @@
 import moment from "moment";
-import React, { useEffect, useRef } from "react";
+import React, { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import "../../../../css/aquaplanet/aquaplanet_order_success.css";
+import "../../../../../../css/aquaplanet/aquaplanet_order_success.css";
 import Barcode from "react-barcode";
+import { branchColor } from "../../../common_data/branch_color";
 
 const SuccessOrder = () => {
     const navigate = useNavigate();
@@ -11,27 +12,17 @@ const SuccessOrder = () => {
     const orderDetailDataList = state?.orderDetailDataList;
     const baseData = state?.baseData;
     const formattedTime = orderData ? moment(orderData.orderDate).format("YYYY.MM.DD") : '';
-    const pushedState = useRef(false);
-    const branchColor = {
-    일산: "#5400FF",
-    제주: "#34A5FC",
-    여수: "#76E479",
-    광교: "#f8a139",
-    };
 
+    
     //뒤로가기로 결제페이지, 확인페이지 막는 로직
     useEffect(() => {
-        if (!pushedState.current) {
-            window.history.pushState(null, '', window.location.href);
-            pushedState.current = true;
-        }
+        window.history.pushState(null, '', window.location.href);
 
         const handleBackspace = () => {
             alert("잘못된 접근입니다. 메인 페이지로 이동합니다.");
             navigate("/aquaplanet/mall", {replace:true});
         }
 
-        window.history.pushState(null, '', window.location.href);
         window.addEventListener("popstate", handleBackspace);
 
         return () => {

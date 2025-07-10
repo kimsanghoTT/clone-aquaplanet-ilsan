@@ -1,33 +1,41 @@
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const useCouponSelection = ({
-  availableCoupons,
-  totalDiscountableOptionPrice,
-  onSelectCoupon,
-}) => {
+const useCouponSelection = (availableCoupons, totalDiscountableOptionPrice, onSelectCoupon, totalDiscountPrice) => {
   const [couponModal, setCouponModal] = useState(false);
   const [openCouponList, setOpenCouponList] = useState(false);
-  const [selectedCouponName, setSelectedCouponName] =
-    useState("쿠폰을 선택해 주세요.");
+  const [selectedCouponName, setSelectedCouponName] = useState("쿠폰을 선택해 주세요.");
   const [activeBestDiscount, setActiveBestDiscount] = useState(false);
 
-  const handleCouponChange = useCallback(
-    (coupon) => {
-      if (coupon === null) {
+  const handleButtons = useCallback((type) => {
+    switch (type) {
+      case "modal":
+        setCouponModal(prev => !prev);
+        if (!couponModal) setOpenCouponList(false);
+        break;
+      case "couponList":
+        setOpenCouponList(prev => !prev);
+        break;
+      case "bestDiscount":
+        setActiveBestDiscount(prev => !prev);
+        break;
+      default:
+        break;
+    }
+  },[couponModal]);
+
+  const handleCouponChange = useCallback((coupon) => {
+    if (coupon === null) {
         setSelectedCouponName("쿠폰을 선택해 주세요.");
         onSelectCoupon(null);
-      } else {
+    }
+    else{
         setSelectedCouponName(coupon.name);
         onSelectCoupon(coupon);
-      }
-      setOpenCouponList(false);
-      setActiveBestDiscount(false);
-    },
-    [onSelectCoupon]
-  );
+    }
+    setOpenCouponList(false);
+  },[onSelectCoupon]);
 
-  const autoApplyBestCoupon = useCallback(
-    (trigger = false) => {
+  const autoApplyBestCoupon = useCallback(() => {
       if (!availableCoupons || availableCoupons.length === 0) {
         handleCouponChange(null);
         return;
@@ -67,41 +75,16 @@ const useCouponSelection = ({
         handleCouponChange(null);
       }
 
-      if (trigger) {
-        setActiveBestDiscount(true);
-      }
-    },
-    [availableCoupons, handleCouponChange, totalDiscountableOptionPrice, setActiveBestDiscount]
-  );
+  },[availableCoupons, handleCouponChange, totalDiscountableOptionPrice]);
 
-  const handleButtons = useCallback(
-    (type) => {
-      switch (type) {
-        case "modal":
-          setCouponModal((prev) => {
-            const newState = !prev;
-            if (!newState) setOpenCouponList(false);
-            return newState;
-          });
-          break;
-        case "couponList":
-          setOpenCouponList(prev => !prev);
-          break;
-        case "bestDiscount":
-          setActiveBestDiscount((prev) => {
-            const bestDiscountState = !prev;
-            if (bestDiscountState) {
-              autoApplyBestCoupon(true);
-            } else {
-              handleCouponChange(null);
-            }
-          });
-          break;
-        default:
-          break;
-      }
-    },
-    [autoApplyBestCoupon, handleCouponChange]);
+  useEffect(() => {
+    if(activeBestDiscount){
+        autoApplyBestCoupon();
+    }
+    else{
+        handleCouponChange(null);
+    }
+  },[activeBestDiscount, autoApplyBestCoupon, handleCouponChange])
 
   return {
     couponModal,
@@ -110,7 +93,7 @@ const useCouponSelection = ({
     activeBestDiscount,
     handleButtons,
     handleCouponChange,
-    autoApplyBestCoupon,
-  };
-};
+    autoApplyBestCoupon
+  }
+}
 export default useCouponSelection;

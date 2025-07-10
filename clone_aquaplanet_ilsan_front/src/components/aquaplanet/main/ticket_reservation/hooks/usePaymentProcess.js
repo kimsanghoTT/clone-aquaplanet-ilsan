@@ -1,35 +1,35 @@
+import { useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import axiosInstance from "../../../../_axiosIntercepting/axiosIntercepting";
-import { useCallback, useState } from "react";
 import moment from "moment";
 
-const usePaymentProcess = () => {
+const usePaymentProcess = (
+  baseData,
+  loginMember,
+  finalTotalPrice,
+  updatedFinalizedOptions
+) => {
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState(false);
 
-  const paymentProcess = useCallback(
-    async ({
-      paymentMethod,
-      memberNo,
-      baseData,
-      finalizedOptions,
-      finalTotalPrice,
-    }) => {
-      setIsLoading(true);
-
+  const finishPay = useCallback(async (payment) => {
+      if (!loginMember) {
+        alert("로그인 후 이용가능합니다.");
+        navigate("/aquaplanet/member/login");
+        return;
+      }
       const orderData = {
-        memberNo: memberNo,
+        memberNo: loginMember.memberNo,
         ticketId: baseData.id,
         ticketTitle: baseData.ticketTitle,
         ticketBranch: baseData.branch,
         finalTotalPrice: finalTotalPrice,
         orderStatus: "사용가능",
         orderDate: moment().format("YYYY-MM-DD HH:mm:ss"),
-        paymentMethod: paymentMethod,
+        paymentMethod: payment,
         itemCategory: baseData.itemCategory,
         delay: baseData.delay,
       };
-      const orderDetailDataList = finalizedOptions.map((item) => ({
+      const orderDetailDataList = updatedFinalizedOptions.map((item) => ({
         optionId: item.option.id,
         optionName: item.option.name,
         quantity: item.quantity,
@@ -44,7 +44,7 @@ const usePaymentProcess = () => {
       };
       try {
         const response = await axiosInstance.post(
-          `/aquaplanet/mall/${baseData.id}/order/${memberNo}`,
+          `/aquaplanet/mall/${baseData.id}/order/${loginMember.memberNo}`,
           requestBody
         );
         if (response.data.result === "SUCCESS") {
@@ -52,7 +52,7 @@ const usePaymentProcess = () => {
           const postedOrderDetailDataList = response.data.orderDetailDataList;
           alert("결제가 완료되었습니다.");
           navigate(
-            `/aquaplanet/mall/item_detail/${baseData.id}/order/${memberNo}/orderDone`,
+            `/aquaplanet/mall/item_detail/${baseData.id}/order/${loginMember.memberNo}/orderDone`,
             {
               state: {
                 orderData: postedOrderData,
@@ -64,18 +64,20 @@ const usePaymentProcess = () => {
           );
         } else {
           alert(
-            "결제 처리 중 예상치 못한 오류가 발생했습니다. 잠시 후 다시 시도해 주세요."
+            "결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요."
           );
         }
       } catch {
         alert(
-          "결제에 실패했습니다. 네트워크 연결을 확인하거나 잠시 후 다시 시도해 주세요."
+          "결제 오류가 발생했습니다. 반복될 경우 관리자에게 문의해 주세요."
         );
-      } finally {
-        setIsLoading(false);
       }
-    },[navigate]);
+    },
+    [baseData, loginMember, finalTotalPrice, updatedFinalizedOptions, navigate]
+  );
 
-    return {isLoading, paymentProcess}
+  return {
+    finishPay,
+  };
 };
 export default usePaymentProcess;
