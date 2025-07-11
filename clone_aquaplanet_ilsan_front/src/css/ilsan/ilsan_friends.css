@@ -1,0 +1,23 @@
+.aquaplanet-ilsan-content-wrapper{
+    width: 100%;
+}
+.content-visual-top{
+    width: 100%;
+    position: fixed;
+    background: url("../../../public/img/ilsan/friends/friends_bg.png") center no-repeat;
+    height: 100vh;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-size: cover;
+}
+.ilsan-friends-container{
+    width: 100%;
+    background-color: #fff;
+    font-family: NotoSans-Regular;
+    margin: 0 auto;
+    position: relative;
+    margin-top: 100vh;
+    padding: 150px 0;
+}

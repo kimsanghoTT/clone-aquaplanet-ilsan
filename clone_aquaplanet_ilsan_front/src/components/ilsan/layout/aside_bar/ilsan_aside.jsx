@@ -1,23 +1,18 @@
-import React, { useRef, useState } from "react";
+import React, { useRef } from "react";
 import "../../../../css/ilsan/ilsan_aside.css"
 import useTooltipVisibility from "./hooks/useTooltipVisibility";
 import useScrollToTop from "./hooks/useScrollToTop";
 import asideEvents from "./data/asides_events";
-import useMainPageScroll from "../../main/hooks/useMainPageScroll";
 import EventListItem from "./sub_components/event_item_list.jsx"
 import SocialIcons from "./sub_components/social_icons.jsx";
+import useAsideBarScroll from "./hooks/useAsideBarScroll.js";
 
-const AsideBar = () => {
-  const [eventListOpen, setEventListOpen] = useState(false);
+const AsideBar = ({ eventListOpen, handleEventListOpen }) => {
   const eventItemBoxRef = useRef(null); 
   const { closeTooltipBox } = useTooltipVisibility();
   const { backToTop } = useScrollToTop();
 
-  const handleEventListOpen = () => {
-    setEventListOpen(!eventListOpen);
-  };
-
-  useMainPageScroll(eventItemBoxRef, eventListOpen);
+  useAsideBarScroll(eventItemBoxRef, eventListOpen);
 
   return (
     <>

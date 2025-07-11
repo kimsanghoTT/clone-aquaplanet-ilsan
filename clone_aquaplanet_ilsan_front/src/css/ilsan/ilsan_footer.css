@@ -1,6 +1,7 @@
 .ilsan-footer {
   height: 500px;
   background: #1a1a1a;
+  position: relative;
 }
 .footer-inner {
   position: relative;

@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import useQuantityControl from "../../../../hooks/useQuantityControl";
 import useOrderCalculation from "../../../../hooks/useOrderCalculation";
 import OrderFormItemList from "./sub_components/order_form_item_list.jsx";
-console.log(OrderFormItemList);
 
 const OrderForm = ({
   baseData,

@@ -1,26 +1,59 @@
 import { useEffect } from "react";
 import gsap from "gsap";
 
-const useHeaderScrollEvent = (headerRef, upperNavRef) => {
+const useHeaderScrollEvent = (headerRef, upperNavRef, isInMainPage, lowerNavRef) => {
+
   useEffect(() => {
     const scrollEvent = () => {
-      const scrollOnTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollPoint = window.pageYOffset || document.documentElement.scrollTop;
 
-      if (scrollOnTop === 0) {
-        if (upperNavRef.current) {
-          gsap.to(upperNavRef.current, { opacity: 1, duration: 0.5, height: "50px" });
+      if(isInMainPage){
+        if (scrollPoint === 0) {
+          if (upperNavRef.current) {
+            gsap.to(upperNavRef.current, { opacity: 1, duration: 0.5, height: "50px" });
+          }
+          if (headerRef.current) {
+            gsap.to(headerRef.current, { y: 0, duration: 0.5 });
+          }
+        } else { 
+          if (upperNavRef.current) {
+            gsap.to(upperNavRef.current, { opacity: 0, duration: 0.5, height: 0 });
+          }
+          if (headerRef.current) {
+            gsap.to(headerRef.current, { y: "-20px", duration: 0.5 });
+          }
         }
+
+        const scrollOnBottom = document.documentElement.scrollHeight - scrollPoint - window.innerHeight;
         if (headerRef.current) {
-          gsap.to(headerRef.current, { y: 0, duration: 0.5 });
-        }
-      } else { // else if (scrollOnTop !== 0) 대신 else로 간소화 가능
-        if (upperNavRef.current) {
-          gsap.to(upperNavRef.current, { opacity: 0, duration: 0.5, height: 0 });
-        }
-        if (headerRef.current) {
-          gsap.to(headerRef.current, { y: "-20px", duration: 0.5 });
+           headerRef.current.style.display = scrollOnBottom <= 0 ? "none" : "block";
         }
       }
+      else{
+        if (scrollPoint <= 740) {
+          if (upperNavRef.current) {
+            gsap.to(upperNavRef.current, { opacity: 1, duration: 0.2, height: "50px" });
+          }
+          if (headerRef.current) {
+            gsap.to(headerRef.current, { y: 0, duration: 0.2});
+          }
+          if(lowerNavRef.current){
+            gsap.to(lowerNavRef.current, {background:"transparent", duration:0.2});
+          }
+        } else { 
+          if (upperNavRef.current) {
+            gsap.to(upperNavRef.current, { opacity: 0, duration: 0.2, height: 0 });
+          }
+          if (headerRef.current) {
+            gsap.to(headerRef.current, { y: "-20px", duration: 0.2});
+          }
+          if(lowerNavRef.current){
+            gsap.to(lowerNavRef.current, {background:"#fff", duration:0.2});
+          }
+        }
+      }
+
+
     };
 
     window.addEventListener("scroll", scrollEvent);
@@ -28,7 +61,7 @@ const useHeaderScrollEvent = (headerRef, upperNavRef) => {
     return () => {
       window.removeEventListener("scroll", scrollEvent);
     };
-  }, [headerRef, upperNavRef]); // Ref가 변경될 일은 없지만, 의존성 배열에 명시
+  }, [headerRef, upperNavRef, isInMainPage, lowerNavRef]); 
 };
 
 export default useHeaderScrollEvent;

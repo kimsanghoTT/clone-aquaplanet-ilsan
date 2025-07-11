@@ -1,29 +1,13 @@
 import { useCallback, useEffect, useRef } from "react";
 import { animateScroll as scroll } from "react-scroll";
 
-const useMainPageScroll = (eventItemBoxRef, eventListOpen) => {
+const useMainPageScroll = (mainPageRef, eventListOpen) => {
   const scrolling = useRef(false);
-  const headerRef = useRef(null);
-
-  useEffect(() => {
-    headerRef.current = document.querySelector("header");
-  }, []);
-
-  const blockInnerScroll = useCallback((e) => {
-    if (!eventListOpen) {
-      return;
-    }
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (eventItemBoxRef.current) {
-      eventItemBoxRef.current.scrollTop += e.deltaY;
-    }
-  }, [eventListOpen, eventItemBoxRef]);
 
   const wheelingScrollMethod = useCallback((e) => {
-    if (eventListOpen && eventItemBoxRef.current?.contains(e.target)) {
+    if(eventListOpen){
+      e.preventDefault();
+      e.stopPropagation();
       return;
     }
 
@@ -37,27 +21,28 @@ const useMainPageScroll = (eventItemBoxRef, eventListOpen) => {
 
     const scrollOnTop = window.pageYOffset;
     const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
-    const dir = e.deltaY > 0 ? 1 : -1;
+    const direction = e.deltaY > 0 ? 1 : -1;
     let range = window.innerHeight;
 
     if (scrollOnBottom <= 0) {
       range = 500;
     }
 
-    scroll.scrollMore(dir * range, { duration: 700, smooth: true });
+    scroll.scrollMore(direction * range, { duration: 700, smooth: true });
 
     setTimeout(() => {
       scrolling.current = false;
     }, 900);
-  }, [eventItemBoxRef, eventListOpen]);
+  }, [eventListOpen]);
 
   const keyArrowScrollMethod = useCallback((e) => {
     if (e.key !== "ArrowUp" && e.key !== "ArrowDown") {
       return;
     }
 
-    if (eventItemBoxRef.current?.contains(e.target)) {
+    if(eventListOpen){
       e.preventDefault();
+      e.stopPropagation();
       return;
     }
 
@@ -71,49 +56,36 @@ const useMainPageScroll = (eventItemBoxRef, eventListOpen) => {
 
     const scrollOnTop = window.pageYOffset;
     const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
-    const dir = e.key === "ArrowUp" ? -1 : 1;
+    const direction = e.key === "ArrowUp" ? -1 : 1;
     let range = window.innerHeight;
 
     if (scrollOnBottom <= 0) {
       range = 500;
     }
 
-    scroll.scrollMore(dir * range, { duration: 700, smooth: true });
+    scroll.scrollMore(direction * range, { duration: 700, smooth: true });
 
     setTimeout(() => {
       scrolling.current = false;
     }, 900);
-  }, [eventItemBoxRef]);
-
-  const headerVisibility = useCallback(() => {
-    if (!headerRef.current) return;
-
-    const scrollOnTop = window.pageYOffset;
-    const scrollOnBottom = document.documentElement.scrollHeight - scrollOnTop - window.innerHeight;
-
-    headerRef.current.style.display = scrollOnBottom <= 0 ? "none" : "block";
-  }, []);
+  }, [eventListOpen]);
 
   useEffect(() => {
-    window.addEventListener("wheel", wheelingScrollMethod, { passive: false });
-    window.addEventListener("keydown", keyArrowScrollMethod);
-    window.addEventListener("scroll", headerVisibility);
+    const mainElement = mainPageRef.current;
 
-    const box = eventItemBoxRef?.current;
-    if (box) {
-      box.addEventListener("wheel", blockInnerScroll, { passive: false });
+    if(mainElement){
+      document.addEventListener("wheel", wheelingScrollMethod, { passive: false });
+      document.addEventListener("keydown", keyArrowScrollMethod);
     }
 
     return () => {
-      window.removeEventListener("wheel", wheelingScrollMethod);
-      window.removeEventListener("keydown", keyArrowScrollMethod);
-      window.removeEventListener("scroll", headerVisibility);
-
-      if (box) {
-        box.removeEventListener("wheel", blockInnerScroll);
+      if(mainElement){
+        document.removeEventListener("wheel", wheelingScrollMethod);
+        document.removeEventListener("keydown", keyArrowScrollMethod);
       }
+
     };
-  }, [wheelingScrollMethod, keyArrowScrollMethod, headerVisibility, blockInnerScroll, eventListOpen, eventItemBoxRef]);
+  }, [wheelingScrollMethod, keyArrowScrollMethod, mainPageRef]);
 };
 
 export default useMainPageScroll;

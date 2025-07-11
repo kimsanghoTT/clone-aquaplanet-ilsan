@@ -91,10 +91,6 @@ const UpdateProfile = () => {
         alert(msg.GENERIC_ERROR);
       }
   }
-  useEffect(() => {
-          console.log(modifyStep);
-
-  },[modifyStep])
 
   const onCancel = () => {
     navigate("/aquaplanet/member/mypage/userInfo");

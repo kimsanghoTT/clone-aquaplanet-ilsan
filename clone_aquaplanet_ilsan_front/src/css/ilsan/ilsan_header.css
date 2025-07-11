@@ -6,6 +6,10 @@
   background-color: transparent;
   position: fixed;
   transition: background-color 0.3s ease;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 .ilsan-header:hover .ico,
 .ilsan-header:hover .ico2,
@@ -17,8 +21,8 @@
 .ilsan-header:hover * {
   color: #767676;
 }
-.ilsan-header:hover .main-menu button {
-  color: #767676;
+.ilsan-header:hover .main-menu .ilsan-header-gnb {
+  color: #222;
 }
 .ilsan-header:hover .upper-nav {
   border-bottom: 1px solid #e0e0e0;
@@ -264,21 +268,32 @@
   display: flex;
   list-style: none;
   box-sizing: border-box;
+  justify-content: space-between;
 }
 .main-menu > li {
-  flex: 1;
+  flex-shrink: 0;
 }
-.main-menu button {
-  padding: 0;
+.main-menu .ilsan-header-gnb {
+  padding: 25px 37px;
   width: 100%;
-  height: 80px;
+  height: 79px;
   border: 3px solid transparent;
   background-color: transparent;
-  font-size: 18px;
+  font-size: 20px;
   font-family: noto;
   color: #fff;
+  word-break: keep-all;
 }
-.main-menu button:hover {
+@media screen and (max-width:1800px) {
+  .main-menu .ilsan-header-gnb {
+    font-size: 18px;
+  }
+}
+.main-menu .ilsan-header-gnb:hover {
+  color: #3366ff !important;
+  border-bottom: #3366ff 3px solid;
+}
+.main-menu .ilsan-header-gnb.on{
   color: #3366ff !important;
   border-bottom: #3366ff 3px solid;
 }
@@ -314,6 +329,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0;
 }
 .log-in {
   margin: 0;

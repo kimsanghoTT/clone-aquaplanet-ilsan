@@ -1,0 +1,302 @@
+[
+    {
+        "id":"01",
+        "category":"조류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"홍금강앵무",
+        "en_name":"Ara chloropterus",
+        "image":"/img/ilsan/friends/friends_01.png",
+        "description":"파나마 동부나 콜롬비아 북서부에 서식하며, 딱딱한 나무 열매도 까먹을 수 있는 강한 턱 힘을 가지고 있습니다. 금강앵무 중 온몸에 붉은색 깃이 많아 홍금강앵무라 불립니다."
+    },
+    {
+        "id":"02",
+        "category":"조류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"푸른목금강앵무",
+        "en_name":"Ara glaucogularis",
+        "image":"/img/ilsan/friends/friends_02.png",
+        "description":"몸 바깥쪽은 푸른색, 안쪽에는 노란색 깃털을 가지고 있으며, 이름처럼 목 주변에도 푸른색 깃털이 자라있습니다. 수명은 약 60년 정도이며, 국제적 멸종 위기종으로 보호가 필요한 종입니다."
+    },
+    {
+        "id":"03",
+        "category":"해수연골어류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"흑가오리",
+        "en_name":"Dasyatis matsubarai",
+        "image":"/img/ilsan/friends/friends_03.png",
+        "description":"가장 큰 딥블루오션의 든든한 대장부 흑가오리는, 한국과 일본 연안에 살고있는 대형가오리입니다. 이름처럼 등은 검은 빛을 띄지만 배 부분은 반대로 뽀얀 하얀 빛을 띄고 있어요. 길고 가느다란 꼬리에는 날카로운 독침을 가지고 있는 흑가오리친구들은 현재 몸무게가 150kg이 넘습니다!"
+    },
+    {
+        "id":"04",
+        "category":"조류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"히야신스금강앵무",
+        "en_name":"Anodorhynchus hyacinthinus",
+        "image":"/img/ilsan/friends/friends_04.png",
+        "description":"앵무새 중 세계에서 가장 커다란 몸집을 갖고 있으며, 몸길이가 머리끝부터 꼬리 끝까지 약 1m나 됩니다. 온 몸이 파란색이고 눈 주변에 노란색 피부를 갖고 있는 게 특징입니다. 국제적 멸종 위기종으로 보호가 필요한 종입니다."
+    },
+    {
+        "id":"05",
+        "category":"조류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"홍따오기",
+        "en_name":"Eudocimus ruber",
+        "image":"/img/ilsan/friends/friends_05.png",
+        "description":"홍학과 비슷하게 생겼지만 전혀 달라요. 새끼일 때는 검은색 깃털이지만 다 큰 어른이 되면 예쁜 다홍색 깃털로 변신합니다. 발에 물갈퀴가 있지만 얕은 물가에서 생활하고 수영은 하지 못해요. 예쁜 깃털 색깔과 얇고 쭉 뻗은 다리가 특징입니다."
+    },
+    {
+        "id":"06",
+        "category":"민물어류",
+        "location":"3F",
+        "location_detail":"더 정글",
+        "kr_name":"피라니아",
+        "en_name":"Red-Bellied Piranha",
+        "image":"/img/ilsan/friends/friends_06.png",
+        "description":"이빨이 있는 물고기'라는 뜻의 피라니아는 무시무시한 공격성과 왕성한 식욕으로 유명한 친구입니다 영화속 공포의 주인공으로도 만나본 적이 있으시죠? 아마존의 무법자 피라니아를 정글에서 만나보세요!"
+    },
+    {
+        "id":"07",
+        "category":"양서파충류",
+        "location":"3F",
+        "location_detail":"더 정글",
+        "kr_name":"킹스네이크",
+        "en_name":"Lampropeltis spp",
+        "image":"/img/ilsan/friends/friends_07.png",
+        "description":"킹스네이크의 대부분은 표피에 아주 선명한 무늬를 갖고 있으며, 다른 뱀들의 독액에 저항력이 높아 다른 뱀을 잡아먹기도 합니다. 참고로 킹이라는 단어가 붙은 뱀들은 킹스네이크처럼 다른 뱀을 잡아먹을 수 있다고 해요."
+    },
+    {
+        "id":"08",
+        "category":"포유류",
+        "location":"5F",
+        "location_detail":"더 스카이팜",
+        "kr_name":"코리델 면양",
+        "en_name":"Ovis ammon aries",
+        "image":"/img/ilsan/friends/friends_08.png",
+        "description":"뉴질랜드에서 주로 생활하고, 암수 모두 뿔이 없고 얼굴과 발에는 털이 길게 자라지 않습니다. 따뜻한 털이 많이 자라 코리델 면양의 털은 양복이나 내의 등의 원료로 사용됩니다. 암컷의 몸무게는 약 80kg까지 자라고 수컷은 110kg까지 자랄 정도로 큰 몸집을 자랑한답니다."
+    },
+    {
+        "id":"09",
+        "category":"포유류",
+        "location":"3F",
+        "location_detail":"더 정글",
+        "kr_name":"아메리칸 너구리(라쿤)",
+        "en_name":"Procyon lotor",
+        "image":"/img/ilsan/friends/friends_09.png",
+        "description":"라쿤은 너구리인데 왜 물과 함께 있냐구요?! 라쿤은 물가에서 서식하며 물고기와 같은 물에 사는 작은 생물을 잡아먹어요! 외모는 너구리와 비슷하며 꼬리털이 풍성하고 검은색 줄무늬를 가지고 있고, 나무나 절벽을 잘 올라타고 수영도 잘해요 온순한 성격을 가지고 있어 애완용으로 기르는 경우도 있답니다."
+    },
+    {
+        "id":"10",
+        "category":"해수연골어류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"샌드타이거샤크",
+        "en_name":"Sand Tiger Shark",
+        "image":"/img/ilsan/friends/friends_10.png",
+        "description":"무시무시한 죠스 노래가 떠오르는 샌드타이거 샤크는, 다 자라면 몸의 길이가 3m가 넘는 대형상어랍니다! 평소에는 천천히 유영하는 모습을 볼 수 있지만 먹잇감을 발견하면 겹겹이 날카로운 이빨과 강력한 턱힘으로 사냥해요."
+    },
+    {
+        "id":"11",
+        "category":"포유류",
+        "location":"5F",
+        "location_detail":"더 스카이팜",
+        "kr_name":"셰틀랜드 포니",
+        "en_name":"E. f. caballus",
+        "image":"/img/ilsan/friends/friends_11.png",
+        "description":"제일 작은 말 중 하나로, 스코틀랜드 북부의 셰틀랜드에 서식합니다. 수명은 약 20년 정도이며, 풀이나 과일, 나뭇잎 등을 먹고 생활합니다. 짧은 발을 갖고 있지만 튼튼하여 어린이 승마용 말로 많은 사랑을 받고 있습니다."
+    },
+    {
+        "id":"12",
+        "category":"포유류",
+        "location":"5F",
+        "location_detail":"더 스카이팜",
+        "kr_name":"보어염소",
+        "en_name":".",
+        "image":"/img/ilsan/friends/friends_12.png",
+        "description":"수명은 약 10년 정도이며, 나뭇잎이나 새싹, 풀잎 등을 먹고 생활하는 초식동물입니다. 뿔을 가지고 있어 화가 나면 뿔을 힘차게 들이 받는답니다. 또한 천적을 피하기 위해 높은 곳에서 주변을 살피는 습성을 가지고 있어요. 보어 염소의 특징 중 한 가지는 축 처진 귀여운 귀랍니다."
+    },
+    {
+        "id":"13",
+        "category":"자포동물",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"말레이원앙해파리",
+        "en_name":"Sanderia malayensis Goette",
+        "image":"/img/ilsan/friends/friends_13.png",
+        "description":"긴 촉수를 가지고 몽환적인 느낌을 내는 말레이원양해파리는 일본에서만 서식하는 해파리 종으로 '아마쿠사'지방에서 많이 출현하여 '아마쿠사 해파리'라고 불리기도 합니다. 보기엔 아름답지만, 맹독을 가지고 있어 쏘였을 때 심한 통증을 유발하기 때문에 바다에서 조심해야겠죠?"
+    },
+    {
+        "id":"14",
+        "category":"포유류",
+        "location":"3F",
+        "location_detail":"더 정글",
+        "kr_name":"다람쥐원숭이",
+        "en_name":"Saimiri sciureus",
+        "image":"/img/ilsan/friends/friends_14.png",
+        "description":"수명은 약 15~20년 정도이며, 자연에서 곤충이나 거미, 새알, 열매, 꽃 등을 먹고 생활합니다. 긴 꼬리를 갖고 있는 게 특징이며, 이 꼬리는 중심을 잡는 아주 중요한 역할을 합니다."
+    },
+    {
+        "id":"15",
+        "category":"포유류",
+        "location":"3F",
+        "location_detail":"더 정글",
+        "kr_name":"미어캣",
+        "en_name":"Suricata suricatta",
+        "image":"/img/ilsan/friends/friends_15.png",
+        "description":"사막에서 무리 생활을 하며 서로를 지켜주기 때문에 \"사막의 파수꾼\"이라고 불리며 눈 주변, 귀가 검은색이고 몸통과 꼬리는 검정 줄무늬를 가지고 있습니다. "
+    },
+    {
+        "id":"16",
+        "category":"양서파충류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"매부리바다거북",
+        "en_name":"Hawksbill Sea Turtle",
+        "image":"/img/ilsan/friends/friends_16.png",
+        "description":"매의 부리를 닮은 주둥이를 가지고 있어 매부리 바다거북이라는 이름을 지녔답니다. 또한 등갑은 여러 개의 작은 등갑이 겹쳐져 있어 다른 거북이들과는 확실히 구별된답니다."
+    },
+    {
+        "id":"17",
+        "category":"자포동물",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"보름달물해파리",
+        "en_name":"Aurelia aurita",
+        "image":"/img/ilsan/friends/friends_17.png",
+        "description":"무색 투명한 몸을 가졌고, 우산 내에 특징적인 무늬가 있으며 느린 유영속도로 부유하며 플랑크톤을 잡아 먹습니다."
+    },
+    {
+        "id":"18",
+        "category":"해수경골어류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"블루탱",
+        "en_name":"Paracanthurus hepatus",
+        "image":"/img/ilsan/friends/friends_18.png",
+        "description":"선명한 파란 바탕에 노란 꼬리와 검정색 무늬가 섞인 아름다운 물고기예요. 관상어로 인기가 많지만, 꼬리 쪽 날카로운 가시에는 독샘이 있어서 주의해야 해요!"
+    },
+    {
+        "id":"19",
+        "category":"해수경골어류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"퍼큘라클라운피쉬",
+        "en_name":"Amphiprion percula",
+        "image":"/img/ilsan/friends/friends_19.png",
+        "description":"퍼큘라클라운피쉬는 영화 ‘니모를 찾아서’ 의 주인공으로 유명하죠. 말미잘과 공생하며 사이 좋게 지내지만 동족끼리는 곧잘 다투기도 한답니다. 귀여운 외모로 인기가 많답니다."
+    },
+    {
+        "id":"20",
+        "category":"포유류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"두발가락나무늘보",
+        "en_name":"Choloepus didactylus",
+        "image":"/img/ilsan/friends/friends_20.png",
+        "description":"나무늘보는 포유류 중 가장 느린 동물입니다. 천적에게 들키지 않기 위해 움직임을 최소화하고 나무 위에서 대부분의 시간을 보냅니다. 긴팔과 갈고리모양 발톱을 이용해 나뭇가지 사이를 쉽게 오가지만 움직이는 속도는 매우 느리답니다. 하루 24시간 중에 15~18시간은 자고 있기 때문에 깨어있는 모습을 본다면 굉장한 행운이에요!"
+    },
+    {
+        "id":"21",
+        "category":"포유류",
+        "location":"3F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"바다코끼리",
+        "en_name":"Odobenus rosmarus",
+        "image":"/img/ilsan/friends/friends_21.png",
+        "description":"큰 덩치와 커다란 엄니를 자랑하지만, 외모와는 다르게 온순한 성격을 가졌습니다. 큰 엄니는 자신을 지키는 든든한 무기이자, 얼음에서 미끄러지지 않도록 하는 지팡이 역할도 한답니다. 엄니는 암∙수컷 모두에게 있고, 15년 동안 자라납니다. 긴 엄니의 길이로 바다코끼리의 서열이 정해진다고 합니다. 북극에 사는 바다코끼리는 두꺼운 지방층으로 추위를 이겨냅니다. 그러기 위해서 하루에 조개를 4,000~6,000개까지 먹는 대식가입니다. ※ 12/11(수)~1월 중순 : 수조 공사로 인해 관람 불가"
+    },
+    {
+        "id":"22",
+        "category":"포유류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"알락꼬리여우원숭이",
+        "en_name":"Lemur catta",
+        "image":"/img/ilsan/friends/friends_22.png",
+        "description":"알락꼬리여우원숭이는 여우를 닮은 외모와 호랑이를 닮은 꼬리를 가지고 있어요. 다양한 소리와 꼬리의 모양으로 서로 대화를 한답니다. 독특하게도 무리에서 암컷이 지도자가 되는 모계사회를 구성해요. 마치 태양을 숭배하듯 햇볕을 향해 양팔을 벌리는 행동을 자주 보이는데 이런 모습은 추운 밤에도 따뜻하게 지낼 수 있도록 체온을 높이는 행동입니다."
+    },
+    {
+        "id":"23",
+        "category":"포유류",
+        "location":"3F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"참물범",
+        "en_name":"Phoca vitulina",
+        "image":"/img/ilsan/friends/friends_23.png",
+        "description":"동그란 몸매에 커다란 눈을 가진 귀염둥이 물범입니다. 물 속에서는 뒷다리를 이용해 재빠르게 움직이지만, 땅으로 올라오면 배를 이용해서 꿈틀꿈틀 움직이거나 통통 튕기며 느리게 움직이지요."
+    },
+    {
+        "id":"24",
+        "category":"조류",
+        "location":"3F",
+        "location_detail":"더 정글",
+        "kr_name":"노랑머리아마존앵무",
+        "en_name":"Amazona oratrix",
+        "image":"/img/ilsan/friends/friends_24.png",
+        "description":"노랑머리아마존앵무는 호기심 많은 장난꾸러기예요. 앵무새 중에서도 매우 영리한 편이어서 성대모사를 아주 잘한답니다. 속이 비어있는 야자나무에 둥지를 트는데 간혹 흰개미 집을 빼앗아 그 곳에 알을 낳기도 해요. 평소에는 온순하지만 번식기엔 상당히 예민해진답니다."
+    },
+    {
+        "id":"25",
+        "category":"조류",
+        "location":"3F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"아프리칸펭귄",
+        "en_name":"Spheniscus demersus",
+        "image":"/img/ilsan/friends/friends_25.png",
+        "description":"따뜻한 지방인 아프리카에 사는 펭귄입니다. 아프리칸펭귄의 몸길이는 35cm, 몸무게는 3.3kg 정도 입니다. 펭귄은 털이 2중으로 되어있습니다. 안쪽 털은 보온역할을, 바깥쪽 털은 방수역할을 해줍니다. 새끼는 머리 부분에 검은 털이 나고, 자라면서 몇 번의 털갈이를 한 뒤 하얀 줄무늬를 갖게 됩니다. 무릎에 관절이 없어 뒤뚱뒤뚱 걷는 펭귄은 겉보기엔 다리가 짧아 보이지만, 몸통 안쪽으로 긴 다리가 구부러져 있답니다."
+    },
+    {
+        "id":"26",
+        "category":"조류",
+        "location":"2F",
+        "location_detail":"더 정글",
+        "kr_name":"청금강앵무",
+        "en_name":"Ara ararauna",
+        "image":"/img/ilsan/friends/friends_26.png",
+        "description":"대형 앵무류 중 가장 흔한 종으로 성격이 온순하고 호기심이 많아요. 종종 시끄러운 소리를 내지만 사람의 몇 마디 말을 흉내 낼 수 있는 재주꾼이에요. 부리 힘이 매우 강해서 과일과 야채, 견과류, 곤충 등 다양한 먹이를 먹을 수 있지요."
+    },
+    {
+        "id":"27",
+        "category":"조류",
+        "location":"3F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"훔볼트펭귄",
+        "en_name":"Spheniscus humboldti",
+        "image":"/img/ilsan/friends/friends_27.png",
+        "description":"따뜻한 지역에 사는 펭귄입니다. 훔볼트펭귄은 아프리칸펭귄과는 다르게, 부드러운 긴 부리를 가지고 있고, 눈과 부리주변이 붉은색을 띠고 있습니다. 펭귄은 알에서 태어나는 동물입니다. 새끼 때는 검은색 병아리 같아 보이는데요, 성장속도가 굉장히 빨라서 50일 정도 되면 다 자란 펭귄과 비슷한 모습을 보입니다. 펭귄은 조류지만 날지 못하는 대신 유영에 적합한 유선형의 몸과 단단한 날개를 가지고 있습니다."
+    },
+    {
+        "id":"28",
+        "category":"자포동물",
+        "location":"3F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"산호",
+        "en_name":"coral",
+        "image":"/img/ilsan/friends/friends_28.png",
+        "description":"산호는 동물(자포동물)로 플랑크톤 등을 잡아먹어요. 또한 ‘주산셀러’(Zooxanthellae)라는 조류와 공생하는데, 이 주산셀러가 광합성을 하여 산호에게 영양분을 준답니다. 산호초 지대는 다른 곳보다 산소 함량이 높고, 먹이가 풍부해 전 세계 해양 생물의 4분의 1이 살아가고 있어요. ※ 벽면의 이끼는 여러 무척추동물의 먹이가 되어주는 Coralline algae로 산호초의 주요 형성 물질이랍니다. 산호초 생태계에서 중요한 역할을 하고 있어요."
+    },
+    {
+        "id":"29",
+        "category":"해수연골어류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"얼룩매가오리",
+        "en_name":"Aetobatus narinari",
+        "image":"/img/ilsan/friends/friends_29.png",
+        "description":"머리의 모양이 매처럼 생겨서 ‘매가오리’라고 불려요. 모랫바닥을 훑으며 활발하게 먹이를 찾아다닌답니다."
+    },
+    {
+        "id":"30",
+        "category":"해수경골어류",
+        "location":"2F",
+        "location_detail":"더 아쿠아",
+        "kr_name":"골든트래벌리",
+        "en_name":"Gnathanodon speciosus",
+        "image":"/img/ilsan/friends/friends_30.png",
+        "description":"호랑이처럼 노란색 바탕에 검은 줄무늬를 가진 골든트레벌리는 무리 지어 헤엄쳐 다니며 함께 사냥하기도 하고, 무서운 포식자들로부터 몸을 보호하기도 합니다. 혹시 ‘뭉치면 살고, 흩어지면 죽는다.’는 속담을 물고기들도 잘 알고 있는 것이 아닐까요?"
+    }
+]

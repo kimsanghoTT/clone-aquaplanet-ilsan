@@ -7,14 +7,17 @@ import AsideSection from "./sub_components/ilsan_header_aside.jsx";
 import GnbNav from "./sub_components/ilsan_header_gnb_nav.jsx";
 import GnbToggleArea from "./sub_components/ilsan_header_gnb_toggle.jsx";
 import UpperNav from "./sub_components/ilsan_header_upper_nav.jsx";
+import { useMatch } from "react-router-dom";
 
 const IlsanHeader = () => {
   const headerRef = useRef(null);
   const upperNavRef = useRef(null);
-  const subMenuRefs = useRef([]); 
+  const lowerNavRef = useRef(null);
+  const subMenuRefs = useRef({}); 
+  const isInMainPage = useMatch('/aquaplanet/ilsan');
 
   // 커스텀 훅 사용
-  useHeaderScrollEvent(headerRef, upperNavRef);
+  useHeaderScrollEvent(headerRef, upperNavRef, isInMainPage, lowerNavRef);
   const { isHovered, handleMouseEnter, handleMouseLeave } = useHeaderHoverEvent(headerRef, subMenuRefs);
 
   useEffect(() => {
@@ -37,7 +40,7 @@ const IlsanHeader = () => {
       <div className="upper-nav" ref={upperNavRef}>
         <UpperNav isHovered={isHovered}/>
       </div>
-      <div className="main-nav">
+      <div className="main-nav" ref={lowerNavRef}>
         <div className="nav-inner">
           <div className="ilsan-logo">
             <a href="/">
