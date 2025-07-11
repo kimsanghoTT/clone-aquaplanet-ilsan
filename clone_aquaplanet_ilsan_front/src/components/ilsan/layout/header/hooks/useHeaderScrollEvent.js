@@ -1,59 +1,42 @@
-import { useEffect } from "react";
+import { useLayoutEffect, useState } from "react";
 import gsap from "gsap";
 
-const useHeaderScrollEvent = (headerRef, upperNavRef, isInMainPage, lowerNavRef) => {
+const useHeaderScrollEvent = (headerRef, isInMainPage) => {
+  const [isHeaderScrolled, setIsHeaderScrolled] = useState(false);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
+
     const scrollEvent = () => {
       const scrollPoint = window.pageYOffset || document.documentElement.scrollTop;
 
-      if(isInMainPage){
+      if (isInMainPage) {
         if (scrollPoint === 0) {
-          if (upperNavRef.current) {
-            gsap.to(upperNavRef.current, { opacity: 1, duration: 0.5, height: "50px" });
-          }
           if (headerRef.current) {
             gsap.to(headerRef.current, { y: 0, duration: 0.5 });
           }
-        } else { 
-          if (upperNavRef.current) {
-            gsap.to(upperNavRef.current, { opacity: 0, duration: 0.5, height: 0 });
-          }
+        } else {
           if (headerRef.current) {
-            gsap.to(headerRef.current, { y: "-20px", duration: 0.5 });
+            gsap.to(headerRef.current, { y: "-50px", duration: 0.5 });
           }
         }
-
         const scrollOnBottom = document.documentElement.scrollHeight - scrollPoint - window.innerHeight;
         if (headerRef.current) {
-           headerRef.current.style.display = scrollOnBottom <= 0 ? "none" : "block";
+          headerRef.current.style.display = scrollOnBottom <= 0 ? "none" : "block";
         }
-      }
-      else{
+      } else {
         if (scrollPoint <= 740) {
-          if (upperNavRef.current) {
-            gsap.to(upperNavRef.current, { opacity: 1, duration: 0.2, height: "50px" });
-          }
+          setIsHeaderScrolled(false);
           if (headerRef.current) {
-            gsap.to(headerRef.current, { y: 0, duration: 0.2});
+            gsap.to(headerRef.current, { y: 0, duration: 0.5 });
           }
-          if(lowerNavRef.current){
-            gsap.to(lowerNavRef.current, {background:"transparent", duration:0.2});
-          }
-        } else { 
-          if (upperNavRef.current) {
-            gsap.to(upperNavRef.current, { opacity: 0, duration: 0.2, height: 0 });
-          }
+
+        } else {
+          setIsHeaderScrolled(true);
           if (headerRef.current) {
-            gsap.to(headerRef.current, { y: "-20px", duration: 0.2});
-          }
-          if(lowerNavRef.current){
-            gsap.to(lowerNavRef.current, {background:"#fff", duration:0.2});
+            gsap.to(headerRef.current, { y: "-50px", duration: 0.5 });
           }
         }
       }
-
-
     };
 
     window.addEventListener("scroll", scrollEvent);
@@ -61,7 +44,9 @@ const useHeaderScrollEvent = (headerRef, upperNavRef, isInMainPage, lowerNavRef)
     return () => {
       window.removeEventListener("scroll", scrollEvent);
     };
-  }, [headerRef, upperNavRef, isInMainPage, lowerNavRef]); 
+  }, [headerRef, isInMainPage]);
+
+  return { isHeaderScrolled };
 };
 
 export default useHeaderScrollEvent;

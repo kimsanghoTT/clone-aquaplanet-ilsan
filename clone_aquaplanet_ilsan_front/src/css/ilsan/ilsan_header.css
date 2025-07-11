@@ -5,7 +5,7 @@
   display: block;
   background-color: transparent;
   position: fixed;
-  transition: background-color 0.3s ease;
+  transition: background-color 0.1s ease;
   top: 0;
   left: 0;
   right: 0;
@@ -223,7 +223,6 @@
 .main-nav {
   height: 80px;
   width: 100%;
-  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
 }
 .nav-inner {
   display: flex;
@@ -232,6 +231,7 @@
   height: 100%;
   align-items: center;
   justify-content: space-between;
+  border-bottom: 1px solid rgba(224, 224, 224, 0.2);
 }
 /** 로고 **/
 .ilsan-logo {
@@ -270,32 +270,38 @@
   box-sizing: border-box;
   justify-content: space-between;
 }
-.main-menu > li {
-  flex-shrink: 0;
-}
 .main-menu .ilsan-header-gnb {
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+.main-menu button {
   padding: 25px 37px;
   width: 100%;
   height: 79px;
-  border: 3px solid transparent;
+  border: 1px solid transparent;
   background-color: transparent;
   font-size: 20px;
   font-family: noto;
   color: #fff;
   word-break: keep-all;
+  font-weight: 500;
 }
 @media screen and (max-width:1800px) {
-  .main-menu .ilsan-header-gnb {
+  .main-menu button {
     font-size: 18px;
   }
 }
 .main-menu .ilsan-header-gnb:hover {
-  color: #3366ff !important;
   border-bottom: #3366ff 3px solid;
 }
-.main-menu .ilsan-header-gnb.on{
+.main-menu .ilsan-header-gnb:hover button{
   color: #3366ff !important;
+}
+.main-menu .ilsan-header-gnb.on{
   border-bottom: #3366ff 3px solid;
+}
+.main-menu .ilsan-header-gnb.on button{
+  color: #3366ff !important;
 }
 .sub-menu {
   position: relative;
@@ -499,3 +505,23 @@
 .item-banner img {
   width: 100%;
 }
+
+/* 자식 페이지 헤더 css */
+.ilsan-header.fixActive .ico,
+.ilsan-header.fixActive .ico2,
+.ilsan-header.fixActive .item-info .ico,
+.ilsan-header.fixActive .item-info::before{
+  filter: brightness(0);
+}
+.ilsan-header.fixActive{
+  background-color: #fff;
+}
+.ilsan-header.fixActive .main-nav .nav-inner{
+  border-bottom: 1px solid #e0e0e0;
+}
+.main-menu.fixActive .ilsan-header-gnb button{
+  color: #222;
+}
+.aside.fixActive .log-in-text, .aside.fixActive .ticket-text{
+  color: #767676;
+} 

@@ -2,10 +2,10 @@ import React from "react";
 import { gnbMenuItems } from "../data/ilsan_header_data";
 import GnbMenuItem from "./ilsan_header_gnb_nav_item";
 
-const GnbNav = ({subMenuRefs}) => {
+const GnbNav = ({subMenuRefs, isHeaderScrolled}) => {
   return (
     <nav className="gnb">
-      <ul className="main-menu">
+      <ul className={`main-menu ${isHeaderScrolled ? "fixActive" : ""}`}>
         {gnbMenuItems &&
           gnbMenuItems.map((menu) => (
             <GnbMenuItem

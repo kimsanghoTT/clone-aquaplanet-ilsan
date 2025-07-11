@@ -4,8 +4,8 @@ const GnbMenuItem = ({ menu, subMenuRefs }) => {
   const activeParentNav = useMatch(menu.pathPattern);
 
   return (
-    <li key={menu.id}>
-      <button className={`ilsan-header-gnb ${activeParentNav ? "on" : ""}`} type="button">
+    <li className={`ilsan-header-gnb ${activeParentNav ? "on" : ""}`} key={menu.id}>
+      <button type="button">
         {menu.main}
       </button>
       {menu.sub && (

@@ -20,7 +20,7 @@ const GnbToggleArea = ({ isHovered }) => {
           opacity: 1,
           ease: "power3.out",
           borderBottom: "1px solid #e0e0e0",
-          duration: 0.5,
+          duration: 0.3,
         });
       } else {
         gsap.to(dropdownRef.current, {
@@ -28,7 +28,7 @@ const GnbToggleArea = ({ isHovered }) => {
           height: 0,
           opacity: 0,
           ease: "power1.in",
-          duration: 0.5,
+          duration: 0.3,
         });
       }
     }

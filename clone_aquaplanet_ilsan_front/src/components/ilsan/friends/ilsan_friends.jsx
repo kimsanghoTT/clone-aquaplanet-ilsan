@@ -1,4 +1,4 @@
-import React from "react"
+import React, { lazy } from "react"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import '../../../css/ilsan/ilsan_friends.css';
 import 'swiper/css';
@@ -7,6 +7,9 @@ import friends from './data/friends.json';
 const AquaplanetIlsanFriends = () => {
 
     return(
+        <>
+        
+            
         <div className="aquaplanet-ilsan-content-wrapper">
             <div className="content-visual-top">
                 <div className="text-box">
@@ -73,7 +76,7 @@ const AquaplanetIlsanFriends = () => {
                                         <span className="floor">{friend.location}</span>{friend.location_detail}
                                     </p>
                                     <figure className="img-box">
-                                        <img src={friend.image} alt={friend.image} />
+                                        <img src={friend.image} alt={friend.image} loading="lazy"/>
                                     </figure>
                                     <div className="name">
                                         <p className="kr">{friend.kr_name}</p>
@@ -106,6 +109,7 @@ const AquaplanetIlsanFriends = () => {
                 </div>
             </div>
         </div>
+        </>
     )
 }
 export default AquaplanetIlsanFriends

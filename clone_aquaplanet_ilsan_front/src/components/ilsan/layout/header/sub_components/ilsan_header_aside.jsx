@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import LoginContext from "../../../../LoginContext";
 
-const AsideSection = ({isHovered}) => {
+const AsideSection = ({isHovered, isHeaderScrolled}) => {
   const { loginMember, setLoginMember } = useContext(LoginContext);
   const [joinOpen, setJoinOpen] = useState(false);
 
@@ -19,7 +19,7 @@ const AsideSection = ({isHovered}) => {
   },[isHovered])
 
   return (
-    <div className="aside">
+    <div className={`aside ${isHeaderScrolled ? "fixActive" : ""}`}>
       <div className="log-in">
         <button onClick={toggleJoinMenu} type="button">
           <span className="ico"></span>
