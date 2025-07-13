@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Navigate, Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import IlsanWrapper from "./components/ilsan/ilsan_wrapper";
 import AquaplanetWrapper from "./components/aquaplanet/aquaplanet_wrapper";
 import LoginContext from "./components/LoginContext";
@@ -24,14 +24,12 @@ function App() {
 
   return (
     <LoginContext.Provider value={{loginMember, setLoginMember}}>
-    <Router>
       <TitleChanger/>
       <Routes>
         <Route path="/" element={<Navigate to="/aquaplanet/ilsan" replace />} />
         <Route path="/aquaplanet/ilsan/*" element={<IlsanWrapper/>}/>
         <Route path="/aquaplanet/*" element={<AquaplanetWrapper/>}/>
       </Routes>
-    </Router>
     </LoginContext.Provider>
   );
 }

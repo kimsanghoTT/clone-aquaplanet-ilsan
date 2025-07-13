@@ -9,6 +9,11 @@ import "../../../../css/ilsan/ilsan_main.css";
 import useMainPageScroll from "../hooks/useMainPageScroll.js";
 
 const Main = ({eventListOpen}) => {
+
+    if ('scrollRestoration' in window.history) {
+    window.history.scrollRestoration = 'manual';
+    }
+    
     const mainPageRef = useRef();
     useMainPageScroll(mainPageRef, eventListOpen)
     return(

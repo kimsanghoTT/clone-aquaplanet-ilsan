@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import "../../../../css/ilsan/ilsan_header.css";
 import gsap from "gsap";
 import useHeaderHoverEvent from "./hooks/useHeaderHoverEvent";
@@ -15,7 +15,7 @@ const IlsanHeader = () => {
   const isInMainPage = useMatch("/aquaplanet/ilsan");
 
   // 커스텀 훅 사용
-  const { isHeaderScrolled } = useHeaderScrollEvent(headerRef, isInMainPage);
+  const { isHeaderScrolled, scrollState } = useHeaderScrollEvent(headerRef, isInMainPage);
   const { isHovered, handleMouseEnter, handleMouseLeave } = useHeaderHoverEvent(
     headerRef,
     subMenuRefs,
@@ -24,12 +24,23 @@ const IlsanHeader = () => {
   );
 
   useLayoutEffect(() => {
-    gsap.fromTo(
-      headerRef.current,
-      { opacity: 0, y: -130 },
-      { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
-    );  
-  }, []);
+
+    if(isHeaderScrolled){
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: -130 },
+        { opacity: 1, y: -50, duration: 1, ease: "power1.out" }
+      );
+    }
+    else{
+      gsap.fromTo(
+        headerRef.current,
+        { opacity: 0, y: -130 },
+        { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
+      );
+    }
+
+  }, [isHeaderScrolled, scrollState]);
 
   return (
     <header

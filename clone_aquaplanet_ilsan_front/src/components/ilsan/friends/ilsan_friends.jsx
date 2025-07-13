@@ -1,4 +1,4 @@
-import React, { lazy } from "react"
+import React from "react"
 import { Swiper, SwiperSlide } from 'swiper/react';
 import '../../../css/ilsan/ilsan_friends.css';
 import 'swiper/css';

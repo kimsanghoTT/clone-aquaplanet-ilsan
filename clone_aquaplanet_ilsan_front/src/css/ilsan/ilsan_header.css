@@ -46,12 +46,14 @@
   box-sizing: border-box;
   justify-content: space-between;
   border-bottom: 1px solid rgba(224, 224, 224, 0.2);
+  flex-shrink: 0;
 }
 /** 헤더 상단 좌측 **/
 .upper-nav-left {
   margin-left: 30px;
   display: flex;
   gap: 40px;
+  flex-shrink: 0;
 }
 .item-category {
   height: 30px;
@@ -142,6 +144,9 @@
   color: white;
 }
 /** 헤더 상단 우측 **/
+.upper-nav-right{
+  flex-shrink: 0;
+}
 .item-info {
   position: relative;
   display: flex;
@@ -258,6 +263,7 @@
   display: flex;
   width: 100%;
   height: 100%;
+  min-width: 1140px;
 }
 .main-menu {
   width: 100%;
@@ -269,6 +275,7 @@
   list-style: none;
   box-sizing: border-box;
   justify-content: space-between;
+  flex-shrink: 0;
 }
 .main-menu .ilsan-header-gnb {
   flex-shrink: 0;
@@ -327,15 +334,12 @@
 
 /** 로그인 + 티켓 **/
 .aside {
-  max-width: 320px;
-  min-width: 160px;
-  width: 100%;
-  flex-shrink: 1;
+  width: 320px;
+  flex-shrink: 0;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-shrink: 0;
 }
 .log-in {
   margin: 0;
