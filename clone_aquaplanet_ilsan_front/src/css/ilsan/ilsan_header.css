@@ -5,11 +5,14 @@
   display: block;
   background-color: transparent;
   position: fixed;
-  transition: background-color 0.1s ease;
+  transition: background-color 0.3s ease;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
+}
+.ilsan-header:hover{
+  background-color: #fff;
 }
 .ilsan-header:hover .ico,
 .ilsan-header:hover .ico2,

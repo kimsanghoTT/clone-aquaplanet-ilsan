@@ -1,6 +1,7 @@
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 
-const useAsideBarScroll = (eventItemBoxRef, eventListOpen) => {
+const useAsideBarScroll = (eventItemBoxRef, eventListOpen, asideRef, isInMainPage) => {
+    const [isFixActive, setIsFixActive] = useState(false);
 
     const blockInnerScroll = useCallback((e) => {
         if (!eventListOpen) {
@@ -27,5 +28,27 @@ const useAsideBarScroll = (eventItemBoxRef, eventListOpen) => {
             }
         };
     }, [blockInnerScroll, eventItemBoxRef]);
+
+    useEffect(() => {
+        if(!isInMainPage){
+            const ActiveAsideByScroll = () => {
+                const scrollPoint = window.pageYOffset || document.documentElement.scrollTop;
+
+                if(scrollPoint > 790){
+                    setIsFixActive(true);
+                }
+                else if(scrollPoint <= 790){
+                    setIsFixActive(false);
+                }
+            }
+
+            ActiveAsideByScroll();
+            window.addEventListener("scroll", ActiveAsideByScroll);
+            return () => window.removeEventListener("scroll", ActiveAsideByScroll);
+        }
+
+    },[asideRef, isInMainPage])
+
+    return{isFixActive};
 }
 export default useAsideBarScroll;

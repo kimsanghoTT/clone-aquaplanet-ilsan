@@ -6,18 +6,21 @@ import asideEvents from "./data/asides_events";
 import EventListItem from "./sub_components/event_item_list.jsx"
 import SocialIcons from "./sub_components/social_icons.jsx";
 import useAsideBarScroll from "./hooks/useAsideBarScroll.js";
+import { useMatch } from "react-router-dom";
 
 const AsideBar = ({ eventListOpen, handleEventListOpen }) => {
   const eventItemBoxRef = useRef(null); 
+  const asideRef = useRef(null);
+  const isInMainPage = useMatch("aquaplanet/ilsan");
   const { closeTooltipBox } = useTooltipVisibility();
   const { backToTop } = useScrollToTop();
 
-  useAsideBarScroll(eventItemBoxRef, eventListOpen);
+  const {isFixActive} = useAsideBarScroll(eventItemBoxRef, eventListOpen, asideRef, isInMainPage);
 
   return (
     <>
       <div className={`overlay-film01 ${eventListOpen ? "filter" : ""}`}></div>
-      <aside className={`${eventListOpen ? "active" : ""}`}>
+      <aside className={`${isFixActive || eventListOpen ? "active" : ""}`} ref={asideRef}>
         <div className="event-btn">
           <button onClick={handleEventListOpen} type="button">
             <span className="event-btn-text-box">

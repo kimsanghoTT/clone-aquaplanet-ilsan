@@ -30,14 +30,14 @@ const useHeaderScrollEvent = (headerRef, isInMainPage) => {
         }
       } 
       else {
-        if (scrollPoint <= 740 && scrollState.current !== "outOfContent") {
+        if (scrollPoint <= 790 && scrollState.current !== "outOfContent") {
           scrollState.current = "outOfContent"
           setIsHeaderScrolled(false);
           if (headerRef.current) {
             gsap.to(headerRef.current, { y: 0, duration: 0.5 });
           }
 
-        } else if(scrollPoint > 740 && scrollState.current !== "inContent") {
+        } else if(scrollPoint > 790 && scrollState.current !== "inContent") {
           scrollState.current = "inContent"
           setIsHeaderScrolled(true);
           if (headerRef.current) {

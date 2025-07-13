@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import "../../../../css/ilsan/ilsan_header.css";
 import gsap from "gsap";
 import useHeaderHoverEvent from "./hooks/useHeaderHoverEvent";
@@ -24,7 +24,6 @@ const IlsanHeader = () => {
   );
 
   useLayoutEffect(() => {
-
     if(isHeaderScrolled){
       gsap.fromTo(
         headerRef.current,
