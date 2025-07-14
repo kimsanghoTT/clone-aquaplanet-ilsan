@@ -26,6 +26,7 @@ const Signup = () => {
     emailDuplicateCheck,
     validateBeforeSubmit,
   } = useValidation(member);
+  
   const {
     citySelectorOpen,
     districtSelectorOpen,
@@ -42,6 +43,7 @@ const Signup = () => {
     resetCitySelection,
     resetDistrictSelection,
   } = useRegionSelector({member, setMember});
+
   const { selectedPreferredBranch, preferredBranchSelection } =
     usePreferredBranch(setMember);
 

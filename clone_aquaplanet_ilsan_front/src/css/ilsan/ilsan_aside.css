@@ -245,6 +245,16 @@ aside.active .top-btn {
   text-align: center;
   overflow-y: scroll;
 }
+.event-item-box::-webkit-scrollbar {
+  width: 6px; 
+}
+.event-item-box::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.event-item-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
 .event-list {
   width: 100%;
   height: 100%;

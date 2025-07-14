@@ -34,7 +34,7 @@ const useAsideBarScroll = (eventItemBoxRef, eventListOpen, asideRef, isInMainPag
             const ActiveAsideByScroll = () => {
                 const scrollPoint = window.pageYOffset || document.documentElement.scrollTop;
 
-                if(scrollPoint > 790){
+                if(scrollPoint > 200){
                     setIsFixActive(true);
                 }
                 else if(scrollPoint <= 790){

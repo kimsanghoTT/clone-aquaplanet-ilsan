@@ -53,7 +53,6 @@
 }
 /** 헤더 상단 좌측 **/
 .upper-nav-left {
-  margin-left: 30px;
   display: flex;
   gap: 40px;
   flex-shrink: 0;
@@ -233,6 +232,7 @@
   width: 100%;
 }
 .nav-inner {
+  position: relative;
   display: flex;
   width: 100%;
   min-width: 0;
@@ -243,10 +243,11 @@
 }
 /** 로고 **/
 .ilsan-logo {
+  position: absolute;
   height: 70px;
   width: 160px;
   flex-shrink: 0;
-  margin-left: 50px;
+  margin-left: 40px;
 }
 .ilsan-logo a {
   width: 100%;
@@ -263,7 +264,6 @@
 }
 /** 내비게이션 **/
 .gnb {
-  display: flex;
   width: 100%;
   height: 100%;
   min-width: 1140px;
@@ -277,12 +277,11 @@
   display: flex;
   list-style: none;
   box-sizing: border-box;
-  justify-content: space-between;
   flex-shrink: 0;
+  justify-content: center;
 }
 .main-menu .ilsan-header-gnb {
   flex-shrink: 0;
-  flex-grow: 1;
 }
 .main-menu button {
   padding: 25px 37px;
@@ -337,12 +336,14 @@
 
 /** 로그인 + 티켓 **/
 .aside {
+  position: absolute;
   width: 320px;
   flex-shrink: 0;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  right: 0;
 }
 .log-in {
   margin: 0;
@@ -461,6 +462,23 @@
   color: #fff !important;
   filter: brightness(1);
 }
+@media screen and (max-width: 1700px) {
+  .aside{
+    width: auto;
+  }
+  .log-in{
+    width: 100px;
+  }
+  .log-in-text{
+    display: none;
+  }
+  .ticket-text{
+    display: none;
+  }
+  .ticket-box .ico{
+    margin: 0;
+  }
+}
 
 /** 헤더 토글 부분 **/
 .nav-toggle-box {
@@ -511,6 +529,12 @@
 }
 .item-banner img {
   width: 100%;
+}
+@media screen and (max-width: 1700px) {
+  .item-banner{
+    width: 250px;
+    height: 250px;
+  }
 }
 
 /* 자식 페이지 헤더 css */

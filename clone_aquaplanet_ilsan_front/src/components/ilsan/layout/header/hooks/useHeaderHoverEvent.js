@@ -1,7 +1,7 @@
 import { useState } from "react";
 import gsap from "gsap";
 
-const useHeaderHoverEvent = (headerRef, subMenuRefs, isHeaderScrolled, isInMainPage) => {
+const useHeaderHoverEvent = (headerRef, subMenuRefs) => {
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {

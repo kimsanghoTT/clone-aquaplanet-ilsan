@@ -1,23 +1,492 @@
-.aquaplanet-ilsan-content-wrapper{
-    width: 100%;
+.aquaplanet-ilsan-content-wrapper {
+  width: 100%;
 }
-.content-visual-top{
-    width: 100%;
-    position: fixed;
-    background: url("../../../public/img/ilsan/friends/friends_bg.png") center no-repeat;
-    height: 100vh;
+
+/* 비주얼 섹션 */
+.content-visual-top {
+  width: 100%;
+  position: fixed;
+  background: url("../../../public/img/ilsan/friends/friends_bg.png") center
+    no-repeat;
+  height: 100vh;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-size: cover;
+}
+.content-visual-top .text-box {
+  position: absolute;
+  color: #fff;
+  white-space: nowrap;
+  font-family: NotoSans-Regular;
+  top: 50%;
+  left: 20%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+.content-visual-top .text-box .line {
+  font-family: MyriadPro-Bold;
+  font-size: 20px;
+  font-weight: 600;
+}
+.content-visual-top .text-box .line::after {
+  content: "";
+  display: inline-block;
+  width: 211px;
+  height: 2px;
+  background-color: rgba(255, 255, 255, 0.4);
+  margin-left: 10px;
+  vertical-align: middle;
+  top: -2.5px;
+  position: relative;
+}
+.content-visual-top .text-box p:nth-child(2) {
+  margin-top: 30px;
+  font-size: 48px;
+  line-height: 1.3;
+}
+.content-visual-top .text-box p:last-child {
+  margin-top: 60px;
+  font-size: 18px;
+  font-family: NotoSans-Regular;
+}
+
+/*콘텐츠 섹션*/
+.ilsan-friends-container {
+  width: 100%;
+  background-color: #fff;
+  font-family: NotoSans-Regular;
+  margin: 0 auto;
+  position: relative;
+  margin-top: 100vh;
+  padding: 150px 0;
+  overflow-x: hidden;
+}
+.ilsan-friends-container .center-content {
+  width: 1366px;
+  margin: 0 auto;
+}
+.center-content .location-box {
+  font-family: NotoSans-Regular;
+}
+.center-content .location-box a {
+  display: inline-block;
+  padding-right: 10px;
+  position: relative;
+  color: #767676;
+  font-size: 15px;
+}
+.center-content .location-box a:last-child {
+  color: #222;
+  font-family: NotoSans-Medium;
+  font-weight: 500;
+}
+.center-content .location-box a:first-child::after,
+.center-content .location-box a:nth-child(2)::after {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 10px;
+  background: url("../../../public/img/ilsan/friends/sprite_pc.png") no-repeat
+    center;
+  background-position: -306px -1156px;
+  margin-left: 10px;
+}
+.center-content h2 {
+  text-align: center;
+  margin: 0;
+  margin-top: 40px;
+  font-size: 50px;
+  font-family: NotoSans-Medium;
+}
+
+/*필터, 검색 상자 */
+.filter-search-box {
+  margin-top: 80px;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  gap: 33px;
+}
+.filter-search-box .first-filter ul,
+.filter-search-box .second-filter ul {
+  display: none;
+}
+.filter-search-box .first-filter,
+.filter-search-box .second-filter {
+  width: 196px;
+}
+.filter-search-box .first-filter button,
+.filter-search-box .second-filter button {
+  background-color: #fff;
+  text-align: left;
+  border: none;
+  width: 100%;
+  height: 100%;
+  padding: 0 10px;
+  color: #767676;
+  cursor: pointer;
+  vertical-align: middle;
+  font-weight: 500;
+  font-size: 16px;
+  position: relative;
+  border-bottom: 1px solid #222222;
+}
+.filter-search-box .first-filter button em,
+.filter-search-box .second-filter button em {
+  display: flex;
+  position: absolute;
+  top: 42%;
+  right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.filter-search-box .first-filter button em::before,
+.filter-search-box .second-filter button em::before {
+  content: "";
+  display: block;
+  width: 1.5px;
+  height: 7px;
+  background: #767676;
+  transform: skew(42deg);
+}
+.filter-search-box .first-filter button em::after,
+.filter-search-box .second-filter button em::after {
+  content: "";
+  display: block;
+  width: 1.5px;
+  height: 7px;
+  background: #767676;
+  transform: skew(-42deg);
+  position: relative;
+  left: 4.5px;
+}
+.filter-search-box .search-input-box {
+  flex: 1;
+  position: relative;
+}
+.search-input-box input {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-bottom: 1px solid #222222;
+  padding-left: 15px;
+  line-height: 38px;
+  outline: none;
+  font-size: 16px;
+  color: #222222;
+}
+.search-input-box button {
+  background: url("../../../public/img/ilsan/friends/sprite_pc.png") no-repeat
+    center;
+  background-position: -444px -878px;
+  width: 34px;
+  height: 34px;
+  cursor: pointer;
+  position: absolute;
+  border: none;
+  top: 50%;
+  right: 23px;
+  transform: translateY(-50%);
+}
+
+/* 검색 결과 섹션*/
+.result-box {
+  margin-top: 40px;
+  overflow: visible;
+}
+.result-box .result-head {
+  display: flex;
+  justify-content: space-between;
+}
+.result-head .answer {
+  font-size: 18px;
+}
+.result-head .answer .highlight {
+  color: #3366ff;
+}
+.result-head .filter-popular {
+  font-size: 15px;
+  color: #767676;
+  position: relative;
+}
+.result-head .filter-popular input {
+  display: none;
+}
+.result-head .filter-popular label {
+  padding-left: 24px;
+  cursor: pointer;
+}
+.result-head .filter-popular label::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  border: 1px solid #767676;
+  left: 0;
+  text-align: center;
+}
+.result-head .filter-popular label::after {
+  content: "";
+  position: absolute;
+  top: 40%;
+  left: 7px;
+  width: 11px;
+  height: 6px;
+  border-bottom: 3px solid #f60;
+  border-left: 3px solid #f60;
+  transform: rotate(-45deg) translate(0, -50%) scale(0);
+  transition: transform 0.3s ease;
+}
+.result-head .filter-popular label.checked {
+  color: #f60;
+}
+.result-head .filter-popular label.checked::before {
+  border: 1px solid #f60;
+}
+.result-head .filter-popular label.checked::after {
+  transform: rotate(-45deg) translate(0, -50%) scale(1);
+}
+
+/* 스와이퍼 */
+.swiper {
+  width: 100vw !important;
+  overflow: visible !important;
+}
+.swiper-friends-list {
+  width: 100vw;
+  height: 606px;
+  overflow: visible;
+  margin-top: 40px;
+}
+.swiper-friends-list .friend-card-item {
+  width: 314.5px !important;
+  height: 480px !important;
+  perspective: 630px;
+  position: relative;
+}
+.friend-card-item .card-inner {
+  transform-style: preserve-3d;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s;
+}
+.friend-card-item .card-inner.flipped {
+  transform: rotateY(180deg);
+}
+.card-inner .front-side,
+.card-inner .back-side {
+  backface-visibility: hidden;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  position: relative;
+}
+.card-inner.flipped .front-side {
+  pointer-events: none;
+}
+.card-inner.flipped .back-side {
+  pointer-events: all;
+}
+.card-inner .where {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 25px 30px;
+  color: #fff;
+  font-size: 16px;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  letter-spacing: -1px;
+}
+.card-inner .where .floor {
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  font-family: MyriadPro-Regular;
+}
+.card-inner .where .floor::before {
+  content: "";
+  display: inline-block;
+  background: url("../../../public/img/ilsan/friends/sprite_pc.png") no-repeat
+    center;
+  background-position: -94px -1156px;
+  width: 14px;
+  height: 18px;
+  top: 50%;
+  left: 0;
+  margin-right: 5px;
+}
+.card-inner .where .floor::after {
+  content: "";
+  display: inline-block;
+  background: url("../../../public/img/ilsan/friends/sprite_pc.png") no-repeat
+    center;
+  background-position: -226px -1153px;
+  width: 8px;
+  height: 15px;
+  margin: 0 5px;
+}
+
+
+/* 카드 앞면 */
+.card-inner .front-side {
+  cursor: pointer;
+  transition: transform 0.4s;
+  box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s;
+  pointer-events: all;
+}
+.friend-card-item .front-side:hover {
+  box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.5);
+}
+
+.front-side .img-box {
+  width: 100%;
+  margin: 0;
+}
+.front-side .img-box img {
+  width: 100%;
+}
+.front-side .img-box::before {
+  content: "";
+  position: absolute;
+  display: block;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0) 13%
+  );
+  z-index: 0;
+  overflow-x: visible;
+}
+.front-side .name {
+  position: absolute;
+  bottom: 0;
+  padding: 25px 30px;
+  background-color: #fff;
+  width: 100%;
+}
+.front-side .name .kr {
+  font-size: 24px;
+  font-family: NotoSans-Regular;
+}
+.front-side .name .en {
+  font-size: 16px;
+  font-family: MyriadPro-Regular;
+  margin-top: 5px;
+  color: #767676;
+}
+
+/* 뒷면 */
+.card-inner .back-side {
+  transform: rotateY(180deg);
+  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 0 30px;
+box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.2);
+  transition: all 0.4s;
+}
+.card-inner .back-side:hover{
+    box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.5);
+}
+.card-inner .back-side::before{
+    content: "";
+    display: block;
+    position: absolute;
     top: 0;
-    bottom: 0;
     left: 0;
-    right: 0;
-    background-size: cover;
-}
-.ilsan-friends-container{
     width: 100%;
-    background-color: #fff;
-    font-family: NotoSans-Regular;
-    margin: 0 auto;
-    position: relative;
-    margin-top: 100vh;
-    padding: 150px 0;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    z-index: -1;
+}
+.back-side .where{
+    color: #3366ff;
+}
+.back-side .where .floor::before{
+    background-position: -162px -1156px;
+}
+.back-side .where .floor::after{
+    background-position: -253px -1153px;
+}
+.back-side .name-title{
+    margin-top: 60px;
+    width: 100%;
+}
+.back-side .name-title .kr{
+      font-size: 24px;
+  font-family: NotoSans-Regular;
+}
+.back-side .name-title .en{
+      font-size: 16px;
+  font-family: MyriadPro-Regular;
+  margin-top: 5px;
+  color: #767676;
+}
+.back-side .category{
+    width: 100%;
+    margin-top: 25px;
+}
+.back-side .category p:first-child{
+    font-size: 16px;
+    color: #3366ff;
+}
+.back-side .category p:last-child{
+    margin-top: 10px;
+    color: #767676;
+    font-size: 14px;
+}
+.back-side .description-box{
+    margin-top: 21px;
+    max-height: 200px;
+    overflow-y: auto;
+}
+.description-box::-webkit-scrollbar {
+  width: 3px; 
+}
+.description-box::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.description-box::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+.back-side .description{
+    color: #767676;
+    word-break: keep-all;
+    letter-spacing: 1px;
+    line-height: 1.625;
+    font-size: 16px;
+    font-weight: 500;
+}
+.back-side .return-to-front{
+    position: absolute;
+    background: url("../../../public/img/ilsan/friends/sprite_pc.png");
+    background-position: -383px -1066px;
+    width: 20px;
+    height: 16px;
+    border: none;
+    background-color: transparent;
+    bottom: 25px;
+    right: 35px;
+    cursor: pointer;
 }

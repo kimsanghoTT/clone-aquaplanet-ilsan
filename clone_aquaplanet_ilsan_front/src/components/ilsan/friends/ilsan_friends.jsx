@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "../../../css/ilsan/ilsan_friends.css";
 import "swiper/css";
@@ -8,14 +8,32 @@ import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 gsap.registerPlugin(ScrollToPlugin);
 
 const AquaplanetIlsanFriends = () => {
+  const [isFilterChecked, setIsFilterChecked] = useState(false);
+  const [flippedCardId, setFlippedCardId] = useState([]);
+
   useEffect(() => {
     gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: 820 },
+      duration: 0.5,
+      scrollTo: { y: 850 },
       ease: "power2.out",
       delay: 1,
     });
   }, []);
+
+  const handlerCheckboxFilter = () => {
+    setIsFilterChecked(prev => !prev);
+  }
+
+  const handleFlipCard = (id) => {
+    setFlippedCardId(prev => {
+      if(prev.includes(id)){
+        return prev.filter(cardId => cardId !== id);
+      }
+      else{
+        return [...prev, id];
+      }
+    })
+  }
 
   return (
     <>
@@ -44,7 +62,7 @@ const AquaplanetIlsanFriends = () => {
             </div>
             <div className="filter-search-box">
               <div className="first-filter">
-                <span>전체</span>
+                <button>전체<em></em></button>     
                 <ul>
                   <li>전체</li>
                   <li>2F</li>
@@ -52,8 +70,8 @@ const AquaplanetIlsanFriends = () => {
                   <li>5F</li>
                 </ul>
               </div>
-              <div className="first-filter">
-                <span>전체</span>
+              <div className="second-filter">
+                <button>전체<em></em></button>
                 <ul>
                   <li>전체</li>
                   <li>민물어류</li>
@@ -79,49 +97,55 @@ const AquaplanetIlsanFriends = () => {
                   검색되었습니다. 카드를 클릭하면 세부 정보를 알 수 있어요.
                 </p>
                 <div className="filter-popular">
-                  <input type="checkbox" id="popularCheck" />
-                  <label>인기생물순정렬</label>
+                  <input checked={isFilterChecked} type="checkbox" id="popularCheck" onChange={handlerCheckboxFilter}/>
+                  <label htmlFor="popularCheck" className={isFilterChecked ? "checked" : ""}>인기생물순정렬</label>
                 </div>
               </div>
-              <Swiper>
+              <Swiper
+                slidesPerView={"auto"}
+                spaceBetween={"36"}
+                slidesOffsetAfter={0}
+              className="swiper-friends-list">
                 {friends.map((friend) => (
                   <SwiperSlide className="friend-card-item" key={friend.id}>
-                    <div className="front-side">
-                      <p className="where">
-                        <span className="floor">{friend.location}</span>
-                        {friend.location_detail}
-                      </p>
-                      <figure className="img-box">
-                        <img
-                          src={friend.image}
-                          alt={friend.image}
-                          loading="lazy"
-                        />
-                      </figure>
-                      <div className="name">
-                        <p className="kr">{friend.kr_name}</p>
-                        <p className="en">{friend.en_name}</p>
+                    <div className={`card-inner ${flippedCardId.includes(friend.id) ? "flipped" : ""}`}>
+                      <div className="front-side" onClick={() => handleFlipCard(friend.id)}>
+                        <p className="where">
+                          <span className="floor">{friend.location}</span>
+                          <span>{friend.location_detail}</span>
+                        </p>
+                        <figure className="img-box">
+                          <img
+                            src={friend.image}
+                            alt={friend.image}
+                            loading="lazy"
+                          />
+                        </figure>
+                        <div className="name">
+                          <p className="kr">{friend.kr_name}</p>
+                          <p className="en">{friend.en_name}</p>
+                        </div>
                       </div>
-                    </div>
-                    <div className="back-side">
-                      <p className="where">
-                        <span className="floor">{friend.location}</span>
-                        {friend.location_detail}
-                      </p>
-                      <div className="name-title">
-                        <p className="ko">{friend.kr_name}</p>
-                        <p className="en">{friend.en_name}</p>
+                      <div className="back-side" style={{backgroundImage:`url(${friend.image})`}}>
+                        <p className="where">
+                          <span className="floor">{friend.location}</span>
+                          <span>{friend.location_detail}</span>
+                        </p>
+                        <div className="name-title">
+                          <p className="kr">{friend.kr_name}</p>
+                          <p className="en">{friend.en_name}</p>
+                        </div>
+                        <div className="category">
+                          <p>분류</p>
+                          <p>{friend.category}</p>
+                        </div>
+                        <div className="description-box">
+                          <p className="description">{friend.description}</p>
+                        </div>
+                        <button className="return-to-front" onClick={() => handleFlipCard(friend.id)}>
+                          <span className="blind">닫기</span>
+                        </button>
                       </div>
-                      <div className="category">
-                        <p>분류</p>
-                        <p>{friend.category}</p>
-                      </div>
-                      <div className="description-box">
-                        <p className="description">{friend.description}</p>
-                      </div>
-                      <button className="return-to-front">
-                        <span className="blind">닫기</span>
-                      </button>
                     </div>
                   </SwiperSlide>
                 ))}
