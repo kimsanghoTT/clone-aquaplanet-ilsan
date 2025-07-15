@@ -120,6 +120,11 @@
   background-color: #fff;
   top: 59px;
   line-height: 45px;
+  display: none;
+}
+.filter-search-box .first-filter ul.active,
+.filter-search-box .second-filter ul.active {
+  display: block;
 }
 .filter-search-box .first-filter ul li,
 .filter-search-box .second-filter ul li{
