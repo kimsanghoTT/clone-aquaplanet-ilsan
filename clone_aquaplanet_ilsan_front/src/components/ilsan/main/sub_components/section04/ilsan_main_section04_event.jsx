@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import events from "../../data/events";
+import { events } from "../../data/data.js";
 import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
 import EventItems from "./ilsan_main_section04_event_toggle_item.jsx";
 
@@ -9,7 +9,7 @@ const MainEventSection = () => {
   useSectionScrollAnimation(sectionRef, ".section-title02 p", ".event-item")
 
   return (
-    <section className="main-section section04" ref={sectionRef}>
+    <section id="section04" className="main-section section04" ref={sectionRef}>
       <div className="section-container-inner">
         <div className="section-title-box section-title02">
           <p>Event</p>
@@ -18,7 +18,7 @@ const MainEventSection = () => {
           </p>
         </div>
         <div className="event-section-content-box section-content-box">
-          {events.map((item, index) => (
+          {events && events.map((item, index) => (
             <EventItems key={index} item={item}/>
           ))}
         </div>

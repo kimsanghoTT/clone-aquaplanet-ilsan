@@ -61,7 +61,7 @@
 .border-highlight {
   position: absolute;
   left: 50%;
-  bottom: 2px;
+  bottom: -2px;
   z-index: 1;
   height: 6px;
   background: #f46b34;
@@ -612,4 +612,101 @@
   font-weight: 600;
   position: absolute;
   bottom: 40px;
+}
+
+
+/* 스크롤 가이드*/
+.scroll-guide{
+  position: fixed;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 30px;
+  width: 48px;
+  height: 55px;
+  z-index: 6;
+}
+.scroll-guide .scroll-box{
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.scroll-guide .scroll-box .ico1{
+  width: 18px;
+  height: 35px;
+  border: 2px solid #fff;
+  box-sizing: border-box;
+  border-radius: 9px;
+  margin-bottom: 10px;
+}
+.scroll-guide .scroll-box .ico2{
+  position: absolute;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  transform: translateX(-50%);
+  background-color: #f60;
+  border-radius: 50%;
+  animation: mouseScroll 1.2s ease-out infinite;
+}
+@keyframes mouseScroll{
+  0%{
+    top: 7px;
+    opacity: 1;
+  }
+  100%{
+    top: 17px;
+    opacity: 0;
+  }
+}
+.scroll-guide .scroll-box .text{
+  color: #fff;
+  font-family: MyriadPro-Semibold;
+}
+
+/*페이지네이션*/
+.main-pagination{
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+}
+.main-pagination ul{
+  margin: 0;
+  padding: 0;
+}
+.main-pagination ul li{
+  width: auto;
+  height: 19px;
+  margin: 0;
+}
+.main-pagination ul li span{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  font-family: NotoSans-Medium;
+  color: #fff;
+  font-size: 0;
+  align-items: center;
+}
+.main-pagination ul li span::before{
+  display: inline-block;
+  content: '';
+  width: 8px;
+  background: rgba(255, 255, 255, 0.5);
+  height: 1px;
+  margin-right: 20px;
+  vertical-align: middle;
+  transition: all 0.6s;
+}
+.main-pagination ul li.active span{
+  font-size: 15px;
+}
+.main-pagination ul li.active span::before{
+  width: 50px;
+  background: #fff;
 }

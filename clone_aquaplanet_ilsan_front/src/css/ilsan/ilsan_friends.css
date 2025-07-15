@@ -108,10 +108,30 @@
   display: flex;
   justify-content: space-between;
   gap: 33px;
+  position: relative;
 }
 .filter-search-box .first-filter ul,
 .filter-search-box .second-filter ul {
-  display: none;
+  display: block;
+  position: absolute;
+  width: 196px;
+  border: 1px solid #e0e0e0;
+  z-index: 3;
+  background-color: #fff;
+  top: 59px;
+  line-height: 45px;
+}
+.filter-search-box .first-filter ul li,
+.filter-search-box .second-filter ul li{
+  padding: 0 20px;
+  font-size: 16px;
+  color: #767676;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.filter-search-box .first-filter ul li:hover,
+.filter-search-box .second-filter ul li:hover{
+  background-color: #eaefff;
 }
 .filter-search-box .first-filter,
 .filter-search-box .second-filter {
@@ -251,15 +271,14 @@
 }
 
 /* 스와이퍼 */
-.swiper {
-  width: 100vw !important;
-  overflow: visible !important;
-}
-.swiper-friends-list {
-  width: 100vw;
+.swiper.swiper-friends-list {
   height: 606px;
   overflow: visible;
   margin-top: 40px;
+  user-select: none;
+}
+.swiper-friends-list .swiper-wrapper{
+  height: auto;
 }
 .swiper-friends-list .friend-card-item {
   width: 314.5px !important;
@@ -489,4 +508,63 @@ box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.2);
     bottom: 25px;
     right: 35px;
     cursor: pointer;
+}
+
+/*스와이퍼 스크롤 바*/
+.swiper-friends-list.swiper .swiper-scrollbar{
+  left: 0;
+  width: 100%;
+  bottom: 23px;
+  height: 23px;
+  background: transparent;
+}
+.swiper-scrollbar .swiper-scrollbar-drag{
+  background-color: #fff;
+  border: 1px solid #767676;
+  border-radius: 23px;
+  overflow: hidden;
+  width: 50px;
+}
+.swiper-scrollbar .swiper-scrollbar-drag::before{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  left: 10px;
+  transform: translateY(-50%);
+  background: url('../../../public/img/ilsan/friends/sprite_pc.png');
+  background-position: -1041px -878px;
+  width: 4px;
+  height: 6px;
+}
+.swiper-scrollbar::after{
+  content: '';
+  width: 100%;
+  display: inline-block;
+  height: 1px;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #e0e0e0;
+  z-index: -1;
+}
+.swiper-scrollbar .swiper-scrollbar-drag::after{
+  content: '';
+  display: inline-block;
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  background: url('../../../public/img/ilsan/friends/sprite_pc.png');
+  background-position: -1017px -878px;
+  width: 4px;
+  height: 6px;
+}
+.swiper-custom-progressbar{
+  height: 1px;
+  background-color: #000;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 0;
 }

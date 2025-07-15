@@ -7,7 +7,7 @@ const MainInfoSection = () => {
   useSectionScrollAnimation(sectionRef, ".section-title-reverse01 p", ".info-item");
 
   return (
-    <section className="main-section section03" ref={sectionRef}>
+    <section id="section03" className="main-section section03" ref={sectionRef}>
       <div className="section-container-inner">
         <div className="section-title-box-reverse section-title-reverse01">
           <p>Information</p>

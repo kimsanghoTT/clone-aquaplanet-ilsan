@@ -22,8 +22,7 @@ const IlsanHeader = () => {
     isInMainPage
   );
   
-
-
+  
   return (
     <header
       className={`ilsan-header ${isHeaderScrolled ? "fixActive" : ""}`}

@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import groups from "../../data/groups";
+import { groups } from "../../data/data.js";
 import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
 import GroupItems from "./ilsan_main_section05_group_toggle_item.jsx";
 
@@ -9,7 +9,7 @@ const MainGroupSection = () => {
   useSectionScrollAnimation(sectionRef, ".section-title-reverse02 p", ".group-item");
   
   return (
-    <section className="main-section section05" ref={sectionRef}>
+    <section id="section05" className="main-section section05" ref={sectionRef}>
       <div className="group-sub-bg"></div>
       <div className="section-container-inner">
         <div className="section-title-box-reverse section-title-reverse02">
@@ -19,7 +19,7 @@ const MainGroupSection = () => {
           </p>
         </div>
         <div className="group-section-content-box section-content-box">
-          {groups.map((item, index) => (
+          {groups && groups.map((item, index) => (
             <GroupItems key={index} item={item}/>
           ))}
         </div>

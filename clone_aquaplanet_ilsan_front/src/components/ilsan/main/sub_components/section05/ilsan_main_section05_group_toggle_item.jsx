@@ -1,4 +1,3 @@
-// src/components/sections/Section05Group/GroupItem.js
 import React, { useCallback } from 'react';
 import gsap from 'gsap';
 

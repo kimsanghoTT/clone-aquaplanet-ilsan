@@ -11,7 +11,7 @@ const MainVideoSection = () => {
   },[])
 
   return (
-    <section className="main-section section01">
+    <section id="section01" className="main-section section01">
       <div className="video-section-container">
         <video src="/img/ilsan/ilsan_main_video.mp4" autoPlay muted loop type="video/mp4"/>
         <div className="main-video-overlay-text">

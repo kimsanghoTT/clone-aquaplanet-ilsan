@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import notice from "../../data/notice";
+import { notice } from "../../data/data";
 import useSectionScrollAnimation from "../../hooks/useSectionScrollAnimation";
 
 const MainCommunitySection = () => {
@@ -8,7 +8,7 @@ const MainCommunitySection = () => {
   useSectionScrollAnimation(sectionRef, ".section-title03 p", ".notice-item");
 
   return (
-    <section className="main-section section06" ref={sectionRef}>
+    <section id="section06" className="main-section section06" ref={sectionRef}>
       <div className="section-container-inner">
         <div className="section-title-box section-title03">
           <p>Community</p>
@@ -18,7 +18,7 @@ const MainCommunitySection = () => {
         </div>
         <div className="community-section-content-box section-content-box">
           <ul>
-            {notice.map((item, index) => (
+            {notice && notice.map((item, index) => (
               <li key={index} className="notice-item">
                 <a href="/">
                   <div>

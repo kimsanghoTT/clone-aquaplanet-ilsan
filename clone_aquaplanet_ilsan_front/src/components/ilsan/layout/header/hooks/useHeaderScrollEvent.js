@@ -37,7 +37,7 @@ const useHeaderScrollEvent = (headerRef, isInMainPage) => {
         gsap.fromTo(
           headerRef.current,
           { opacity: 0, y: -130 },
-          { opacity: 1, y: -50, duration: 0.3, ease: "power1.out" }
+          { opacity: 1, y: -50, duration: 0.5, ease: "power1.out" }
         );
         scrollState.current = "inContent";
         setIsHeaderScrolled(true);
