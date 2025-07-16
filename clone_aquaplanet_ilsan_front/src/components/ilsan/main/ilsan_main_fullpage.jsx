@@ -18,7 +18,8 @@ const Main = ({eventListOpen}) => {
     }
     
     const mainPageRef = useRef();
-    useMainPageScroll(mainPageRef, eventListOpen)
+    useMainPageScroll(mainPageRef, eventListOpen);
+
     return(
         <div className="main-wrapper"ref={mainPageRef}>
             <MainVideoSection/>

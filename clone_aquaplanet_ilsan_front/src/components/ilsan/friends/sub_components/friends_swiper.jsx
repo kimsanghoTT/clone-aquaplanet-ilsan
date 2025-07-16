@@ -1,12 +1,12 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination, Scrollbar } from "swiper/modules";
-import friends from "../data/friends.json";
 import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/pagination";
+import FriendsCard from "./friends_card.jsx";
 
-const FriendsSwiper = () => {
+const FriendsSwiper = ({filteredFriends}) => {
   const [flippedCardId, setFlippedCardId] = useState([]);
   const progressBarRef = useRef(null);
 
@@ -19,6 +19,10 @@ const FriendsSwiper = () => {
       }
     });
   };
+
+  useEffect(() => {
+    console.log(flippedCardId);
+  },[flippedCardId])
 
   // 커스텀 프로그레스 바 업데이트
   const updateProgressBar = (swiper) => {
@@ -33,7 +37,7 @@ const FriendsSwiper = () => {
     <Swiper
       modules={[Scrollbar, Pagination]}
       slidesPerView={"auto"}
-      spaceBetween={"36"}
+      spaceBetween={36}
       scrollbar={{
         el: ".swiper-scrollbar",
         draggable: true,
@@ -43,56 +47,11 @@ const FriendsSwiper = () => {
       onInit={updateProgressBar} //새로고침 시 진행도 초기화
       className="swiper-friends-list"
     >
-      {friends.map((friend) => (
-        <SwiperSlide className="friend-card-item" key={friend.id}>
-          <div
-            className={`card-inner ${flippedCardId.includes(friend.id) ? "flipped" : ""}`}
-          >
-            <div
-              className="front-side"
-              onClick={() => handleFlipCard(friend.id)}
-            >
-              <p className="where">
-                <span className="floor">{friend.location}</span>
-                <span>{friend.location_detail}</span>
-              </p>
-              <figure className="img-box">
-                <img src={friend.image} alt={friend.image} loading="lazy" />
-              </figure>
-              <div className="name">
-                <p className="kr">{friend.kr_name}</p>
-                <p className="en">{friend.en_name}</p>
-              </div>
-            </div>
-            <div
-              className="back-side"
-              style={{ backgroundImage: `url(${friend.image})` }}
-            >
-              <p className="where">
-                <span className="floor">{friend.location}</span>
-                <span>{friend.location_detail}</span>
-              </p>
-              <div className="name-title">
-                <p className="kr">{friend.kr_name}</p>
-                <p className="en">{friend.en_name}</p>
-              </div>
-              <div className="category">
-                <p>분류</p>
-                <p>{friend.category}</p>
-              </div>
-              <div className="description-box">
-                <p className="description">{friend.description}</p>
-              </div>
-              <button
-                className="return-to-front"
-                onClick={() => handleFlipCard(friend.id)}
-              >
-                <span className="blind">닫기</span>
-              </button>
-            </div>
-          </div>
-        </SwiperSlide>
-      ))}
+      {filteredFriends.length > 0 && filteredFriends.map((friend) => (
+          <SwiperSlide className="friend-card-item" key={friend.id}>
+            <FriendsCard flippedCardId={flippedCardId} friend={friend} handleFlipCard={handleFlipCard}/>
+          </SwiperSlide>
+        ))}
       <div className="swiper-scrollbar">
         <div className="swiper-custom-progressbar" ref={progressBarRef}></div>
       </div>

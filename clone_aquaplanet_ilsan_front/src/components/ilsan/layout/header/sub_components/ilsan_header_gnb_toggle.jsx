@@ -32,67 +32,41 @@ const GnbToggleArea = ({ isHovered }) => {
         });
       }
     }
-  }, [isHovered]);
+  }, [isHovered]); 
 
   return (
     <div className="nav-toggle-box" ref={dropdownRef}>
       <div className="operating-area">
         <span
-          style={{
-            fontSize: 30,
-            fontFamily: "MyriadPro-Bold",
-            color: "#222222",
-            fontWeight: 600,
-          }}
+          style={{fontSize: 30, fontFamily: "MyriadPro-Bold", fontWeight: 600,}}
         >
           {today}
         </span>
         <span
-          style={{
-            fontSize: 16,
-            fontFamily: "NotoSans-Light",
-            color: "#222222",
-          }}
+          style={{fontSize: 16, fontFamily: "NotoSans-Light", verticalAlign: "3px"}}
         >
           &nbsp;{weekday}
         </span>
         <span className="ico"></span>
         <span
-          style={{
-            fontSize: 24,
-            fontFamily: "NotoSans-Light",
-            color: "#222222",
+          style={{fontSize: 24, fontFamily: "NotoSans-Light",
           }}
         >
           운영시간
         </span>
-        <p>
+        <p style={{marginTop: "15px"}}>
           <span
-            style={{
-              fontSize: 18,
-              fontFamily: "MyriadPro-Bold",
-              color: "#222222",
-              fontWeight: 600,
-            }}
+            style={{fontSize: 18, fontFamily: "MyriadPro-Bold", fontWeight: 600,}}
           >
             10 : 00 - 18 : 00
           </span>
         </p>
         <p
-          style={{
-            fontSize: 15,
-            fontFamily: "NotoSans-Regular",
-            color: "#222222",
-          }}
+          style={{fontSize: 15, fontFamily: "NotoSans-Regular", marginTop:"4px"}}
         >
           ※ 입장 마감 &nbsp;
           <span
-            style={{
-              fontSize: 18,
-              fontFamily: "MyriadPro-Bold",
-              color: "#222222",
-              fontWeight: 600,
-            }}
+            style={{fontSize: 18, fontFamily: "MyriadPro-Bold", fontWeight: 600,}}
           >
             17 : 00
           </span>

@@ -503,6 +503,9 @@
   padding: 10px;
   transform: none !important;
 }
+.operating-area span{
+  color: #222222 !important;
+}
 .operating-area .ico {
   display: block;
   margin: 23px auto;

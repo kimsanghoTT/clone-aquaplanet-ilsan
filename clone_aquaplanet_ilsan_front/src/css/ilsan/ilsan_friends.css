@@ -53,7 +53,7 @@
 }
 
 /*콘텐츠 섹션*/
-.ilsan-friends-container {
+.ilsan-content-container {
   width: 100%;
   background-color: #fff;
   font-family: NotoSans-Regular;
@@ -63,7 +63,7 @@
   padding: 150px 0;
   overflow-x: hidden;
 }
-.ilsan-friends-container .center-content {
+.ilsan-content-container .center-content {
   width: 1366px;
   margin: 0 auto;
 }
@@ -112,7 +112,7 @@
 }
 .filter-search-box .first-filter ul,
 .filter-search-box .second-filter ul {
-  display: block;
+  display: none;
   position: absolute;
   width: 196px;
   border: 1px solid #e0e0e0;
@@ -120,12 +120,11 @@
   background-color: #fff;
   top: 59px;
   line-height: 45px;
-  display: none;
 }
 .filter-search-box .first-filter ul.active,
-.filter-search-box .second-filter ul.active {
+.filter-search-box .second-filter ul.active{
   display: block;
-}
+} 
 .filter-search-box .first-filter ul li,
 .filter-search-box .second-filter ul li{
   padding: 0 20px;
@@ -522,13 +521,14 @@ box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.2);
   bottom: 23px;
   height: 23px;
   background: transparent;
+  overflow: hidden;
 }
 .swiper-scrollbar .swiper-scrollbar-drag{
   background-color: #fff;
   border: 1px solid #767676;
   border-radius: 23px;
   overflow: hidden;
-  width: 50px;
+  width: 50px !important;
 }
 .swiper-scrollbar .swiper-scrollbar-drag::before{
   content: '';
@@ -572,4 +572,25 @@ box-shadow: 0 0 18px 3px rgba(0, 0, 0, 0.2);
   top: 50%;
   transform: translateY(-50%);
   left: 0;
+}
+
+/*검색결과 없음*/
+.friends-no-data{
+  width: 100%;
+  padding: 173px 0;
+  min-height: 480px;
+  text-align: center;
+}
+.friends-no-data span{
+  display: inline-block;
+  background: url("../../../public/img/ilsan/friends/sprite_pc.png");
+  background-position: 0 -946px;
+  width: 100px;
+  height: 100px;
+  margin-bottom: 30px;
+}
+.friends-no-data p{
+  color: #767676;
+  font-size: 30px;
+  font-weight: 500;
 }

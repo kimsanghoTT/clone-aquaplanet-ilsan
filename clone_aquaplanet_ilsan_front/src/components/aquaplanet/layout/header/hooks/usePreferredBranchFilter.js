@@ -63,9 +63,8 @@ const usePreferredBranchFilter = ({loginMember, setSelectedPreferredBranch}) => 
   };
 
   const applyFilter = () => {
-    const whenAllUnselected = Object.values(branchSelectionState).every(
-      (f) => !f
-    );
+    //객체의 값들만 모아 배열로 만든 수 every로 검사. 모든 값들이 false면 true, 아니면 false 반환
+    const whenAllUnselected = Object.values(branchSelectionState).every((False) => !False);
 
     if (whenAllUnselected) {
       //reduce = 객체, 문자열, 배열 등을 압축하는 것. 여기선 하나의 가상 객체 생성을 위해 사용

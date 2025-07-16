@@ -5,6 +5,7 @@ import IlsanHeader from "./layout/header/ilsan_header.jsx";
 import AsideBar from "./layout/aside_bar/ilsan_aside.jsx";
 import Footer from "./layout/footer/ilsan_footer.jsx";
 import AquaplanetIlsanFriends from "./friends/ilsan_friends.jsx";
+import AquaplanetIlsanPlanet from "./planet/ilsan_planet.jsx";
 
 const IlsanWrapper = () => {
   const [eventListOpen, setEventListOpen] = useState(false);
@@ -23,6 +24,7 @@ const IlsanWrapper = () => {
       <Routes>
         <Route path="/" element={<Main eventListOpen={eventListOpen}/>} />
         <Route path="/aquaplanet/friends" element={<AquaplanetIlsanFriends/>}/>
+        <Route path="/aquaplanet/planet" element={<AquaplanetIlsanPlanet/>}/>
       </Routes>
       <Footer />
     </>
