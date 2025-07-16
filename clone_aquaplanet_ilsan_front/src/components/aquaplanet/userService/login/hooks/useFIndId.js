@@ -30,7 +30,6 @@ const useFindId = () => {
         memberName: member.memberName,
         memberPhone: member.memberPhone,
       });
-
       if (response.data.result === "FOUND") {
         setUserId(response.data.memberEmail);
         setStep(2);

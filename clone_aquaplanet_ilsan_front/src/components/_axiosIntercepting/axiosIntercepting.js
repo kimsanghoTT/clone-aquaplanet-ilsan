@@ -138,7 +138,7 @@ const axiosIntercepting = {
                 result: true,
                 loginMember: {
                   memberNo: 1,
-                  memberName: "데모",
+                  memberName: "데모쨩",
                   memberBirth: null,
                   memberPhone: "01012345678",
                   memberEmail: data.memberEmail,
@@ -156,7 +156,7 @@ const axiosIntercepting = {
         } else if (fullUrl === `${baseUrl}/aquaplanet/login/find/requestCode`) {
           if (data.memberEmail === "demo@demo.com") {
             resolve({ data: { result: "SUCCESS" } });
-          } else if (data.memberEmail === "text@text.com") {
+          } else if (data.memberEmail === "test@test.com") {
             resolve({ data: { result: "NOT_FOUND" } });
           } else {
             resolve({ data: { result: "UNKNOWN_ERR" } });
@@ -191,7 +191,7 @@ const axiosIntercepting = {
           }
         } else if (fullUrl === `${baseUrl}/aquaplanet/login/find/id`) {
           if (
-            data.memberName === "데모" &&
+            data.memberName === "데모쨩" &&
             data.memberPhone === "01012345678"
           ) {
             resolve({
