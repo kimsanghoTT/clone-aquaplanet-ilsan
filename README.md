@@ -1,5 +1,6 @@
-실제 DB랑 연계되도록 설계
-(시연용)네트리파이 주소 : https://clone-aquaplanet-ilsan.netlify.app/aquaplanet/ilsan
+실제 DB랑 연계되도록 설계 <br/>
+(시연용)네트리파이 주소 : https://clone-aquaplanet-ilsan.netlify.app/aquaplanet/ilsan <br/>
+원본 사이트 : https://www.aquaplanet.co.kr/ilsan/index.do
 
 //시연용 입력값
 
