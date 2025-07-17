@@ -710,3 +710,10 @@
   width: 50px;
   background: #fff;
 }
+.main-pagination ul li:hover span{
+  font-size: 15px;
+}
+.main-pagination ul li:hover span::before{
+  width: 50px;
+  background: #fff;
+}

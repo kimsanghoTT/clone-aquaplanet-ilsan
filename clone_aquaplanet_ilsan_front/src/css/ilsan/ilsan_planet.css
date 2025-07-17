@@ -1,0 +1,394 @@
+/*공통*/
+.planet-content-box{
+    width: 100%;
+    padding: 100px 0;
+}
+.planet-content-box h2{
+    color: #222;
+    margin-top: 40px;
+    font-size: 50px;
+    font-family: 'NotoSans-Medium';
+    text-align: center;
+    line-height: 1.625;
+}
+.tab-btn-box{
+    margin-top: 65px;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+}
+.tab-btn-box span{
+    display: inline-block;
+    font-size: 20px;
+    color: #767676;
+    padding: 0 10px;
+    height: 23px;
+    line-height: 23px;
+    cursor: pointer;
+    position: relative;
+    text-transform: none;
+    z-index: 1;
+    min-width: 100px;
+    font-weight: bold;
+    opacity: 0.7;
+}
+.tab-btn-box span::after{
+    width: 100%;
+    content: '';
+    display: block;
+    position: absolute;
+    height: 10px;
+    transform-origin: center;
+    transform: scaleX(0);
+    background-color: #3366ff;
+    transition: transform 0.3s ease-in-out;
+    left: 0;
+    bottom: -6px;
+    z-index: -1;
+}   
+.tab-btn-box span:hover{
+    opacity: 1;
+}
+.tab-btn-box span.active{
+    font-weight: bold;
+    color: #222;
+    opacity: 1;
+}
+.tab-btn-box span.active::after{
+    transform: scaleX(1);
+    opacity: 1;
+}   
+.bullet{
+    position: relative;
+    padding-left: 15px;
+    font-size: 16px;
+}
+.bullet::before{
+    content: '';
+    display: inline-block;
+    width: 2px;
+    height: 2px;
+    background-color: #767676;
+    border-radius: 50%;
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+}
+
+/*컨텐츠1*/
+.planet-content-box.content-01{
+    padding-top: 0;
+}
+.planet-content-box.content-01 .intro-title{
+    font-size: 30px;
+    font-family: 'NotoSans-Medium';
+    color: #222;
+    margin-top: 80px;
+    font-weight: 500;
+    line-height: 1.625;
+}
+.planet-content-box.content-01 .intro-box{
+    color: #767676;
+    font-size: 16px;
+    line-height: 1.625;
+    font-weight: 500;
+}
+.intro-box.intro-01{
+    margin-top: 20px;
+    width: 100%;
+}
+.intro-box.intro-02{
+    width: 100%;
+    margin-top: 50px;
+    display: flex;
+    gap: 38px;
+}
+.intro-box.intro-02 .intro-text span{
+    display: block;
+    line-height: 1;
+    font-family: 'NotoSans-Medium';
+    color: #222;
+    font-size: 24px;
+    font-weight: 500;
+}
+.intro-box.intro-02 .intro-text p{
+    margin-top: 30px;
+    word-break: keep-all;
+    letter-spacing: -1px;
+}
+.intro-box.intro-03{
+    margin-top: 100px;
+    width: 100%;
+}
+.intro-box.intro-03 .intro-logo-guide{
+    display: flex;
+    margin: 30px 0 60px 0;
+    gap: 80px;
+}
+.intro-logo-guide .logo-text .logo-guide-01{
+    margin-top: 10px;
+    color: #222;
+}
+.intro-logo-guide .logo-text .logo-guide-02{
+    margin-top: 30px;
+}
+
+.intro-logo-guide .logo-text span{
+    display: inline-block;
+    margin-top: 60px;
+    border: #3366ff 1px solid;
+    background-color: #fff;
+    width: 300px;
+    padding: 15px 35px;
+    transition: background-color 0.3s;
+    border-radius: 50px;
+    cursor: pointer;
+    color: #3366ff;
+    font-size: 15px;
+    text-align: center;
+}
+.intro-logo-guide .logo-text span::after{
+    content: '';
+    display: inline-block;
+    margin-left: 6px;
+    background: url("../../../public/img/ilsan/friends/sprite_pc.png") no-repeat center;
+    background-position: -963px -1066px;
+    width: 12px;
+    height: 12px;
+}
+.intro-logo-guide .logo-text span:hover{
+    background-color: #3366ff;
+    color: #fff;
+}
+.intro-logo-guide .logo-text span:hover::after{
+    background-position: -1027px -1066px;
+}
+.intro-box.intro-04{
+    display: flex;
+    gap: 90px;
+}
+.intro-box.intro-04 div p{
+    font-size: 16px;
+    color: #222;
+    line-height: 1.625;
+}
+.intro-box.intro-04 div:first-child img{
+    margin-top: 20px;
+}
+.intro-box.intro-04 div:nth-child(2) img{
+    margin-top: 50px;
+}
+.intro-box.intro-04 div:last-child img{
+    margin-top: 80px;
+}
+
+/*컨텐츠2*/
+.planet-content-box.content-02{
+    background-color: #f7f7f7;
+}
+.mission-box{
+    background: url("../../../public/img/ilsan/planet/aqua_planet_banner.jpg");
+    margin-top: 80px;
+    height: 400px;
+    background-size: cover;
+    color: #fff;
+    font-family: NotoSans-Light;
+    font-size: 24px;
+    position: relative;
+    font-weight: 300;
+}
+.mission-box p span{
+    font-family: NotoSans-Medium;
+    font-weight: 500;
+}
+.mission-box p:first-child{
+    font-size: 36px;
+}
+.mission-box p:nth-child(2){
+    margin-top: 30px;
+}
+.mission-box p:last-child{
+    margin-top: 10px;
+}
+.mission-box .text-box{
+    position: absolute;
+    left: 33%;
+    bottom: 30%;
+}
+.value-box{
+    display: flex;
+    margin-top: 60px;
+}
+.value-box .value-title{
+    color: #222;
+    font-size: 30px;
+    flex: 1;
+    font-weight: 300;
+}
+.value-box .value-title span{
+    font-weight: 500;
+}
+.value-box .value-info{
+    width: 1030px;
+}
+.value-box .value-info p {
+    color: #767676;
+    font-size: 16px;
+    line-height: 1.555;
+    word-break: keep-all;
+    font-family: NotoSans-Regular;
+    font-weight: 500;
+}
+.value-box .value-info p span{
+    color: #222;
+    font-family: NotoSans-Medium;
+}
+.value-box .value-info ul{
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+}
+.value-box .value-info ul li{
+    width: 33.3333%;
+    text-align: center;
+    padding-top: 220px;
+    line-height: 1.555;
+    word-break: keep-all;
+}
+.value-box .value-info ul li p:first-child{
+    font-size: 24px;
+    font-family: NotoSans-Medium;
+    color: #222;
+}
+.value-box .value-info ul li p:nth-child(2){
+    color: #3366ff;
+    font-size: 18px;
+    font-family: MyriadPro-Semibold;
+}
+
+
+/*콘텐츠3*/
+.planet-content-box.content-03{
+    line-height: 1.625;
+    word-break: keep-all;
+    color: #767676;
+    font-weight: 500;
+    font-family: NotoSans-Regular;
+}
+.planet-content-box.content-03 .text-box{
+    margin-top: 70px;
+}
+.planet-content-box.content-03 .text-box p:first-child{
+    font-size: 30px;
+    font-family: NotoSans-Medium;
+    color: #222;
+}
+.planet-content-box.content-03 .text-box p:last-child{
+    font-size: 16px;
+    margin-top: 30px;
+}
+.planet-content-box.content-03 .table-box{
+    margin-top: 30px;
+}
+.table-box table{
+    width: 100%;
+    border-top: 2px solid #222;
+}
+.table-box table caption{
+    font-size: 0;
+    width: 0;
+    height: 0;
+}
+.table-box table thead{
+    border-bottom: 1px solid #e0e0e0;
+}
+.table-box table th,
+.table-box table td{
+    padding: 16px 0;
+    text-align: center;
+}
+.table-box table th{
+    font-family: NotoSans-Medium;
+    font-size: 16px;
+    color: #222;
+    background-color: #f7f7f7;
+}
+.table-box table th:first-child{
+    border-right: 1px solid #e0e0e0;
+}
+
+.table-box table tbody{
+    border-bottom: 1px solid #e0e0e0;
+}
+.table-box table td:first-child{
+    border-right: 1px solid #e0e0e0;
+}
+.table-box table td ul{
+    display: inline-block;
+    text-align: left;
+    font-size: 16px;
+}
+.ilsan-activity{
+    margin-top: 100px;
+}
+.ilsan-activity > p{
+    font-size: 30px;
+    color: #222;
+}
+.ilsan-activity .activity{
+    margin-top: 40px;
+}
+.activity .activity-title{
+    font-size: 24px;
+    color: #222;
+    font-weight: 400;
+}
+.activity p:nth-child(2){
+    margin-top: 8px;
+}
+.activity ul{
+    margin-top: 25px;
+    display: flex;
+    gap: 40px;
+}
+
+/*콘텐츠4*/
+.planet-content-box.content-04{
+    background-color: #f7f7f7;
+    padding-bottom: 0;
+}
+.tab-content-box {
+    margin-top: 80px;
+    height: 400px;
+}
+.tab-content-box .content-list{
+    display: flex;
+    gap: 39px;
+    flex-wrap: wrap;
+}
+.tab-content-box .content-list li{
+    
+    flex-basis: 312px;
+    height: 170px;
+    text-align: center;
+}
+.content-list li .sponsor-img-box{
+    width: 100%;
+    min-height: 80px;
+    border: 2px solid #e0e0e0;
+    overflow: hidden;
+    position: relative;
+}
+.content-list li .sponsor-img-box img{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.content-list li .sponsor-name{
+    font-size: 16px;
+    color: #767676;
+    margin-top: 16px;
+    font-weight: 500;
+}

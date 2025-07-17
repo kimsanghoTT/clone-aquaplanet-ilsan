@@ -3,6 +3,9 @@ import React, { useEffect } from "react";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 import "../../../css/ilsan/ilsan_planet.css";
 import PlanetContent01 from "./sub_components/planet_content01";
+import PlanetContent02 from "./sub_components/planet_content02";
+import PlanetContent03 from "./sub_components/planet_content03";
+import PlanetContent04 from "./sub_components/planet_content04";
 gsap.registerPlugin(ScrollToPlugin);
 
 const AquaplanetIlsanPlanet = () => {
@@ -29,18 +32,11 @@ const AquaplanetIlsanPlanet = () => {
           <p>아쿠아플라넷 일산의 다양한 정보를 확인해보세요.</p>
         </div>
       </div>
-      <div className="ilsan-content-container">
-        <div className="center-content">
-          <div className="location-box">
-            <a href="/">HOME</a>
-            <a href="/aquaplanet/ilsan/aquaplanet/planet">아쿠아플라넷</a>
-            <a href="/aquaplanet/ilsan/aquaplanet/planet">아쿠아플라넷 일산</a>
-          </div>
-          <div className="content-title">
-            <h2>아쿠아플라넷 일산</h2>
-          </div>
+      <div className="ilsan-content-container" style={{padding:0}}>
             <PlanetContent01/>
-        </div>
+            <PlanetContent02/>
+            <PlanetContent03/>
+            <PlanetContent04/>
       </div>
     </section>
   );
