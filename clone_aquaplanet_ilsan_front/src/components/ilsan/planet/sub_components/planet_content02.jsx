@@ -4,7 +4,7 @@ import { values } from "../data/data";
 const PlanetContent02 = () => {
 
     return (
-        <div className="planet-content-box content-02">
+        <div id="planet02" className="planet-content-box content-02">
             <div className="center-content">
                 <div className="content-title">
                     <h2 className="value-title">미션과 가치</h2>

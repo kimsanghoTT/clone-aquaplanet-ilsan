@@ -136,3 +136,9 @@ export const sponsors = {
         },
     ]
 }
+export const sections = [
+  { id: "planet01", label: "아쿠아플라넷" },
+  { id: "planet02", label: "미션과 가치" },
+  { id: "planet03", label: "환경경영" },
+  { id: "planet04", label: "Sponsors & Partnerships" },
+];

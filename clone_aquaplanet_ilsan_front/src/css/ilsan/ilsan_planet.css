@@ -392,3 +392,56 @@
     margin-top: 16px;
     font-weight: 500;
 }
+
+/*페이지네이션*/
+.planet-pagination{
+  position: fixed;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 6;
+}
+.planet-pagination ul{
+  margin: 0;
+  padding: 0;
+}
+.planet-pagination ul li{
+  width: auto;
+  height: 19px;
+  margin: 0;
+}
+.planet-pagination ul li span{
+  display: flex;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+  font-family: NotoSans-Medium;
+  color: #767676;
+  font-size: 0;
+  align-items: center;
+}
+.planet-pagination ul li span::before{
+  display: inline-block;
+  content: '';
+  width: 8px;
+  background: #767676;
+  height: 1px;
+  margin-right: 20px;
+  vertical-align: middle;
+  transition: all 0.6s;
+}
+.planet-pagination ul li.active span{
+  font-size: 15px;
+}
+.planet-pagination ul li.active span::before{
+  width: 50px;
+  background: #767676;
+}
+.planet-pagination ul li:hover span{
+  font-size: 15px;
+  color: #000;
+}
+.planet-pagination ul li:hover span::before{
+  width: 50px;
+  background: #000;
+}

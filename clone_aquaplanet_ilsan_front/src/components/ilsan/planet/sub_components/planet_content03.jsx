@@ -3,7 +3,7 @@ import { ecoManagementPolicies, activities } from "../data/data";
 
 const PlanetContent03 = () => {
     return(
-        <div className="planet-content-box content-03">
+        <div id="planet03" className="planet-content-box content-03">
             <div className="center-content">
                 <div className="content-title">
                     <h2>환경경영</h2>

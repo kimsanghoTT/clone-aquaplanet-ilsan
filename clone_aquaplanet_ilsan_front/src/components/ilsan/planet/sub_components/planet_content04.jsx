@@ -9,7 +9,7 @@ const PlanetContent04 = () => {
     }
 
     return(
-        <div className="planet-content-box content-04">
+        <div id="planet04" className="planet-content-box content-04">
             <div className="center-content">
                 <div className="content-title">
                     <h2>Sponsors & Partnerships</h2>

@@ -3,7 +3,7 @@ import React from "react";
 const PlanetContent01 = () => {
 
     return(
-        <div className="planet-content-box content-01">
+        <div id="planet01" className="planet-content-box content-01">
             <div className="center-content">
                 <div className="location-box">
                     <a href="/">HOME</a>

@@ -6,6 +6,7 @@ import PlanetContent01 from "./sub_components/planet_content01";
 import PlanetContent02 from "./sub_components/planet_content02";
 import PlanetContent03 from "./sub_components/planet_content03";
 import PlanetContent04 from "./sub_components/planet_content04";
+import PlanetPagination from "./sub_components/planet_pagination";
 gsap.registerPlugin(ScrollToPlugin);
 
 const AquaplanetIlsanPlanet = () => {
@@ -38,6 +39,7 @@ const AquaplanetIlsanPlanet = () => {
             <PlanetContent03/>
             <PlanetContent04/>
       </div>
+      <PlanetPagination/>
     </section>
   );
 };
