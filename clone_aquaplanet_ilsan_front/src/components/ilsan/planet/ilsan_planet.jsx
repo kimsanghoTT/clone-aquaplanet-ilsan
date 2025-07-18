@@ -33,7 +33,7 @@ const AquaplanetIlsanPlanet = () => {
           <p>아쿠아플라넷 일산의 다양한 정보를 확인해보세요.</p>
         </div>
       </div>
-      <div className="ilsan-content-container" style={{padding:0}}>
+      <div className="ilsan-content-container" style={{paddingBottom:0}}>
             <PlanetContent01/>
             <PlanetContent02/>
             <PlanetContent03/>
