@@ -89,3 +89,43 @@ test@test.com -> 없는 이메일 출력<br/>
 	티켓 주문완료 페이지<br/>
 	내 티켓보기 페이지<br/>
 	내 주문내역 보기 페이지<br/>
+
+
+사용 기술 스택
+
+ 
+프론트 엔드
+
+사용 언어
+
+JavaScript, CSS, HTML
+
+ 
+
+사용 라이브러리
+
+ React, Ant Design, Axios, GSAP, Swiper, Moment, React Scroll, React Barcode, ESLint, Prettier
+
+ 
+
+ 
+
+백 엔드
+
+사용 언어
+
+Java
+
+ 
+
+사용 라이브러리
+
+SpringBoot, Mybatis, Lombok, Spring Mail
+
+ 
+
+ 
+
+데이터베이스
+
+MySQL
