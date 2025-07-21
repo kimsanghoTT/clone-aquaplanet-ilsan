@@ -92,38 +92,38 @@ test@test.com -> 없는 이메일 출력<br/>
 
 
 사용 기술 스택
-
+<br/><br/>
  
 프론트 엔드
-
+<br/>
 사용 언어
-
+<br/>
 JavaScript, CSS, HTML
-
+<br/><br/>
  
 
 사용 라이브러리
-
+<br/>
  React, Ant Design, Axios, GSAP, Swiper, Moment, React Scroll, React Barcode, ESLint, Prettier
-
+<br/><br/><br/>
  
 
  
 
 백 엔드
-
+<br/>
 사용 언어
-
+<br/>
 Java
 
- 
+ <br/>
 
 사용 라이브러리
-
+<br/>
 SpringBoot, Mybatis, Lombok, Spring Mail
 
  
-
+<br/><br/><br/>
  
 
 데이터베이스
