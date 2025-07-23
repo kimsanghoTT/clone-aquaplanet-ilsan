@@ -30,7 +30,7 @@ public class OrderServiceImpl implements OrderService{
 		//메인 주문 먼저 주입 
 		orderMapper.orderTicket(insertOrder);
 		
-		//상세 주문에 메인 주문의 주문 번호 주입
+		//상세 주문에 메인 주문의 주문 번호 주입 + 각 옵션에 바코드 번호 주입
 		for(OrderDetail detail : insertOrderDetail) {
 			detail.setOrderNo(insertOrder.getOrderNo());
 			
