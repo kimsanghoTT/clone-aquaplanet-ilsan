@@ -54,7 +54,7 @@ const MyPageSetting = () => {
                   <a href="/aquaplanet/member/mypage/certification">내 정보 관리</a>
                 </li>
                 <li>
-                  <a href="/aquaplanet/member/mypage">SNS로그인 연동 설정</a>
+                  <a href="/aquaplanet/member/mypage/setting">SNS로그인 연동 설정</a>
                 </li>
               </ul>
             </div>
