@@ -16,24 +16,35 @@ const MarketingSection = () => {
 
     const handleToAgree = (option) => {
         if (option === "marketing") {
-            setAgreeToMarketing(prev => ({
-                marketing: !prev.marketing,
-                sns: !prev.sns,
-                email: !prev.email,
-            }));
-        } else {
-        setAgreeToMarketing((value) => {
-            const handleChildSwitch = {
-                ...value,
-                [option]: !value[option],
-            };
-            //sns나 email 둘 중하나라도 true가 되면 marketing도 true로 바꾸기
-            const isSomeChildSwitchTrue = handleChildSwitch.sns || handleChildSwitch.email;
-            handleChildSwitch.marketing = isSomeChildSwitchTrue;
+            setAgreeToMarketing(prev => {
+                const marketingState = !prev.marketing;
+                if(!marketingState){
+                    return{
+                        marketing:!prev.marketing,
+                        sns:false,
+                        email:false
+                    }
+                }
+                return{
+                    marketing:!prev.marketing,
+                    sns:!prev.sns,
+                    email:!prev.email
+                }
+            });
+        } 
+        else {
+            setAgreeToMarketing((value) => {
+                const handleChildSwitch = {
+                    ...value,
+                    [option]: !value[option],
+                };
+                //sns나 email 둘 중하나라도 true가 되면 marketing도 true로 바꾸기
+                const isSomeChildSwitchTrue = handleChildSwitch.sns || handleChildSwitch.email;
+                handleChildSwitch.marketing = isSomeChildSwitchTrue;
 
-            //객체 새 상태로 저장 지시
-            return handleChildSwitch;
-        });
+                //객체 새 상태로 저장 지시
+                return handleChildSwitch;
+            });
         }
     };
 
