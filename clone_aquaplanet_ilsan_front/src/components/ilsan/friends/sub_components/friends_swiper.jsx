@@ -20,10 +20,6 @@ const FriendsSwiper = ({filteredFriends}) => {
     });
   };
 
-  useEffect(() => {
-    console.log(flippedCardId);
-  },[flippedCardId])
-
   // 커스텀 프로그레스 바 업데이트
   const updateProgressBar = (swiper) => {
     if (progressBarRef.current) {
