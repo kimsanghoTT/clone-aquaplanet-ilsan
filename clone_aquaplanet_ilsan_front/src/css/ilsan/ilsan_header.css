@@ -559,3 +559,6 @@
 .aside.fixActive .log-in-text, .aside.fixActive .ticket-text{
   color: #767676;
 } 
+.aside.fixActive .ticket-box:hover .ico{
+  filter: brightness(1);
+}
