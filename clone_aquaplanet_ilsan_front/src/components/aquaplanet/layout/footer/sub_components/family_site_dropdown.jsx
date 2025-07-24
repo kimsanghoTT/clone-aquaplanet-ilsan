@@ -30,7 +30,7 @@ const FamilySiteDropdown = () => {
     };
 
     return(
-        <div className="aquaplaent-family-site-btn">
+        <div className="aquaplaent-family-site-btn" ref={familyBtnRef}>
           <span
             className={`family-link-display ${familyLinkListOpen ? "on" : ""}`}
             onClick={handleFamilyLinkList}
@@ -39,7 +39,6 @@ const FamilySiteDropdown = () => {
           </span>
           <ul
             className={`family-link-selector ${familyLinkListOpen ? "on" : ""}`}
-            ref={familyBtnRef}
           >
             <li disabled className="family-link-item">패밀리사이트</li>
             {familyLinks.map((link, index) => (
