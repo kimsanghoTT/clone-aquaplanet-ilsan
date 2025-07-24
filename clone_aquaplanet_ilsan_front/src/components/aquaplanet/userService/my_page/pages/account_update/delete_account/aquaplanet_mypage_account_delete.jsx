@@ -63,7 +63,7 @@ const DeleteAccount = () => {
     localStorage.removeItem("loginMember");
     setLoginMember(null);
     setNoticeExitModal(!noticeExitModal);
-    navigate("/");
+    navigate("/aquaplanet/mall");
   };
 
   const onCancel = () => {
