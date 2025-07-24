@@ -13,7 +13,9 @@ const MainVideoSection = () => {
   return (
     <section id="section01" className="main-section section01">
       <div className="video-section-container">
-        <video src="/img/ilsan/ilsan_main_video.mp4" autoPlay muted loop type="video/mp4"/>
+        <video autoPlay muted loop playsInline preload="auto" className="main-video">
+          <source src="/img/ilsan/ilsan_main_video.mp4" type="video/mp4" />
+        </video>
         <div className="main-video-overlay-text">
           <p>국내 유일 바다코끼리 보유</p>
           <p>수도권 최대 규모 아쿠아리움</p>

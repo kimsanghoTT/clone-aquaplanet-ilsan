@@ -672,7 +672,7 @@
   left: 0;
   top: 50%;
   transform: translateY(-50%);
-  z-index: 6;
+  z-index: 1;
 }
 .main-pagination ul{
   margin: 0;
