@@ -27,7 +27,6 @@ const MyPageSetting = () => {
   }
 
   if (!loginMember || !loginMember.memberEmail) {
-    alert("잘못된 접근입니다.");
     return;
   }
 
