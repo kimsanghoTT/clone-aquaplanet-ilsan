@@ -46,7 +46,7 @@ const MainInfoSection = () => {
               <a className="pay-detail-link" href="/">
                 자세히 보기
               </a>
-              <a className="ticket-link" href="/aquaplanet/mall">
+              <a className="ticket-link" href="/aquaplanet/mall" target="_blank">
                 티켓 구매
               </a>
             </div>

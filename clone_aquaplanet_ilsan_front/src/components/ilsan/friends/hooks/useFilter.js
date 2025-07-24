@@ -38,7 +38,9 @@ const useFilter = (friends) => {
 
     const applySearchFilter = useCallback(() => {
         let currentFilteredFriends = tempFilteredResult;
-        currentFilteredFriends = currentFilteredFriends.filter(friend => friend.kr_name.includes(filterConditions.search));
+        if(filterConditions.search !== ""){
+            currentFilteredFriends = currentFilteredFriends.filter(friend => friend.kr_name.includes(filterConditions.search));
+        }
 
         setFilteredResult(currentFilteredFriends);
     },[tempFilteredResult, filterConditions.search]);
