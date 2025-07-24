@@ -7,44 +7,39 @@ const useHeaderScrollEvent = (headerRef, isInMainPage) => {
 
 
   useLayoutEffect(() => {
-    const initialScrollPoint = window.pageYOffset || document.documentElement.scrollTop;
-    if(isInMainPage){
-      gsap.fromTo(
-        headerRef.current,
-        { opacity: 0, y: -130 },
-        { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
-      );
+    const checkInitialScroll = () => {
+      const initialScrollPoint = window.pageYOffset || document.documentElement.scrollTop;
 
-      if(initialScrollPoint === 0){
-        scrollState.current = "top";
-      }
-      else{
-        scrollState.current = "scrolled";
-      }
-      setIsHeaderScrolled(false);
-    }
-    else{
-      if(initialScrollPoint <= 790){
+      if (isInMainPage) {
         gsap.fromTo(
           headerRef.current,
           { opacity: 0, y: -130 },
           { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
         );
-        scrollState.current = "outOfContent";
+        scrollState.current = initialScrollPoint === 0 ? "top" : "scrolled";
         setIsHeaderScrolled(false);
+      } else {
+        if (initialScrollPoint <= 790) {
+          gsap.fromTo(
+            headerRef.current,
+            { opacity: 0, y: -130 },
+            { opacity: 1, y: 0, duration: 1, ease: "power1.out" }
+          );
+          scrollState.current = "outOfContent";
+          setIsHeaderScrolled(false);
+        } else {
+          gsap.fromTo(
+            headerRef.current,
+            { opacity: 0, y: -130 },
+            { opacity: 1, y: -50, duration: 0.5, ease: "power1.out" }
+          );
+          scrollState.current = "inContent";
+          setIsHeaderScrolled(true);
+        }
       }
-      else{
-        gsap.fromTo(
-          headerRef.current,
-          { opacity: 0, y: -130 },
-          { opacity: 1, y: -50, duration: 0.5, ease: "power1.out" }
-        );
-        scrollState.current = "inContent";
-        setIsHeaderScrolled(true);
-      }
+    };
 
-    }
-
+    const timeoutId = setTimeout(checkInitialScroll, 200);
 
     const scrollEvent = () => {
       const currentScrollPoint = window.pageYOffset || document.documentElement.scrollTop;
@@ -86,6 +81,7 @@ const useHeaderScrollEvent = (headerRef, isInMainPage) => {
     window.addEventListener("scroll", scrollEvent);
     return () => {
       window.removeEventListener("scroll", scrollEvent);
+      clearTimeout(timeoutId);
     };
   }, [headerRef, isInMainPage, scrollState]);
 

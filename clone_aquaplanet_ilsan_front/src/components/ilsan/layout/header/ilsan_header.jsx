@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import "../../../../css/ilsan/ilsan_header.css";
 import useHeaderHoverEvent from "./hooks/useHeaderHoverEvent";
 import useHeaderScrollEvent from "./hooks/useHeaderScrollEvent";
@@ -21,6 +21,10 @@ const IlsanHeader = () => {
     isHeaderScrolled,
     isInMainPage
   );
+
+  useEffect(() => {
+    console.log(isHeaderScrolled);
+  },[isHeaderScrolled])
   
   
   return (
