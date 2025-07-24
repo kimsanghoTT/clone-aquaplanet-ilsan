@@ -10,7 +10,7 @@ const UserProfileSection = ({ loginMember, setLoginMember }) => {
   }, [loginMember?.memberPhone]);
 
   const logout = useCallback(() => {
-    navigate("/");
+    navigate("/aquaplanet/mall");
     setLoginMember(null);
     localStorage.removeItem("loginMember");
   },[navigate, setLoginMember]);

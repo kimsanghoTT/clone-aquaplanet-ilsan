@@ -21,7 +21,7 @@ const MyPageSetting = () => {
   };
 
   const logout = () => {
-    navigate("/");
+    navigate("/aquaplanet/mall");
     setLoginMember(null);
     localStorage.removeItem("loginMember");
   }
