@@ -3,9 +3,9 @@ import { familyLinks } from "../../data/constants";
 
 const FamilySiteDropdown = () => {
 
-  const [selectedFamilyLink, setSelectedFamilyLink] = useState("패밀리사이트");
-  const [familyLinkListOpen, setFamilyLinkListOpen] = useState(false);
-  const familyBtnRef = useRef(null);
+    const [selectedFamilyLink, setSelectedFamilyLink] = useState("패밀리사이트");
+    const [familyLinkListOpen, setFamilyLinkListOpen] = useState(false);
+    const familyBtnRef = useRef(null);
 
     useEffect(() => {
         const clickOutside = (e) => {
@@ -30,7 +30,7 @@ const FamilySiteDropdown = () => {
     };
 
     return(
-        <div className="aquaplaent-family-site-btn" ref={familyBtnRef}>
+        <div className="aquaplaent-family-site-btn" >
           <span
             className={`family-link-display ${familyLinkListOpen ? "on" : ""}`}
             onClick={handleFamilyLinkList}
@@ -39,6 +39,7 @@ const FamilySiteDropdown = () => {
           </span>
           <ul
             className={`family-link-selector ${familyLinkListOpen ? "on" : ""}`}
+            ref={familyBtnRef}
           >
             <li disabled className="family-link-item">패밀리사이트</li>
             {familyLinks.map((link, index) => (
