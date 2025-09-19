@@ -22,11 +22,6 @@ const IlsanHeader = () => {
     isInMainPage
   );
 
-  useEffect(() => {
-    console.log(isHeaderScrolled);
-  },[isHeaderScrolled])
-  
-  
   return (
     <header
       className={`ilsan-header ${isHeaderScrolled ? "fixActive" : ""}`}
